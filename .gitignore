@@ -1,0 +1,25 @@
+# Third-party repos — cloned locally, not vendored here.
+# See SETUP.md § "Get the third-party repos" for the clone commands.
+TruckDrive/
+truckscenes-devkit/
+
+# Datasets — far too large for git (mini is ~9.6 GB, trainval ~560 GB)
+*.zip
+data/
+datasets/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Editors / tools
+.claude/settings.local.json
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
