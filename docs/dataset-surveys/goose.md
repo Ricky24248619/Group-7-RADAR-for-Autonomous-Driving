@@ -1,8 +1,10 @@
 # Survey: GOOSE (German Outdoor and Offroad Dataset)
 
 > **Reference example** for [`../dataset-survey-template.md`](../dataset-survey-template.md).
-> Sections 1–5 and 7 are complete. Section 6 is deliberately empty — the feasibility
-> test has not been run. Note how uncertain facts are marked rather than guessed.
+> All sections complete. The feasibility test in §6 **passed** on 22 Aug 2026 — devkit
+> installed, data downloaded, frames loaded and rendered, with evidence attached. Note
+> how uncertain facts are marked rather than guessed, and how the three install gotchas
+> are recorded in §6 rather than dropped once they were solved.
 
 ## 0. Survey metadata
 
@@ -10,10 +12,10 @@
 |---|---|
 | Dataset | GOOSE (+ GOOSE-Ex extension) |
 | Surveyed by | Damien Zhang (DZ) |
-| Date surveyed | 2026-08-18 |
+| Date surveyed | 2026-08-18 · feasibility test 2026-08-22 |
 | Reviewed by | *(pending — must be a member other than DZ)* |
 | Review date | |
-| Survey status | Draft |
+| Survey status | **Complete — pending review** |
 
 Story **DZ-2** · Workstream **WS2** · Bears on risk **R-24** and decision **D-03**
 
@@ -63,7 +65,7 @@ Story **DZ-2** · Workstream **WS2** · Bears on risk **R-24** and decision **D-
 | **Devkit available** | Yes | Confirmed | repo |
 | Devkit language and licence | Python · MIT | Confirmed | repo |
 | Annotated frame count | **10,000** labelled image/point-cloud pairs, of 15,000 total frames | Confirmed | paper + site |
-| Max annotation range | Not stated; bounded by LiDAR range | Not found | — |
+| Max annotation range | Not published. **Measured ~±200 m** on val frames — see §6 | Confirmed (empirical) | this survey |
 
 **Splits:** train 7,830 · val 960 · test 1,210 (= 10,000). Labels published for **train
 and val only**; test labels withheld for the leaderboard competitions. *(Confirmed —
@@ -136,26 +138,64 @@ requirement — compare STONE (CC BY-NC-ND, no derivatives) and TruckDrive (Torc
 
 ---
 
-## 6. Tooling and feasibility
-
-**Not yet attempted.** Per DZ-2's acceptance test, visualising a single frame locally
-is sufficient — do not build a pipeline to answer this.
+## 6. Tooling and feasibility — **PASSED** 22 Aug 2026
 
 | Field | Value |
 |---|---|
-| Devkit install attempted? | No — pending |
-| Install outcome | |
-| OS and environment used | |
-| Errors encountered | |
-| Hours spent | |
-| **Single frame loaded and visualised?** | No — pending |
-| Evidence | |
+| Devkit install attempted? | **Yes** |
+| Install outcome | **Worked** |
+| OS and environment | macOS 24.6 (Apple Silicon), Python 3.11 in `~/.venvs/radar` |
+| Dependencies added | `vispy 0.16.2`, `PyQt5`. **No CUDA required** |
+| Data used | `goose_3d_val.zip`, 3.3 GB — integrity verified, 1,925 files |
+| Extracted contents | **961 point clouds + 961 labels** in `lidar/val/`, `labels/val/` |
+| **Frame loaded and visualised?** | **Yes — two frames, two different scenarios** |
+| Evidence | [`goose_frame_000.png`](../evidence/goose_frame_000.png) · [`goose_frame_500.png`](../evidence/goose_frame_500.png) |
+| Tooling written | [`scripts/goose_render_frame.py`](../../scripts/goose_render_frame.py) |
+| Hours spent | ~1 session, mostly download time |
 
-**Priority feasibility task — inspect one raw ROS bag.** The paper says all raw sensor
-data is released in ROS bag format. Download one sequence bag and list its topics
-(`rosbag info` / `ros2 bag info`). This single command answers the highest-value open
-question in this survey: whether radar topics are actually present in the distributed
-bags, and whether they are ROS 1 or ROS 2. Budget under a day.
+**Result.** `2022-07-22_flight__0071` — 169,883 points, 17 classes, dominated by bush
+35.9%, low_grass 20.6%, high_grass 19.7%, hedge 12.1%, asphalt 6.1%.
+`2022-12-07_aying_hills__0124` — 200,915 points, a winter scene with snow: forest
+34.6%, building 24.9%, soil 9.0%. Both render coherently — a driveable track through
+vegetation, ego vehicle at the origin.
+
+**Empirical range.** Labelled points extend to roughly **±200 m** in both frames
+(frame 000: x ∈ [−192, 198] m). Section 2 previously recorded max annotation range as
+"not found"; this is measured, not published, but it shows GOOSE is not a short-range
+dataset. Point density at that distance is sparse — do not read it as usable
+long-range supervision without checking.
+
+### Three gotchas — for the installation log (FA-3)
+
+None blocked the work, but each costs an hour if hit cold.
+
+1. **The visualiser looks for `labels_challenge/`; the split ships `labels/`.**
+   `pointcloud_processing/tools/visualize_3d_data.py` defaults to a directory the
+   download does not contain, and exits reporting a missing sequence folder.
+2. **Two taxonomies, and mixing them fails silently.** The bundled
+   `common/goose_kitti-visualizer.yaml` is an **8-class** challenge remap with a **BGR**
+   colour map. The downloaded labels are the **full 64-class** set, described by
+   `goose_label_mapping.csv` with **hex** colours. Colouring 64-class labels with the
+   8-class map renders most of the scene as unknown **without raising an error**.
+   Anyone comparing GOOSE class counts against another dataset must say which taxonomy
+   they mean.
+3. **Scans and labels do not share a filename stem.** Scans end `_vls128.bin`, labels
+   end `_goose.label`. The join key is everything up to the final underscore.
+
+### Not attempted — and why
+
+The point-cloud **baselines** (Pointcept / PTv3, `pointcloud_processing/README.md`)
+ship as a Docker image tested against CUDA 11.7. Not runnable on Apple Silicon — that
+is **R-08**, not a GOOSE problem. It is cleanly separated from visualisation, which
+needs only vispy. Baselines require Kaya, the DGX Spark, or Colab.
+
+### Still outstanding — inspect one raw ROS bag
+
+The annotated splits used above contain **LiDAR and labels only — no radar**. The paper
+says all raw sensor data is released in ROS bag format, which is where the radar lives.
+Download one sequence bag and list its topics (`rosbag info` / `ros2 bag info`). That
+single command answers the highest-value open question in this survey: whether radar
+topics are really present, and whether the bags are ROS 1 or ROS 2.
 
 ---
 
