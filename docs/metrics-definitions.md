@@ -4,8 +4,8 @@ Owners: **Ricky Yuen** (lead, per Skills & Resources Audit), **Damien Zhang**.
 Every metric used in a comparison record must be defined here first — an
 undefined metric in a results table is a bug in the results table.
 
-Status: skeleton. To be completed before the first benchmark run; D-01 must be
-confirmed with Fabian before benchmarking begins.
+Status: segmentation definitions complete for Sprint 2; detection questions remain
+open. D-01 must be confirmed with Fabian before benchmarking begins.
 
 ## Detection metrics
 
@@ -22,11 +22,52 @@ D-02 says results are compared only within a task type — so segmentation and
 traversability results get their own metric set and **never share a table or
 axis with detection metrics** (mAP ↔ mIoU comparisons are meaningless).
 
-| Metric | Task / dataset | Definition | Status |
-|---|---|---|---|
-| mIoU (2D) | Semantic segmentation — GOOSE | Mean intersection-over-union over classes; state which taxonomy (GOOSE ships 64-class full and 8-class challenge remaps — they are not interchangeable) | **To define precisely** (Ricky) |
-| mIoU (3D) | Point-cloud segmentation — GOOSE | Same, over point-wise labels (SemanticKITTI format) | **To define precisely** (Ricky) |
-| Traversability per-class IoU / accuracy | Voxel traversability — STONE | 4 classes (Free / Traversable / Potentially / Non-Traversable); note voxel grid ends at ±25.6 m, so range-banded reporting does not apply | **To define if STONE strand proceeds** |
+### Exact definitions
+
+For a class `c`, computed over the complete named evaluation subset:
+
+- `TP_c`: pixels/points whose prediction and ground truth are both `c`
+- `FP_c`: pixels/points predicted as `c` whose ground truth is another scored class
+- `FN_c`: pixels/points whose ground truth is `c` but prediction is another class
+- **Per-class IoU:** `IoU_c = TP_c / (TP_c + FP_c + FN_c)`
+- **Overall accuracy:** number of correctly classified scored pixels/points divided by
+  the total number of scored pixels/points. This is prevalence-weighted and must never
+  be presented as a substitute for mIoU.
+
+**mIoU** is the arithmetic mean of `IoU_c` over the explicitly declared evaluated
+class set `E`. A class with no ground-truth and no predicted members has zero union, so
+its IoU is undefined and it is excluded rather than converted to zero. A class absent
+from ground truth but predicted by the model has non-zero union and remains in `E` with
+IoU zero, so hallucinating an absent class is still penalised. Every reported mIoU must
+state `|E|` and list excluded or ignored classes.
+
+This rule matters in GOOSE: R2 found 22 of 64 classes below 0.01% of validation points,
+including six with zero points. Blindly averaging placeholder zeros over all 64 would
+measure taxonomy sparsity as if it were model failure.
+
+| Metric | Unit being classified | Required reporting context |
+|---|---|---|
+| 2D per-class IoU / mIoU | Camera-image pixels | Image split, evaluated class set and taxonomy |
+| 3D per-class IoU / mIoU | LiDAR points | Point-cloud split, evaluated class set and taxonomy |
+| 4-class traversability IoU / mIoU | Pixels, points or voxels — state which | Mapping version and four-class evaluated set |
+| Overall accuracy | Same unit as the corresponding IoU | Scored/ignored labels and class distribution |
+
+### Taxonomy rule
+
+The metric name alone is insufficient. Every value is labelled as exactly one of:
+
+1. **GOOSE full 64-class taxonomy**
+2. **GOOSE 8-class challenge remap**
+3. **Team 4-class traversability mapping** (`traversability_map.csv` version/commit)
+
+These are three different classification problems and therefore three different
+numbers. They never share a series, axis, or ranking. Segmentation mIoU/IoU/accuracy
+also never shares a comparison table or axis with detection mAP; no conversion between
+them exists.
+
+STONE, if unblocked, uses the same four class names but its voxel grid ends at ±25.6 m.
+It must be reported as STONE voxel traversability and not pooled with GOOSE point-wise
+traversability.
 
 ## Open questions (resolve here before first benchmarking)
 

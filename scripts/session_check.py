@@ -38,6 +38,7 @@ OWNERSHIP = {
     "ricky": [
         "scripts/goose_stats.py",
         "GOOSE - Ricky+Damien/traversability_map.csv",
+        "GOOSE - Ricky+Damien/traversability-map-notes.md",
         "GOOSE - Ricky+Damien/dataset-statistics.md",
         "experiment-log/*",
         "docs/metrics-definitions.md",
@@ -116,11 +117,19 @@ def main():
 
     # 2. Up to date with main ----------------------------------------------------
     print(f"  {DIM}..{RESET}   fetching origin")
-    git("fetch", "origin", "--prune", check=False)
+    fetch = subprocess.run(
+        ["git", "fetch", "origin", "--prune"],
+        capture_output=True,
+        text=True,
+    )
+    if fetch.returncode != 0:
+        problems.append(
+            "Could not fetch origin, so branch freshness cannot be verified.\n"
+            f"      {fetch.stderr.strip() or fetch.stdout.strip()}")
 
     behind = git("rev-list", "--count", "HEAD..origin/main", check=False)
     if behind and behind != "0":
-        warnings.append(
+        problems.append(
             f"origin/main has {behind} commit(s) you do not have.\n"
             f"      Rebase before you start, or you will conflict later:\n"
             f"      git pull --rebase origin main")

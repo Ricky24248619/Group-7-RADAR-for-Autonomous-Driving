@@ -91,7 +91,7 @@ Thirty seconds to check, potentially significant either way.
 | **Week 1** | Frame sweep, contact sheet, renderer refactor | Environment, dataset statistics, traversability mapping |
 | **3 Sep** | Checkpoint — mapping handed over | |
 | **Week 2** | Traversability renders, client figure, survey update | Experiment logs, metrics definitions |
-| **10 Sep** | One PR each, reviewing each other | |
+| **10 Sep** | One week-2 PR per person, reviewing each other | |
 
 ---
 

@@ -133,16 +133,16 @@ ways that confuse venvs.
 mkdir -p ~/.venvs
 /opt/homebrew/opt/python@3.11/bin/python3.11 -m venv ~/.venvs/radar
 PY=~/.venvs/radar/bin/python
-$PY -m pip install --upgrade pip
-$PY -m pip install numpy matplotlib pyyaml
+$PY -m pip install pip==26.2.1
+$PY -m pip install numpy==1.26.4 matplotlib==3.8.4 PyYAML==6.0.2
 ```
 
 **Windows**
 ```powershell
 py -3.11 -m venv "$env:USERPROFILE\.venvs\radar"
 $PY = "$env:USERPROFILE\.venvs\radar\Scripts\python.exe"
-& $PY -m pip install --upgrade pip
-& $PY -m pip install numpy matplotlib pyyaml
+& $PY -m pip install pip==26.2.1
+& $PY -m pip install numpy==1.26.4 matplotlib==3.8.4 PyYAML==6.0.2
 ```
 
 Those three packages are all the tasks in this plan need. **Optional extras**, only if
@@ -233,7 +233,7 @@ the committed examples in `docs/evidence/`.
 ### 2.7 Git line endings — Windows only, do this once
 
 ```powershell
-git config --global core.autocrlf true
+git config core.autocrlf true
 ```
 
 The repo carries a `.gitattributes` that normalises text files, but setting this stops
@@ -315,7 +315,7 @@ rediscovers them.
 | **Week 1** (27 Aug – 3 Sep) | **D1** frame sweep · **D2** refactor renderer for class grouping | **R1** environment + smoke test · **R2** dataset statistics · **R3** traversability mapping |
 | **Checkpoint** — 3 Sep | Both: 30-minute sync. R3 must be delivered here; D3 depends on it. | |
 | **Week 2** (4 – 10 Sep) | **D3** traversability renderer · **D4** client figure · **D5** survey §7 + limitations | **R4** experiment log entries · **R5** metrics definitions for segmentation |
-| **End** — 10 Sep | Joint PR, each reviewing the other's files | |
+| **End** — 10 Sep | One week-2 PR per person, each reviewed by the other | |
 
 **The one cross-person dependency is R3 → D3.** Ricky delivers the traversability
 mapping by the 3 September checkpoint; Damien implements against it in week 2. Damien's
@@ -332,7 +332,7 @@ same repository at the same time.
 | Owner | Files |
 |---|---|
 | **Damien** | `scripts/goose_render_frame.py` · `scripts/goose_traversability.py` · `scripts/goose_contact_sheet.py` · `docs/dataset-surveys/goose.md` · `docs/evidence/*` · `GOOSE - Ricky+Damien/findings-damien.md` |
-| **Ricky** | `scripts/goose_stats.py` · `GOOSE - Ricky+Damien/traversability_map.csv` · `GOOSE - Ricky+Damien/dataset-statistics.md` · `experiment-log/*` · `docs/metrics-definitions.md` |
+| **Ricky** | `scripts/goose_stats.py` · `GOOSE - Ricky+Damien/traversability_map.csv` · `GOOSE - Ricky+Damien/traversability-map-notes.md` · `GOOSE - Ricky+Damien/dataset-statistics.md` · `experiment-log/*` · `docs/metrics-definitions.md` |
 | **Frozen** — needs both of us to agree, at a checkpoint | `WORKPLAN.md` · `SUMMARY.md` · `GOOSE-CONTEXT.md` · `scripts/session_check.py` · `scripts/validate_traversability_map.py` · `.gitignore` · `.gitattributes` |
 
 This table is **enforced by a script**, not by memory — see §7. If you need a file you
@@ -524,9 +524,10 @@ classes, so D3 can drop in Ricky's traversability mapping without a rewrite.
 
 **Steps.**
 1. Extract the class-mapping load into a function that accepts either the 64-class
-   `goose_label_mapping.csv` **or** a grouping file with columns
-   `label_key, class_name, group_name, group_colour` (the format R3 will produce —
-   see §9).
+   `goose_label_mapping.csv` **or** the R3 traversability contract columns
+   `label_key, class_name, traversability_id, traversability_name, rationale`
+   (see §9). A generic `group_id, group_name` mapping may also carry an optional
+   `group_colour` column.
 2. When a grouping file is supplied, remap each point's class id to its group before
    colouring, and show group names in the legend.
 3. Keep the existing 64-class behaviour as the default. **Do not break it** — D1's
@@ -822,17 +823,17 @@ file (§6).
 
 ## 10. Definition of done for the fortnight
 
-- [ ] All 8 scenarios rendered and observed (D1)
-- [ ] Renderer supports arbitrary class groupings without breaking 64-class mode (D2)
-- [ ] All 64 classes assigned a traversability class with a written rationale (R3)
+- [x] All 8 scenarios rendered and observed (D1)
+- [x] Renderer supports arbitrary class groupings without breaking 64-class mode (D2)
+- [x] All 64 classes assigned a traversability class with a written rationale (R3)
 - [ ] Traversability renders exist and are visually coherent (D3)
 - [ ] One client-ready figure a stranger can read in 60 seconds (D4)
-- [ ] Dataset statistics measured, not estimated (R2)
+- [x] Dataset statistics measured, not estimated (R2)
 - [ ] Survey §7 rewritten with limitations recorded (D5)
-- [ ] Segmentation metrics defined before any metric is reported (R5)
+- [x] Segmentation metrics defined before any metric is reported (R5)
 - [ ] At least three experiment-log entries, including any failures (R4)
-- [ ] Branch protection enabled on `main` by Ricky (§7.9)
-- [ ] `validate_traversability_map.py` prints VALID before the hand-off (R3)
+- [x] Branch protection enabled on `main` by Ricky (§7.9)
+- [x] `validate_traversability_map.py` prints VALID before the hand-off (R3)
 - [ ] `session_check.py` exits 0 before every PR is opened
 - [ ] One PR per person per week, each reviewed by the other
 
