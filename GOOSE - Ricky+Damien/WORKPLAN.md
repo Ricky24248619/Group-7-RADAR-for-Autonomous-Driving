@@ -23,17 +23,24 @@ conversations, should be able to do the work.
 
 ### Rules for AI assistants working on this plan
 
-1. **Never commit dataset files.** The dataset lives outside the repo at
-   `~/datasets/goose/`. Nothing under that path is ever added to git. If `git status`
-   shows `.bin`, `.label`, `.zip` or `.png` frames from the dataset, stop.
+1. **Never commit dataset files.** The dataset lives at `$DATA` (§2.0), outside the
+   repo on both platforms. Nothing under that path is ever added to git. If
+   `git status` shows `.bin`, `.label` or `.zip` files from the dataset, stop.
 2. **Never push to `main`.** Work on a branch, open a PR. `main` requires review.
 3. **Never edit files owned by the other person** (§6).
-4. **Do not install packages globally.** Use the project venv at `~/.venvs/radar`.
-5. **Do not attempt to run the Pointcept / PTv3 baselines.** They require CUDA and a
-   Docker image; the team's machines are Apple Silicon. This is recorded as risk R-08
-   and is out of scope for this fortnight.
-6. **Pin versions** in any install command you write into documentation.
-7. **State uncertainty.** If a number is measured, say so. If it is from a paper, cite
+4. **Do not install packages globally.** Use the project venv — `$PY` in §2.0.
+5. **Do not attempt to run the Pointcept / PTv3 baselines.** They require CUDA.
+   Damien's machine is Apple Silicon and cannot. Ricky's Windows machine *might* — see
+   §2.8 — but that is a team decision, not something to start mid-task. Out of scope
+   for this fortnight either way (risk R-08).
+6. **This is a cross-platform pair.** Damien is on macOS, Ricky on Windows. Where a
+   step differs, both are given. Use `$PY` and `$DATA` from §2.0 rather than hardcoding
+   paths. PowerShell needs `& $PY ...` to invoke a command held in a variable.
+7. **Any script either of us writes must run on both.** Use `pathlib`, not string paths.
+   Never hardcode `/` separators, `/tmp`, or `C:\`. Write files with an explicit
+   `encoding="utf-8"`.
+8. **Pin versions** in any install command you write into documentation.
+9. **State uncertainty.** If a number is measured, say so. If it is from a paper, cite
    it. Do not present an estimate as a measurement.
 
 ---
@@ -66,65 +73,187 @@ risk R-24 and in `decision-log.md` D-05.*
 
 ## 2. Environment setup
 
-Damien's machine is already configured. **Ricky: run this first.**
+**This pair works across two operating systems.** Damien is on macOS (Apple Silicon),
+Ricky is on Windows. Every command below is given for both.
 
-### 2.1 Verify the venv
+### 2.0 Shell conventions — set these once per session
 
+The rest of this document refers to `$PY` (the venv's Python) and `$DATA` (the dataset
+root) rather than repeating platform-specific paths. Set them at the start of every
+session, then every later command works unchanged on both machines.
+
+**macOS / Linux — bash or zsh**
 ```bash
-~/.venvs/radar/bin/python --version        # expect Python 3.11.x
+PY=~/.venvs/radar/bin/python
+DATA=~/datasets/goose/goose_3d_val
 ```
 
-If that fails, create it (needs Homebrew `python@3.11`; the devkit requires <3.12):
+**Windows — PowerShell** (not Command Prompt)
+```powershell
+$PY   = "$env:USERPROFILE\.venvs\radar\Scripts\python.exe"
+$DATA = "C:\goose\goose_3d_val"
+```
 
+> **Why call the exe directly instead of activating the venv?** On Windows,
+> `Activate.ps1` is blocked by the default script execution policy on many managed
+> machines. Calling `python.exe` by full path sidesteps that entirely and never needs
+> an administrator. Use `& $PY ...` — the `&` is PowerShell's call operator and is
+> required when the command is held in a variable.
+
+> **Why is the Windows data path `C:\goose` and not under your user folder?** Windows
+> has a 260-character path limit by default. GOOSE filenames are long — e.g.
+> `2022-08-30_siegertsbrunn_feldwege__0123_1661856789012345678_goose.label` is 71
+> characters before any directories. Keeping the dataset near the drive root leaves
+> headroom. If you would rather put it elsewhere, that is fine, but keep the path short.
+
+### 2.1 Python 3.11
+
+The devkit requires Python `>=3.8,<3.12`, so 3.11 it is. Newer versions will fail.
+
+**macOS**
+```bash
+brew install python@3.11
+```
+
+**Windows**
+```powershell
+winget install Python.Python.3.11
+py -3.11 --version        # expect Python 3.11.x
+```
+Or the installer from [python.org](https://www.python.org/downloads/). Tick **"Add
+python.exe to PATH"**. Avoid the Microsoft Store build — it sandboxes file access in
+ways that confuse venvs.
+
+### 2.2 Create the venv and install packages
+
+**macOS**
 ```bash
 mkdir -p ~/.venvs
 /opt/homebrew/opt/python@3.11/bin/python3.11 -m venv ~/.venvs/radar
-~/.venvs/radar/bin/pip install numpy matplotlib pyyaml vispy==0.16.2 PyQt5 rosbags
+PY=~/.venvs/radar/bin/python
+$PY -m pip install --upgrade pip
+$PY -m pip install numpy matplotlib pyyaml
 ```
 
-> The venv lives outside the project folder deliberately. The project path contains
-> spaces, which breaks console-script shebangs. See `SETUP.md` in the repo root.
+**Windows**
+```powershell
+py -3.11 -m venv "$env:USERPROFILE\.venvs\radar"
+$PY = "$env:USERPROFILE\.venvs\radar\Scripts\python.exe"
+& $PY -m pip install --upgrade pip
+& $PY -m pip install numpy matplotlib pyyaml
+```
 
-### 2.2 Get the data (3.3 GB download, 3.3 GB extracted)
+Those three packages are all the tasks in this plan need. **Optional extras**, only if
+you want the devkit's interactive viewer (`vispy`, `PyQt5`) or to inspect ROS bags
+(`rosbags`) — neither is required here:
 
+```
+vispy==0.16.2  PyQt5  rosbags
+```
+
+> The venv lives **outside** the project folder on both platforms. On macOS this is
+> because the project path contains spaces, which breaks console-script shebangs (see
+> `SETUP.md`). On Windows it keeps paths short. Same location, different reason.
+
+### 2.3 Get the data — 3.3 GB download, 3.3 GB extracted
+
+**macOS**
 ```bash
-mkdir -p ~/datasets/goose/zips
-cd ~/datasets/goose/zips
-curl -# -L -O https://goose-dataset.de/storage/goose_3d_val.zip
-
-mkdir -p ~/datasets/goose/goose_3d_val
+mkdir -p ~/datasets/goose/zips ~/datasets/goose/goose_3d_val
+curl -# -L -o ~/datasets/goose/zips/goose_3d_val.zip \
+  https://goose-dataset.de/storage/goose_3d_val.zip
 cd ~/datasets/goose/goose_3d_val
 unzip -q ~/datasets/goose/zips/goose_3d_val.zip
 ```
 
-### 2.3 Verify
+**Windows**
+```powershell
+New-Item -ItemType Directory -Force -Path C:\goose\zips, C:\goose\goose_3d_val | Out-Null
 
-```bash
-cd ~/datasets/goose/goose_3d_val
-find lidar -name '*.bin' | wc -l      # expect 961
-find labels -name '*.label' | wc -l   # expect 961
-ls lidar/val/                         # expect 8 scenario directories
+curl.exe -# -L -o C:\goose\zips\goose_3d_val.zip `
+  https://goose-dataset.de/storage/goose_3d_val.zip
+
+tar -xf C:\goose\zips\goose_3d_val.zip -C C:\goose\goose_3d_val
 ```
 
-### 2.4 Clone the devkit (optional, for the official viewer)
+> ⚠️ **Two Windows traps here, both of which will waste your afternoon.**
+>
+> 1. **`curl` in PowerShell is an alias for `Invoke-WebRequest`**, which is a different
+>    program with different flags. It will fail or silently produce a broken file. You
+>    must write **`curl.exe`** with the extension.
+> 2. **Use `tar`, not `Expand-Archive`.** `tar` ships with Windows 10 and 11 and
+>    extracts this archive in a couple of minutes. `Expand-Archive` is pure PowerShell
+>    and can take the better part of an hour on a 3.3 GB zip with 1,925 files.
 
+### 2.4 Verify
+
+**macOS**
 ```bash
-cd "<repo root>"
+find $DATA/lidar -name '*.bin' | wc -l       # expect 961
+find $DATA/labels -name '*.label' | wc -l    # expect 961
+ls $DATA/lidar/val/                          # expect 8 scenario directories
+```
+
+**Windows**
+```powershell
+(Get-ChildItem "$DATA\lidar"   -Recurse -Filter *.bin).Count      # expect 961
+(Get-ChildItem "$DATA\labels" -Recurse -Filter *.label).Count     # expect 961
+Get-ChildItem "$DATA\lidar\val" -Directory | Select-Object -ExpandProperty Name
+```
+
+### 2.5 Clone the devkit — optional
+
+```
 git clone https://github.com/FraunhoferIOSB/goose_dataset.git
 ```
 
-Already in `.gitignore`. Not required for any task below.
+Run from the repo root. Already in `.gitignore`. **Not required for any task below** —
+it is only needed for the official interactive viewer.
 
-### 2.5 Smoke test
+### 2.6 Smoke test
 
+Run from the repo root.
+
+**macOS**
 ```bash
-cd "<repo root>"
-~/.venvs/radar/bin/python scripts/goose_render_frame.py \
-  --root ~/datasets/goose/goose_3d_val --index 0 --out /tmp/smoke.png
+$PY scripts/goose_render_frame.py --root $DATA --index 0 --out /tmp/smoke.png
 ```
 
-Expect: `Found 961 annotated frames.`, a class distribution table, and a PNG written.
-**If this works, your environment is correct.**
+**Windows**
+```powershell
+& $PY scripts\goose_render_frame.py --root $DATA --index 0 --out $env:TEMP\smoke.png
+```
+
+Expect `Found 961 annotated frames.`, a class distribution table, and a PNG written.
+**If this works, your environment is correct.** Open the PNG and check it looks like
+the committed examples in `docs/evidence/`.
+
+### 2.7 Git line endings — Windows only, do this once
+
+```powershell
+git config --global core.autocrlf true
+```
+
+The repo carries a `.gitattributes` that normalises text files, but setting this stops
+your editor turning whole files into one-line diffs. It matters here because Ricky
+authors `traversability_map.csv` and Damien's code reads it — a CRLF surprise in a
+shared data file is an annoying thing to debug.
+
+### 2.8 Check for an NVIDIA GPU — Windows only, 30 seconds
+
+```powershell
+nvidia-smi
+```
+
+**If this prints a table showing a GPU, tell the team immediately.** Risk **R-08** in
+the register says no team member has a discrete NVIDIA GPU, and that has never actually
+been audited. Damien's machine is Apple Silicon and definitively cannot run CUDA. If
+Ricky's Windows machine has an NVIDIA card with enough VRAM, then the Pointcept / PTv3
+baselines — currently listed as out of scope in §10 — may become runnable locally, and
+several downstream assumptions about needing Kaya or Colab change.
+
+If it prints "not recognized" or nothing, that confirms R-08 as written. Either answer
+is a useful result; record it in the R1 experiment-log entry.
 
 ---
 
@@ -223,7 +352,7 @@ fold it in at the checkpoint.
 **Goal.** Build visual intuition for what GOOSE actually contains, and produce a
 contact sheet that shows the seasonal and terrain range in one image.
 
-**Inputs.** `~/datasets/goose/goose_3d_val`, `scripts/goose_render_frame.py`
+**Inputs.** `$DATA` (§2.0), `scripts/goose_render_frame.py`
 
 **Steps.**
 1. Render at least two frames from each of the 8 scenarios. Frame indices are ordered
@@ -264,9 +393,18 @@ classes, so D3 can drop in Ricky's traversability mapping without a rewrite.
 
 **Done when.** Both of these run and produce different, correct images:
 ```bash
-~/.venvs/radar/bin/python scripts/goose_render_frame.py --root ~/datasets/goose/goose_3d_val --index 0 --out /tmp/a.png
-~/.venvs/radar/bin/python scripts/goose_render_frame.py --root ~/datasets/goose/goose_3d_val --index 0 --group-map <any-valid-grouping.csv> --out /tmp/b.png
+# macOS
+$PY scripts/goose_render_frame.py --root $DATA --index 0 --out /tmp/a.png
+$PY scripts/goose_render_frame.py --root $DATA --index 0 --group-map <grouping.csv> --out /tmp/b.png
 ```
+```powershell
+# Windows
+& $PY scripts\goose_render_frame.py --root $DATA --index 0 --out $env:TEMP\a.png
+& $PY scripts\goose_render_frame.py --root $DATA --index 0 --group-map <grouping.csv> --out $env:TEMP\b.png
+```
+
+Damien owns this file and works on macOS, but **the script must stay cross-platform** —
+Ricky runs it too. Use `pathlib`, never hardcode `/` separators or `/tmp`.
 
 **Output.** Updated `scripts/goose_render_frame.py`
 
@@ -346,21 +484,50 @@ what the dataset is for and what it cannot answer.
 
 # TASKS — RICKY
 
-## R1 — Environment and smoke test
+## R1 — Environment and smoke test ⚠️ **do this in the first two days**
 
-**Goal.** Get a working GOOSE environment on your machine and confirm it independently
-of Damien's.
+**Goal.** Get a working GOOSE environment on Windows and confirm it independently of
+Damien's macOS setup.
 
-**Steps.** Follow §2 end to end. Run the §2.5 smoke test.
+**Why it is urgent.** Every task you have depends on this, and it is the step most
+likely to go wrong — the tooling was built and tested on macOS. If Windows throws
+something unexpected, you want to find out on day one, not day four with the
+3 September checkpoint looming.
 
-**Done when.** The smoke test prints `Found 961 annotated frames.` and writes a PNG.
+**Steps.**
+1. Follow §2 end to end, using the **Windows** blocks.
+2. Run the §2.6 smoke test. Open the PNG and compare it against the committed examples
+   in `docs/evidence/` — it should look equivalent.
+3. Run §2.7 (git line endings) and §2.8 (GPU check).
 
-**Output.** An experiment-log entry recording the setup — including anything that did
-not work first time. This is the first clean-machine reproduction of Damien's setup,
-which makes it evidence for acceptance criterion **P-5**. Treat it as a real result.
+**Done when.** The smoke test prints `Found 961 annotated frames.`, writes a PNG, and
+that PNG looks like the committed examples.
 
-> If setup fails on your machine, that failure is more valuable than a success. Record
-> the exact error.
+**Output.** An experiment-log entry recording the setup, including anything that did
+not work first time and the exact error text.
+
+> **This is the most valuable single task in the fortnight, and it is easy to
+> undervalue.** It is the first clean-machine, different-OS reproduction of Damien's
+> work, which is precisely what acceptance criterion **P-5** demands — a person outside
+> the original setup clones the repo and reproduces a documented result. A cross-platform
+> reproduction is stronger evidence than a second macOS one would be.
+>
+> So if setup fails, **that failure is the result** — record it rather than quietly
+> working around it. Any macOS assumption baked into `goose_render_frame.py` needs to
+> come back to Damien as a bug, not be patched locally on your copy.
+
+### R1b — GPU audit (30 seconds, potentially significant)
+
+Run `nvidia-smi` (§2.8) and record the outcome.
+
+Risk **R-08** states no team member has a discrete NVIDIA GPU, and the Skills Audit
+assigns Aiden to audit team hardware in week 1 — as far as this pair knows, that audit
+never happened. Damien's Apple Silicon machine definitively cannot run CUDA. **If your
+Windows machine has an NVIDIA GPU, R-08 may be wrong**, which would change what the
+whole team believes about needing Kaya or Colab, and could put the Pointcept / PTv3
+baselines back in scope for a later sprint.
+
+Report either answer to the team. Note the GPU model and VRAM if there is one.
 
 ---
 
@@ -418,9 +585,13 @@ and carries over if the STONE strand ever unblocks:
 4. Flag the genuinely uncertain ones in a "contested" section for the checkpoint.
 
 **Done when.** All 64 classes are assigned, each with a rationale, and the file loads:
-```bash
-~/.venvs/radar/bin/python -c "import csv; r=list(csv.DictReader(open('GOOSE - Ricky+Damien/traversability_map.csv'))); print(len(r), 'rows'); assert len(r)==64"
+```powershell
+& $PY -c "import csv; r=list(csv.DictReader(open('GOOSE - Ricky+Damien/traversability_map.csv'))); print(len(r),'rows'); assert len(r)==64"
 ```
+Save the file as **UTF-8 with plain commas**. Excel on Windows will happily write
+UTF-8-BOM or semicolon separators depending on your locale — both break `csv.DictReader`
+on Damien's side. A plain text editor, or `pandas.to_csv(..., encoding='utf-8', index=False)`,
+avoids it.
 
 **Output.** `GOOSE - Ricky+Damien/traversability_map.csv`
 
@@ -512,7 +683,7 @@ Listed so an assistant does not helpfully wander into them.
 
 | Not doing | Why |
 |---|---|
-| Running Pointcept / PTv3 baselines | Requires CUDA + Docker; team is on Apple Silicon (R-08) |
+| Running Pointcept / PTv3 baselines | Requires CUDA. Impossible on Damien's Apple Silicon; possible on Ricky's machine only if §2.8 finds an NVIDIA GPU — a team decision, not a task here (R-08) |
 | Camera↔LiDAR fusion | Authors confirmed the frames are not reliably time-aligned (§4.4) |
 | Downloading GOOSE 2D images | Not needed for traversability work on point clouds |
 | Chasing GOOSE radar | Not obtainable — see §1 |

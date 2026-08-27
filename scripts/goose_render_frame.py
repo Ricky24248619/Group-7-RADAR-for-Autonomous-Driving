@@ -37,17 +37,22 @@ def load_config(path):
     convention. Colouring 64-class labels with the 8-class map silently renders most
     of the scene as unknown, so pick the one matching the labels being read.
     """
+    # utf-8-sig, not utf-8: Excel on Windows writes a byte-order mark, and Python's
+    # default encoding there is the locale codepage rather than UTF-8. Reading with
+    # utf-8-sig accepts both BOM and plain UTF-8 on either platform.
     path = pathlib.Path(path)
     if path.suffix == ".csv":
         names, colors = {}, {}
-        for row in csv.DictReader(open(path)):
-            key = int(row["label_key"])
-            names[key] = row["class_name"]
-            h = row["hex"].lstrip("#")
-            colors[key] = np.array([int(h[i:i + 2], 16) for i in (0, 2, 4)]) / 255.0
+        with path.open(newline="", encoding="utf-8-sig") as fh:
+            for row in csv.DictReader(fh):
+                key = int(row["label_key"])
+                names[key] = row["class_name"]
+                h = row["hex"].lstrip("#")
+                colors[key] = np.array([int(h[i:i + 2], 16) for i in (0, 2, 4)]) / 255.0
         return names, colors
 
-    cfg = yaml.safe_load(open(path))
+    with path.open(encoding="utf-8-sig") as fh:
+        cfg = yaml.safe_load(fh)
     names = {int(k): v for k, v in cfg["labels"].items()}
     colors = {int(k): np.array(v[::-1]) / 255.0 for k, v in cfg["color_map"].items()}
     return names, colors

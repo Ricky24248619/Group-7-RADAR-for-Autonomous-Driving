@@ -45,9 +45,8 @@ renderer to support class groupings, build the traversability view, produce the 
 figure, and update the survey.
 
 **Ricky — the quantitative and definitional side.** Reproduce the environment from
-scratch (which doubles as evidence for acceptance criterion P-5), measure the dataset
-properly, define the traversability mapping, write the experiment logs, and define the
-segmentation metrics before any number gets reported.
+scratch, measure the dataset properly, define the traversability mapping, write the
+experiment logs, and define the segmentation metrics before any number gets reported.
 
 **One handoff between us:** Ricky decides what counts as drivable — all 64 classes, each
 with a written rationale — and delivers it as `traversability_map.csv` by the
@@ -59,6 +58,29 @@ traversability mapping; we are making the team's. Is `high_grass` drivable, or d
 hide what is underneath? Is `snow` a surface or a mask over one? Those judgements get
 written down with reasons so Fabian can disagree with a specific line rather than the
 whole idea.
+
+---
+
+## We're on two different operating systems
+
+Damien is on macOS, Ricky on Windows. The workplan gives every command for both, and
+uses `$PY` / `$DATA` variables so the task steps read the same on either machine.
+
+Two consequences worth knowing up front:
+
+**Ricky's environment setup is the highest-value task in the fortnight, and it's first.**
+Everything he does depends on it, and all the tooling so far was built and tested on
+macOS — so it is also the most likely thing to break. Getting a Windows machine to
+reproduce Damien's results is exactly what acceptance criterion **P-5** asks for (someone
+outside the original setup clones the repo and reproduces a result), and a cross-platform
+reproduction is stronger evidence than a second Mac would be. If it fails, that failure
+gets recorded, and any macOS assumption in the code comes back to Damien as a bug.
+
+**Ricky should run `nvidia-smi` on day one.** Risk R-08 says nobody on the team has a
+discrete NVIDIA GPU, and that was never actually audited. Damien's Apple Silicon
+machine definitively cannot run CUDA. If Ricky's Windows machine has an NVIDIA card,
+R-08 is wrong, and several team-wide assumptions about needing Kaya or Colab change.
+Thirty seconds to check, potentially significant either way.
 
 ---
 
@@ -79,8 +101,9 @@ whole idea.
   reduced sensor set and there is no convenient way to get the full raw data. Since we
   cannot obtain it, whether those radars are 4D has no bearing on this fortnight.
   Recorded as a deliberate deferral under risk R-24, not forgotten.
-- **Running the published baselines.** They need CUDA and Docker; we are on Apple
-  Silicon. That is risk R-08 and it needs Kaya or Colab, not this fortnight.
+- **Running the published baselines.** They need CUDA. Damien's Mac cannot, and
+  whether Ricky's Windows machine can is an open question — see the GPU note above.
+  Either way it is risk R-08 and not this fortnight.
 - **Sensor fusion.** Broken upstream, see above.
 - **Anything on STONE.** Parked pending ~645 GiB of storage.
 
