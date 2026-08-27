@@ -2,6 +2,7 @@
 # See SETUP.md § "Get the third-party repos" for the clone commands.
 TruckDrive/
 truckscenes-devkit/
+goose_dataset/
 
 # Datasets — far too large for git (mini is ~9.6 GB, trainval ~560 GB)
 *.zip
