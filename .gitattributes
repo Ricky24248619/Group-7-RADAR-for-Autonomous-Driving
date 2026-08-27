@@ -1,0 +1,16 @@
+# The team works across macOS and Windows. Normalise line endings in the repo so a
+# Windows checkout does not turn whole files into one-line diffs.
+* text=auto
+
+# Keep these LF in the working tree on every platform — CRLF breaks them.
+*.sh   text eol=lf
+*.py   text eol=lf
+
+# Binary: never touch, never diff as text.
+*.png  binary
+*.jpg  binary
+*.pdf  binary
+*.zip  binary
+*.docx binary
+*.bin  binary
+*.label binary
