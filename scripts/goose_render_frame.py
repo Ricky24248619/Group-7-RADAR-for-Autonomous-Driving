@@ -67,6 +67,75 @@ def default_config(root):
             / "goose_dataset" / "common" / "goose_kitti-visualizer.yaml")
 
 
+# Palette for grouped views. Blue → amber → red rather than green → amber → red:
+# roughly 8% of men have red-green colour vision deficiency, and blue/amber/red stays
+# separable for them while still reading as a risk gradient. Grey is "no surface".
+GROUP_PALETTE = [
+    "#3d3d3d",   # 0
+    "#2c7bb6",   # 1
+    "#fdae61",   # 2
+    "#d7191c",   # 3
+    "#7b3294",   # 4  spare
+    "#008837",   # 5  spare
+]
+
+
+def _hex_to_rgb(value):
+    h = value.strip().lstrip("#")
+    return np.array([int(h[i:i + 2], 16) for i in (0, 2, 4)]) / 255.0
+
+
+def load_group_map(path):
+    """Load a file that groups the 64 GOOSE classes into a coarser taxonomy.
+
+    Returns (class_to_group, group_names, group_colors) where class_to_group maps a
+    GOOSE label_key to a group id.
+
+    Two column layouts are accepted. The one Ricky produces under the WORKPLAN §9
+    contract carries `traversability_id` and `traversability_name` and deliberately no
+    colour — the renderer supplies those. A generic `group_id`/`group_name` layout with
+    an optional `group_colour` also works, so this is not tied to one taxonomy.
+    """
+    path = pathlib.Path(path)
+    with path.open(newline="", encoding="utf-8-sig") as fh:
+        rows = list(csv.DictReader(fh))
+    if not rows:
+        sys.exit(f"{path} has no rows.")
+
+    cols = set(rows[0])
+    if "traversability_id" in cols:
+        id_col, name_col = "traversability_id", "traversability_name"
+    elif "group_id" in cols:
+        id_col, name_col = "group_id", "group_name"
+    else:
+        sys.exit(f"{path} needs a traversability_id or group_id column. "
+                 f"Found: {sorted(cols)}")
+
+    class_to_group, group_names, group_colors = {}, {}, {}
+    for row in rows:
+        key, gid = int(row["label_key"]), int(row[id_col])
+        class_to_group[key] = gid
+        group_names.setdefault(gid, (row.get(name_col) or f"group {gid}").strip())
+        if row.get("group_colour"):
+            group_colors.setdefault(gid, _hex_to_rgb(row["group_colour"]))
+
+    for gid in group_names:
+        group_colors.setdefault(gid, _hex_to_rgb(GROUP_PALETTE[gid % len(GROUP_PALETTE)]))
+
+    return class_to_group, group_names, group_colors
+
+
+def apply_group_map(sem, class_to_group, unmapped_group=-1):
+    """Remap per-point class ids to group ids. Unmapped classes become -1, so a gap in
+    the mapping shows up as an explicit 'unmapped' category rather than silently
+    colouring as group 0."""
+    lookup = np.full(int(sem.max()) + 1, unmapped_group, dtype=np.int32)
+    for key, gid in class_to_group.items():
+        if key < len(lookup):
+            lookup[key] = gid
+    return lookup[sem]
+
+
 def frame_key(path):
     """Join key for a scan/label pair.
 
@@ -152,29 +221,46 @@ def main():
     ap.add_argument("--config", default=None,
                     help="Class mapping. Defaults to goose_label_mapping.csv in --root")
     ap.add_argument("--index", type=int, default=0, help="Which paired frame to render")
+    ap.add_argument("--group-map", default=None,
+                    help="Optional CSV grouping the 64 classes into a coarser taxonomy "
+                         "(e.g. traversability_map.csv). Without it, renders all 64.")
     ap.add_argument("--out", default="goose_frame.png")
     args = ap.parse_args()
 
-    config = args.config or default_config(args.root)
-    print(f"Class mapping: {config}")
-    names, colors = load_config(config)
     frames = find_frames(args.root)
     print(f"Found {len(frames)} annotated frames.")
 
     scan_path, label_path = frames[args.index % len(frames)]
     points, sem = load_frame(scan_path, label_path)
 
+    if args.group_map:
+        print(f"Group map    : {args.group_map}")
+        class_to_group, names, colors = load_group_map(args.group_map)
+        unmapped = sorted(set(sem.tolist()) - set(class_to_group))
+        sem = apply_group_map(sem, class_to_group)
+        names[-1], colors[-1] = "unmapped", np.array([1.0, 0.0, 1.0])
+        if unmapped:
+            print(f"  WARNING: {len(unmapped)} class id(s) in this frame are absent "
+                  f"from the group map and render as magenta: {unmapped}")
+        heading, view = "Class distribution by group", "traversability"
+    else:
+        config = args.config or default_config(args.root)
+        print(f"Class mapping: {config}")
+        names, colors = load_config(config)
+        heading, view = "Class distribution", "64-class"
+
     print(f"\nFrame  : {scan_path.name}")
     print(f"Points : {len(points):,}")
     print(f"Extent : x [{points[:,0].min():.1f}, {points[:,0].max():.1f}] m  "
           f"y [{points[:,1].min():.1f}, {points[:,1].max():.1f}] m  "
           f"z [{points[:,2].min():.1f}, {points[:,2].max():.1f}] m")
-    print("\nClass distribution")
+    print(f"\n{heading}")
     ids, counts = np.unique(sem, return_counts=True)
     for c, n in sorted(zip(ids, counts), key=lambda t: -t[1]):
         print(f"  {int(c):>2}  {names.get(int(c), '?'):<24} {n:>8,}  {n/len(sem):6.2%}")
 
-    render(points, sem, names, colors, args.out, f"GOOSE — {scan_path.name}")
+    render(points, sem, names, colors, args.out,
+           f"GOOSE — {scan_path.name}  ·  {view} view")
 
 
 if __name__ == "__main__":
