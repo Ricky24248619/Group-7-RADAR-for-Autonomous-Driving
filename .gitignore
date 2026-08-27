@@ -17,6 +17,17 @@ venv/
 *.egg-info/
 .ipynb_checkpoints/
 
+# Assessed Sprint 1 deliverables. The team OneDrive under General/Group_07/ is the
+# system of record for these — see README.md § Source documents. Kept out of the repo
+# so there is one authoritative copy rather than two that drift.
+Sprint 1 Deliverables/
+~$*.docx
+
+# Client meeting recordings and transcripts. Not committed: this repo is handed to a
+# subsequent team, and publishing a recording of a client meeting is Adrian's call to
+# make, not ours. Raise it with him before changing this.
+*transcript.docx
+
 # Editors / tools
 .claude/settings.local.json
 .vscode/

@@ -18,7 +18,7 @@ conversations, should be able to do the work.
 - File ownership is **disjoint by design** — see §6. Two people running AI agents in
   the same repo will produce merge conflicts unless nobody edits anyone else's files.
   If a task seems to need you to edit a file you do not own, stop and ask the owner.
-- If a step fails, that is **data, not defeat**. Record it (§7) and continue. The
+- If a step fails, that is **data, not defeat**. Record it (§8) and continue. The
   client has stated explicitly that negative results count.
 
 ### Rules for AI assistants working on this plan
@@ -27,7 +27,9 @@ conversations, should be able to do the work.
    repo on both platforms. Nothing under that path is ever added to git. If
    `git status` shows `.bin`, `.label` or `.zip` files from the dataset, stop.
 2. **Never push to `main`.** Work on a branch, open a PR. `main` requires review.
-3. **Never edit files owned by the other person** (§6).
+3. **Never edit files owned by the other person** (§6). This is enforced by
+   `scripts/session_check.py` — run it at the start of every session and before every
+   commit, and treat a non-zero exit as a hard stop (§7).
 4. **Do not install packages globally.** Use the project venv — `$PY` in §2.0.
 5. **Do not attempt to run the Pointcept / PTv3 baselines.** They require CUDA.
    Damien's machine is Apple Silicon and cannot. Ricky's Windows machine *might* — see
@@ -249,7 +251,7 @@ nvidia-smi
 the register says no team member has a discrete NVIDIA GPU, and that has never actually
 been audited. Damien's machine is Apple Silicon and definitively cannot run CUDA. If
 Ricky's Windows machine has an NVIDIA card with enough VRAM, then the Pointcept / PTv3
-baselines — currently listed as out of scope in §10 — may become runnable locally, and
+baselines — currently listed as out of scope in §11 — may become runnable locally, and
 several downstream assumptions about needing Kaya or Colab change.
 
 If it prints "not recognized" or nothing, that confirms R-08 as written. Either answer
@@ -323,18 +325,157 @@ week-1 tasks are deliberately independent so nobody is blocked.
 
 ## 6. File ownership — do not cross these lines
 
+Every file either belongs to one of us, is frozen, or is genuinely new. **You may only
+create or modify files you own.** This is what makes it safe for two agents to work the
+same repository at the same time.
+
 | Owner | Files |
 |---|---|
-| **Damien** | `scripts/goose_render_frame.py` · `scripts/goose_traversability.py` · `docs/dataset-surveys/goose.md` · `docs/evidence/**` · `GOOSE - Ricky+Damien/findings-damien.md` |
-| **Ricky** | `GOOSE - Ricky+Damien/traversability_map.csv` · `GOOSE - Ricky+Damien/dataset-statistics.md` · `experiment-log/**` · `docs/metrics-definitions.md` |
-| **Shared — edit only at the checkpoint, together** | `GOOSE - Ricky+Damien/WORKPLAN.md` · `GOOSE - Ricky+Damien/SUMMARY.md` |
+| **Damien** | `scripts/goose_render_frame.py` · `scripts/goose_traversability.py` · `scripts/goose_contact_sheet.py` · `docs/dataset-surveys/goose.md` · `docs/evidence/*` · `GOOSE - Ricky+Damien/findings-damien.md` |
+| **Ricky** | `scripts/goose_stats.py` · `GOOSE - Ricky+Damien/traversability_map.csv` · `GOOSE - Ricky+Damien/dataset-statistics.md` · `experiment-log/*` · `docs/metrics-definitions.md` |
+| **Frozen** — needs both of us to agree, at a checkpoint | `WORKPLAN.md` · `SUMMARY.md` · `GOOSE-CONTEXT.md` · `scripts/session_check.py` · `scripts/validate_traversability_map.py` · `.gitignore` · `.gitattributes` |
 
-**Branches:** `goose/damien-week1`, `goose/ricky-week1`, etc. One PR each at the end of
-each week, or one joint PR at the end of the fortnight — agree at the checkpoint.
+This table is **enforced by a script**, not by memory — see §7. If you need a file you
+do not own, stop and message the other person. Do not edit it "just this once".
+
+> Creating a genuinely new file not in this table is fine — the check will flag it as
+> `new` rather than blocking you. Mention it at the checkpoint so the table stays true.
 
 ---
 
-## 7. Recording failures
+## 7. Git protocol — follow this exactly
+
+This section exists because we are two people, on two operating systems, running two
+different AI assistants against one repository. Conflicts are avoided by procedure, not
+by luck.
+
+### 7.1 The branch model — decided, not up for improvisation
+
+**One branch per person per week.** Four branches across the fortnight:
+
+| Week | Damien | Ricky |
+|---|---|---|
+| 1 (27 Aug – 3 Sep) | `goose/damien-w1` | `goose/ricky-w1` |
+| 2 (4 – 10 Sep) | `goose/damien-w2` | `goose/ricky-w2` |
+
+**Neither of us ever commits to `main`.** All work reaches `main` through a pull
+request reviewed by the other person.
+
+Why per-week rather than one branch each for the fortnight: the R3 → D3 handoff needs
+Ricky's `traversability_map.csv` to reach Damien on **3 September**. Merging week-1
+branches at the checkpoint moves it through `main`, which means Damien picks it up with
+an ordinary `git pull` instead of cherry-picking from someone else's branch. It also
+keeps each PR small enough to actually review.
+
+### 7.2 Start of every session — run this first
+
+```bash
+# macOS
+$PY scripts/session_check.py --who damien
+```
+```powershell
+# Windows
+& $PY scripts\session_check.py --who ricky
+```
+
+It fetches from origin and checks four things: that you are on your own branch, that
+you are not behind `origin/main`, that every file you have touched belongs to you, and
+that no dataset files are about to be committed.
+
+**Exit code 0 means proceed. Non-zero means fix what it prints before doing any work.**
+It never modifies the repository — it only reports.
+
+### 7.3 Starting a week
+
+```bash
+git checkout main
+git pull origin main
+git checkout -b goose/<you>-w<n>
+```
+
+### 7.4 Resuming work mid-week
+
+```bash
+git checkout goose/<you>-w<n>
+git fetch origin --prune
+git pull --rebase origin main      # pick up anything the other person has merged
+```
+
+Rebase, not merge, so the branch stays a clean line of your own commits.
+
+### 7.5 Before every commit
+
+Run the session check again. Then:
+
+```bash
+git status                # confirm nothing unexpected is staged
+git add <your files>      # name them; never `git add -A` or `git add .`
+git commit
+```
+
+> `git add -A` is how dataset files and other people's work end up in commits. Name
+> what you are adding.
+
+### 7.6 Finishing a week
+
+```bash
+git fetch origin
+git pull --rebase origin main
+$PY scripts/session_check.py --who <you>     # must exit 0
+git push -u origin goose/<you>-w<n>
+gh pr create --base main --head goose/<you>-w<n>
+```
+
+Then request review from the other person. **Merge order at the 3 September checkpoint
+is Ricky first, then Damien** — Damien's week-2 work depends on Ricky's CSV being on
+`main`.
+
+### 7.7 If you hit a conflict
+
+You should not, given §6. If you do, it means the ownership table was crossed or is
+wrong. **Do not resolve it by picking a side.** Stop, message the other person, and fix
+the table at a checkpoint. A conflict here is a signal about the plan, not a routine
+git chore.
+
+### 7.8 Rules for AI assistants — restated because they matter
+
+- Run `session_check.py` at the start of the session and before every commit. Treat a
+  non-zero exit as a hard stop, not a warning.
+- Never `git push` to `main`. Never `git push --force` to any shared branch.
+- Never `git add -A` / `git add .` — add named paths.
+- Never edit a file the ownership table assigns to the other person, even if it looks
+  like a one-line fix, and even if the user asks in the moment. Say that it is not ours
+  to change and suggest raising it with the owner.
+- If `session_check.py` reports `origin/main` has moved, rebase before continuing.
+
+### 7.9 Branch protection — one-time setup, Ricky only
+
+**Damien does not have admin on this repository and cannot do this.** Ricky, please set
+it before work starts — it turns the rules above from a convention into something the
+platform enforces.
+
+GitHub → repository **Settings** → **Rules** → **Rulesets** → **New branch ruleset**:
+
+| Setting | Value |
+|---|---|
+| Name | `protect-main` |
+| Enforcement status | **Active** |
+| Target branches | Include default branch (`main`) |
+| Restrict deletions | ✅ |
+| Block force pushes | ✅ |
+| Require a pull request before merging | ✅ |
+| — Required approvals | **1** |
+| — Dismiss stale approvals on new commits | ✅ |
+
+Leave "Require status checks" off — we have no CI.
+
+> With one approval required and only two of us, we each become the other's gate. That
+> is the intent: it is the independent-reviewer rule from the survey template, enforced
+> by the platform rather than remembered.
+
+---
+
+## 8. Recording failures
 
 Anything that does not work gets an entry in `experiment-log/` using
 `templates/experiment-log-entry.md`. Include the **exact** error text, copy-pasted, not
@@ -385,7 +526,7 @@ classes, so D3 can drop in Ricky's traversability mapping without a rewrite.
 1. Extract the class-mapping load into a function that accepts either the 64-class
    `goose_label_mapping.csv` **or** a grouping file with columns
    `label_key, class_name, group_name, group_colour` (the format R3 will produce —
-   see §8).
+   see §9).
 2. When a grouping file is supplied, remap each point's class id to its group before
    colouring, and show group names in the legend.
 3. Keep the existing 64-class behaviour as the default. **Do not break it** — D1's
@@ -544,10 +685,10 @@ to measured numbers.
    25–50, 50–100, 100–150, 150 m+
 5. Which of the 64 classes are effectively absent (say, under 0.01% of points)
 
-**Done when.** `dataset-statistics.md` contains all five, as tables, with the script
-that produced them committed alongside.
+**Done when.** `dataset-statistics.md` contains all five, as tables, and
+`scripts/goose_stats.py` reproduces them from a clean checkout.
 
-**Output.** `GOOSE - Ricky+Damien/dataset-statistics.md` + the script
+**Output.** `GOOSE - Ricky+Damien/dataset-statistics.md` · `scripts/goose_stats.py`
 
 > Item 4 matters beyond this fortnight. Damien measured labelled points out to roughly
 > ±200 m, which was unexpected. Knowing the *density* at range tells the team whether
@@ -586,12 +727,18 @@ and carries over if the STONE strand ever unblocks:
 
 **Done when.** All 64 classes are assigned, each with a rationale, and the file loads:
 ```powershell
-& $PY -c "import csv; r=list(csv.DictReader(open('GOOSE - Ricky+Damien/traversability_map.csv'))); print(len(r),'rows'); assert len(r)==64"
+& $PY scripts\validate_traversability_map.py --dataset-root $DATA
 ```
-Save the file as **UTF-8 with plain commas**. Excel on Windows will happily write
-UTF-8-BOM or semicolon separators depending on your locale — both break `csv.DictReader`
-on Damien's side. A plain text editor, or `pandas.to_csv(..., encoding='utf-8', index=False)`,
-avoids it.
+
+It must print **`VALID — contract holds.`** That check verifies all 64 GOOSE classes
+are covered, every id is 0–3 with a matching name, no rationale is blank, and no class
+is duplicated or invented. **Run it before you hand over, not after Damien reports a
+bug.** Damien runs the same command on receipt.
+
+Save the file with plain commas. Excel on Windows may write semicolons depending on
+your locale, which the validator will reject — a plain text editor or
+`pandas.to_csv(..., index=False)` avoids it. A UTF-8 byte-order mark is fine; both the
+validator and Damien's renderer read `utf-8-sig`.
 
 **Output.** `GOOSE - Ricky+Damien/traversability_map.csv`
 
@@ -640,7 +787,7 @@ is produced.
 
 ---
 
-## 8. Interface contract — `traversability_map.csv`
+## 9. Interface contract — `traversability_map.csv`
 
 The one place the two halves of this plan meet. Ricky writes it; Damien's code reads
 it. Neither should change the format without telling the other.
@@ -656,13 +803,24 @@ label_key,class_name,traversability_id,traversability_name,rationale
 
 - `label_key` — integer, matches `goose_label_mapping.csv`
 - `traversability_id` — 0–3, per the table in R3
+- `traversability_name` — must match the id exactly
 - `rationale` — one sentence, required, never blank
 
 Damien's renderer supplies the group colours; Ricky does not need to choose them.
 
+**Both sides validate the same way**, so a malformed file is caught at the hand-off
+rather than surfacing days later as a rendering bug:
+
+```bash
+$PY scripts/validate_traversability_map.py --dataset-root $DATA
+```
+
+Neither of us changes this format without telling the other — the validator is a frozen
+file (§6).
+
 ---
 
-## 9. Definition of done for the fortnight
+## 10. Definition of done for the fortnight
 
 - [ ] All 8 scenarios rendered and observed (D1)
 - [ ] Renderer supports arbitrary class groupings without breaking 64-class mode (D2)
@@ -673,11 +831,14 @@ Damien's renderer supplies the group colours; Ricky does not need to choose them
 - [ ] Survey §7 rewritten with limitations recorded (D5)
 - [ ] Segmentation metrics defined before any metric is reported (R5)
 - [ ] At least three experiment-log entries, including any failures (R4)
-- [ ] One PR per person, each reviewed by the other
+- [ ] Branch protection enabled on `main` by Ricky (§7.9)
+- [ ] `validate_traversability_map.py` prints VALID before the hand-off (R3)
+- [ ] `session_check.py` exits 0 before every PR is opened
+- [ ] One PR per person per week, each reviewed by the other
 
 ---
 
-## 10. Out of scope this fortnight
+## 11. Out of scope this fortnight
 
 Listed so an assistant does not helpfully wander into them.
 
