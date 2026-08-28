@@ -272,6 +272,73 @@ Per D3 step 4 — recorded, not silently fixed.
 | `forest` | Non-Traversable | Agree, but it is 24.4% of the split and the single biggest driver of the non-traversable share. Worth stating consciously rather than arriving at |
 | `sidewalk` | Traversable | Ricky already flags this. Agree with keeping legality out of a physical-traversability map, but it should be stated in the definition rather than implied |
 
+---
+
+## D4 — The client figure
+
+[`docs/evidence/goose_client_figure.png`](../docs/evidence/goose_client_figure.png),
+built by `scripts/goose_client_figure.py`. Two panels of one frame — what the ground is
+made of, beside what a vehicle could drive on — captioned in plain language with no
+jargon or metric names.
+
+**Frame chosen: `2022-07-22_flight`.** Picked by a scoring pass over all eight
+scenarios rather than by eye (`--survey`). The score rewards a scene that is genuinely
+mixed — enough drivable ground to read as a route, enough blocked ground to read as a
+hazard. `flight` scored highest at 37% traversable / 25% uncertain / 38% blocked.
+`siegertsbrunn_feldwege` scored zero: 95% drivable and no hazard at all, which is
+useless for showing hazard detection however clean it looks.
+
+### The ground slice matters more than I thought — and my D3 test was the wrong one
+
+D3 flagged that a plain overhead view paints tree canopy over the drivable ground
+beneath it. I tested that with an absolute height threshold and concluded the woodland
+scenes were "genuinely blocked at ground level, not merely overhung". **That conclusion
+was wrong**, and the instrument was the problem: on sloping ground, absolute z does not
+separate canopy from terrain.
+
+Taking the lowest return in each 0.4 m ground cell is the right test. Same frames, same
+±50 m window:
+
+| Scenario | Traversable raw → ground | Non-traversable raw → ground |
+|---|---|---|
+| flight | 15% → **37%** | 64% → **38%** |
+| aying_mangfall_2 | 2% → **12%** | 92% → **58%** |
+| garching_2 | 49% → **79%** | 43% → **15%** |
+| neubiberg_rain | 26% → **57%** | 72% → **40%** |
+| aying_hills | 3% → 6% | 80% → 63% |
+| neubiberg_sunny | 13% → 20% | 57% → **11%** |
+| garching_uebungsplatz_2 | 31% → 26% | 44% → 22% |
+| siegertsbrunn_feldwege | 89% → 95% | 0% → 0% |
+
+**A raw overhead view roughly halves the apparent drivable share and roughly doubles
+the apparent blocked share.** Even `aying_mangfall_2` — the scene I claimed was blocked
+at ground level — goes from 92% to 58% non-traversable once canopy stops covering the
+terrain beneath it.
+
+This matters beyond the figure. Any future traversability metric computed from a plain
+bird's-eye projection of GOOSE will systematically understate drivable ground. Worth
+recording in `metrics-definitions.md` before any number is reported — **flagging for
+Ricky (R5)** rather than editing his file.
+
+### Design decisions
+
+- **Lowest-point-per-cell rather than a height threshold**, for the reason above.
+  Cell size 0.4 m, configurable.
+- **Legend entries below 0.5% are suppressed.** The first draft showed "Free 0%"
+  pointing at nothing visible — exactly the detail that makes a reader distrust a
+  figure they cannot interrogate.
+- **No jargon in the caption**: no mIoU, no "semantic segmentation", no "point cloud".
+  "A laser scanner measures the shape of the ground" and "every measurement has been
+  labelled by hand".
+- Both panels share one viewpoint and one extent so the eye can move between them.
+
+### Outstanding — needs a human
+
+D4's definition of done includes *"test it on a teammate outside this pair"*. Not done,
+and not something I can do. **Kelsey or Fatima should look at it cold and say what they
+think it shows**, before it goes anywhere near Adrian. If it does not land in 60 seconds
+without narration, it has failed its own test.
+
 ## For the checkpoint
 
 - [ ] Confirm §9 is authoritative over D2's column list (above)
@@ -280,8 +347,16 @@ Per D3 step 4 — recorded, not silently fixed.
 - [x] ~~For R3, the classes I expect to be contested~~ — R3 delivered; `bush` is the
       one I would add to the contested list, with lower stakes than I first claimed
 - [x] ~~Branch protection on `main`~~ — enabled 28 Aug
-- [ ] **`bush`: Potentially Traversable or Non-Traversable?** Does not change the
-      drivable region either way; changes blocked-vs-uncertain. My preference is 2
+- [x] ~~**`bush`**~~ — Ricky chose A, keep at 3, as a conservative semantic prior with
+      a geometry-aware layer to soften it later. Settled; my preference was noted and
+      overruled on a reasonable argument
+- [ ] **Client figure needs a cold read** from Kelsey or Fatima before it goes to Adrian
+- [ ] **For R5:** traversability metrics computed from a plain overhead projection will
+      systematically understate drivable ground — see D4
 - [ ] Ricky deleted his copy of the dataset, so he cannot re-measure a changed
       assignment — that falls to me in week 2
-- [ ] D4 should use a height-sliced view, not a plain bird's-eye — see D3 above
+- [x] ~~D4 should use a height-sliced view~~ — done, and it revealed my D3 height-threshold
+      test was the wrong instrument. See D4
+- [ ] Ricky edited `scripts/goose_traversability.py` (my file under §6) to fix a real
+      bug during review of #7. Correct call, but the ownership rule was written for
+      parallel work and does not say what happens during review. Worth one line in §6
