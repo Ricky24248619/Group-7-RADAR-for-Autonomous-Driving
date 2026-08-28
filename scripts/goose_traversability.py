@@ -39,7 +39,7 @@ REPO = pathlib.Path(__file__).resolve().parent.parent
 DEFAULT_MAP = REPO / "GOOSE - Ricky+Damien" / "traversability_map.csv"
 
 
-def apply_overrides(class_to_group, names_by_class, overrides):
+def apply_overrides(class_to_group, names_by_class, overrides, valid_group_ids):
     """Reassign named classes to a different traversability id, for comparison only."""
     if not overrides:
         return class_to_group, []
@@ -49,11 +49,21 @@ def apply_overrides(class_to_group, names_by_class, overrides):
     for item in overrides:
         cls, _, gid = item.partition("=")
         cls = cls.strip()
+        gid = gid.strip()
+        if not cls or not gid:
+            sys.exit("--override must be CLASS=ID, for example bush=2")
         if cls not in lookup:
             sys.exit(f"--override: no GOOSE class named '{cls}'")
+        try:
+            gid = int(gid)
+        except ValueError:
+            sys.exit(f"--override: ID for '{cls}' must be an integer, got '{gid}'")
+        if gid not in valid_group_ids:
+            options = ", ".join(str(i) for i in sorted(valid_group_ids))
+            sys.exit(f"--override: ID for '{cls}' must be one of {options}, got {gid}")
         key = lookup[cls]
-        changed.append(f"{cls}: {out.get(key)} -> {int(gid)}")
-        out[key] = int(gid)
+        changed.append(f"{cls}: {out.get(key)} -> {gid}")
+        out[key] = gid
     return out, changed
 
 
@@ -70,11 +80,28 @@ def scenario_frames(root):
     return {name: pairs[len(pairs) // 2] for name, pairs in sorted(groups.items())}
 
 
-def distribution(sem, names):
-    ids, counts = np.unique(sem, return_counts=True)
-    total = counts.sum()
-    return {names.get(int(i), f"?{i}"): c / total for i, c in
-            sorted(zip(ids, counts), key=lambda t: -t[1])}
+def comparison_summary(baseline, variant):
+    """Describe what an override changes without assuming which groups it touches."""
+    moved = baseline != variant
+    moved_count = int(moved.sum())
+    if not moved_count:
+        return "No rendered points change under this override."
+
+    traversable_changed = (baseline == 1) != (variant == 1)
+    traversable_count = int(traversable_changed.sum())
+    if traversable_count:
+        unit = "point" if traversable_count == 1 else "points"
+        return (f"The blue Traversable region changes: {traversable_count:,} "
+                f"{unit} switch into or out of Traversable.")
+
+    transitions = set(zip(baseline[moved].tolist(), variant[moved].tolist()))
+    if transitions <= {(2, 3), (3, 2)}:
+        return ("The blue Traversable region is identical in both panels. Only the "
+                "split between amber (uncertain) and red (blocked) moves.")
+    unit = "point" if moved_count == 1 else "points"
+    verb = "moves" if moved_count == 1 else "move"
+    return ("The blue Traversable region is identical in both panels. "
+            f"{moved_count:,} {unit} {verb} among the other classes.")
 
 
 def sheet(frames, class_to_group, names, colors, out_path, subtitle):
@@ -117,12 +144,13 @@ def sheet(frames, class_to_group, names, colors, out_path, subtitle):
 def compare(pair, scenario, baseline, variant, names, colors, changed, out_path):
     """Side-by-side A/B of one scenario under two mappings, for settling a decision."""
     points, sem = load_frame(*pair)
-    panels = [("As mapped in traversability_map.csv", baseline),
-              ("With " + "; ".join(changed), variant)]
+    panels = [
+        ("As mapped in traversability_map.csv", apply_group_map(sem, baseline)),
+        ("With " + "; ".join(changed), apply_group_map(sem, variant)),
+    ]
 
     fig, axes = plt.subplots(1, 2, figsize=(15.5, 8.6), facecolor="white")
-    for ax, (label, mapping) in zip(axes, panels):
-        grp = apply_group_map(sem, mapping)
+    for ax, (label, grp) in zip(axes, panels):
         rgb = np.array([colors.get(int(g), np.array([1.0, 0, 1.0])) for g in grp])
         ax.scatter(points[:, 0], points[:, 1], c=rgb, s=0.35, linewidths=0)
         ax.set(xlim=(-80, 80), ylim=(-80, 80), aspect="equal")
@@ -143,8 +171,7 @@ def compare(pair, scenario, baseline, variant, names, colors, changed, out_path)
                bbox_to_anchor=(0.5, 0.02))
     fig.suptitle(
         f"Does this change the answer?  —  {scenario}\n"
-        "The blue Traversable region is identical in both panels. Only the split "
-        "between amber (uncertain) and red (blocked) moves.",
+        + comparison_summary(panels[0][1], panels[1][1]),
         fontsize=13, y=0.97)
     fig.subplots_adjust(top=0.83, bottom=0.10, left=0.02, right=0.98, wspace=0.04)
     fig.savefig(out_path, dpi=130)
@@ -174,7 +201,9 @@ def main():
 
     baseline, names, colors = load_group_map(args.map)
     class_names = class_names_from_map(args.map)
-    class_to_group, changed = apply_overrides(baseline, class_names, args.override)
+    class_to_group, changed = apply_overrides(
+        baseline, class_names, args.override, set(names)
+    )
 
     if args.compare:
         if not changed:
