@@ -1,0 +1,253 @@
+#!/usr/bin/env python3
+"""Render GOOSE frames by traversability rather than by material (task D3).
+
+Takes Ricky's traversability_map.csv (WORKPLAN §9) and produces the picture that
+answers the client's kickoff question — what can I drive over, what can I crash into.
+
+    # all eight scenarios, sheet + per-scenario renders
+    python scripts/goose_traversability.py --root <split> --out-dir docs/evidence
+
+    # test an alternative assignment without editing the CSV
+    python scripts/goose_traversability.py --root <split> --override bush=2 \
+        --out-dir /tmp --tag bush2
+
+Overrides exist so a contested assignment can be compared from pictures rather than
+argued about. They never write to the CSV — under the interface contract, assignments
+change in Ricky's file, never as exceptions here.
+
+Loading, grouping and the two-panel layout come from goose_render_frame; this module
+adds scenario selection, batch rendering and the comparison sheet.
+"""
+
+import argparse
+import pathlib
+import sys
+
+import numpy as np
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+from matplotlib.patches import Patch
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from goose_render_frame import (          # noqa: E402
+    apply_group_map, find_frames, load_frame, load_group_map, render,
+)
+from goose_contact_sheet import CONDITIONS, by_scenario   # noqa: E402
+
+REPO = pathlib.Path(__file__).resolve().parent.parent
+DEFAULT_MAP = REPO / "GOOSE - Ricky+Damien" / "traversability_map.csv"
+
+
+def apply_overrides(class_to_group, names_by_class, overrides, valid_group_ids):
+    """Reassign named classes to a different traversability id, for comparison only."""
+    if not overrides:
+        return class_to_group, []
+    lookup = {v: k for k, v in names_by_class.items()}
+    changed = []
+    out = dict(class_to_group)
+    for item in overrides:
+        cls, _, gid = item.partition("=")
+        cls = cls.strip()
+        gid = gid.strip()
+        if not cls or not gid:
+            sys.exit("--override must be CLASS=ID, for example bush=2")
+        if cls not in lookup:
+            sys.exit(f"--override: no GOOSE class named '{cls}'")
+        try:
+            gid = int(gid)
+        except ValueError:
+            sys.exit(f"--override: ID for '{cls}' must be an integer, got '{gid}'")
+        if gid not in valid_group_ids:
+            options = ", ".join(str(i) for i in sorted(valid_group_ids))
+            sys.exit(f"--override: ID for '{cls}' must be one of {options}, got {gid}")
+        key = lookup[cls]
+        changed.append(f"{cls}: {out.get(key)} -> {gid}")
+        out[key] = gid
+    return out, changed
+
+
+def class_names_from_map(map_path):
+    """label_key -> class_name, read from the traversability map itself."""
+    import csv
+    with pathlib.Path(map_path).open(newline="", encoding="utf-8-sig") as fh:
+        return {int(r["label_key"]): r["class_name"] for r in csv.DictReader(fh)}
+
+
+def scenario_frames(root):
+    """One representative frame per scenario — the same selection D1 used."""
+    groups = by_scenario(find_frames(root))
+    return {name: pairs[len(pairs) // 2] for name, pairs in sorted(groups.items())}
+
+
+def comparison_summary(baseline, variant):
+    """Describe what an override changes without assuming which groups it touches."""
+    moved = baseline != variant
+    moved_count = int(moved.sum())
+    if not moved_count:
+        return "No rendered points change under this override."
+
+    traversable_changed = (baseline == 1) != (variant == 1)
+    traversable_count = int(traversable_changed.sum())
+    if traversable_count:
+        unit = "point" if traversable_count == 1 else "points"
+        return (f"The blue Traversable region changes: {traversable_count:,} "
+                f"{unit} switch into or out of Traversable.")
+
+    transitions = set(zip(baseline[moved].tolist(), variant[moved].tolist()))
+    if transitions <= {(2, 3), (3, 2)}:
+        return ("The blue Traversable region is identical in both panels. Only the "
+                "split between amber (uncertain) and red (blocked) moves.")
+    unit = "point" if moved_count == 1 else "points"
+    verb = "moves" if moved_count == 1 else "move"
+    return ("The blue Traversable region is identical in both panels. "
+            f"{moved_count:,} {unit} {verb} among the other classes.")
+
+
+def sheet(frames, class_to_group, names, colors, out_path, subtitle):
+    """Tile one bird's-eye traversability view per scenario."""
+    cols = 4
+    rows = -(-len(frames) // cols)
+    fig, axes = plt.subplots(rows, cols, figsize=(4.6 * cols, 4.9 * rows),
+                             facecolor="white")
+    axes = np.atleast_1d(axes).ravel()
+
+    for ax, (name, pair) in zip(axes, frames.items()):
+        points, sem = load_frame(*pair)
+        grp = apply_group_map(sem, class_to_group)
+        rgb = np.array([colors.get(int(g), np.array([1.0, 0, 1.0])) for g in grp])
+        ax.scatter(points[:, 0], points[:, 1], c=rgb, s=0.12, linewidths=0)
+        ax.set(xlim=(-100, 100), ylim=(-100, 100), aspect="equal")
+        ax.set_facecolor("#0d0d0d")
+        ax.set_xticks([]), ax.set_yticks([])
+        drivable = (grp == 1).mean()
+        ax.set_title(f"{name}\n{CONDITIONS.get(name, '')} · {drivable:.0%} traversable",
+                     fontsize=9.5, pad=6)
+        ax.plot(0, 0, marker="+", color="white", markersize=8, markeredgewidth=1.1)
+
+    for ax in axes[len(frames):]:
+        ax.axis("off")
+
+    fig.legend(handles=[Patch(facecolor=colors[g], label=f"{g} — {names[g]}")
+                        for g in sorted(names)],
+               loc="lower center", ncol=4, frameon=False, fontsize=10,
+               bbox_to_anchor=(0.5, 0.015))
+    fig.suptitle("GOOSE — traversability view, one frame per scenario\n" + subtitle,
+                 fontsize=13, y=0.985)
+    fig.subplots_adjust(top=0.90, bottom=0.10, left=0.02, right=0.98,
+                        hspace=0.16, wspace=0.06)
+    fig.savefig(out_path, dpi=125)
+    plt.close(fig)
+    print(f"  wrote {out_path}")
+
+
+def compare(pair, scenario, baseline, variant, names, colors, changed, out_path):
+    """Side-by-side A/B of one scenario under two mappings, for settling a decision."""
+    points, sem = load_frame(*pair)
+    panels = [
+        ("As mapped in traversability_map.csv", apply_group_map(sem, baseline)),
+        ("With " + "; ".join(changed), apply_group_map(sem, variant)),
+    ]
+
+    fig, axes = plt.subplots(1, 2, figsize=(15.5, 8.6), facecolor="white")
+    for ax, (label, grp) in zip(axes, panels):
+        rgb = np.array([colors.get(int(g), np.array([1.0, 0, 1.0])) for g in grp])
+        ax.scatter(points[:, 0], points[:, 1], c=rgb, s=0.35, linewidths=0)
+        ax.set(xlim=(-80, 80), ylim=(-80, 80), aspect="equal")
+        ax.set_facecolor("#0d0d0d")
+        ax.set_xticks([]), ax.set_yticks([])
+        ax.plot(0, 0, marker="+", color="white", markersize=9, markeredgewidth=1.2)
+        shares = {names[g]: (grp == g).mean() for g in sorted(names)}
+        ax.set_title(
+            f"{label}\n"
+            f"Traversable {shares['Traversable']:.1%}  ·  "
+            f"Potentially {shares['Potentially Traversable']:.1%}  ·  "
+            f"Non-Traversable {shares['Non-Traversable']:.1%}",
+            fontsize=11, pad=8)
+
+    fig.legend(handles=[Patch(facecolor=colors[g], label=f"{g} — {names[g]}")
+                        for g in sorted(names)],
+               loc="lower center", ncol=4, frameon=False, fontsize=10,
+               bbox_to_anchor=(0.5, 0.02))
+    fig.suptitle(
+        f"Does this change the answer?  —  {scenario}\n"
+        + comparison_summary(panels[0][1], panels[1][1]),
+        fontsize=13, y=0.97)
+    fig.subplots_adjust(top=0.83, bottom=0.10, left=0.02, right=0.98, wspace=0.04)
+    fig.savefig(out_path, dpi=130)
+    plt.close(fig)
+    print(f"  wrote {out_path}")
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--root", required=True)
+    ap.add_argument("--map", default=str(DEFAULT_MAP))
+    ap.add_argument("--out-dir", default="docs/evidence")
+    ap.add_argument("--tag", default="", help="Suffix for output filenames")
+    ap.add_argument("--override", action="append", default=[],
+                    metavar="CLASS=ID", help="Comparison only; never writes the CSV")
+    ap.add_argument("--per-scenario", action="store_true",
+                    help="Also write a full two-panel render per scenario")
+    ap.add_argument("--compare", metavar="SCENARIO",
+                    help="Write a side-by-side A/B of one scenario, as mapped versus "
+                         "with --override applied. For settling a contested class.")
+    args = ap.parse_args()
+
+    out_dir = pathlib.Path(args.out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    tag = f"_{args.tag}" if args.tag else ""
+
+    baseline, names, colors = load_group_map(args.map)
+    class_names = class_names_from_map(args.map)
+    class_to_group, changed = apply_overrides(
+        baseline, class_names, args.override, set(names)
+    )
+
+    if args.compare:
+        if not changed:
+            sys.exit("--compare needs an --override to compare against.")
+        frames = scenario_frames(args.root)
+        if args.compare not in frames:
+            sys.exit(f"No scenario '{args.compare}'. Options:\n  "
+                     + "\n  ".join(frames))
+        compare(frames[args.compare], args.compare, baseline, class_to_group,
+                names, colors, changed,
+                out_dir / f"goose_traversability_compare{tag}.png")
+        return
+
+    subtitle = "assignments as mapped in traversability_map.csv"
+    if changed:
+        subtitle = "OVERRIDE for comparison — " + "; ".join(changed)
+        print("Overrides applied (comparison only):")
+        for c in changed:
+            print(f"  {c}")
+
+    frames = scenario_frames(args.root)
+    print(f"\n{len(frames)} scenarios\n")
+
+    print(f"{'scenario':<38}{'Free':>8}{'Trav':>8}{'Poten':>8}{'Non':>8}")
+    for name, pair in frames.items():
+        _, sem = load_frame(*pair)
+        grp = apply_group_map(sem, class_to_group)
+        shares = [(grp == g).mean() for g in range(4)]
+        unmapped = (grp == -1).mean()
+        flag = f"   UNMAPPED {unmapped:.1%}" if unmapped else ""
+        print(f"{name:<38}" + "".join(f"{s:>7.1%}" for s in shares) + flag)
+
+    print()
+    sheet(frames, class_to_group, names, colors,
+          out_dir / f"goose_traversability_sheet{tag}.png", subtitle)
+
+    if args.per_scenario:
+        for name, pair in frames.items():
+            points, sem = load_frame(*pair)
+            grp = apply_group_map(sem, class_to_group)
+            render(points, grp, names, colors,
+                   out_dir / f"goose_traversability_{name}{tag}.png",
+                   f"GOOSE — {name} · {CONDITIONS.get(name, '')} · traversability")
+
+
+if __name__ == "__main__":
+    main()
