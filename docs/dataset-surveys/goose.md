@@ -1,10 +1,11 @@
 # Survey: GOOSE (German Outdoor and Offroad Dataset)
 
 > **Reference example** for [`../dataset-survey-template.md`](../dataset-survey-template.md).
-> All sections complete. The feasibility test in §6 **passed** on 22 Aug 2026 — devkit
-> installed, data downloaded, frames loaded and rendered, with evidence attached. Note
-> how uncertain facts are marked rather than guessed, and how the three install gotchas
-> are recorded in §6 rather than dropped once they were solved.
+> All sections complete. §6 **passed** on 22 Aug; §7 was rewritten on 28 Aug once the
+> dataset was actually understood rather than merely obtained. Note how uncertain facts
+> are marked rather than guessed, how the install gotchas are kept in §6 rather than
+> dropped once solved, and how two conclusions this survey previously stated with
+> confidence were later corrected in place rather than quietly edited away.
 
 ## 0. Survey metadata
 
@@ -12,10 +13,10 @@
 |---|---|
 | Dataset | GOOSE (+ GOOSE-Ex extension) |
 | Surveyed by | Damien Zhang (DZ) |
-| Date surveyed | 2026-08-18 · feasibility test 2026-08-22 |
+| Date surveyed | 2026-08-18 · feasibility 2026-08-22 · §7 rewritten 2026-08-28 |
 | Reviewed by | *(pending — must be a member other than DZ)* |
 | Review date | |
-| Survey status | **Complete — pending review** |
+| Survey status | **Complete — pending review** (D5) |
 
 Story **DZ-2** · Workstream **WS2** · Bears on risk **R-24** and decision **D-03**
 
@@ -189,63 +190,129 @@ ship as a Docker image tested against CUDA 11.7. Not runnable on Apple Silicon �
 is **R-08**, not a GOOSE problem. It is cleanly separated from visualisation, which
 needs only vispy. Baselines require Kaya, the DGX Spark, or Colab.
 
-### Still outstanding — inspect one raw ROS bag
+### The raw ROS bags — resolved, and not in our favour
 
-The annotated splits used above contain **LiDAR and labels only — no radar**. The paper
-says all raw sensor data is released in ROS bag format, which is where the radar lives.
-Download one sequence bag and list its topics (`rosbag info` / `ros2 bag info`). That
-single command answers the highest-value open question in this survey: whether radar
-topics are really present, and whether the bags are ROS 1 or ROS 2.
+The annotated splits contain **LiDAR and labels only — no radar**. The paper says all
+raw sensor data is released in ROS bag format, which is where the radar lives, so the
+plan was to download one bag and list its topics.
+
+That is no longer the fastest route to an answer, because the maintainers have given
+one directly:
+
+- **The released bags carry a reduced sensor set.** *"The ROS Bags available on the
+  GOOSE DB only contain a minimal set of sensors to reduce the file sizes... We are
+  still in the process of uploading and releasing the full raw sensor data."* A user
+  inspecting them found even the **surround cameras** missing
+  ([#17](https://github.com/FraunhoferIOSB/goose_dataset/issues/17)).
+- **There is no convenient way to download them.** *"There is currently no convenient
+  way to download the GOOSE ROS Bag data"* — the torrent has no seeders and a
+  replacement download service is still being built
+  ([#23](https://github.com/FraunhoferIOSB/goose_dataset/issues/23)).
+- **They are ROS 1**, stated directly by the first author in
+  [#18](https://github.com/FraunhoferIOSB/goose_dataset/issues/18).
+
+`scripts/goose_bag_topics.py` is ready — pure Python, no ROS install — so the check
+takes one command whenever the full raw data is published. Pursuing it was deliberately
+**deferred** for Sprint 2: if the radar cannot be obtained, whether it is 4D imaging has
+no practical bearing on the work. Recorded under risk R-24 and `decision-log.md` D-05.
 
 ---
 
 ## 7. Fit for this project
 
-**Supports the D-04 long-range question?** **No.** D-04 asks whether 3D detection
-collapses beyond ~150 m. GOOSE's longest-range radar reaches 175 m and the other five
-stop at 55 m, and the dataset provides segmentation rather than 3D boxes, so mAP by
-range band has no direct equivalent. Wrong dataset for D-04.
+**Verdict: secondary, and the only one of our four datasets we can actually work on
+today.** GOOSE is the off-road terrain dataset, the cheapest route to an Autoware demo,
+and the one that answers the question Adrian asked at kickoff. It is not the dataset for
+4D radar and not the dataset for long range, and it should never be planned as if it
+were.
 
-**Supports the D-03 off-road direction?** **Yes — more than first assessed.** GOOSE is
-a genuine off-road dataset whose class taxonomy is built around exactly the problem
-Adrian described in the kickoff: terrain classes (asphalt, cobble, gravel, soil, snow)
-separated from vegetation classes (low grass, high grass, bush, moss, tree root), which
-is ground-versus-not-ground and drivable-versus-not made explicit. And it carries 360°
-radar in the raw bags. The gap is that **the radar is unlabelled** — any radar work
-here is unsupervised, cross-modal, or requires our own annotation.
+### What it can do
 
-**Supports on-road → off-road transfer?** Plausibly as a **target** domain — Fabian's
-stated interest. Obstacle: on-road datasets are detection, GOOSE is segmentation, so
+**1. Off-road terrain — drivable versus not.** This is its purpose and it works. All
+eight validation scenarios render into coherent traversability views in which the
+drivable points form a connected route, including dense woodland where that route is a
+narrow ribbon. See
+[`goose_traversability_sheet.png`](../evidence/goose_traversability_sheet.png) and the
+client-facing version at
+[`goose_client_figure.png`](../evidence/goose_client_figure.png).
+
+The 64-class taxonomy separates terrain (asphalt, cobble, gravel, soil, snow) from
+vegetation (low grass, high grass, bush, moss, tree root), which is ground-versus-not-
+ground made explicit. Our own four-class mapping over it lives in
+`GOOSE - Ricky+Damien/traversability_map.csv`.
+
+**2. On-road → off-road transfer, as the target domain.** Fabian's stated interest. The
+obstacle is task mismatch: on-road datasets are detection, GOOSE is segmentation, so
 transfer needs a shared task formulation rather than reusing a detection head.
 
-**Unexpected finding — GOOSE ships ROS bags natively.** `DATASET_OVERVIEW.md:161`
-records that no TruckScenes→ROS 2 converter exists and that writing one is likely a
-real chunk of project work. GOOSE sidesteps that entirely: its native distribution
-format *is* ROS bags with published calibration. If the Autoware strand (FZ-1, KL-3)
-proceeds, **GOOSE is the cheapest path to a working Autoware demo** by a wide margin.
-Worth telling Fariya and Kelsey regardless of what happens to the off-road strand.
-Caveat: ROS 1 vs ROS 2 is unconfirmed — a ROS 1 bag needs conversion, which is routine
-but not free.
+**3. The cheapest path to a running Autoware demo.** `DATASET_OVERVIEW.md:161` records
+that no TruckScenes→ROS 2 converter exists and that writing one is likely real project
+work. GOOSE distributes natively as ROS bags with published calibration.
+**Now confirmed ROS 1, not ROS 2** — the dataset authors say so directly in
+[issue #18](https://github.com/FraunhoferIOSB/goose_dataset/issues/18). Conversion is
+still needed, but far less of it. Relevant to FZ-1 and KL-3 regardless of what happens
+to the off-road strand.
 
-**Published baselines.** The paper evaluates state-of-the-art 2D image segmentation and
-3D single-scan point-cloud segmentation. Live leaderboard competitions exist for 2D
-semantic, 2D fine-grained semantic, and 3D semantic segmentation. *(Model names and
-scores — TODO, needs the paper's results tables.)*
+### What it cannot do
 
-**Blockers:**
-- Radar is **unlabelled** — no supervised radar task available out of the box
-- Radar is Smartmicro automotive, **not confirmed as 4D imaging** — may not serve a
-  project focused on 4D RADAR specifically
-- Segmentation, not detection — under D-01 must never share an axis with
-  TruckScenes/TruckDrive detection results
-- GOOSE-Ex platforms have different sensor suites — separate configurations
+**Decision D-04, the long-range question — no, for two independent reasons.** The task
+is segmentation, so mAP by range band has no equivalent. And measured over all 961
+frames and 174,891,807 labelled points (R2), **62.9% of points fall within 25 m and only
+3.8% beyond 100 m, 1.1% beyond 150 m.** There is barely any data in the range band D-04
+is about. This is a firmer answer than the survey previously gave and it should close
+the question: nobody should propose GOOSE for D-04 later in the project.
 
-**Verdict:** **Secondary — off-road terrain baseline and Autoware entry point.** Not
-the dataset for the 4D radar question, and not for D-04. But it is a strong off-road
-terrain dataset with the most permissive licence in our set, native ROS bag
-distribution, and raw 360° radar available for unsupervised or cross-modal work. Its
-best use is as the radar-free-*labelled* off-road baseline that STONE's 4D radar
-results are compared against.
+**The 4D radar question — no.** See §5. The radar exists on the vehicle but is not
+labelled, not in the annotated download, not in the reduced-sensor bags that are
+currently obtainable, and never described as 4D imaging.
+
+**Sensor fusion — no.** The authors have confirmed a bug in their export step: camera
+and LiDAR of the same frame are not reliably time-aligned, and the ground-truth masks
+**cannot be matched by projection using the published extrinsics**. Fusion work here
+will produce broken results through no fault of the person doing it.
+
+**Cross-dataset comparison — never.** Segmentation results must not share an axis with
+TruckScenes or TruckDrive detection results (D-01, D-02).
+
+### Limitations — read before building anything on this
+
+| | |
+|---|---|
+| **Camera↔LiDAR misalignment** | Authors confirmed an export bug; masks cannot be matched by projection ([#18](https://github.com/FraunhoferIOSB/goose_dataset/issues/18)). Fusion is not viable |
+| **Radar not obtainable** | Released bags carry a reduced sensor set; full raw data still unreleased; torrent has no seeders ([#17](https://github.com/FraunhoferIOSB/goose_dataset/issues/17), [#23](https://github.com/FraunhoferIOSB/goose_dataset/issues/23)) |
+| **Bags are ROS 1** | Conversion required for ROS 2 / Autoware |
+| **Data quality** | Some LiDAR scans are missing sections; at least one RGB frame is out of sequence |
+| **Two taxonomies** | 64-class full set and an 8-class challenge remap ship together and are not interchangeable. Any reported number must say which it used |
+| **Overhead projection misleads** | A plain bird's-eye view paints canopy over the ground beneath. Taking the lowest return per 0.4 m cell roughly **halves** the apparent blocked share — `aying_mangfall_2` goes 92% → 58% non-traversable. Any traversability metric from a raw BEV projection will systematically understate drivable ground |
+| **Scenario is a confound** | Terrain type drives effective range more than weather does. Open farmland reaches 6.3% of points at 100–150 m; dense woodland has almost nothing past 50 m. Results from different scenarios are not comparable without saying which |
+| **Class diversity varies 11 to 40** | `garching_2` has 11 classes present, `neubiberg_rain` has 40. A per-scenario mIoU is meaningless without stating the classes present (R5) |
+| **Snow is one recording day** | `aying_mangfall_2` only. Nothing general can be said about snow from this dataset |
+| **The rain/sunny pair is not a weather comparison** | Rain frames are *denser* and more consistent (198k, 193–202k) than sunny (134k, 69–206k). The routes differ, so scene content dominates. Do not cite it as weather robustness |
+| **Frame count discrepancy** | Published metadata says 960 validation frames; the downloadable archive contains 961 paired files. We use the archive count |
+| **GOOSE-Ex is a different platform** | Excavator and quadruped, different sensor suites — a separate configuration under D-01 |
+
+### Published baselines
+
+The paper evaluates state-of-the-art 2D image segmentation and 3D single-scan
+point-cloud segmentation. Live leaderboards exist for 2D semantic, 2D fine-grained
+semantic, and 3D semantic segmentation. The bundled baseline is Pointcept / PTv3,
+shipped as a Docker image tested against CUDA 11.7. *(Model names and scores — TODO,
+needs the paper's results tables.)*
+
+**Not runnable on the survey machine** (Apple Silicon). Ricky's Windows machine has a
+GTX 1660 with 6 GiB VRAM, which disproves risk R-08's premise that no team member has a
+discrete NVIDIA GPU — but whether 6 GiB is enough for PTv3 is a separate question and a
+separate team decision.
+
+### Evidence
+
+| Artefact | What it shows |
+|---|---|
+| [`goose_contact_sheet.png`](../evidence/goose_contact_sheet.png) | All 8 scenarios, 64-class view — the seasonal and terrain range |
+| [`goose_traversability_sheet.png`](../evidence/goose_traversability_sheet.png) | All 8 scenarios as drivable / uncertain / blocked |
+| [`goose_client_figure.png`](../evidence/goose_client_figure.png) | The client-facing figure: what the ground is made of, beside what a vehicle can drive on |
+| [`goose_frame_000.png`](../evidence/goose_frame_000.png) · [`goose_frame_500.png`](../evidence/goose_frame_500.png) | Single-frame detail, summer and winter |
+| `GOOSE - Ricky+Damien/dataset-statistics.md` | Full measurement over 961 frames and 174.9M points |
 
 ---
 
@@ -254,19 +321,23 @@ results are compared against.
 **Open questions**
 
 - [x] ~~Does GOOSE have radar?~~ **Yes** — six Smartmicro units, 360°, raw only.
-- [ ] **Highest value:** are radar topics actually present in the distributed ROS bags?
-      Answered by `rosbag info` on one sequence. Owner: DZ.
-- [ ] Are the bags ROS 1 or ROS 2? Determines conversion cost for the Autoware strand.
-- [ ] Are Smartmicro UMRR-96/UMRR-11 **4D imaging** radars (elevation channel) or
-      conventional 3D automotive radar? The paper does not say. Needs the datasheets.
-      **This determines whether GOOSE counts toward the project's 4D RADAR focus at
-      all** — put it to Fabian.
+- [x] ~~Are radar topics present in the distributed ROS bags?~~ **Effectively no** —
+      the maintainers confirm the released bags carry a reduced sensor set and the full
+      raw data is unpublished. See §6.
+- [x] ~~Are the bags ROS 1 or ROS 2?~~ **ROS 1**, per the first author in
+      [#18](https://github.com/FraunhoferIOSB/goose_dataset/issues/18).
+- [ ] Are Smartmicro UMRR-96/UMRR-11 **4D imaging** or conventional automotive radar?
+      **Deferred, not dropped** — with the radar unobtainable this has no bearing on
+      current work. Ask Fabian when the full raw data is published.
 - [ ] **For Adrian and Fabian:** both off-road candidates now carry radar — STONE with
       3× annotated 4D imaging radar, GOOSE with 6× unannotated automotive radar. D-03's
       premise that off-road datasets lack radar is **false**. Recommend re-scoping the
       off-road strand rather than treating it as blocked.
 - [ ] Confirm whether higher-level class groups number 11 or 12
 - [ ] Extract baseline model names and scores from the paper's results tables
+- [ ] **Needs a human:** the client figure has not had a cold read by anyone outside
+      this pair. Kelsey or Fatima should say what they think it shows before it goes to
+      Adrian — D4's own acceptance test.
 
 **Sources**
 
@@ -274,5 +345,10 @@ results are compared against.
 2. [GOOSE documentation](https://goose-dataset.de/docs/) — structure, classes, setup
 3. Mortimer et al., *The GOOSE Dataset for Perception in Unstructured Environments*,
    ICRA 2024 — [arXiv:2310.16788](https://arxiv.org/abs/2310.16788)
-4. [FraunhoferIOSB/goose_dataset](https://github.com/FraunhoferIOSB/goose_dataset)
+4. [FraunhoferIOSB/goose_dataset](https://github.com/FraunhoferIOSB/goose_dataset) —
+   issues [#17](https://github.com/FraunhoferIOSB/goose_dataset/issues/17),
+   [#18](https://github.com/FraunhoferIOSB/goose_dataset/issues/18),
+   [#23](https://github.com/FraunhoferIOSB/goose_dataset/issues/23)
 5. Initial client meeting transcript, 4 Aug 2026
+6. `GOOSE - Ricky+Damien/dataset-statistics.md` — R2, all 961 frames, 27 Aug 2026
+7. `GOOSE - Ricky+Damien/findings-damien.md` — D1/D3/D4 working notes
