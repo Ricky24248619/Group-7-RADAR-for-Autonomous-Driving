@@ -125,7 +125,7 @@ the dataset-shaped version of the problem they find interesting.
 | | |
 |---|---|
 | Task | Semantic segmentation, 2D and 3D — **no 3D bounding boxes** |
-| Labelled frames | 10,000 of 15,000 total (train 7,830 / val 960 / test 1,210) |
+| Labelled frames | 10,000 of 15,000 total (published split: train 7,830 / val 960 / test 1,210). The current downloadable 3D validation archive contains 961 paired LiDAR/label files; this plan uses the archive count for reproducibility. |
 | Classes | 64 |
 | Sensors labelled | RGB images and LiDAR point clouds only |
 | Sensors on the vehicle | 3 LiDAR, 7 cameras (incl. NIR + thermal), **6 radar**, INS/GNSS |
