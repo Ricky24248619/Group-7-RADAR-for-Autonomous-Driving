@@ -159,12 +159,129 @@ what R3 tells Ricky to produce. The loader also accepts a generic
 
 ---
 
+---
+
+## D3 — Traversability renderer
+
+`scripts/goose_traversability.py` renders using Ricky's `traversability_map.csv`. All
+eight scenarios rendered:
+[`goose_traversability_sheet.png`](../docs/evidence/goose_traversability_sheet.png)
+plus a full two-panel view per scenario.
+
+The script takes `--override CLASS=ID` so a contested assignment can be compared from
+pictures rather than argued about. **It never writes to the CSV** — under §9,
+assignments change in Ricky's file, never as exceptions in my code.
+
+### Sanity check — all 8 pass
+
+D3 asks whether the drivable region looks like somewhere a vehicle could actually go.
+**In all eight, the Traversable points form a connected path**, which exceeds the
+"at least 6 of 8" bar.
+
+| Scenario | Free | Traversable | Potentially | Non-Traversable |
+|---|---|---|---|---|
+| flight | 0.3% | 15.2% | 19.1% | 65.4% |
+| siegertsbrunn_feldwege | 0.3% | **82.1%** | 17.6% | **0.0%** |
+| garching_uebungsplatz_2 | 0.2% | 28.8% | 23.1% | 48.0% |
+| aying_hills | 0.3% | **2.6%** | 16.0% | 81.1% |
+| aying_mangfall_2 | 0.2% | **2.6%** | 6.1% | **91.2%** |
+| garching_2 | 0.1% | 45.9% | 7.0% | 47.0% |
+| neubiberg_rain | 0.3% | 23.4% | 1.9% | 74.4% |
+| neubiberg_sunny | 0.2% | 11.7% | 34.2% | 53.8% |
+
+Two extremes worth noting rather than treating as errors:
+
+- **`siegertsbrunn_feldwege` has literally 0.0% non-traversable.** Open farmland with
+  no obstacle in the frame at all. Plausible, but a frame with no hazard is a poor
+  choice for anything meant to demonstrate hazard detection.
+- **`aying_mangfall_2` is 91.2% non-traversable on 2.6% traversable.** The vehicle
+  clearly drove through it, and the render does show a connected track — it is a
+  narrow ribbon through dense woodland. Coherent, but it means woodland scenarios give
+  a very unbalanced class distribution. Relevant to Ricky's R5: a per-class IoU here
+  will be dominated by one class.
+
+### Correction — my canopy hypothesis was wrong
+
+Looking at the woodland renders I suspected the bird's-eye view was conflating
+*overhead canopy* with *ground obstruction* — that a drivable track was being hidden
+under forest points from above. I tested it rather than asserting it:
+
+| Scenario | Non-Trav | of which >1.5 m | >3 m | >5 m |
+|---|---|---|---|---|
+| aying_mangfall_2 | 91.2% | **6%** | 2% | 1% |
+| aying_hills | 81.1% | 17% | 7% | 3% |
+| neubiberg_sunny | 53.8% | 11% | 4% | 2% |
+| flight | 65.4% | **34%** | 14% | 5% |
+| garching_2 | 47.0% | **40%** | 20% | 9% |
+| garching_uebungsplatz_2 | 48.0% | 34% | 19% | 9% |
+
+**Mostly wrong.** In the dense woodland scenarios only 6–17% of non-traversable points
+sit above 1.5 m, so those scenes genuinely are blocked at ground level, not merely
+overhung.
+
+**But it holds in the open scenarios** — 34–40% of non-traversable points in `flight`,
+`garching_2` and `garching_uebungsplatz_2` are above 1.5 m, and roughly half of those
+above 3 m. That is upper vegetation overwriting drivable ground in the projection.
+
+**Consequence for D4.** A plain bird's-eye view overstates obstruction in open scenes.
+The client figure should either slice to points below ~1.5 m or take the lowest point
+per cell, so the drivable route is not buried under canopy. Carrying this into D4.
+
+### The `bush` A/B — and a correction to my own review
+
+I argued in the PR #6 review that the `bush` assignment was "the difference between a
+drivable corridor and a mostly blocked scene". **Rendering it both ways shows I
+overstated that.**
+
+| Scenario | Non-Trav, `bush`=3 | Non-Trav, `bush`=2 | Traversable, either |
+|---|---|---|---|
+| flight | 65.4% | 53.8% | **15.2%** |
+| garching_uebungsplatz_2 | 48.0% | **20.8%** | **28.8%** |
+| aying_mangfall_2 | 91.2% | 75.1% | **2.6%** |
+| garching_2 | 47.0% | 34.8% | **45.9%** |
+| neubiberg_rain | 74.4% | 65.2% | **23.4%** |
+| aying_hills | 81.1% | 81.0% | **2.6%** |
+
+**The Traversable share is identical in every scenario, to one decimal place.** The
+`bush` decision moves points between Potentially Traversable and Non-Traversable and
+never into Traversable — so it does not change what reads as drivable at all. It
+changes only how much of the scene is called *definitely blocked* versus *uncertain*.
+
+So for the client figure it barely matters. It matters for how we characterise
+uncertainty, which is a smaller claim than I made.
+
+**My recommendation is unchanged but the stakes are lower.** I would still put `bush`
+at Potentially Traversable: with it at 3, class 2 holds only soft concealment
+(high_grass, snow, crops, moss), and the reason to have four classes rather than a
+binary is that class 2 marks where genuine uncertainty lives. `bush` spans a 30 cm
+shrub and a 3 m thicket under one label — that is the definition of uncertain.
+
+Ricky's opposing principle — infer from the class alone, assume nothing favourable —
+is coherent. This is a judgement call for the checkpoint, and one CSV row either way.
+
+Evidence: [`goose_traversability_sheet.png`](../docs/evidence/goose_traversability_sheet.png)
+against [`goose_traversability_sheet_bush-as-potential.png`](../docs/evidence/goose_traversability_sheet_bush-as-potential.png).
+
+### Assignments I would question
+
+Per D3 step 4 — recorded, not silently fixed.
+
+| Class | Mapped | My view |
+|---|---|---|
+| `bush` | Non-Traversable | Prefer Potentially Traversable — see above |
+| `forest` | Non-Traversable | Agree, but it is 24.4% of the split and the single biggest driver of the non-traversable share. Worth stating consciously rather than arriving at |
+| `sidewalk` | Traversable | Ricky already flags this. Agree with keeping legality out of a physical-traversability map, but it should be stated in the definition rather than implied |
+
 ## For the checkpoint
 
 - [ ] Confirm §9 is authoritative over D2's column list (above)
 - [ ] Ricky: R2 item 4 should extend my radial sampling to all 961 frames
 - [ ] Ricky: the 11-vs-40 class spread matters for how R5 defines mIoU
-- [ ] For R3, the classes I expect to be genuinely contested: `high_grass`, `crops`,
-      `snow`, `soil`, `debris`, `water`, `moss`. Each is arguably drivable depending on
-      depth, season or what it conceals
-- [ ] Branch protection on `main` is still not enabled — Ricky, §7.9
+- [x] ~~For R3, the classes I expect to be contested~~ — R3 delivered; `bush` is the
+      one I would add to the contested list, with lower stakes than I first claimed
+- [x] ~~Branch protection on `main`~~ — enabled 28 Aug
+- [ ] **`bush`: Potentially Traversable or Non-Traversable?** Does not change the
+      drivable region either way; changes blocked-vs-uncertain. My preference is 2
+- [ ] Ricky deleted his copy of the dataset, so he cannot re-measure a changed
+      assignment — that falls to me in week 2
+- [ ] D4 should use a height-sliced view, not a plain bird's-eye — see D3 above
