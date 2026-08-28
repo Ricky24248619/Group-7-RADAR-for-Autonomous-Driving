@@ -114,6 +114,44 @@ def sheet(frames, class_to_group, names, colors, out_path, subtitle):
     print(f"  wrote {out_path}")
 
 
+def compare(pair, scenario, baseline, variant, names, colors, changed, out_path):
+    """Side-by-side A/B of one scenario under two mappings, for settling a decision."""
+    points, sem = load_frame(*pair)
+    panels = [("As mapped in traversability_map.csv", baseline),
+              ("With " + "; ".join(changed), variant)]
+
+    fig, axes = plt.subplots(1, 2, figsize=(15.5, 8.6), facecolor="white")
+    for ax, (label, mapping) in zip(axes, panels):
+        grp = apply_group_map(sem, mapping)
+        rgb = np.array([colors.get(int(g), np.array([1.0, 0, 1.0])) for g in grp])
+        ax.scatter(points[:, 0], points[:, 1], c=rgb, s=0.35, linewidths=0)
+        ax.set(xlim=(-80, 80), ylim=(-80, 80), aspect="equal")
+        ax.set_facecolor("#0d0d0d")
+        ax.set_xticks([]), ax.set_yticks([])
+        ax.plot(0, 0, marker="+", color="white", markersize=9, markeredgewidth=1.2)
+        shares = {names[g]: (grp == g).mean() for g in sorted(names)}
+        ax.set_title(
+            f"{label}\n"
+            f"Traversable {shares['Traversable']:.1%}  ·  "
+            f"Potentially {shares['Potentially Traversable']:.1%}  ·  "
+            f"Non-Traversable {shares['Non-Traversable']:.1%}",
+            fontsize=11, pad=8)
+
+    fig.legend(handles=[Patch(facecolor=colors[g], label=f"{g} — {names[g]}")
+                        for g in sorted(names)],
+               loc="lower center", ncol=4, frameon=False, fontsize=10,
+               bbox_to_anchor=(0.5, 0.02))
+    fig.suptitle(
+        f"Does this change the answer?  —  {scenario}\n"
+        "The blue Traversable region is identical in both panels. Only the split "
+        "between amber (uncertain) and red (blocked) moves.",
+        fontsize=13, y=0.97)
+    fig.subplots_adjust(top=0.83, bottom=0.10, left=0.02, right=0.98, wspace=0.04)
+    fig.savefig(out_path, dpi=130)
+    plt.close(fig)
+    print(f"  wrote {out_path}")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -125,15 +163,30 @@ def main():
                     metavar="CLASS=ID", help="Comparison only; never writes the CSV")
     ap.add_argument("--per-scenario", action="store_true",
                     help="Also write a full two-panel render per scenario")
+    ap.add_argument("--compare", metavar="SCENARIO",
+                    help="Write a side-by-side A/B of one scenario, as mapped versus "
+                         "with --override applied. For settling a contested class.")
     args = ap.parse_args()
 
     out_dir = pathlib.Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     tag = f"_{args.tag}" if args.tag else ""
 
-    class_to_group, names, colors = load_group_map(args.map)
+    baseline, names, colors = load_group_map(args.map)
     class_names = class_names_from_map(args.map)
-    class_to_group, changed = apply_overrides(class_to_group, class_names, args.override)
+    class_to_group, changed = apply_overrides(baseline, class_names, args.override)
+
+    if args.compare:
+        if not changed:
+            sys.exit("--compare needs an --override to compare against.")
+        frames = scenario_frames(args.root)
+        if args.compare not in frames:
+            sys.exit(f"No scenario '{args.compare}'. Options:\n  "
+                     + "\n  ".join(frames))
+        compare(frames[args.compare], args.compare, baseline, class_to_group,
+                names, colors, changed,
+                out_dir / f"goose_traversability_compare{tag}.png")
+        return
 
     subtitle = "assignments as mapped in traversability_map.csv"
     if changed:
