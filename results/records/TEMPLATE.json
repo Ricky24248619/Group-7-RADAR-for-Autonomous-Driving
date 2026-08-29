@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "NNNN-short-name",
+  "title": "One line a human can scan",
+  "owner": "Your name",
+  "date": "YYYY-MM-DD",
+  "status": "success | partial | failure",
+
+  "dataset": "D-01 — name AND version, e.g. 'GOOSE 3D val (2024-07 archive)'",
+  "sensor_configuration": "D-01 — sensors this run actually used, not what the vehicle carries",
+  "annotation_schema": "D-01 — label set, format, version",
+
+  "task_type": "see results/README.md for the controlled list",
+  "modality": "camera | lidar | radar | fusion | none",
+  "split": "which split and subset",
+  "model": "name and version or commit — omit for characterisation records",
+  "conditions": "weather, scenario, time of day, where it matters",
+
+  "environment": {
+    "os": "",
+    "hardware": "",
+    "python": "",
+    "packages": {}
+  },
+
+  "commands": [
+    "the exact commands, in order, sufficient to repeat this"
+  ],
+
+  "metrics": [
+    {"name": "must be defined in docs/metrics-definitions.md first",
+     "value": 0.0,
+     "scope": "which class set, split or range band this number covers"}
+  ],
+
+  "hours_spent": 0,
+  "evidence": ["repo-relative paths to figures, logs, experiment-log entries"],
+  "notes": "anything a reader needs in order not to over-read the number",
+
+  "_if_not_success": "delete this key and fill the four below",
+  "error": "the EXACT error text, copy-pasted — paraphrased errors are unsearchable",
+  "attempted_fixes": ["what was tried, in order, and what happened after each"],
+  "blocker": "the one thing that stopped it",
+  "recommendation": "retry with what, change to what, or stop"
+}
