@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "id": "0001-goose-val-characterisation",
+  "title": "GOOSE 3D validation split measured in full — 961 frames, 174.9M labelled points",
+  "owner": "Ricky Yuen",
+  "date": "2026-08-27",
+  "status": "success",
+
+  "dataset": "GOOSE 3D validation split, archive downloaded 2026-08-22 from goose-dataset.de",
+  "sensor_configuration": "Velodyne Alpha Prime 128-channel roof LiDAR only. The MuCAR-3 platform also carries 2x Ouster OS0 32-channel, 7 cameras and 6 Smartmicro radars, none of which appear in this archive.",
+  "annotation_schema": "GOOSE 64-class pointwise semantic labels, SemanticKITTI .label format (uint32, semantic in low 16 bits)",
+
+  "task_type": "dataset-characterisation",
+  "modality": "lidar",
+  "split": "validation, all 961 paired LiDAR/label frames across 8 scenarios",
+  "conditions": "Four seasons, rain and sun, forest, farmland, campus and hills",
+
+  "environment": {
+    "os": "Microsoft Windows 10 Home 64-bit, 10.0.19045",
+    "hardware": "NVIDIA GeForce GTX 1660, 6144 MiB VRAM (not used for this run)",
+    "python": "3.11.9",
+    "packages": {"numpy": "1.26.4"}
+  },
+  "commands": ["python scripts/goose_stats.py --root C:\\goose\\goose_3d_val"],
+
+  "measurements": [
+    {"name": "frames", "value": 961, "scope": "validation split"},
+    {"name": "labelled points", "value": 174891807, "scope": "all 961 frames"},
+    {"name": "points per frame, mean", "value": 181989.4, "scope": "all 961 frames"},
+    {"name": "points per frame, median", "value": 194513.0, "scope": "all 961 frames"},
+    {"name": "points within 25 m", "value": 0.629032, "scope": "share of all labelled points"},
+    {"name": "points beyond 100 m", "value": 0.038352, "scope": "share of all labelled points"},
+    {"name": "points beyond 150 m", "value": 0.011026, "scope": "share of all labelled points"},
+    {"name": "classes below 0.01% of points", "value": 22, "scope": "of 64 classes"}
+  ],
+
+  "hours_spent": 0.3,
+  "evidence": [
+    "GOOSE - Ricky+Damien/dataset-statistics.md",
+    "experiment-log/0002-goose-validation-statistics.md",
+    "scripts/goose_stats.py"
+  ],
+  "notes": "The range distribution is why GOOSE cannot serve decision D-04. Only 3.8% of labelled points lie beyond 100 m and 1.1% beyond 150 m, so there is almost no data in the band D-04 asks about — a firmer reason than the task mismatch alone. The 22 sparse classes are why R5 defines mIoU over a declared class set rather than blindly averaging over all 64."
+}

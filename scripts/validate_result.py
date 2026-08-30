@@ -46,8 +46,8 @@ REQUIRED = IDENTIFICATION + [
 ]
 
 OPTIONAL = [
-    "model", "conditions", "hours_spent", "metrics", "range_bands", "notes",
-    "error", "attempted_fixes", "blocker", "recommendation", "supersedes",
+    "model", "conditions", "hours_spent", "metrics", "measurements", "range_bands",
+    "notes", "error", "attempted_fixes", "blocker", "recommendation", "supersedes",
 ]
 
 # D-02. Comparison happens only within one of these.
@@ -65,6 +65,11 @@ TASK_TYPES = [
     "dataset-characterisation",
     "feasibility-test",
 ]
+
+# These produce numbers we cite, but not *evaluation* numbers. They describe a dataset
+# or an environment rather than scoring a model, so they are not expected to carry
+# metrics — see the metrics/measurements distinction in results/README.md.
+NON_MODEL_TASKS = {"dataset-characterisation", "feasibility-test"}
 
 MODALITIES = ["camera", "lidar", "radar", "fusion", "none"]
 STATUSES = ["success", "partial", "failure"]
@@ -135,8 +140,13 @@ def check(path, metrics_text):
             if blank(record.get(field)):
                 errors.append(f"status is '{status}', so '{field}' is required "
                               f"(DZ-3: a failed run is a first-class result)")
-    if status == "success" and blank(record.get("metrics")):
+    if (status == "success" and blank(record.get("metrics"))
+            and task not in NON_MODEL_TASKS):
         warnings.append("status is 'success' but no metrics recorded — intentional?")
+    if task in NON_MODEL_TASKS and not blank(record.get("metrics")):
+        warnings.append(f"task_type '{task}' carries evaluation metrics — did you mean "
+                        f"'measurements'? Metrics are scores against ground truth; "
+                        f"measurements describe a dataset or environment")
 
     # DZ-4: nothing gets reported under a name that has not been defined first.
     for i, metric in enumerate(record.get("metrics") or []):
@@ -161,6 +171,10 @@ def check(path, metrics_text):
             warnings.append(f"{where} '{name}': no 'scope' — which class set, split "
                             f"or range band does this number cover?")
 
+    for i, m in enumerate(record.get("measurements") or []):
+        if not isinstance(m, dict) or blank(m.get("name")) or "value" not in m:
+            errors.append(f"measurements[{i}] needs at least a name and a value")
+
     if (rid := record.get("id")) and not re.fullmatch(r"[0-9]{4}-[a-z0-9-]+", str(rid)):
         warnings.append(f"id '{rid}' is not NNNN-kebab-case; filenames stay sortable "
                         f"if it is")
@@ -174,7 +188,7 @@ def check(path, metrics_text):
 
 
 def summary(paths):
-    print(f"\n{'id':<34}{'status':<9}{'task':<28}{'dataset':<16}owner")
+    print(f"\n{'id':<36}{'status':<9}{'task':<28}{'dataset':<16}owner")
     print("-" * 100)
     for p in paths:
         try:
@@ -183,7 +197,7 @@ def summary(paths):
             print(f"{p.stem:<34}{'INVALID':<9}"); continue
         mark = {"success": GREEN, "partial": YELLOW, "failure": RED}.get(
             r.get("status"), "")
-        print(f"{str(r.get('id', p.stem)):<34}"
+        print(f"{str(r.get('id', p.stem)):<36}"
               f"{mark}{str(r.get('status', '?')):<9}{RESET}"
               f"{str(r.get('task_type', '?')):<28}"
               f"{str(r.get('dataset', '?'))[:15]:<16}"

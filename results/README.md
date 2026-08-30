@@ -104,7 +104,7 @@ reject it**. Define it there first — that document is Ricky's (R5).
 | `blocker` | The one thing that stopped it |
 | `recommendation` | Retry with what, change to what, or stop |
 
-### Metrics
+### Metrics, and why `measurements` is a separate thing
 
 ```json
 "metrics": [
@@ -112,10 +112,29 @@ reject it**. Define it there first — that document is Ricky's (R5).
 ]
 ```
 
-`name` must appear in `docs/metrics-definitions.md`. `scope` is not enforced but is
-warned about, because a bare mIoU is close to meaningless — R5 requires every reported
+A **metric** scores a model against ground truth. `name` must appear in
+`docs/metrics-definitions.md` or the record is rejected. `scope` is warned about rather
+than enforced, because a bare mIoU is close to meaningless — R5 requires every reported
 mIoU to state its evaluated class set, and GOOSE ships two taxonomies that are not
 interchangeable.
+
+```json
+"measurements": [
+  {"name": "labelled points", "value": 174891807, "scope": "all 961 val frames"}
+]
+```
+
+A **measurement** describes a dataset or an environment. It is not scored against
+anything, so it needs no entry in the metrics document.
+
+> This distinction was added in D7, after writing the first real records. The dataset
+> characterisation had numbers everyone will cite — 174.9 million points, 62.9% within
+> 25 m — that are plainly not evaluation metrics, and forcing them through `metrics`
+> would have meant defining "point count" in a document about mIoU and mAP. Worse, it
+> would have let a point count sit in the same column as an mIoU in some future table.
+>
+> Records with `task_type` of `dataset-characterisation` or `feasibility-test` are
+> therefore not expected to carry `metrics`, and are warned if they do.
 
 ### Task types
 
