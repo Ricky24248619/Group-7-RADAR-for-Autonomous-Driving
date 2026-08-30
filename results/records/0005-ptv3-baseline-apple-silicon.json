@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "id": "0005-ptv3-baseline-apple-silicon",
+  "title": "Pointcept/PTv3 GOOSE baseline cannot start on Apple Silicon — no CUDA path exists",
+  "owner": "Damien Zhang",
+  "date": "2026-08-30",
+  "status": "failure",
+
+  "dataset": "GOOSE 3D validation split, archive downloaded 2026-08-22 from goose-dataset.de",
+  "sensor_configuration": "Velodyne Alpha Prime 128-channel roof LiDAR only, as distributed in the annotated archive",
+  "annotation_schema": "Published baseline reports on the GOOSE 8-class challenge taxonomy; the downloadable validation archive ships 64-class labels/ only, with no labels_challenge/ directory",
+
+  "task_type": "semantic-segmentation-3d",
+  "modality": "lidar",
+  "split": "validation — not reached",
+  "model": "Pointcept fork FraunhoferIOSB/Pointcept branch goose, PTv3 backbone, pretrained weights challenge_ptv3.pth",
+
+  "environment": {
+    "os": "macOS 24.6, Darwin arm64",
+    "hardware": "Apple M4. No NVIDIA GPU, no CUDA device, and none is possible on this architecture.",
+    "python": "3.11 in ~/.venvs/radar",
+    "packages": {"torch": "not installed"}
+  },
+  "commands": [
+    "docker --version",
+    "nvidia-smi",
+    "~/.venvs/radar/bin/python -c \"import torch; print(torch.cuda.is_available())\""
+  ],
+
+  "error": "docker --version -> 'command not found: docker'; nvidia-smi -> 'command not found: nvidia-smi'; python -c 'import torch' -> ModuleNotFoundError: No module named 'torch'; uname -sm -> 'Darwin arm64'; cpu brand -> 'Apple M4'",
+  "attempted_fixes": [
+    "Checked whether the documented install path could start at all. goose_dataset/pointcloud_processing/README.md instructs 'cd Pointcept/scripts && ./build_image.sh', a Docker image tested against CUDA_VERSION=11.7 and CUDNN_VERSION=8.",
+    "Confirmed Docker is not installed on this machine.",
+    "Confirmed no NVIDIA GPU is present. Installing Docker would not help: Apple Silicon has no CUDA capability, so the image cannot run regardless.",
+    "Stopped rather than installing Docker, which would not have changed the outcome."
+  ],
+  "blocker": "The published baseline is distributed only as a CUDA 11.7 Docker image. Apple Silicon cannot execute CUDA under any configuration, so this is a hardware incompatibility rather than a setup problem, and no amount of local configuration resolves it.",
+  "recommendation": "Reassign to Ricky's Windows machine (GTX 1660, 6 GiB, CUDA 12.6) as task R7, with Google Colab's T4 as the fallback. Before investing in either environment, resolve the annotation-schema mismatch recorded above: the published 0.8096 mIoU is on the 8-class challenge taxonomy and the downloadable archive has no labels_challenge/ directory, so a 64-to-8 mapping must be found or derived first. If neither environment works, this becomes the project's documented answer on running an off-the-shelf model locally.",
+
+  "measurements": [
+    {"name": "published baseline mIoU we are trying to reproduce", "value": 0.8096, "scope": "GOOSE 8-class challenge taxonomy, validation split, quoted from goose_dataset/pointcloud_processing/README.md"}
+  ],
+
+  "hours_spent": 0.2,
+  "evidence": [
+    "goose_dataset/pointcloud_processing/README.md",
+    "GOOSE - Ricky+Damien/NEXT-STEPS.md",
+    "docs/dataset-surveys/goose.md"
+  ],
+  "notes": "Recorded as a first-class result per DZ-3 rather than discarded. Risk R-08 anticipated exactly this, and Adrian said at kickoff that 'we spent X number of days trying to get it going, we couldn't get it going' is a reportable outcome. Time-boxed at 0.2 hours because the blocker was architectural and identifiable before any install was attempted — the useful discipline here was checking prerequisites first rather than debugging a build for a day."
+}

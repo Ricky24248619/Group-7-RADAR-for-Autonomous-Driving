@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "id": "0004-goose-traversability-mapping",
+  "title": "Four-class traversability mapping applied across all 8 GOOSE scenarios",
+  "owner": "Damien Zhang",
+  "date": "2026-08-28",
+  "status": "success",
+
+  "dataset": "GOOSE 3D validation split, archive downloaded 2026-08-22 from goose-dataset.de",
+  "sensor_configuration": "Velodyne Alpha Prime 128-channel roof LiDAR only, as distributed in the annotated archive",
+  "annotation_schema": "GOOSE 64-class semantic labels remapped to a project-authored 4-class traversability taxonomy (Free / Traversable / Potentially Traversable / Non-Traversable), version as committed 2026-08-28",
+
+  "task_type": "dataset-characterisation",
+  "modality": "lidar",
+  "split": "validation, the middle frame of each of 8 scenarios",
+  "conditions": "Summer, autumn, winter, spring; rain and sun; farmland, forest, campus and hills",
+
+  "environment": {
+    "os": "macOS 24.6, Apple Silicon (M4)",
+    "hardware": "No CUDA device",
+    "python": "3.11 in ~/.venvs/radar",
+    "packages": {"numpy": "installed", "matplotlib": "installed"}
+  },
+  "commands": [
+    "~/.venvs/radar/bin/python scripts/goose_traversability.py --root ~/datasets/goose/goose_3d_val --out-dir docs/evidence --per-scenario",
+    "~/.venvs/radar/bin/python scripts/goose_client_figure.py --root ~/datasets/goose/goose_3d_val --scenario 2022-07-22_flight --out docs/evidence/goose_client_figure.png"
+  ],
+
+  "measurements": [
+    {"name": "traversable share, raw overhead view", "value": 0.152, "scope": "2022-07-22_flight, all points, whole frame"},
+    {"name": "traversable share, ground slice", "value": 0.37, "scope": "2022-07-22_flight, lowest return per 0.4 m cell, +/-50 m"},
+    {"name": "non-traversable share, raw overhead view", "value": 0.912, "scope": "2023-01-20_aying_mangfall_2, all points, whole frame"},
+    {"name": "non-traversable share, ground slice", "value": 0.58, "scope": "2023-01-20_aying_mangfall_2, lowest return per 0.4 m cell, +/-50 m"},
+    {"name": "scenarios with a coherent connected drivable route", "value": 8, "scope": "of 8 scenarios, visual inspection"}
+  ],
+
+  "hours_spent": 3,
+  "evidence": [
+    "GOOSE - Ricky+Damien/traversability_map.csv",
+    "GOOSE - Ricky+Damien/traversability-map-notes.md",
+    "docs/evidence/goose_traversability_sheet.png",
+    "docs/evidence/goose_client_figure.png",
+    "GOOSE - Ricky+Damien/findings-damien.md"
+  ],
+  "notes": "This applies a hand-authored ground-truth remapping; no model was run, which is why the task type is characterisation rather than traversability-prediction. The paired raw-versus-ground-slice numbers are the substantive finding: a plain bird's-eye projection roughly halves the apparent drivable share and roughly doubles the apparent blocked share, because canopy is painted over the ground beneath it. Any future traversability metric computed from a raw overhead projection will be wrong in the same direction every time, so the projection must be stated alongside the number. The bush class was assigned Non-Traversable by Ricky as a conservative semantic prior; an A/B render showed the choice does not change the Traversable region at all, only the split between uncertain and blocked."
+}

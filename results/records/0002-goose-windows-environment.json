@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "id": "0002-goose-windows-environment",
+  "title": "GOOSE environment reproduced on Windows from a clean machine",
+  "owner": "Ricky Yuen",
+  "date": "2026-08-27",
+  "status": "success",
+
+  "dataset": "GOOSE 3D validation split, archive downloaded 2026-08-22 from goose-dataset.de",
+  "sensor_configuration": "Velodyne Alpha Prime 128-channel roof LiDAR only, as distributed in the annotated archive",
+  "annotation_schema": "GOOSE 64-class pointwise semantic labels, SemanticKITTI .label format",
+
+  "task_type": "feasibility-test",
+  "modality": "lidar",
+  "split": "validation, smoke test on one frame of 961",
+
+  "environment": {
+    "os": "Microsoft Windows 10 Home 64-bit, 10.0.19045",
+    "hardware": "NVIDIA GeForce GTX 1660, 6144 MiB VRAM; driver 560.94; CUDA runtime 12.6",
+    "python": "3.11.9",
+    "packages": {"numpy": "1.26.4", "matplotlib": "3.8.4", "PyYAML": "6.0.2"}
+  },
+  "commands": [
+    "py -3.11 -m venv %USERPROFILE%\\.venvs\\radar",
+    "& $PY -m pip install numpy==1.26.4 matplotlib==3.8.4 PyYAML==6.0.2",
+    "curl.exe -L -o C:\\goose\\zips\\goose_3d_val.zip https://goose-dataset.de/storage/goose_3d_val.zip",
+    "tar -xf C:\\goose\\zips\\goose_3d_val.zip -C C:\\goose\\goose_3d_val",
+    "& $PY scripts\\goose_render_frame.py --root $DATA --index 0 --out $env:TEMP\\smoke.png",
+    "nvidia-smi"
+  ],
+
+  "measurements": [
+    {"name": "frames discovered", "value": 961, "scope": "smoke test, matches the macOS run"}
+  ],
+
+  "hours_spent": 0.6,
+  "evidence": ["experiment-log/0001-ricky-windows-goose-setup.md"],
+  "notes": "Evidence for acceptance criterion P-5: a person outside the original setup reproduced a documented result from a clean machine. Stronger than a second macOS reproduction would have been, because the tooling was written and tested on Apple Silicon and this is a genuinely different OS. Also disproved risk R-08's premise that no team member has a discrete NVIDIA GPU. Whether 6 GiB suffices for Pointcept/PTv3 is a separate open question. The dataset copy was deleted after measurement to free disk ahead of an OS reinstall, so re-running this on the same machine requires re-downloading."
+}

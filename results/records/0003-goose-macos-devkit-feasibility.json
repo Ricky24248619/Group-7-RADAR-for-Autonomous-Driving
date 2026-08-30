@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "0003-goose-macos-devkit-feasibility",
+  "title": "GOOSE devkit installed and frames rendered on macOS Apple Silicon",
+  "owner": "Damien Zhang",
+  "date": "2026-08-22",
+  "status": "success",
+
+  "dataset": "GOOSE 3D validation split, archive downloaded 2026-08-22 from goose-dataset.de",
+  "sensor_configuration": "Velodyne Alpha Prime 128-channel roof LiDAR only, as distributed in the annotated archive",
+  "annotation_schema": "GOOSE 64-class pointwise semantic labels, SemanticKITTI .label format",
+
+  "task_type": "feasibility-test",
+  "modality": "lidar",
+  "split": "validation, 2 frames rendered of 961 loaded",
+  "conditions": "One summer frame (2022-07-22_flight) and one winter frame with snow (2022-12-07_aying_hills)",
+
+  "environment": {
+    "os": "macOS 24.6, Apple Silicon (M4)",
+    "hardware": "No CUDA device. Integrated GPU only.",
+    "python": "3.11 in ~/.venvs/radar",
+    "packages": {"vispy": "0.16.2", "PyQt5": "installed", "numpy": "installed", "matplotlib": "installed"}
+  },
+  "commands": [
+    "git clone https://github.com/FraunhoferIOSB/goose_dataset.git",
+    "~/.venvs/radar/bin/pip install vispy PyQt5",
+    "curl -L -o ~/datasets/goose/zips/goose_3d_val.zip https://goose-dataset.de/storage/goose_3d_val.zip",
+    "unzip -q ~/datasets/goose/zips/goose_3d_val.zip",
+    "~/.venvs/radar/bin/python scripts/goose_render_frame.py --root ~/datasets/goose/goose_3d_val --index 0 --out docs/evidence/goose_frame_000.png"
+  ],
+
+  "measurements": [
+    {"name": "frames discovered", "value": 961, "scope": "961 point clouds paired to 961 labels"},
+    {"name": "archive size", "value": 3.3, "unit": "GB", "scope": "goose_3d_val.zip"}
+  ],
+
+  "hours_spent": 2,
+  "evidence": [
+    "docs/dataset-surveys/goose.md",
+    "docs/evidence/goose_frame_000.png",
+    "docs/evidence/goose_frame_500.png",
+    "scripts/goose_render_frame.py"
+  ],
+  "notes": "Satisfies DZ-2's acceptance test that a single frame is visualised locally. Visualisation needs no CUDA; only the Pointcept/PTv3 baselines do, which is recorded separately as 0005. Three install gotchas found and documented in the survey section 6: the devkit viewer expects labels_challenge/ but the archive ships labels/; the bundled 8-class BGR colour map silently mis-renders the 64-class labels; and scans and labels do not share a filename stem."
+}
