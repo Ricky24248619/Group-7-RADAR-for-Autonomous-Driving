@@ -51,7 +51,7 @@ def ground_slice(points, cell=0.4):
     return order[first]
 
 
-def score_candidates(root, class_to_group, limit):
+def score_candidates(root, class_to_group, limit, cell):
     """Rank scenarios for how clearly they show a route through blocked surroundings.
 
     Wants a scene that is genuinely mixed: enough drivable ground to read as a route,
@@ -60,7 +60,7 @@ def score_candidates(root, class_to_group, limit):
     rows = []
     for name, pair in scenario_frames(root).items():
         points, sem = load_frame(*pair)
-        keep = ground_slice(points)
+        keep = ground_slice(points, cell)
         near = np.abs(points[keep, 0]) < limit
         near &= np.abs(points[keep, 1]) < limit
         grp = apply_group_map(sem[keep][near], class_to_group)
@@ -170,7 +170,7 @@ def main():
         print(f"{'score':>6}  {'scenario':<38}{'Trav':>7}{'Poten':>7}{'Non':>7}"
               f"{'cells':>9}")
         for score, name, t, p, n, cells in score_candidates(
-                args.root, class_to_group, args.limit):
+                args.root, class_to_group, args.limit, args.cell):
             print(f"{score:>6.3f}  {name:<38}{t:>6.0%}{p:>7.0%}{n:>7.0%}{cells:>9,}")
         if args.survey:
             return

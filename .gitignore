@@ -6,6 +6,9 @@ goose_dataset/
 
 # Datasets — far too large for git (mini is ~9.6 GB, trainval ~560 GB)
 *.zip
+*.bag
+*.npz
+*.pth
 data/
 datasets/
 
