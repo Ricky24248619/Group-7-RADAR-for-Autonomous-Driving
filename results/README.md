@@ -90,6 +90,7 @@ reject it**. Define it there first — that document is Ricky's (R5).
 | `model` | Name and version or commit. Omit for characterisation records |
 | `conditions` | Weather, scenario, time of day where it matters |
 | `metrics` | List of `{name, value, scope, unit?}` — see below |
+| `measurements` | Dataset/environment observations as `{name, value, scope, unit?}`; not model scores |
 | `range_bands` | Banded results where the task supports it (**D-04**) |
 | `hours_spent` | What this cost. The next team wants to know |
 | `notes` | Anything a reader needs in order not to over-read the number |

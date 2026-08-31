@@ -33,6 +33,12 @@
      "scope": "which class set, split or range band this number covers"}
   ],
 
+  "measurements": [
+    {"name": "dataset or environment observation, not a model score",
+     "value": 0.0,
+     "scope": "which files, split, machine or run this describes"}
+  ],
+
   "hours_spent": 0,
   "evidence": ["repo-relative paths to figures, logs, experiment-log entries"],
   "notes": "anything a reader needs in order not to over-read the number",

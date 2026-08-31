@@ -23,6 +23,7 @@
   },
   "commands": [
     "~/.venvs/radar/bin/python scripts/goose_traversability.py --root ~/datasets/goose/goose_3d_val --out-dir docs/evidence --per-scenario",
+    "~/.venvs/radar/bin/python scripts/goose_client_figure.py --root ~/datasets/goose/goose_3d_val --survey --limit 50 --cell 0.4",
     "~/.venvs/radar/bin/python scripts/goose_client_figure.py --root ~/datasets/goose/goose_3d_val --scenario 2022-07-22_flight --out docs/evidence/goose_client_figure.png"
   ],
 
@@ -42,5 +43,5 @@
     "docs/evidence/goose_client_figure.png",
     "GOOSE - Ricky+Damien/findings-damien.md"
   ],
-  "notes": "This applies a hand-authored ground-truth remapping; no model was run, which is why the task type is characterisation rather than traversability-prediction. The paired raw-versus-ground-slice numbers are the substantive finding: a plain bird's-eye projection roughly halves the apparent drivable share and roughly doubles the apparent blocked share, because canopy is painted over the ground beneath it. Any future traversability metric computed from a raw overhead projection will be wrong in the same direction every time, so the projection must be stated alongside the number. The bush class was assigned Non-Traversable by Ricky as a conservative semantic prior; an A/B render showed the choice does not change the Traversable region at all, only the split between uncertain and blocked."
+  "notes": "This applies a hand-authored ground-truth remapping; no model was run, which is why the task type is characterisation rather than traversability-prediction. The paired raw-versus-ground-slice numbers are the substantive finding: a plain bird's-eye projection can paint canopy over the ground beneath it and substantially overstate the blocked share. Blocked share did not increase under the ground slice in any of the eight inspected representative frames, but Traversable share was not monotonic: garching_uebungsplatz_2 changed from 31% raw to 26% ground-sliced. Projection and point-selection method must therefore be stated alongside every number rather than treated as a universal correction factor. The bush class was assigned Non-Traversable by Ricky as a conservative semantic prior; an A/B render showed the choice does not change the Traversable region at all, only the split between uncertain and blocked."
 }
