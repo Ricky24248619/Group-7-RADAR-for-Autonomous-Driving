@@ -134,8 +134,13 @@ class ResultValidatorTests(unittest.TestCase):
                 self.assert_error_contains(errors, expected)
 
     def test_excessively_nested_json_is_a_graceful_invalid_record(self):
-        raw = "[" * 2000 + "0" + "]" * 2000
-        errors, warnings = self.check(raw=raw)
+        old_limit = sys.getrecursionlimit()
+        try:
+            sys.setrecursionlimit(1000)
+            raw = "[" * 2000 + "0" + "]" * 2000
+            errors, warnings = self.check(raw=raw)
+        finally:
+            sys.setrecursionlimit(old_limit)
         self.assertEqual(warnings, [])
         self.assert_error_contains(errors, "not valid JSON")
 
@@ -173,10 +178,26 @@ class ResultValidatorTests(unittest.TestCase):
             ([absolute], "must be a repo-relative path"),
             (["../outside.txt"], "escapes the repository"),
             (["missing.txt"], "does not exist in the repository"),
+            (["."], "must name a file"),
         ):
             with self.subTest(evidence=evidence):
                 errors, _ = self.check(dict(self.record, evidence=evidence))
                 self.assert_error_contains(errors, expected)
+
+    def test_metrics_fail_closed_without_definitions(self):
+        path = self.write()
+        with mock.patch.object(validator, "REPO", self.root):
+            errors, warnings = validator.check(path, None)
+        self.assertEqual(warnings, [])
+        self.assert_error_contains(errors, "metrics-definitions.md is unavailable")
+
+    def test_main_fails_closed_without_metrics_document(self):
+        path = self.write()
+        with (
+            mock.patch.object(validator, "defined_metrics", return_value=None),
+            mock.patch.object(sys, "argv", ["validate_result.py", str(path)]),
+        ):
+            self.assertEqual(validator.main(), 1)
 
     def test_metrics_and_measurements_require_object_shape_and_finite_number(self):
         record = dict(

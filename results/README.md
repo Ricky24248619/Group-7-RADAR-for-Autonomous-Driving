@@ -48,7 +48,7 @@ and `recommendation`.
    `records/NNNN-short-name.json`, using the next free number.
 2. Fill it in. Do not delete fields you cannot answer — say what is true
    (`"unknown"`, `"none"`, `"not measured"`) so the gap is visible.
-3. Run `python scripts/validate_result.py records/NNNN-short-name.json`.
+3. Run `python scripts/validate_result.py results/records/NNNN-short-name.json`.
 4. Open a PR. Nobody edits anyone else's record; you only add your own.
 
 If a metric you want to report is not yet defined in

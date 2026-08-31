@@ -309,7 +309,10 @@ def _check_named_values(
 
         if field == "metrics" and name is not None:
             if metric_names is None:
-                warnings.append(f"{where}: cannot check '{name}', metrics doc not found")
+                errors.append(
+                    f"{where}: cannot validate metric '{name}', "
+                    "docs/metrics-definitions.md is unavailable"
+                )
             elif normalised_name not in metric_names:
                 errors.append(
                     f"{where}: metric '{name}' is not exactly defined in "
@@ -347,6 +350,8 @@ def _check_evidence_paths(record: dict[str, Any], errors: list[str]) -> None:
                 continue
             if not resolved.exists():
                 errors.append(f"{where} does not exist in the repository: '{raw_path}'")
+            elif not resolved.is_file():
+                errors.append(f"{where} must name a file: '{raw_path}'")
         except (OSError, RuntimeError, ValueError) as exc:
             errors.append(f"{where} is not a usable repo-relative path: {exc}")
 
@@ -549,9 +554,10 @@ def main() -> int:
     metric_names = defined_metrics()
     if metric_names is None:
         print(
-            f"{YELLOW}WARN{RESET}  {METRICS_DOC} not found or unreadable — "
-            "metric names cannot be checked\n"
+            f"{RED}ERROR{RESET}  {METRICS_DOC} not found or unreadable — "
+            "metric validation cannot run\n"
         )
+        return 1
 
     total_errors = 0
     for path in paths:
