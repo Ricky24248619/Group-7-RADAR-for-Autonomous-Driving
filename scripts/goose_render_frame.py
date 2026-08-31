@@ -153,15 +153,26 @@ def find_frames(root):
     if not scans:
         sys.exit(f"No .bin scans under {root / 'lidar'} — is --root the extracted split?")
 
-    label_dirs = [d for d in (root / "labels_challenge", root / "labels") if d.is_dir()]
-    if not label_dirs:
-        sys.exit(f"No labels_challenge/ or labels/ directory under {root}")
+    label_dir, label_paths = None, []
+    for candidate in (root / "labels", root / "labels_challenge"):
+        if candidate.is_dir():
+            label_paths = sorted(candidate.rglob("*.label"))
+            if label_paths:
+                label_dir = candidate
+                break
+    if label_dir is None:
+        sys.exit(f"No .label files under labels/ or labels_challenge/ in {root}")
 
-    labels = {frame_key(p): p for d in label_dirs for p in d.rglob("*.label")}
-    paired = [(s, labels[frame_key(s)]) for s in scans if frame_key(s) in labels]
-    if not paired:
-        sys.exit(f"Found {len(scans)} scans and {len(labels)} labels but none matched.")
-    return paired
+    labels = {frame_key(p): p for p in label_paths}
+    scan_keys = {frame_key(p) for p in scans}
+    label_keys = set(labels)
+    if scan_keys != label_keys:
+        sys.exit(
+            f"{label_dir.name}/ frame mismatch: "
+            f"{len(scan_keys - label_keys)} scan(s) have no label; "
+            f"{len(label_keys - scan_keys)} label(s) have no scan."
+        )
+    return [(scan, labels[frame_key(scan)]) for scan in scans]
 
 
 def load_frame(scan_path, label_path):

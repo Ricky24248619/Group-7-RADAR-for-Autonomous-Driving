@@ -50,6 +50,7 @@ FROZEN = [
     "GOOSE - Ricky+Damien/WORKPLAN.md",
     "GOOSE - Ricky+Damien/SUMMARY.md",
     "GOOSE - Ricky+Damien/GOOSE-CONTEXT.md",
+    "GOOSE - Ricky+Damien/NEXT-STEPS.md",
     "scripts/session_check.py",
     "scripts/validate_traversability_map.py",
     ".gitignore",
@@ -57,7 +58,7 @@ FROZEN = [
 ]
 
 BRANCH_PREFIX = "goose/{who}-w"          # goose/damien-w1, goose/ricky-w2, ...
-DATASET_SUFFIXES = (".bin", ".label", ".zip", ".pcd")
+DATASET_SUFFIXES = (".bin", ".label", ".zip", ".pcd", ".bag", ".npz", ".pth")
 
 GREEN, RED, YELLOW, DIM, RESET = "\033[32m", "\033[31m", "\033[33m", "\033[2m", "\033[0m"
 
@@ -85,6 +86,10 @@ def owner_of(path):
     if path in FROZEN:
         return "FROZEN"
     return None
+
+
+def is_dataset_file(path):
+    return path.lower().endswith(DATASET_SUFFIXES)
 
 
 def main():
@@ -179,7 +184,7 @@ def main():
         print(f"\n  {DIM}No local changes yet.{RESET}")
 
     # 4. Dataset files must never enter the repo ---------------------------------
-    strays = [f for f in changed if f.lower().endswith(DATASET_SUFFIXES)]
+    strays = [f for f in changed if is_dataset_file(f)]
     if strays:
         problems.append(
             "Dataset files are about to enter the repo. They must not:\n      "
