@@ -52,6 +52,23 @@ measure taxonomy sparsity as if it were model failure.
 | 4-class traversability IoU / mIoU | Pixels, points or voxels — state which | Mapping version and four-class evaluated set |
 | Overall accuracy | Same unit as the corresponding IoU | Scored/ignored labels and class distribution |
 
+### Traversability projection rule
+
+A 2D traversability score derived from a 3D point cloud must name the projection used
+to select points for each bird's-eye cell. A raw all-return projection can paint tree
+canopy and other elevated returns over drivable ground, so it is not interchangeable
+with a lowest-return-per-cell ground slice or another terrain-selection rule.
+
+The GOOSE D4 comparison demonstrates the size of this effect. In
+`aying_mangfall_2`, the apparent non-traversable share fell from 92% in the raw
+projection to 58% with the ground slice; across the inspected scenarios, the blocked
+share never increased. The traversable share is not guaranteed to move in one
+direction (`garching_uebungsplatz_2` changed from 31% to 26%), so this is a reporting
+boundary rather than a correction factor. Every traversability metric must state the
+projection, cell size, point-selection rule, height/range limits, and treatment of
+empty cells. Results produced by different projection rules must not share a series or
+ranking without being labelled as different methods.
+
 ### Taxonomy rule
 
 The metric name alone is insufficient. Every value is labelled as exactly one of:
