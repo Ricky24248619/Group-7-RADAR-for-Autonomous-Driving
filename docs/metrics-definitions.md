@@ -16,6 +16,53 @@ open. D-01 must be confirmed with Fabian before benchmarking begins.
 | mAP | Mean average precision over classes and thresholds | **Not interchangeable with NDS** (see below) |
 | Processing time | Wall-clock per frame (or per batch — state which), on named hardware | Hardware-dependent: only comparable within one machine, noted in the record |
 
+### TruckScenes paired-modality fairness contract (draft)
+
+**Status:** working protocol for review by Fabian before benchmarking. It applies D-01
+without deciding the still-open headline metric or custom range bands.
+
+The reference evaluator is the official TruckScenes devkit **v1.2.0** with its
+[`detection_cvpr_2024.json`](https://github.com/TUMFTM/truckscenes-devkit/blob/v1.2.0/src/truckscenes/eval/detection/configs/detection_cvpr_2024.json)
+configuration and
+[`DetectionEval`](https://github.com/TUMFTM/truckscenes-devkit/blob/v1.2.0/src/truckscenes/eval/detection/evaluate.py)
+implementation. Under that stock configuration, mAP uses ground-plane centre-distance
+thresholds of 0.5, 1, 2 and 4 m; TP errors use 2 m; minimum precision and recall are
+0.1; and each sample may contain at most 500 predicted boxes. Record both mAP and the
+devkit's nuScenes Detection Score (NDS) until Fabian confirms which one is primary.
+An NDS computed on TruckScenes is not comparable with an NDS computed on the nuScenes
+dataset.
+
+Two radar-only and LiDAR-only results form a paired comparison only when every row
+below is satisfied:
+
+| Comparison field | Contract |
+|---|---|
+| Dataset | Same TruckScenes release and data-root provenance |
+| Evaluation subset | Same split and exact set of sample tokens; an empty prediction list is valid, a missing sample token is not |
+| Ground truth | Same annotation release, 12-class detection taxonomy, ignored classes and preprocessing |
+| Evaluator | Same devkit commit, config file, matching thresholds, class ranges and missing-value handling |
+| Range treatment | Same declared range filter or band edges; empty bands read `no data`, never zero |
+| Temporal input | Same past-time horizon; record the sensor-specific number of sweeps actually used |
+| Training protocol | Same train/validation split, initialization policy, schedule, augmentations, seed policy and stopping rule |
+| Reporting | Same metric set, class set, per-class aggregation and confidence/repeat policy |
+| Modality metadata | Radar-only sets `use_radar=true` and LiDAR-only sets `use_lidar=true`; the opposite sensor, camera, map, external data and future frames are `false` in both rows; `use_tta` must match |
+
+A modality-specific input encoder may be necessary. If the two runs use different
+model families, materially different capacity, training data or compute budgets, the
+result is still useful but must be labelled **model-plus-modality comparison**. It is
+not evidence that the sensor alone caused the difference. A sensor-effect claim needs
+the same model family and matched protocol, with only unavoidable modality adapters
+and the declared sensor input changed. If either row uses camera, map, external data or
+future frames, name those auxiliary inputs in the comparison label rather than calling
+the result sensor-only.
+
+The stock evaluator filters classes at either 75 m or 150 m, as documented in the
+official
+[`detection task`](https://github.com/TUMFTM/truckscenes-devkit/blob/v1.2.0/src/truckscenes/eval/detection/README.md).
+It therefore produces no official detection metric beyond 150 m. TruckScenes can test
+the paired-modality question with the stock evaluator, but D-04's `>150 m` question
+requires TruckDrive or an explicitly approved custom TruckScenes configuration.
+
 ## Segmentation / terrain metrics (GOOSE, STONE)
 
 D-02 says results are compared only within a task type — so segmentation and
@@ -88,16 +135,15 @@ traversability.
 
 ## Open questions (resolve here before first benchmarking)
 
-1. **NDS vs mAP (nuScenes-style).** NDS blends detection accuracy with
-   position, velocity and orientation error, so an NDS number cannot sit in
-   the same table as an mAP number without a note. Decide: adopt NDS where
-   the devkit provides it, or stay on plain mAP everywhere for comparability?
-   *(Assigned to Ricky — the Skills Audit names this explicitly.)*
-2. **Matching criterion per dataset.** TruckScenes and TruckDrive may use
-   different match thresholds by default; D-01 says within-dataset comparison
-   only, so record the default per dataset and don't normalise across them.
-3. **Range bands (D-04).** Confirm band edges: proposal is 0–50 / 50–100 /
-   100–150 / 150–400 m. Bands with no results read "no data", never 0.
+1. **Primary detection metric.** TruckScenes provides both mAP and NDS; the draft
+   contract records both without mixing them. Confirm with Fabian which is the primary
+   modality-comparison metric.
+2. **TruckDrive matching criterion.** TruckScenes v1.2.0 is now pinned above. Record
+   TruckDrive's official thresholds separately and do not normalise across datasets.
+3. **Range bands (D-04).** Confirm band edges: the proposal is 0–50 / 50–100 /
+   100–150 / 150–400 m. The stock TruckScenes evaluator ends at 75 or 150 m by class,
+   so any custom extension requires explicit approval. Bands with no results read
+   "no data", never 0.
 4. **Radar-specific metrics.** If no radar-first baseline exists (D-02 gap,
    to confirm with Fabian), what do we report for radar — qualitative
    comparison only? Raise with Fabian alongside D-01/D-04 confirmation.
