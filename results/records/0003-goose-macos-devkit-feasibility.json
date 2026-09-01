@@ -24,9 +24,11 @@
   "commands": [
     "git clone https://github.com/FraunhoferIOSB/goose_dataset.git",
     "~/.venvs/radar/bin/pip install vispy PyQt5",
+    "mkdir -p ~/datasets/goose/zips ~/datasets/goose/goose_3d_val",
     "curl -L -o ~/datasets/goose/zips/goose_3d_val.zip https://goose-dataset.de/storage/goose_3d_val.zip",
-    "unzip -q ~/datasets/goose/zips/goose_3d_val.zip",
-    "~/.venvs/radar/bin/python scripts/goose_render_frame.py --root ~/datasets/goose/goose_3d_val --index 0 --out docs/evidence/goose_frame_000.png"
+    "unzip -q ~/datasets/goose/zips/goose_3d_val.zip -d ~/datasets/goose/goose_3d_val",
+    "~/.venvs/radar/bin/python scripts/goose_render_frame.py --root ~/datasets/goose/goose_3d_val --index 0 --out docs/evidence/goose_frame_000.png",
+    "~/.venvs/radar/bin/python scripts/goose_render_frame.py --root ~/datasets/goose/goose_3d_val --index 500 --out docs/evidence/goose_frame_500.png"
   ],
 
   "measurements": [

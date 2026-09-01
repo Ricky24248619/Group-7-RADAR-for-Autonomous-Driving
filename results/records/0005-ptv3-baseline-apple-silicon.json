@@ -24,7 +24,9 @@
   "commands": [
     "docker --version",
     "nvidia-smi",
-    "~/.venvs/radar/bin/python -c \"import torch; print(torch.cuda.is_available())\""
+    "~/.venvs/radar/bin/python -c \"import torch; print(torch.cuda.is_available())\"",
+    "uname -sm",
+    "sysctl -n machdep.cpu.brand_string"
   ],
 
   "error": "docker --version -> 'command not found: docker'; nvidia-smi -> 'command not found: nvidia-smi'; python -c 'import torch' -> ModuleNotFoundError: No module named 'torch'; uname -sm -> 'Darwin arm64'; cpu brand -> 'Apple M4'",
@@ -37,15 +39,10 @@
   "blocker": "The published baseline is distributed only as a CUDA 11.7 Docker image. Apple Silicon cannot execute CUDA under any configuration, so this is a hardware incompatibility rather than a setup problem, and no amount of local configuration resolves it.",
   "recommendation": "Reassign to Ricky's Windows machine (GTX 1660, 6 GiB, CUDA 12.6) as task R7, with Google Colab's T4 as the fallback. Before investing in either environment, resolve the annotation-schema mismatch recorded above: the published 0.8096 mIoU is on the 8-class challenge taxonomy and the downloadable archive has no labels_challenge/ directory, so a 64-to-8 mapping must be found or derived first. If neither environment works, this becomes the project's documented answer on running an off-the-shelf model locally.",
 
-  "measurements": [
-    {"name": "published baseline mIoU we are trying to reproduce", "value": 0.8096, "scope": "GOOSE 8-class challenge taxonomy, validation split, quoted from goose_dataset/pointcloud_processing/README.md"}
-  ],
-
   "hours_spent": 0.2,
   "evidence": [
-    "goose_dataset/pointcloud_processing/README.md",
     "GOOSE - Ricky+Damien/NEXT-STEPS.md",
     "docs/dataset-surveys/goose.md"
   ],
-  "notes": "Recorded as a first-class result per DZ-3 rather than discarded. Risk R-08 anticipated exactly this, and Adrian said at kickoff that 'we spent X number of days trying to get it going, we couldn't get it going' is a reportable outcome. Time-boxed at 0.2 hours because the blocker was architectural and identifiable before any install was attempted — the useful discipline here was checking prerequisites first rather than debugging a build for a day."
+  "notes": "Recorded as a first-class result per DZ-3 rather than discarded. Risk R-08 anticipated exactly this, and Adrian said at kickoff that 'we spent X number of days trying to get it going, we couldn't get it going' is a reportable outcome. Time-boxed at 0.2 hours because the blocker was architectural and identifiable before any install was attempted — the useful discipline here was checking prerequisites first rather than debugging a build for a day. The published 0.8096 mIoU is retained as reference context in NEXT-STEPS.md, not as a measurement produced by this failed local run."
 }

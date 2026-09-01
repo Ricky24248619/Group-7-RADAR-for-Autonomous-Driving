@@ -21,11 +21,14 @@
     "packages": {"numpy": "1.26.4", "matplotlib": "3.8.4", "PyYAML": "6.0.2"}
   },
   "commands": [
-    "py -3.11 -m venv %USERPROFILE%\\.venvs\\radar",
+    "py -3.11 -m venv \"$env:USERPROFILE\\.venvs\\radar\"",
+    "$PY = \"$env:USERPROFILE\\.venvs\\radar\\Scripts\\python.exe\"",
     "& $PY -m pip install numpy==1.26.4 matplotlib==3.8.4 PyYAML==6.0.2",
+    "$DATA = \"C:\\goose\\goose_3d_val\"",
+    "New-Item -ItemType Directory -Force -Path C:\\goose\\zips, $DATA | Out-Null",
     "curl.exe -L -o C:\\goose\\zips\\goose_3d_val.zip https://goose-dataset.de/storage/goose_3d_val.zip",
-    "tar -xf C:\\goose\\zips\\goose_3d_val.zip -C C:\\goose\\goose_3d_val",
-    "& $PY scripts\\goose_render_frame.py --root $DATA --index 0 --out $env:TEMP\\smoke.png",
+    "tar -xf C:\\goose\\zips\\goose_3d_val.zip -C $DATA",
+    "& $PY scripts\\goose_render_frame.py --root $DATA --index 0 --out \"$env:TEMP\\smoke.png\"",
     "nvidia-smi"
   ],
 

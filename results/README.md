@@ -48,7 +48,7 @@ and `recommendation`.
    `records/NNNN-short-name.json`, using the next free number.
 2. Fill it in. Do not delete fields you cannot answer — say what is true
    (`"unknown"`, `"none"`, `"not measured"`) so the gap is visible.
-3. Run `python scripts/validate_result.py records/NNNN-short-name.json`.
+3. Run `python scripts/validate_result.py results/records/NNNN-short-name.json`.
 4. Open a PR. Nobody edits anyone else's record; you only add your own.
 
 If a metric you want to report is not yet defined in
@@ -90,6 +90,7 @@ reject it**. Define it there first — that document is Ricky's (R5).
 | `model` | Name and version or commit. Omit for characterisation records |
 | `conditions` | Weather, scenario, time of day where it matters |
 | `metrics` | List of `{name, value, scope, unit?}` — see below |
+| `measurements` | Dataset/environment observations as `{name, value, scope, unit?}`; not model scores |
 | `range_bands` | Banded results where the task supports it (**D-04**) |
 | `hours_spent` | What this cost. The next team wants to know |
 | `notes` | Anything a reader needs in order not to over-read the number |
