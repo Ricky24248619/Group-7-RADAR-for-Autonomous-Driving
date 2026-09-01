@@ -50,11 +50,15 @@ PM rotates each sprint: Damien (sprint 1) → Aiden (sprint 2) → …
 |---|---|---|
 | MAN **TruckScenes** (NeurIPS 2024) | Primary | Largest annotated 360° 4D-radar dataset; detection + tracking |
 | TORC **TruckDrive** (CVPR 2026) | Primary | Long-range (1000 m / 2D, 400 m / 3D); the D-04 dataset |
-| **GOOSE** (ICRA 2024) | Feasible — tested 22 Aug | Off-road terrain baseline; raw 360° radar (unlabelled); native ROS bags |
-| **STONE** (ICRA 2026) | Parked pending storage | Only off-road dataset with annotated 4D imaging radar; 346 GB single zip, no devkit |
+| **GOOSE** (ICRA 2024) | Characterised; bounded PTv3 run recorded | Off-road LiDAR terrain/traversability; not a direct radar-vs-LiDAR benchmark |
+| **STONE** (ICRA 2026) | Dropped from the current plan; revisitable if blockers change | Strong off-road 4D-radar candidate; not currently actionable |
 
 Surveys live in `docs/dataset-surveys/` — status, sensors, licence and fit
 assessment for each. Raw datasets are never committed (see `.gitignore`).
+
+Current GOOSE closeout proposal:
+[`client-notes/2026-09-01-goose-outcome-PROPOSED.md`](client-notes/2026-09-01-goose-outcome-PROPOSED.md).
+It must receive the documented outside-pair cold read before being sent.
 
 ## How we work
 
