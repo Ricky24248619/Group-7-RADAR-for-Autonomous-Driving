@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "id": "0006-truckscenes-mini-characterisation",
+  "title": "MAN TruckScenes v1.2-mini measured — 10 scenes, 400 samples and paired RADAR/LiDAR range counts",
+  "owner": "Fatima Sher",
+  "date": "2026-09-03",
+  "status": "success",
+  "dataset": "MAN TruckScenes v1.2-mini, official mini distribution downloaded August 2026",
+  "sensor_configuration": "Dataset inventory includes 6 Continental ARS 548 RDI 4D RADAR, 6 LiDAR and 4 camera channels; point measurements use RADAR_LEFT_FRONT and LIDAR_TOP_FRONT only",
+  "annotation_schema": "TruckScenes v1.2 nuScenes-derived oriented 3D bounding boxes; 27 category definitions; tracked instance tokens; mini metadata contains 25,750 sample-annotation records",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "split": "v1.2-mini, all metadata records plus the first annotated sample from each of 10 scenes for point measurements",
+  "conditions": "Selected scenes include clear, overcast, rain and snow; city, highway and terminal; day, evening, dark and twilight tags",
+  "environment": {
+    "os": "macOS 26.3.1, Darwin arm64",
+    "hardware": "Apple Silicon MacBook Air; CPU execution; no CUDA used",
+    "python": "3.11.4 in isolated truckscenes-env",
+    "packages": {
+      "truckscenes-devkit": "1.2.0",
+      "numpy": "2.4.6",
+      "pypcd4": "1.4.3",
+      "pyquaternion": "0.9.9"
+    }
+  },
+  "commands": [
+    "export TRUCKSCENES_ROOT=/path/to/man-truckscenes",
+    "python scripts/truckscenes_stats.py"
+  ],
+  "measurements": [
+    {"name": "scenes", "value": 10, "scope": "v1.2-mini metadata"},
+    {"name": "annotated samples", "value": 400, "scope": "v1.2-mini metadata"},
+    {"name": "sample annotations", "value": 25750, "scope": "v1.2-mini metadata"},
+    {"name": "tracked instances", "value": 1094, "scope": "v1.2-mini metadata"},
+    {"name": "categories", "value": 27, "scope": "v1.2-mini category table"},
+    {"name": "RADAR points", "value": 4571, "scope": "RADAR_LEFT_FRONT, first annotated sample from each of 10 scenes"},
+    {"name": "LiDAR points", "value": 165588, "scope": "LIDAR_TOP_FRONT, first annotated sample from each of 10 scenes"},
+    {"name": "RADAR points at 150 m or greater", "value": 305, "scope": "RADAR_LEFT_FRONT, first annotated sample from each of 10 scenes"},
+    {"name": "RADAR share at 150 m or greater", "value": 0.0667, "scope": "305 of 4,571 selected RADAR points"}
+  ],
+  "hours_spent": 1.5,
+  "evidence": [
+    "TruckScenes - Fatima/dataset-statistics.md",
+    "docs/dataset-surveys/truckscenes.md",
+    "experiment-log/0004-fatima-truckscenes-setup-visualisation.md",
+    "scripts/truckscenes_stats.py"
+  ],
+  "notes": "This is dataset characterisation, not detector evaluation. The point totals cover one sample per scene and must not be presented as a full-dataset density benchmark. Point presence beyond 150 m does not demonstrate reliable object detection at that range."
+}

@@ -6,6 +6,7 @@ goose_dataset/
 
 # Datasets — far too large for git (mini is ~9.6 GB, trainval ~560 GB)
 *.zip
+*.zip.*
 *.bag
 *.npz
 *.pth
@@ -15,10 +16,21 @@ datasets/
 # Python
 __pycache__/
 *.py[cod]
+*.pyc
 .venv/
 venv/
+truckscenes-env/
 *.egg-info/
 .ipynb_checkpoints/
+
+# Local TruckScenes exploration artifacts. Curated evidence belongs in
+# docs/evidence/truckscenes/; full renders, staging copies and Word reports do not.
+outputs/
+prepared/
+reports/
+scripts/build_initial_results_report.py
+scripts/build_truckscenes_coordination_doc.py
+scripts/build_truckscenes_deliverables.py
 
 # Assessed Sprint 1 deliverables. The team OneDrive under General/Group_07/ is the
 # system of record for these — see README.md § Source documents. Kept out of the repo
