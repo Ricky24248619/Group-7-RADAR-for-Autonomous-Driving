@@ -142,7 +142,9 @@ def main():
             f"common={result['common_frames']}, "
             f"boxes={result['total_boxes']}, "
             f"sample={result['selected_sync']}, "
-            f"detections={result['selected_detections']}"
+            f"detections={result['selected_detections']}, "
+            f"100-150m={result['selected_ranges'][4]}, "
+            f"150m+={result['selected_ranges'][5]}"
         )
 
     print()
