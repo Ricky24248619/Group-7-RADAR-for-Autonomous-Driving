@@ -207,14 +207,16 @@ with the full protocol in
 | | |
 |---|---|
 | Precision | **FP32.** AMP failed with `!all_profile_res.empty() assert faild. can't find suitable algorithm for 0` |
+| Runtime protocol | Documented compatibility patch; FlashAttention disabled; encoder/decoder patch sizes 64; one test augmentation; seed 20260831 |
 | Bounded gates | Smallest frame (30,263 pts) 8.6 s; largest frame (270,720 pts) 35.4 s. **No out-of-memory** |
 | Full attempt | **10 of 961 frames**, then stopped deliberately at Ricky's hardware-load limit |
-| Throughput | ~18.9 s/frame, so a complete validation is **≈5.1 hours** of sustained GPU |
+| Timing | First 10 frames: mean loop-body time 18.94 s/frame, excluding dataloader yield time. Multiplying by 961 gives **≈5.1 hours as a rough extrapolation**, not measured full-run duration |
 
-**So 6 GiB is sufficient, and time is the constraint rather than memory.** That is a
-different answer from the one this survey previously gave, and it changes what we ask
-the client for: not "can we have a machine", but "a complete run costs five hours of
-sustained load on our only CUDA laptop".
+**The tested bounded inputs fit in 6 GiB under this modified protocol.** The two
+gates and ten-frame attempt do not establish full-split memory use or runtime. The
+attempt stopped at Ricky's sustained-load limit, not because an out-of-memory error
+was observed. A complete run needs an approved compute plan; do not restart sustained
+local GPU work without Ricky's explicit approval.
 
 ### The raw ROS bags — resolved, and not in our favour
 
@@ -329,19 +331,20 @@ needs the paper's results tables.)*
 (`pointcloud_processing/README.md`). **We have not reproduced it**, and the reasons are
 worth separating:
 
-1. **The pipeline is not the obstacle.** PTv3 runs on the team's GTX 1660 in FP32. See
-   §6 — 6 GiB is sufficient and a complete validation is a ~5.1 hour job.
+1. **Bounded inference works.** PTv3 runs on the team's GTX 1660 using the modified
+   FP32 protocol in §6. Full-split resource use has not been measured.
 2. **The run was stopped at 10 of 961 frames**, so what we have is 1% of a split. Those
    values are recorded as diagnostics, not metrics.
-3. **Even a completed run would not be directly comparable** to 0.8096 without
-   recomputation. Pointcept averages IoU over classes with zero union; this repository's
-   definition excludes them (`docs/metrics-definitions.md`). Two different numbers can
-   be produced from identical predictions, so the definition must be stated.
+3. **A completed run still needs a comparability check.** Our patch sizes and test
+   augmentation differ from the published configuration. Pointcept includes zero-union
+   classes in its mean; this repository excludes them (`docs/metrics-definitions.md`).
+   That can change the score when such classes occur. Record the inference protocol
+   and aggregation rule before comparing scores; metric recomputation alone does not
+   undo an inference-protocol difference.
 
-So the honest position is: **the model runs, and we have no benchmark score.** Not
-because of the hardware, but because we chose not to hold a student laptop at 99%
-utilisation for five hours, and because the comparison needs a metric definition settled
-first.
+So the honest position is: **bounded inference works, and we have no benchmark
+score.** The run stopped at Ricky's sustained-load limit. A full run and comparison
+remain subject to an approved compute plan and a stated evaluation protocol.
 
 *(Model names and scores from the paper's results tables — TODO.)*
 
@@ -376,14 +379,14 @@ first.
       3× annotated 4D imaging radar, GOOSE with 6× unannotated automotive radar. D-03's
       premise that off-road datasets lack radar is **false**. Recommend re-scoping the
       off-road strand rather than treating it as blocked.
-- [x] ~~Can the published baseline run on team hardware?~~ **Yes** — FP32 on a GTX 1660,
-      6 GiB, ~18.9 s/frame. Memory is not the constraint; five hours of sustained load is.
-- [ ] **Is a complete PTv3 reproduction worth five hours of a student laptop?** A
-      client decision, put to Adrian in the 1 Sep note. If yes, it should run on remote
-      or deliberately limited compute rather than sustained local load.
+- [x] ~~Can the published checkpoint execute on team hardware?~~ **Yes, on bounded
+      inputs** under the modified FP32 protocol in §6; full-split feasibility is unverified.
+- [ ] **Is a complete PTv3 reproduction worth scheduling?** This is a proposed client
+      question in PR #18's unsent 1 Sep note. If requested, first agree remote or
+      deliberately limited compute; sustained local work still needs Ricky's approval.
 - [ ] Before any score is reported, settle whether we recompute under this repository's
-      mIoU definition or quote Pointcept's. **They differ**, and identical predictions
-      would produce two different numbers.
+      mIoU definition or quote Pointcept's. Their treatment of zero-union classes
+      differs, so identical predictions can produce different scores when those occur.
 - [ ] Confirm whether higher-level class groups number 11 or 12
 - [ ] Extract baseline model names and scores from the paper's results tables
 - [ ] **Needs a human:** the client figure has not had a cold read by anyone outside
