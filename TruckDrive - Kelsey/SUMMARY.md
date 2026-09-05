@@ -29,9 +29,9 @@ One annotated Radar frame was selected from each scene for range analysis. Acros
 
 Basic Camera, LiDAR and Radar evidence from `scene_28_1` is stored in:
 
-- `docs/evidence/truckdrive-kelsey/scene28_1_camera.png`
-- `docs/evidence/truckdrive-kelsey/scene28_1_lidar.png`
-- `docs/evidence/truckdrive-kelsey/scene28_1_radar.png`
+- [Camera](../docs/evidence/truckdrive_/scene28_1_camera.png)
+- [LiDAR](../docs/evidence/truckdrive_/scene28_1_lidar.png)
+- [Radar](../docs/evidence/truckdrive_/scene28_1_radar.png)
 
 These images demonstrate successful dataset loading and sensor visualisation.
 
