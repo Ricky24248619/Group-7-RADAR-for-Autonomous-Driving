@@ -1,7 +1,7 @@
 # Project Handbook — CITS3200 Group 07
 
 **RADAR for Autonomous Driving** · Client: Adrian Boeing · Technical mentor: Fabian
-Last updated 4 September 2026
+Last updated 5 September 2026
 
 One document explaining what the project is, how the three datasets and their toolkits
 work, and what each person's technical stack actually consists of. Written for anyone
@@ -114,11 +114,14 @@ repository, and maintainers who have not answered a GitHub issue since March.
 
 ### Why the split makes sense
 
-TruckScenes is the **core modality comparison**, because it is the only dataset where
-radar and LiDAR see the same scenes with the same ground truth. TruckDrive is where the
-**interesting failure** happens — published results show 31–99% degradation past 150 m.
-GOOSE is the **client's actual interest**, and the only one we can currently work on
-end to end.
+TruckScenes is the proposed **core modality comparison** because its documented,
+pip-installable devkit makes a controlled experiment easier to start. Both TruckScenes
+and TruckDrive provide radar and LiDAR for shared scenes with common annotations.
+TruckDrive is the planned **long-range comparison** — published results show 31–99%
+degradation past 150 m. TruckScenes' stock evaluator stops at 75 or 150 m by class;
+using it beyond 150 m requires an approved custom protocol. GOOSE addresses the
+client's **off-road terrain interest**; bounded inference works, but no complete
+model benchmark has been produced.
 
 ---
 
@@ -198,8 +201,11 @@ once every dataset is running.
 | Owns | `scripts/goose_render_frame.py`, `goose_traversability.py`, `goose_client_figure.py`, `results/`, the GOOSE survey | `scripts/goose_stats.py`, `traversability_map.csv`, `experiment-log/`, `docs/metrics-definitions.md` |
 
 Ricky's is the **only CUDA machine on the team**, which is why model runs go to him.
-PTv3 runs there in FP32 at ~19 s/frame — a full 961-frame validation is about **5 hours**
-of sustained GPU load.
+PTv3 completed two one-frame gates and 10 of 961 validation frames using a compatibility
+patch, FP32, FlashAttention disabled, patch sizes 64 and one test augmentation.
+The 18.94 s/frame loop-body mean over those ten frames extrapolates to **about 5 hours**,
+excluding data loading; full-split memory use and elapsed time remain unmeasured.
+Sustained local GPU work must not restart without Ricky's explicit approval.
 
 ### 6.3 Aiden & Fatima — MAN TruckScenes
 
@@ -302,11 +308,11 @@ live in the team OneDrive. Risk IDs (R-xx), acceptance criteria (P-x) and story 
 
 ---
 
-## 9. Current status — 4 September 2026
+## 9. Current status — 5 September 2026
 
 | | |
 |---|---|
-| **GOOSE** | Working end to end. Full split measured, traversability map built, client figure produced, PTv3 confirmed to run on a 6 GiB GPU |
+| **GOOSE** | Full split characterised, traversability map and client figure produced; bounded PTv3 inference works on a 6 GiB GPU under the modified protocol above |
 | **TruckScenes** | Devkit installed, exploration under way |
 | **TruckDrive** | In progress |
 | **STONE** | Dropped |

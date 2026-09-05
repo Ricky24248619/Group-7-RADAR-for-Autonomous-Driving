@@ -21,6 +21,7 @@ import sys
 try:
     from docx import Document
     from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from docx.oxml.ns import qn
     from docx.shared import Pt, RGBColor
 except ImportError:
     sys.exit("python-docx is required:  pip install python-docx")
@@ -128,15 +129,24 @@ def convert(md, doc):
                 run.italic = True
             continue
 
-        if re.match(r"^[-*] ", stripped):
-            add_runs(doc.add_paragraph(style="List Bullet"), stripped[2:])
+        item = re.match(r"^([-*]|\d+\.)\s+(.*)", stripped)
+        if item:
+            block = [item[2]]
             i += 1
-            continue
-
-        if re.match(r"^\d+\. ", stripped):
-            add_runs(doc.add_paragraph(style="List Number"),
-                     re.sub(r"^\d+\.\s*", "", stripped))
-            i += 1
+            # ponytail: flat lists only; use a Markdown parser if nested lists are needed.
+            while (i < len(lines) and lines[i][:1].isspace() and lines[i].strip()
+                   and not re.match(r"^\s*([#>|`]|[-*] |\d+\. )", lines[i])):
+                block.append(lines[i].strip())
+                i += 1
+            numbered = item[1][0].isdigit()
+            para = doc.add_paragraph(style="List Number" if numbered else "List Bullet")
+            if numbered:
+                numbering = doc.part.numbering_part.element
+                abstract = numbering.xpath('w:abstractNum[w:lvl/w:pStyle[@w:val="ListNumber"]]')[0]
+                num = numbering.add_num(int(abstract.get(qn("w:abstractNumId"))))
+                num.add_lvlOverride(ilvl=0).add_startOverride(int(item[1][:-1]))
+                para._p.get_or_add_pPr().get_or_add_numPr().get_or_add_numId().val = num.numId
+            add_runs(para, " ".join(block))
             continue
 
         # Otherwise a paragraph: join until a blank line or a new block starts.
