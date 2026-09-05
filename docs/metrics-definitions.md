@@ -7,6 +7,9 @@ undefined metric in a results table is a bug in the results table.
 Status: segmentation definitions complete for Sprint 2; detection questions remain
 open. D-01 must be confirmed with Fabian before benchmarking begins.
 
+Current evidence, checkpoint availability and a bounded pilot proposal are in the
+[dataset comparison](dataset-comparison.md).
+
 ## Detection metrics
 
 | Metric | Definition | Notes / caveats |

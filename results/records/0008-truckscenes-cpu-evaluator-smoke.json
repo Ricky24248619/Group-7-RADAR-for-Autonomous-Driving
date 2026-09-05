@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "id": "0008-truckscenes-cpu-evaluator-smoke",
+  "title": "TruckScenes v1.2.0 box matching and AP pass synthetic CPU checks on Windows",
+  "owner": "Ricky Yuen",
+  "date": "2026-09-05",
+  "status": "success",
+  "dataset": "Synthetic boxes defined in scripts/truckscenes_eval_smoke.py; no MAN TruckScenes sensor data loaded",
+  "sensor_configuration": "None; CPU-only synthetic evaluator inputs",
+  "annotation_schema": "TruckScenes devkit v1.2.0 DetectionBox format; one synthetic car ground-truth box and one explicit empty sample; detection_cvpr_2024 config",
+  "task_type": "feasibility-test",
+  "modality": "none",
+  "split": "Synthetic two-sample fixture only; not mini_val or a real dataset split",
+  "environment": {
+    "os": "Windows",
+    "hardware": "CPU execution only; no GPU used",
+    "python": "3.11 in isolated radar-truckscenes-review venv",
+    "packages": {
+      "truckscenes-devkit": "1.2.0",
+      "numpy": "1.26.4",
+      "matplotlib": "3.8.4",
+      "scipy": "1.13.1",
+      "pyquaternion": "0.9.9",
+      "pypcd4": "1.4.3",
+      "tqdm": "4.70.0"
+    }
+  },
+  "commands": [
+    "python -m pip install truckscenes-devkit==1.2.0 numpy==1.26.4 matplotlib==3.8.4 scipy==1.13.1 pyquaternion==0.9.9 pypcd4==1.4.3 tqdm==4.70.0",
+    "python scripts/truckscenes_eval_smoke.py",
+    "python -m pip check"
+  ],
+  "evidence": [
+    "scripts/truckscenes_eval_smoke.py",
+    "experiment-log/0006-truckscenes-preflight.md"
+  ],
+  "notes": "All assertions passed: config identity, JSON round trip, explicit empty samples, perfect/missing/false-positive predictions and strict matching threshold. No benchmark metrics are stored. This does not establish real loading, transformations, range filtering, NDS, full DetectionEval, inference or GPU feasibility. Checkpoint availability remains unresolved; see docs/dataset-comparison.md. See the experiment log for venv setup."
+}
