@@ -2,9 +2,10 @@
 
 > **Reference example** for [`../dataset-survey-template.md`](../dataset-survey-template.md).
 > All sections complete. §6 **passed** on 22 Aug; §7 was rewritten on 28 Aug once the
-> dataset was actually understood rather than merely obtained. Note how uncertain facts
+> dataset was actually understood rather than merely obtained; §6 and §7 were corrected
+> again on 5 Sep after the published baseline was actually run. Note how uncertain facts
 > are marked rather than guessed, how the install gotchas are kept in §6 rather than
-> dropped once solved, and how two conclusions this survey previously stated with
+> dropped once solved, and how **three** conclusions this survey previously stated with
 > confidence were later corrected in place rather than quietly edited away.
 
 ## 0. Survey metadata
@@ -13,7 +14,7 @@
 |---|---|
 | Dataset | GOOSE (+ GOOSE-Ex extension) |
 | Surveyed by | Damien Zhang (DZ) |
-| Date surveyed | 2026-08-18 · feasibility 2026-08-22 · §7 rewritten 2026-08-28 |
+| Date surveyed | 2026-08-18 · feasibility 2026-08-22 · §7 rewritten 2026-08-28 · baseline result 2026-09-05 |
 | Reviewed by | *(pending — must be a member other than DZ)* |
 | Review date | |
 | Survey status | **Complete — pending review** (D5) |
@@ -183,12 +184,37 @@ None blocked the work, but each costs an hour if hit cold.
 3. **Scans and labels do not share a filename stem.** Scans end `_vls128.bin`, labels
    end `_goose.label`. The join key is everything up to the final underscore.
 
-### Not attempted — and why
+### The published baseline — attempted, and it runs
 
-The point-cloud **baselines** (Pointcept / PTv3, `pointcloud_processing/README.md`)
-ship as a Docker image tested against CUDA 11.7. Not runnable on Apple Silicon — that
-is **R-08**, not a GOOSE problem. It is cleanly separated from visualisation, which
-needs only vispy. Baselines require Kaya, the DGX Spark, or Colab.
+*Superseded 5 Sep. This section previously said the baselines were not runnable and
+required Kaya, the DGX Spark or Colab. That was true of the survey machine and wrong
+about the team.*
+
+The point-cloud baseline (Pointcept / PTv3, `pointcloud_processing/README.md`) ships as
+a Docker image tested against CUDA 11.7.
+
+**It cannot run on Apple Silicon**, which has no CUDA path under any configuration —
+recorded as
+[`0005-ptv3-baseline-apple-silicon`](../../results/records/0005-ptv3-baseline-apple-silicon.json).
+That is **R-08**, not a GOOSE problem, and it is cleanly separated from visualisation,
+which needs only vispy.
+
+**It does run on the team's GTX 1660**, 6 GiB, under WSL 2 — recorded as
+[`0006-goose-ptv3-gtx1660-partial`](../../results/records/0006-goose-ptv3-gtx1660-partial.json)
+with the full protocol in
+[`experiment-log/0004`](../../experiment-log/0004-goose-ptv3-partial-validation.md).
+
+| | |
+|---|---|
+| Precision | **FP32.** AMP failed with `!all_profile_res.empty() assert faild. can't find suitable algorithm for 0` |
+| Bounded gates | Smallest frame (30,263 pts) 8.6 s; largest frame (270,720 pts) 35.4 s. **No out-of-memory** |
+| Full attempt | **10 of 961 frames**, then stopped deliberately at Ricky's hardware-load limit |
+| Throughput | ~18.9 s/frame, so a complete validation is **≈5.1 hours** of sustained GPU |
+
+**So 6 GiB is sufficient, and time is the constraint rather than memory.** That is a
+different answer from the one this survey previously gave, and it changes what we ask
+the client for: not "can we have a machine", but "a complete run costs five hours of
+sustained load on our only CUDA laptop".
 
 ### The raw ROS bags — resolved, and not in our favour
 
@@ -299,10 +325,25 @@ semantic, and 3D semantic segmentation. The bundled baseline is Pointcept / PTv3
 shipped as a Docker image tested against CUDA 11.7. *(Model names and scores — TODO,
 needs the paper's results tables.)*
 
-**Not runnable on the survey machine** (Apple Silicon). Ricky's Windows machine has a
-GTX 1660 with 6 GiB VRAM, which disproves risk R-08's premise that no team member has a
-discrete NVIDIA GPU — but whether 6 GiB is enough for PTv3 is a separate question and a
-separate team decision.
+**The published 3D result is mIoU 0.8096** on the 8-class challenge taxonomy
+(`pointcloud_processing/README.md`). **We have not reproduced it**, and the reasons are
+worth separating:
+
+1. **The pipeline is not the obstacle.** PTv3 runs on the team's GTX 1660 in FP32. See
+   §6 — 6 GiB is sufficient and a complete validation is a ~5.1 hour job.
+2. **The run was stopped at 10 of 961 frames**, so what we have is 1% of a split. Those
+   values are recorded as diagnostics, not metrics.
+3. **Even a completed run would not be directly comparable** to 0.8096 without
+   recomputation. Pointcept averages IoU over classes with zero union; this repository's
+   definition excludes them (`docs/metrics-definitions.md`). Two different numbers can
+   be produced from identical predictions, so the definition must be stated.
+
+So the honest position is: **the model runs, and we have no benchmark score.** Not
+because of the hardware, but because we chose not to hold a student laptop at 99%
+utilisation for five hours, and because the comparison needs a metric definition settled
+first.
+
+*(Model names and scores from the paper's results tables — TODO.)*
 
 ### Evidence
 
@@ -313,6 +354,8 @@ separate team decision.
 | [`goose_client_figure.png`](../evidence/goose_client_figure.png) | The client-facing figure: what the ground is made of, beside what a vehicle can drive on |
 | [`goose_frame_000.png`](../evidence/goose_frame_000.png) · [`goose_frame_500.png`](../evidence/goose_frame_500.png) | Single-frame detail, summer and winter |
 | `GOOSE - Ricky+Damien/dataset-statistics.md` | Full measurement over 961 frames and 174.9M points |
+| [`results/records/0006-...json`](../../results/records/0006-goose-ptv3-gtx1660-partial.json) | The bounded PTv3 run: what executed, what was stopped, and why |
+| [`experiment-log/0004`](../../experiment-log/0004-goose-ptv3-partial-validation.md) | Full protocol, gates and the runtime patch for that run |
 
 ---
 
@@ -333,6 +376,14 @@ separate team decision.
       3× annotated 4D imaging radar, GOOSE with 6× unannotated automotive radar. D-03's
       premise that off-road datasets lack radar is **false**. Recommend re-scoping the
       off-road strand rather than treating it as blocked.
+- [x] ~~Can the published baseline run on team hardware?~~ **Yes** — FP32 on a GTX 1660,
+      6 GiB, ~18.9 s/frame. Memory is not the constraint; five hours of sustained load is.
+- [ ] **Is a complete PTv3 reproduction worth five hours of a student laptop?** A
+      client decision, put to Adrian in the 1 Sep note. If yes, it should run on remote
+      or deliberately limited compute rather than sustained local load.
+- [ ] Before any score is reported, settle whether we recompute under this repository's
+      mIoU definition or quote Pointcept's. **They differ**, and identical predictions
+      would produce two different numbers.
 - [ ] Confirm whether higher-level class groups number 11 or 12
 - [ ] Extract baseline model names and scores from the paper's results tables
 - [ ] **Needs a human:** the client figure has not had a cold read by anyone outside
