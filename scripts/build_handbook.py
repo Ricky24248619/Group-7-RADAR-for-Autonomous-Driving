@@ -6,7 +6,9 @@ with people who do not read the repository — the client, the auditor, next yea
 Regenerating rather than maintaining two copies is what stops them drifting apart.
 
     pip install python-docx
-    python scripts/build_handbook.py
+    python scripts/build_handbook.py                      # the project handbook
+    python scripts/build_handbook.py --source X.md --output X.docx
+    python scripts/build_handbook.py --all-in DIR         # every .md in a directory
 
 Handles the subset of Markdown the handbook actually uses: headings, paragraphs, pipe
 tables, fenced code, bullet and numbered lists, blockquotes, and inline bold/italic/code.
@@ -149,22 +151,42 @@ def convert(md, doc):
             i += 1
 
 
-def main():
-    if not SOURCE.is_file():
-        sys.exit(f"Source not found: {SOURCE}")
-
+def build(source: pathlib.Path, output: pathlib.Path) -> None:
     doc = Document()
     normal = doc.styles["Normal"]
     normal.font.name = "Calibri"
     normal.font.size = Pt(10.5)
 
-    convert(SOURCE.read_text(encoding="utf-8"), doc)
-    doc.save(OUTPUT)
+    text = source.read_text(encoding="utf-8")
+    convert(text, doc)
+    doc.save(output)
+    print(f"Wrote {output.name}  ({len(text.split()):,} words, {len(doc.tables)} tables)")
 
-    words = len(SOURCE.read_text(encoding="utf-8").split())
-    print(f"Wrote {OUTPUT.relative_to(REPO)}")
-    print(f"  from {SOURCE.relative_to(REPO)} ({words:,} words)")
-    print(f"  {len(doc.paragraphs)} paragraphs, {len(doc.tables)} tables")
+
+def main():
+    import argparse
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--source", default=None)
+    ap.add_argument("--output", default=None)
+    ap.add_argument("--all-in", default=None,
+                    help="Convert every .md in this directory, alongside the source")
+    args = ap.parse_args()
+
+    if args.all_in:
+        folder = pathlib.Path(args.all_in)
+        sources = sorted(folder.glob("*.md"))
+        if not sources:
+            sys.exit(f"No .md files in {folder}")
+        for src in sources:
+            build(src, src.with_suffix(".docx"))
+        return
+
+    source = pathlib.Path(args.source) if args.source else SOURCE
+    output = pathlib.Path(args.output) if args.output else source.with_suffix(".docx")
+    if not source.is_file():
+        sys.exit(f"Source not found: {source}")
+    build(source, output)
 
 
 if __name__ == "__main__":
