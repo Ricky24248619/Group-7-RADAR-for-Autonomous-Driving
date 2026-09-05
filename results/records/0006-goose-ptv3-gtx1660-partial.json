@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "id": "0006-goose-ptv3-gtx1660-partial",
+  "title": "GOOSE PTv3 runs in FP32 on GTX 1660; full validation stopped after 10 frames",
+  "owner": "Ricky Yuen",
+  "date": "2026-08-31",
+  "status": "partial",
+
+  "dataset": "GOOSE 3D base validation split with official challenge labels v1.1, downloaded 2026-08-31",
+  "sensor_configuration": "Velodyne Alpha Prime 128-channel roof LiDAR only, as distributed in the annotated archive",
+  "annotation_schema": "Official GOOSE 8-class challenge taxonomy v1.1 in SemanticKITTI .label format",
+
+  "task_type": "semantic-segmentation-3d",
+  "modality": "lidar",
+  "split": "validation: first 10 of 961 base-GOOSE frames completed in the full attempt",
+  "model": "FraunhoferIOSB Pointcept goose commit 92f91ccedba88bda72d1727d6f5212efd0351414 with repo-evidenced runtime patch experiment-log/pointcept-goose-runtime.patch; PTv3 checkpoint challenge_ptv3.pth epoch 33 SHA-256 314B6402AE7738248136EF0F2A5D49C10CF71A63E94F0CD75FB39B285D6F565E",
+  "conditions": "FP32, FlashAttention disabled, patch sizes 64, one test augmentation, seed 20260831",
+
+  "environment": {
+    "os": "Windows host; Ubuntu 22.04.5 under WSL 2.7.12.0, kernel 6.18.33.2-microsoft-standard-WSL2",
+    "hardware": "NVIDIA GeForce GTX 1660, 6144 MiB, compute capability 7.5, driver 591.86",
+    "python": "3.10.12",
+    "packages": {
+      "torch": "2.0.1+cu117",
+      "torchvision": "0.15.2+cu117",
+      "torch-scatter": "2.1.2+pt20cu117",
+      "spconv-cu117": "2.3.6",
+      "numpy": "1.26.4"
+    }
+  },
+
+  "commands": [
+    "TEAM_REPO='/mnt/c/Users/aaa55/Documents/Codex Uni Sem 2/Group-7-RADAR-for-Autonomous-Driving'",
+    "source /home/ricky/.venvs/pointcept-goose/bin/activate",
+    "cd /home/ricky/src/Pointcept-goose",
+    "git switch --detach 92f91ccedba88bda72d1727d6f5212efd0351414",
+    "git -C \"$TEAM_REPO\" show HEAD:experiment-log/pointcept-goose-runtime.patch | git apply --unidiff-zero --check -",
+    "git -C \"$TEAM_REPO\" show HEAD:experiment-log/pointcept-goose-runtime.patch | git apply --unidiff-zero -",
+    "python tools/test.py --config-file configs/goose/semseg-pt-v3m1-0-base.py --num-gpus 1 --options weight=/mnt/f/RADAR/models/GOOSE/challenge_ptv3.pth seed=20260831 model.backbone.enable_flash=false model.backbone.enc_patch_size='[64,64,64,64,64]' model.backbone.dec_patch_size='[64,64,64,64]' data.test.split=val data.test.test_cfg.aug_transform='[[]]' enable_amp=false data.test.data_root=/mnt/f/RADAR/datasets/GOOSE/extracted/goose_3d_val save_path=/mnt/f/RADAR/outputs/pointcept/ptv3_val961_p64_fp32_20260831_133507"
+  ],
+
+  "measurements": [
+    {
+      "name": "completed frames",
+      "value": 10,
+      "scope": "full validation attempt, out of 961 base-GOOSE validation frames"
+    },
+    {
+      "name": "processed points",
+      "value": 1785024,
+      "scope": "first 10 frames completed by the partial full-validation attempt"
+    },
+    {
+      "name": "mean batch elapsed time",
+      "value": 18.94,
+      "unit": "seconds per frame",
+      "scope": "Pointcept loop-body Batch meter mean over the first 10 frames on the GTX 1660; excludes dataloader yield time"
+    }
+  ],
+
+  "error": "No application error or out-of-memory condition was emitted by the FP32 full run; it was externally terminated after 10 of 961 frames at the user's request.",
+  "attempted_fixes": [
+    "The AMP smallest-frame gate failed with: !all_profile_res.empty() assert faild. can't find suitable algorithm for 0",
+    "Disabled AMP while retaining FlashAttention off and patch sizes 64; the 30263-point smallest frame completed in 8.613 seconds.",
+    "Ran the 270720-point largest frame with the same FP32 settings; it completed in 35.381 seconds without OOM.",
+    "Started the 961-frame FP32 validation after both gates passed, then stopped promptly when the user limited sustained GPU load."
+  ],
+  "blocker": "The user requested that sustained GPU load stop. At the stop checkpoint the GTX 1660 was at 99% utilisation, 3184/6144 MiB and 66 C; no Pointcept process remained after termination.",
+  "recommendation": "Do not restart a full local GPU run without explicit approval. If a complete benchmark is still required, use a lower-load schedule or another CUDA machine, keep the protocol fixed, and recompute complete-split metrics under the repository definition.",
+
+  "evidence": [
+    "experiment-log/0004-goose-ptv3-partial-validation.md",
+    "experiment-log/pointcept-goose-runtime.patch"
+  ],
+  "notes": "The two FP32 one-frame gates demonstrate bounded inference on the GTX 1660, but their scores and the rolling first-10-frame values are diagnostics only, not benchmark metrics. The full attempt has no End Evaluation marker and Pointcept's zero-union averaging differs from this repository's mIoU definition. Generated configs, predictions and logs remain on F: outside Git."
+}
