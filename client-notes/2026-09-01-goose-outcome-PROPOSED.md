@@ -1,11 +1,11 @@
 # Client Note — GOOSE closeout and the next comparison (PROPOSED)
 
-> **Do not send yet.** First update the Damien-owned GOOSE survey to reflect the
-> bounded PTv3 result. Kelsey or Fatima must then cold-read the figure, the survey
+> **Do not send yet.** First merge the GOOSE survey correction in PR #25 to reflect
+> the bounded PTv3 result. Kelsey or Fatima must then cold-read the figure, the survey
 > conclusion and the result-adding instructions. This is the outstanding outside-pair
-> acceptance check.
+> acceptance check. Refresh the date below when the note is actually sent.
 
-**From:** Team 07 · **To:** Adrian Boeing and Fabian Deuser · **Date:** 1 September 2026  
+**From:** Team 07 · **To:** Adrian Boeing and Fabian · **Draft date:** 1 September 2026
 **Re:** What GOOSE answered, what it cannot answer, and where the comparison moves next
 
 ## What we tested
@@ -32,10 +32,10 @@ method.
 
 **The published GOOSE Pointcept/PTv3 path can execute locally with our documented
 runtime patch, but we do not yet have a complete benchmark.** The smallest and largest
-validation frames completed in FP32 on the GTX
-1660. A full 961-frame attempt produced 10 predictions before it was intentionally
-stopped at the user's hardware-load boundary. Those partial values are diagnostics,
-not a full-split mIoU and not a reproduction of the published 0.8096 result.
+validation frames completed in FP32 on the GTX 1660. A full 961-frame attempt produced
+10 predictions before we stopped it at Ricky's limit on sustained GPU load. Those
+partial values are diagnostics, not a full-split mIoU and not a reproduction of the
+published 0.8096 result.
 
 **GOOSE cannot provide a fair radar-versus-LiDAR comparison.** Its labelled benchmark
 covers camera/LiDAR semantic segmentation. The vehicle carried radar, but the
@@ -55,6 +55,9 @@ The GOOSE strand has produced a useful, reproducible outcome:
 A longer local GOOSE run would add a reproduction score, but it would not add radar
 evidence. The direct sensor comparison should therefore move to TruckScenes, while
 TruckDrive remains the appropriate dataset for the long-range question.
+
+Compute for a complete paired benchmark remains to be agreed. Kaya access is still
+pending; the bounded GOOSE run does not establish the resources needed for TruckScenes.
 
 STONE was dropped from the current plan at the 29 August meeting rather than treated
 as disproved. Revisit it if usable radar assets, integration code and the
