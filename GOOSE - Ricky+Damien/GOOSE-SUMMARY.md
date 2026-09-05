@@ -31,7 +31,7 @@ written-out version of Adrian's question.
 
 ## 2. What we set out to do
 
-Six tasks, agreed in `WORKPLAN.md` on 27 August and extended in `NEXT-STEPS.md`:
+The work agreed in `WORKPLAN.md` on 27 August and extended in `NEXT-STEPS.md`:
 
 | | |
 |---|---|
@@ -55,12 +55,11 @@ Damien installed the devkit on macOS (Apple Silicon) and rendered a frame. Ricky
 rebuilt the environment from that documentation on Windows and reproduced the same
 961-frame result.
 
-That second step matters more than it looks. Acceptance criterion **P-5** asks that
-someone outside the original setup can clone the repository and reproduce a documented
-result from a clean machine. A cross-platform reproduction is stronger evidence than a
-second macOS one, because it exercised assumptions the documentation did not know it was
-making. It also turned up a real bug: the renderer read config files with the platform
-default encoding, which would have failed on a Windows-authored CSV.
+That second step tested the setup instructions on another operating system. Acceptance
+criterion **P-5** requires reproduction by someone **outside the team**; Ricky's
+reproduction is useful supporting evidence but does not satisfy that criterion. It also
+turned up a portability bug: the renderer read config files with the platform default
+encoding rather than explicit UTF-8.
 
 **Three traps we hit and wrote down** so nobody repeats them:
 
@@ -85,8 +84,8 @@ labelled points**.
 | 150 m+ | **1.1%** |
 
 He also found **22 of 64 classes fall below 0.01% of points**, six of them with zero
-points at all. That drove how we define mIoU: averaging over classes that are absent
-measures taxonomy sparsity rather than model failure.
+points at all. That drove our mIoU rule: exclude classes absent from both ground truth
+and predictions (zero union), but retain a class that the model incorrectly predicts.
 
 ### 3.3 Turned 64 material classes into four traversability levels
 
@@ -99,9 +98,9 @@ considered genuinely contested.
 Keeping that judgement in a reviewable data file rather than buried in code means Fabian
 can disagree with a specific line rather than the whole approach.
 
-Damien then rendered it across all eight scenarios. The drivable points form a
-**connected, coherent route in all eight**, including dense woodland where that route is
-a narrow ribbon.
+Damien rendered it across all eight scenarios. These views illustrate the team's
+interpretation of human labels, including apparent corridors in woodland. They do not
+establish a connected, vehicle-safe route or demonstrate a model predicting one.
 
 ### 3.4 Ran the published model
 
@@ -111,15 +110,21 @@ published score of **0.8096 mIoU**, so it was the natural place to start.
 
 | | |
 |---|---|
-| Apple Silicon | **Impossible.** CUDA-only; no configuration makes it work |
-| GTX 1660, 6 GiB | **Runs**, in FP32. Automatic mixed precision failed on a kernel-selection assertion |
+| Apple Silicon | The tested Pointcept/PTv3 path requires CUDA and cannot run on the machine's Apple GPU |
+| GTX 1660, 6 GiB | Bounded inference completed in FP32; automatic mixed precision failed on a kernel-selection assertion |
 | Bounded gates | Smallest frame (30,263 points) 8.6 s; largest (270,720 points) 35.4 s. No out-of-memory |
 | Full attempt | **10 of 961 frames**, then stopped deliberately |
-| Throughput | ~18.9 s/frame — a complete pass is **≈5.1 hours** of sustained GPU |
+| Partial timing | 18.94 s/frame mean loop-body time over 10 frames, excluding dataloader yield time |
 
-So **6 GiB is enough, and time is the constraint rather than memory.** We stopped
-because holding a student laptop at 99% utilisation for five hours is not a reasonable
-thing to do, and because a full run would not have added radar evidence anyway.
+The successful gates establish bounded feasibility on 6 GiB, not full-split memory or
+runtime feasibility. Multiplying the partial timing by 961 gives about 5.1 hours of
+loop-body time; this is an extrapolation, not a measured end-to-end duration. Ricky
+requested that sustained GPU load stop. The recorded stop reason was not an OOM error.
+
+The run used the published checkpoint with a documented compatibility patch, FP32,
+FlashAttention disabled, patch sizes 64 and one test augmentation. Those settings differ
+from the published configuration, so a completed run would be a modified-protocol
+result rather than a direct reproduction of the published 0.8096 mIoU.
 
 The partial values are recorded as **diagnostics, not metrics**. Ten frames is 1% of a
 split, and a partial score is not a benchmark.
@@ -143,11 +148,11 @@ Not GOOSE-specific, but it came out of this work:
 
 ## 4. What we found
 
-### GOOSE answers the terrain question
+### GOOSE supports the terrain question
 
-It can distinguish drivable ground from obstacles, off-road, and we can show it in a
-single figure a non-specialist can read. That is the client's stated interest and it is
-done.
+The human material labels support a reviewable traversability interpretation. The
+figure demonstrates that mapping, not automatic terrain recognition or vehicle safety.
+Readability without narration has not been checked by someone outside the pair.
 
 ### GOOSE cannot answer the radar question
 
@@ -166,8 +171,10 @@ has no practical bearing on the work.
 
 ### GOOSE cannot answer the long-range question
 
-3.8% of labelled points beyond 100 m, 1.1% beyond 150 m. There is almost no data in the
-band decision D-04 asks about. This is a firmer answer than the task mismatch alone.
+Only 3.8% of labelled points are beyond 100 m and 1.1% beyond 150 m. This distribution,
+the segmentation task and the unavailable labelled radar comparison make GOOSE a poor
+fit for D-04's long-range detection question. Point share alone does not establish the
+absence of usable long-range examples or a model's performance there.
 
 ### A hidden trap in the challenge labels
 
@@ -209,11 +216,11 @@ taxonomies — the exact failure mode the workplan warned about.
 
 | | |
 |---|---|
-| ✅ Off-road terrain: drivable versus not | Answered, with a client-ready figure |
-| ✅ Cheapest route to an Autoware demo | The only dataset shipping ROS bags natively — though ROS 1, so conversion is still needed |
+| ✅ Off-road terrain interpretation | Human-label mapping and figure produced; readability check and vehicle-specific judgement remain |
+| Possible Autoware demo input | Native ROS 1 bags exist; topic coverage, conversion and integration still need checking |
 | ✅ On-road → off-road transfer, as target domain | Fabian's stated interest; needs a shared task formulation |
-| ❌ Anything about radar | Six radars, none obtainable |
-| ❌ The long-range question | 3.8% of points beyond 100 m |
+| ❌ Paired radar-versus-LiDAR benchmark | No obtainable labelled radar baseline for this task |
+| ❌ D-04 long-range detection comparison | Segmentation task, no paired labelled radar, and sparse long-range coverage |
 | ❌ Detection benchmarks | It is segmentation; scores cannot share a table with TruckScenes or TruckDrive |
 | ❌ Sensor fusion | Camera and LiDAR are not reliably time-aligned — an export bug the authors confirmed |
 
@@ -233,7 +240,12 @@ taxonomies — the exact failure mode the workplan warned about.
 | `results/records/0001`–`0006` | Six result records: four successes, one failure, one partial |
 | `experiment-log/0001`–`0004` | Environment setup, statistics, rendering, the model run |
 
-**Six result records. Four experiment logs. Sixteen merged pull requests.**
+**Six GOOSE result records and four GOOSE experiment logs.**
+
+The companion Word file is generated from this Markdown with `scripts/build_handbook.py`
+from the handbook PR (#22). Text and package integrity were checked after regeneration;
+page-layout inspection remains pending because the review environment has no LibreOffice
+renderer. Use the Markdown for content review until the Word layout has been checked.
 
 ---
 
@@ -241,22 +253,26 @@ taxonomies — the exact failure mode the workplan warned about.
 
 **For anyone continuing GOOSE:**
 
-- **A complete PTv3 run**, if it is judged worth five hours of compute. The protocol,
-  runtime patch and exact commands are recorded, so it is a matter of scheduling rather
-  than rediscovery.
+- **A complete PTv3 run**, only if the client still needs it and suitable compute is
+  approved. Fix the protocol and measure end-to-end requirements first; the 5.1-hour
+  extrapolation does not establish full-run time or memory needs. Do not restart the
+  full local GPU run without Ricky's explicit approval.
 - **Settle the mIoU definition first.** The reference implementation averages over
-  classes with zero union; ours excludes them. Identical predictions give two different
-  numbers, so this must be decided before any score is reported.
-- **The 2D image split** is untouched. There is a live ICRA 2026 challenge on it.
+  classes with zero union; ours excludes them. The numbers can differ when such classes
+  occur. State the taxonomy and evaluated class set, as well as the runtime changes,
+  before comparing any score with a published result.
+- **The 2D image split** has not been evaluated by this pair.
 - **The raw ROS bags**, if the authors ever publish the full sensor set.
   `scripts/goose_bag_topics.py` is ready to check them in one command.
 
 **Not done, and honest about it:**
 
 - No complete benchmark number exists.
+- P-5's reproduction by someone outside the team is not evidenced by our pair's work.
 - The outside-pair cold read of the figure and survey — required by our own acceptance
-  tests **P-6**, D4 and D5 — **was not performed**. It was dropped for time. Anything
-  claiming those artefacts are readable without narration is untested.
+  tests **P-6**, D4 and D5 — **was not performed**. The closeout proposal records that
+  it was dropped for time; this is an unmet check, not a pass. The team should record
+  acceptance of that omission or complete the check before treating closeout as agreed.
 
 ---
 

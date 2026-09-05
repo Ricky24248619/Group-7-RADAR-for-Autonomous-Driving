@@ -1,6 +1,8 @@
 # Client Note — GOOSE closeout
 
-**Supersedes** the 30 August and 1 September proposals. Ready to send.
+**Status:** proposed replacement for the 30 August and 1 September notes; prepared for
+team review, not sent. The outside-pair readability check was not performed. Record the
+team's acceptance of that omission or complete the check before sending.
 
 **From:** Team 07 · **To:** Adrian Boeing, Fabian · **Date:** 5 September 2026
 **Re:** What GOOSE answered, what it cannot, and where we go next
@@ -15,7 +17,8 @@ its published model on it, which is the benchmarking exercise you described.
 
 ## What happened
 
-**GOOSE works, and we have finished with it.** Two of us set it up independently, on
+**The GOOSE characterisation is complete; we propose closing this strand here.** Two
+of us set it up independently, on
 macOS and Windows, and both reproduced the same result from a clean machine. We measured
 the full validation split — 961 frames, 174.9 million hand-labelled points — and mapped
 its 64 surface types into four levels: drivable, uncertain, not drivable, and free
@@ -31,53 +34,58 @@ subject to vehicle-specific judgement. It does not show a system detecting anyth
 
 1. **GOOSE cannot answer the long-range question.** 62.9% of its labelled points lie
    within 25 m and only 3.8% beyond 100 m. Long range stays with TruckDrive, where the
-   team has already measured 6,746 radar detections at 150 m or beyond.
+   team measured 6,746 radar returns at 150 m or beyond across 24 selected frames.
+   These are sensor returns, not correctly detected objects or an accuracy score.
 
 2. **GOOSE cannot give a fair radar-versus-LiDAR comparison.** Its vehicle carries six
    radars, but the downloadable data provides no radar ground truth and no radar-first
    baseline for the same task. The authors have confirmed the released raw files contain
    only a reduced sensor set. The direct sensor comparison belongs on TruckScenes.
 
-3. **The published model runs, and we have no score.** Its PTv3 baseline needs CUDA. It
-   cannot run on Apple Silicon at all. It does run on our one NVIDIA laptop in FP32, and
-   we completed 10 of 961 frames before stopping deliberately — a full pass is about
-   **five hours of sustained load** on a student machine. The partial numbers are
-   diagnostics, not a benchmark.
+3. **Bounded model inference works, and we have no complete benchmark score.** The
+   tested PTv3 path needs CUDA and cannot use the Apple GPU. On the GTX 1660 we completed
+   small and large frame gates, then 10 of 961 validation frames before Ricky requested
+   that sustained GPU load stop. A roughly five-hour estimate extrapolates from partial
+   loop timings and excludes data loading; full-run time and memory remain unverified.
+   The partial numbers are diagnostics, not a benchmark.
 
 4. **A completed run still would not be directly comparable to the published score.**
-   The reference implementation and our own metric definition average over different
-   class sets, so identical predictions produce two different numbers. Any reported
-   score has to state which definition it used.
+   We used a compatibility patch, FP32, smaller patch sizes, disabled FlashAttention and
+   one test augmentation. Our zero-union class rule can also change the reported mean
+   relative to the reference evaluator. Any score must state the model configuration,
+   taxonomy and evaluated class set.
 
 ## What it means
 
-The **terrain half** of your off-road interest is answerable, and we have answered it on
-the dataset you asked us to keep. The **radar half** is not answerable on GOOSE. It
-needed STONE, which we dropped on 29 August: a single 346 GB download, no toolkit in its
+GOOSE supports a documented interpretation of off-road terrain labels; automatic
+recognition and vehicle-safe traversability are not established by our figure. The
+paired radar question is not answerable with the GOOSE assets available to us. STONE
+was the off-road radar candidate we dropped on 29 August: a single 346 GB download, no toolkit in its
 repository, and maintainers who have not replied since March. We would revisit it if
 those blockers changed.
 
-A longer GOOSE run would add a reproduction score. It would not add radar evidence. So
-the comparison should move to TruckScenes, which is the only dataset carrying radar,
-LiDAR and camera against the same ground truth.
+A completed GOOSE run could add a score under the declared modified protocol, but
+would not add radar evidence. We propose TruckScenes for the first controlled sensor
+comparison because its devkit is already working for the team. Both TruckScenes and
+TruckDrive provide shared scenes with radar, LiDAR, camera and common annotations.
+TruckDrive remains the planned long-range comparison; TruckScenes' stock evaluator
+ends at 75 or 150 m by class.
 
-**One constraint remains unresolved and it is not GOOSE-specific.** A complete benchmark
-on any dataset needs compute we do not have. The Kaya application is still with you — we
-have a Principal Investigator thanks to you agreeing, and the remaining paperwork needs
-your sign-off.
+**Compute remains a planning constraint.** Suitable sustained compute has not been
+confirmed for the planned complete model benchmarks. Each selected baseline still needs
+a compatible checkpoint and a small feasibility test to establish its requirements.
+Our current project record has the Kaya application awaiting your sign-off.
 
 ## What we need from you
 
 **Please confirm we should close GOOSE here, keep the partial run as the honest result,
 and move the radar-versus-LiDAR work to TruckScenes.**
 
-That is one decision and it unblocks the next three weeks. If a complete GOOSE
-reproduction still has value to you, say so and we will schedule it on remote or
-deliberately limited compute rather than running a laptop flat for five hours.
+That decision would guide the next phase. If a complete GOOSE evaluation still has
+value to you, we can scope it on remote or explicitly approved limited compute.
 
-If you have twenty minutes for the Kaya paperwork at any point, that remains the
-difference between describing what these datasets contain and measuring how models
-perform on them.
+Kaya access would help us plan those larger runs. Dataset comparisons, checkpoint
+selection and preparation of the evaluation protocol can proceed while access is pending.
 
 ---
 
