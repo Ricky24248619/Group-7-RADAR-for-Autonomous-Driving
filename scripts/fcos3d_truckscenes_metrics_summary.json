@@ -1,0 +1,239 @@
+{
+  "all": {
+    "label_aps": {
+      "car": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "truck": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "bus": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "trailer": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "other_vehicle": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "pedestrian": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "motorcycle": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "bicycle": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "traffic_cone": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "barrier": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "animal": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "traffic_sign": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      }
+    },
+    "mean_dist_aps": {
+      "car": 0.0,
+      "truck": 0.0,
+      "bus": 0.0,
+      "trailer": 0.0,
+      "other_vehicle": 0.0,
+      "pedestrian": 0.0,
+      "motorcycle": 0.0,
+      "bicycle": 0.0,
+      "traffic_cone": 0.0,
+      "barrier": 0.0,
+      "animal": 0.0,
+      "traffic_sign": 0.0
+    },
+    "mean_ap": 0.0,
+    "label_tp_errors": {
+      "car": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "truck": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "bus": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "trailer": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "other_vehicle": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "pedestrian": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "motorcycle": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "bicycle": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "traffic_cone": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": NaN,
+        "vel_err": NaN,
+        "attr_err": NaN
+      },
+      "barrier": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": NaN,
+        "attr_err": NaN
+      },
+      "animal": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": NaN
+      },
+      "traffic_sign": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": NaN,
+        "attr_err": 1.0
+      }
+    },
+    "tp_errors": {
+      "trans_err": 1.0,
+      "scale_err": 1.0,
+      "orient_err": 1.0,
+      "vel_err": 1.0,
+      "attr_err": 1.0
+    },
+    "tp_scores": {
+      "trans_err": 0.0,
+      "scale_err": 0.0,
+      "orient_err": 0.0,
+      "vel_err": 0.0,
+      "attr_err": 0.0
+    },
+    "nd_score": 0.0,
+    "eval_time": null,
+    "cfg": {
+      "class_range": {
+        "car": 150,
+        "truck": 150,
+        "bus": 150,
+        "trailer": 150,
+        "other_vehicle": 150,
+        "pedestrian": 75,
+        "motorcycle": 75,
+        "bicycle": 75,
+        "traffic_cone": 75,
+        "barrier": 75,
+        "animal": 75,
+        "traffic_sign": 75
+      },
+      "dist_fcn": "center_distance",
+      "dist_ths": [
+        0.5,
+        1.0,
+        2.0,
+        4.0
+      ],
+      "dist_th_tp": 2.0,
+      "min_recall": 0.1,
+      "min_precision": 0.1,
+      "max_boxes_per_sample": 500,
+      "mean_ap_weight": 5
+    }
+  },
+  "eval_time": 0.2096726894378662,
+  "meta": {
+    "use_camera": true,
+    "use_lidar": false,
+    "use_radar": false,
+    "use_map": false,
+    "use_external": false,
+    "use_future_frames": false,
+    "use_tta": false,
+    "method_name": "FCOS3D (nuScenes-pretrained, zero-shot)",
+    "authors": "",
+    "affiliation": "",
+    "description": "Zero-shot cross-dataset test: nuScenes-trained FCOS3D checkpoint run directly on TruckScenes camera images, no fine-tuning.",
+    "code_url": "",
+    "paper_url": ""
+  }
+}
