@@ -13,4 +13,3 @@ Official sources:
 - [MAN TruckScenes paper](https://proceedings.neurips.cc/paper_files/paper/2024/file/71ac06f0f8450e7d49063c7bfb3257c2-Paper-Datasets_and_Benchmarks_Track.pdf)
 - [Official TruckScenes devkit](https://github.com/TUMFTM/truckscenes-devkit)
 - [AWS Registry of Open Data](https://registry.opendata.aws/man-truckscenes/)
-

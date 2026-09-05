@@ -20,4 +20,3 @@ The local data pipeline is ready for repeatable exploration on macOS. Scripts ac
 4. Run a small, fixed inference feasibility test.
 5. If successful, define a controlled evaluation by range band and record the appropriate detection metrics.
 6. If it cannot run, document the attempted configuration and failure as a project result.
-

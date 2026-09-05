@@ -107,7 +107,7 @@
 
 ## 7. Fit for this project
 
-**Supports the D-04 long-range question?** Yes, as a primary on-road candidate. Annotations extend beyond 230 m, and the selected mini RADAR samples contain returns beyond 150 m. A detector still needs to be evaluated by range band; point presence alone is not detection evidence.
+**Supports the D-04 long-range question?** Conditionally. Annotations extend beyond 230 m, and the selected mini RADAR samples contain returns beyond 150 m. However, the [stock v1.2.0 detection configuration](https://github.com/TUMFTM/truckscenes-devkit/blob/v1.2.0/src/truckscenes/eval/detection/configs/detection_cvpr_2024.json) filters classes at 75 m or 150 m, so it provides no detection score beyond 150 m. Testing D-04 on TruckScenes requires an explicitly approved custom evaluator configuration and range-band protocol, reported separately from the stock benchmark. TruckDrive remains the planned long-range dataset. Point presence alone is not detection evidence.
 
 **Supports the D-03 off-road direction?** No. TruckScenes represents on-road highway, city and logistics-terminal operation, not off-road traversability.
 
@@ -117,7 +117,7 @@
 
 **Blockers:** A compatible pretrained checkpoint and its hardware requirements have not yet been selected. The mini split is for development rather than final benchmark claims. Kaya access remains relevant for compute-heavy inference.
 
-**Verdict:** **Primary candidate** — it directly provides annotated 360° 4D RADAR, LiDAR and camera data for autonomous trucks and supports the project’s on-road, long-range and multimodal questions.
+**Verdict:** **Primary candidate for the on-road modality comparison** — it directly provides annotated 360° 4D RADAR, LiDAR and camera data for autonomous trucks. Its stock evaluator supports the within-range comparison; the beyond-150 m question needs the custom protocol described above.
 
 ## 8. Open questions and sources
 
@@ -125,6 +125,7 @@
 
 - [ ] Which official or third-party pretrained checkpoint can run without training a new model?
 - [ ] Which detection-class mapping will the team use consistently for RADAR/LiDAR comparison?
+- [ ] If D-04 is attempted here, obtain approval for a custom range configuration and keep its scores separate from the stock benchmark.
 - [ ] Is the mini split acceptable for initial inference only, with the full split reserved for Kaya?
 - [ ] A teammate must complete the independent review fields.
 

@@ -6,4 +6,3 @@
 4. Run a small inference feasibility test on a fixed mini subset.
 5. If successful, later record detection metrics by agreed range bands.
 6. If unsuccessful, document the configuration and failure as a project result.
-

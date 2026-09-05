@@ -39,4 +39,3 @@ The point measurements use `RADAR_LEFT_FRONT` and `LIDAR_TOP_FRONT` for the firs
 | Share of selected RADAR points at 150 m or greater | 6.67% |
 
 These point counts describe this fixed sample set only. They do not compare detector performance and do not establish precision, recall or mAP.
-
