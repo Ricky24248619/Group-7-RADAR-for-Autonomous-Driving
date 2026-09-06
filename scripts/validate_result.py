@@ -559,7 +559,24 @@ def main() -> int:
         )
         return 1
 
-    total_errors = 0
+    # Sequence numbers must be unique across the store. Git will not catch a clash --
+    # 0006-goose-x.json and 0006-truckscenes-y.json are different filenames, so two
+    # branches each taking "the next free number" merge cleanly and leave the store with
+    # two 0006 records and nothing complaining. Citing "record 0006" then means nothing.
+    by_prefix = {}
+    for path in sorted({path.resolve() for path in [*RECORDS.glob("*.json"), *paths]}):
+        prefix = path.stem[:4]
+        if prefix.isdigit():
+            by_prefix.setdefault(prefix, []).append(path.name)
+    clashes = {k: v for k, v in by_prefix.items() if len(v) > 1}
+    if clashes:
+        print(f"{RED}DUPLICATE SEQUENCE NUMBERS{RESET} — a citation like "
+              f"\"record {sorted(clashes)[0]}\" is ambiguous:")
+        for prefix, names in sorted(clashes.items()):
+            print(f"    {RED}{prefix}{RESET}  " + "\n          ".join(names))
+        print("    Renumber the later one and update its 'id' field to match.\n")
+
+    total_errors = len(clashes)
     for path in paths:
         errors, warnings = check(path, metric_names)
         total_errors += len(errors)

@@ -32,7 +32,7 @@
   ],
   "evidence": [
     "scripts/truckscenes_eval_smoke.py",
-    "experiment-log/0006-truckscenes-preflight.md"
+    "experiment-log/0008-truckscenes-preflight.md"
   ],
   "notes": "All assertions passed: config identity, JSON round trip, explicit empty samples, perfect/missing/false-positive predictions and strict matching threshold. No benchmark metrics are stored. This does not establish real loading, transformations, range filtering, NDS, full DetectionEval, inference or GPU feasibility. Checkpoint availability remains unresolved; see docs/dataset-comparison.md. See the experiment log for venv setup."
 }

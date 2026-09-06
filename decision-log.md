@@ -123,3 +123,62 @@ not (Fabian) · STONE licence vs P-5 (client) · radar topics present in GOOSE
 bags + ROS 1 vs 2 (`rosbag info`, DZ).
 
 **Raised by:** Damien Zhang (surveys); consolidated and recorded by Ricky Yuen.
+
+---
+
+## D-06 — STONE dropped from the current plan
+**Date:** reported team meeting 29 Aug 2026; recorded here 5 Sep 2026 · **Status:** team-reported decision; client notification unverified
+
+**Decision.** Supersede D-05's storage-only hold: STONE is dropped from the current
+plan, revisitable if access, tooling and licence/handover blockers change. It is not
+disproved as an off-road radar dataset.
+
+**Evidence.** The proposed 30 August GOOSE client note (PR #13), the revised scope
+in PR #22 and the replacement draft in PR #18 report the meeting outcome. A draft
+note is not evidence of delivery to Adrian; record a dated sent communication separately.
+
+**Recorded by:** Ricky Yuen, reconciling the review documents; meeting outcome reported by Damien Zhang.
+
+---
+
+## D-07 — Proposed Autoware deferral
+**Date:** 5 Sep 2026 · **Status:** Sprint 3 proposal in the revised scope; team confirmation pending
+
+**Proposal.** Defer Autoware feasibility while the team completes dataset and baseline
+work. Revisit Linux/ROS 2 access and dataset conversion before scheduling it. GOOSE's
+released ROS 1 bags are not directly a ROS 2/Autoware input.
+
+**Evidence.** Revised Scope of Work §7 and Revised Set of Stories in PR #22. These
+documents propose the schedule; this entry does not claim client approval or a booked run.
+
+**Recorded by:** Ricky Yuen, from Damien Zhang's revised scope.
+
+---
+
+## D-08 — Sprint 2 work organised by dataset pair
+**Date:** 5 Sep 2026 (retrospective record) · **Status:** current working structure; future epic schedule proposed
+
+**Decision.** Record the structure used in Sprint 2: Damien/Ricky on GOOSE,
+Aiden/Fatima on TruckScenes and Fariya/Kelsey on TruckDrive. Work is evidenced by
+PRs #17, #21 and #23. The revised scope proposes returning to epics in Sprint 3;
+confirm that schedule at the checkpoint.
+
+**Client communication.** The proposed 30 August note does not establish notification.
+A dated sent communication is still needed for that part of P-7.
+
+**Recorded by:** Ricky Yuen, from the dataset work and Damien Zhang's revised scope.
+
+---
+
+## D-09 — Record work and variance while client approval is pending
+**Date:** 5 Sep 2026 (retrospective record) · **Status:** working position reported in the revised scope; client approval pending
+
+**Decision.** Record completed work, blockers and proposed scope changes while approval
+remains unresolved. This does not make the revised scope client-approved or satisfy
+P-7's notification requirement. Keep the client note draft until its documented
+review gates are met, then record when it is sent.
+
+**Evidence.** Revised Scope of Work §1/§9, the unsent client notes and PR #18's
+survey/cold-read gates. No delivery date is inferred from a draft's filename.
+
+**Recorded by:** Ricky Yuen, reconciling Damien Zhang's revised scope with the repository evidence.

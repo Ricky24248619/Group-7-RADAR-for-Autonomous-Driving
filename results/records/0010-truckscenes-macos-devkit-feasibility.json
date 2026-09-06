@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "id": "0007-truckscenes-macos-devkit-feasibility",
+  "id": "0010-truckscenes-macos-devkit-feasibility",
   "title": "TruckScenes devkit loaded and rendered 10 paired RADAR/LiDAR scenes on Apple Silicon",
   "owner": "Fatima Sher",
   "date": "2026-09-03",
@@ -33,10 +33,26 @@
     "python scripts/truckscenes_stats.py"
   ],
   "measurements": [
-    {"name": "scenes loaded", "value": 10, "scope": "all scenes in v1.2-mini"},
-    {"name": "paired samples rendered", "value": 10, "scope": "first annotated sample from each mini scene"},
-    {"name": "evidence images generated", "value": 20, "scope": "one RADAR and one LiDAR image per selected sample"},
-    {"name": "selected evidence images committed", "value": 6, "scope": "clear terminal, snow city and rain highway scene pairs"}
+    {
+      "name": "scenes loaded",
+      "value": 10,
+      "scope": "all scenes in v1.2-mini"
+    },
+    {
+      "name": "paired samples rendered",
+      "value": 10,
+      "scope": "first annotated sample from each mini scene"
+    },
+    {
+      "name": "evidence images generated",
+      "value": 20,
+      "scope": "one RADAR and one LiDAR image per selected sample"
+    },
+    {
+      "name": "selected evidence images committed",
+      "value": 6,
+      "scope": "clear terminal, snow city and rain highway scene pairs"
+    }
   ],
   "hours_spent": 4.5,
   "evidence": [
@@ -46,7 +62,7 @@
     "docs/evidence/truckscenes/scene08_lidar_top_front_snow.png",
     "docs/evidence/truckscenes/scene09_radar_left_front_rain.png",
     "docs/evidence/truckscenes/scene09_lidar_top_front_rain.png",
-    "experiment-log/0004-fatima-truckscenes-setup-visualisation.md",
+    "experiment-log/0007-fatima-truckscenes-setup-visualisation.md",
     "scripts/visualize_truckscenes_sample.py"
   ],
   "notes": "Rendering required a compatibility mapping because truckscenes-devkit 1.2.0 expects matplotlib.cm.get_cmap and Matplotlib 3.11.1 exposes the replacement through matplotlib.colormaps.get_cmap. The committed script applies this mapping narrowly. Orange boxes are dataset ground truth, not model predictions."
