@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check TruckScenes v1.2.0 box matching/AP on CPU, without dataset or model files.
 
-Run with the isolated environment documented in experiment-log/0006-truckscenes-preflight.md.
+Run with the isolated environment documented in experiment-log/0008-truckscenes-preflight.md.
 Synthetic scores are assertions only, never model benchmark evidence.
 """
 

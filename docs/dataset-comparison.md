@@ -31,7 +31,7 @@ Repository evidence:
 - [TruckScenes measurements in PR #21](https://github.com/Ricky24248619/Group-7-RADAR-for-Autonomous-Driving/blob/35d78ec664a4b9d01d80ecc936d73d06973099ed/TruckScenes%20-%20Fatima/dataset-statistics.md).
   This work is reviewed on its branch and is not yet on `main`.
 - [TruckDrive summary](../TruckDrive%20-%20Kelsey/SUMMARY.md) and
-  [recorded setup](../experiment-log/experiment-log/0005-kelsey-truckdrive-setup-statistics.md).
+  [recorded setup](../experiment-log/0005-kelsey-truckdrive-setup-statistics.md).
 - [Comparison rules and evaluator definition](metrics-definitions.md).
 
 ## TruckScenes checkpoint check

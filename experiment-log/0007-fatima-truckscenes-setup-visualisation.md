@@ -33,8 +33,8 @@ python -m pip install "truckscenes-devkit[all]==1.2.0"
 export TRUCKSCENES_ROOT=/path/to/man-truckscenes
 python scripts/visualize_truckscenes_sample.py --scene-count 10
 python scripts/truckscenes_stats.py
-python scripts/validate_result.py results/records/0006-truckscenes-mini-characterisation.json
-python scripts/validate_result.py results/records/0007-truckscenes-macos-devkit-feasibility.json
+python scripts/validate_result.py results/records/0009-truckscenes-mini-characterisation.json
+python scripts/validate_result.py results/records/0010-truckscenes-macos-devkit-feasibility.json
 ```
 
 ## Outcome

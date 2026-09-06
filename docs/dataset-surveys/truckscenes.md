@@ -102,7 +102,7 @@
 | Fixes attempted | Added a narrow compatibility mapping to `matplotlib.colormaps.get_cmap`; rendering then succeeded |
 | Hours spent | Approximately 6 hours across download, setup, exploration, visualisation and initial documentation |
 | **Single frame loaded and visualised?** | Yes; one paired RADAR/LiDAR sample from each of all 10 mini scenes |
-| Evidence | `docs/evidence/truckscenes/`; `experiment-log/0004-fatima-truckscenes-setup-visualisation.md` |
+| Evidence | `docs/evidence/truckscenes/`; `experiment-log/0007-fatima-truckscenes-setup-visualisation.md` |
 | Recommended next step | Complete an independent review, then select and time-box one compatible pretrained 3D-detection baseline |
 
 ## 7. Fit for this project
