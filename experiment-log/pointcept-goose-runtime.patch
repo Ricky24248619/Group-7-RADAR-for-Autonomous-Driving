@@ -1,0 +1,75 @@
+diff --git a/pointcept/datasets/__init__.py b/pointcept/datasets/__init__.py
+index cd247c6..4be2063 100644
+--- a/pointcept/datasets/__init__.py
++++ b/pointcept/datasets/__init__.py
+@@ -5,12 +5 @@ from .utils import point_collate_fn, collate_fn
+-# indoor scene
+-from .s3dis import S3DISDataset
+-from .scannet import ScanNetDataset, ScanNet200Dataset
+-from .scannetpp import ScanNetPPDataset
+-from .scannet_pair import ScanNetPairDataset
+-from .arkitscenes import ArkitScenesDataset
+-from .structure3d import Structured3DDataset
+-
+-# outdoor scene
+-from .semantic_kitti import SemanticKITTIDataset
+-from .nuscenes import NuScenesDataset
+-from .waymo import WaymoDataset
++# ponytail: GOOSE-only smoke runtime; restore upstream imports for other datasets.
+@@ -18,7 +6,0 @@ from .goose import GOOSEDataset
+-
+-# object
+-from .modelnet import ModelNetDataset
+-from .shapenet_part import ShapeNetPartDataset
+-
+-# dataloader
+-from .dataloader import MultiDatasetDataloader
+diff --git a/pointcept/datasets/defaults.py b/pointcept/datasets/defaults.py
+index 7c7accd..fa2b91a 100644
+--- a/pointcept/datasets/defaults.py
++++ b/pointcept/datasets/defaults.py
+@@ -17,2 +16,0 @@ from pointcept.utils.logger import get_root_logger
+-from pointcept.utils.cache import shared_dict
+-
+@@ -88,0 +87,2 @@ class DefaultDataset(Dataset):
++            from pointcept.utils.cache import shared_dict
++
+diff --git a/pointcept/engines/test.py b/pointcept/engines/test.py
+index 6f70f80..7325f4d 100644
+--- a/pointcept/engines/test.py
++++ b/pointcept/engines/test.py
+@@ -69 +69 @@ class TesterBase:
+-            checkpoint = torch.load(self.cfg.weight)
++            checkpoint = torch.load(self.cfg.weight, map_location="cpu")
+@@ -193 +193,3 @@ class SemSegTester(TesterBase):
+-                    with torch.no_grad():
++                    with torch.no_grad(), torch.cuda.amp.autocast(
++                        enabled=self.cfg.enable_amp
++                    ):
+diff --git a/pointcept/models/__init__.py b/pointcept/models/__init__.py
+index aea1d44..af1e5b6 100644
+--- a/pointcept/models/__init__.py
++++ b/pointcept/models/__init__.py
+@@ -4,4 +4 @@ from .default import DefaultSegmentor, DefaultClassifier
+-# Backbones
+-from .sparse_unet import *
+-from .point_transformer import *
+-from .point_transformer_v2 import *
++# ponytail: GOOSE PTv3-only runtime; restore upstream imports for other model families.
+@@ -9,16 +5,0 @@ from .point_transformer_v3 import *
+-from .stratified_transformer import *
+-from .spvcnn import *
+-from .octformer import *
+-from .oacnns import *
+-
+-# from .swin3d import *
+-
+-# Semantic Segmentation
+-from .context_aware_classifier import *
+-
+-# Instance Segmentation
+-from .point_group import *
+-
+-# Pretraining
+-from .masked_scene_contrast import *
+-from .point_prompt_training import *

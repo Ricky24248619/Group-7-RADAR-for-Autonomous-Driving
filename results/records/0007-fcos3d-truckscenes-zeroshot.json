@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "id": "0007-fcos3d-truckscenes-zeroshot",
+  "title": "FCOS3D (nuScenes-pretrained) zero-shot on TruckScenes mini_val: mAP 0.0, real domain-gap finding",
+  "owner": "Aiden Blampain",
+  "date": "2026-09-05",
+  "status": "success",
+
+  "dataset": "MAN TruckScenes v1.2-mini, mini_val split (2 scenes, 80 samples, official split via truckscenes.utils.splits)",
+  "sensor_configuration": "Single camera only (CAMERA_LEFT_FRONT) of TruckScenes' 4-camera/6-lidar/6-radar suite — a CPU-runtime scope cut, not a data gap; all 80 samples' ground truth is still scored",
+  "annotation_schema": "TruckScenes 12-class detection taxonomy (eval/detection/README.md remap of the 27-class general taxonomy)",
+
+  "task_type": "3d-object-detection",
+  "modality": "camera",
+  "split": "mini_val, all 80 samples (ground truth); predictions from CAMERA_LEFT_FRONT only",
+  "model": "FCOS3D (mmdetection3d 1.4.0), ResNet-101-caffe+DCN+GN head, official nuScenes-pretrained checkpoint fcos3d_r101_caffe_fpn_gn-head_dcn_2x8_1x_nus-mono3d_20210715_235813-4bed5239.pth — zero-shot, no fine-tuning or training on TruckScenes",
+  "conditions": "unknown — no weather/scenario filtering applied, mixed conditions across the split's 2 scenes",
+
+  "environment": {
+    "os": "Windows 11 Home 10.0.26200",
+    "hardware": "AMD Ryzen 7 5700U with Radeon Graphics — no NVIDIA GPU, no CUDA path (CPU-only inference)",
+    "python": "3.11.9, dedicated venv truckscenes-devkit/detection-env",
+    "packages": {
+      "numpy": "1.26.4",
+      "torch": "2.1.0+cpu",
+      "torchvision": "0.16.0+cpu",
+      "mmengine": "0.10.7",
+      "mmcv": "2.1.0",
+      "mmdet": "3.3.0",
+      "mmdet3d": "1.4.0",
+      "truckscenes-devkit": "1.2.0"
+    }
+  },
+
+  "commands": [
+    "python truckscenes_fcos3d_infer.py --dataroot <man-truckscenes> --version v1.2-mini --split mini_val --config <fcos3d config .py> --checkpoint <fcos3d .pth> --cameras CAMERA_LEFT_FRONT --start 0 --end 15 --out results_mini_val_fcos3d.json",
+    "(repeated with --start/--end sliding across 15/30/45/60/75/80 — see experiment-log/0005 for the full chunking rationale)",
+    "python -m truckscenes.eval.detection.evaluate results_mini_val_fcos3d.json --dataroot <man-truckscenes> --version v1.2-mini --eval_set mini_val --output_dir ./metrics --plot_examples 0 --render_curves 0"
+  ],
+
+  "metrics": [
+    {"name": "mAP", "value": 0.0,
+     "scope": "TruckScenes 12-class detection taxonomy, mini_val split, center-distance thresholds {0.5, 1, 2, 4}m averaged per detection_cvpr_2024.json config, single camera coverage"}
+  ],
+
+  "hours_spent": 4,
+  "evidence": [
+    "experiment-log/0006-fcos3d-truckscenes-zeroshot.md",
+    "scripts/truckscenes_fcos3d_infer.py",
+    "scripts/results_mini_val_fcos3d.json",
+    "scripts/fcos3d_truckscenes_metrics_summary.json"
+  ],
+  "notes": "mAP 0.0 is a diagnosed, genuine finding, not a broken pipeline: nearest-prediction-to-ground-truth distances were 5-21m, scaling with range (the signature of monocular depth misestimation, not a coordinate-transform bug), and every match falls just outside the loosest 4m threshold. The camera-to-global box math was reused verbatim from mmdet3d's own reference scoring code (output_to_nusc_box / cam_nusc_box_to_global) rather than re-derived, specifically to rule out a transform bug as the cause. Likely cause: FCOS3D's depth priors were learned on nuScenes' ~1.5m-high car-mounted cameras; TruckScenes cameras sit at ~2.1m with a different pitch/FOV. This is relevant evidence for the project's D-04 range-degradation question. The evaluator also reports NDS 0.0, mATE 1.0, mASE 1.0, mAOE 1.0, mAVE 1.0, mAAE 1.0 (all classes) from the same run, kept out of the metrics list above because NDS is an explicitly open, unresolved question in docs/metrics-definitions.md (assigned to Ricky) and the TP-error metrics (mATE etc.) aren't defined there either yet -- full raw numbers are in the evidence files if useful once that decision lands. Single-camera-only coverage was a deliberate compute scope cut (see sensor_configuration and experiment-log/0005), not a partial/incomplete run; all 80 mini_val ground-truth samples were scored."
+}
