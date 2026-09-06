@@ -13,8 +13,8 @@ to the team's scope. Pair ownership stays with Damien/Ricky (GOOSE), Aiden/Fatim
 | Useful project role | Off-road material/traversability interpretation | Proposed first radar/LiDAR comparison | Planned long-range comparison |
 | Shared labelled radar/LiDAR experiment | Not supported by the released assets available to us | Shared scenes and common box annotations | Shared scenes and common box annotations |
 | Work already evidenced | 961-frame statistics, human-label mapping, figures, partial PTv3 inference | Mini metadata, selected sensor measurements and visualisations | 24-scene radar/annotation statistics and selected multimodal loading |
-| Model result from the team | 10/961 validation frames; no full score | None in the reviewed evidence | None in the reviewed evidence |
-| Immediate limitation | No paired labelled radar; full PTv3 protocol/compute unresolved | Compatible detector code and checkpoint not verified | Full multimodal mini data not retained; detector not selected |
+| Model result from the team | 10/961 validation frames; no full score | FCOS3D camera-only zero-shot submission: mAP 0.0000, 80 `mini_val` tokens; see completion limits below | None in the reviewed evidence |
+| Immediate limitation | No paired labelled radar; full PTv3 protocol/compute unresolved | Zero-score diagnosis and completion evidence unresolved; no matched radar/LiDAR detector experiment | Full multimodal mini data not retained; detector not selected |
 | Metric boundary | Segmentation mIoU, with named taxonomy/class set | Stock mAP/NDS; class ranges end at 75 or 150 m | Pin the official evaluator and range protocol before scoring |
 
 GOOSE's 174,891,807 labelled points cover all 961 validation frames. Fatima's TruckScenes
@@ -28,8 +28,9 @@ Repository evidence:
 
 - [GOOSE measurements](../GOOSE%20-%20Ricky+Damien/dataset-statistics.md) and
   [partial model run](../experiment-log/0004-goose-ptv3-partial-validation.md).
-- [TruckScenes measurements in PR #21](https://github.com/Ricky24248619/Group-7-RADAR-for-Autonomous-Driving/blob/35d78ec664a4b9d01d80ecc936d73d06973099ed/TruckScenes%20-%20Fatima/dataset-statistics.md).
-  This work is reviewed on its branch and is not yet on `main`.
+- [TruckScenes measurements](../TruckScenes%20-%20Fatima/dataset-statistics.md) and
+  [FCOS3D review notes](../experiment-log/0006-fcos3d-truckscenes-zeroshot.md#review-update--6-september-2026).
+  Exploration #21 and the FCOS3D submission #27 are merged as of 6 September.
 - [TruckDrive summary](../TruckDrive%20-%20Kelsey/SUMMARY.md) and
   [recorded setup](../experiment-log/0005-kelsey-truckdrive-setup-statistics.md).
 - [Comparison rules and evaluator definition](metrics-definitions.md).
@@ -54,16 +55,25 @@ configuration file alone does not establish compatible weights or complete loade
 
 ## Smallest useful pilot
 
+**Update, 6 September:** Aiden has recorded a nuScenes-pretrained, camera-only FCOS3D
+transfer experiment in #27. Its saved submission contains 959 boxes across 63 nonempty
+entries and 17 empty entries; the evaluator reports mAP 0.0000. The runner pre-fills
+empty entries, so completion logs are still needed to distinguish processed frames with
+no detections from unprocessed frames. Camera-height/domain shift is a proposed cause,
+not a verified explanation. This does not fill the radar/LiDAR comparison requirement.
+Review known geometry, calibration and camera-visible ground truth before another run.
+
 This is a proposal for Aiden/Fatima and the team reviewer, not an instruction to change
 their existing work or start a large run.
 
-1. **Use existing data and code.** Review/merge PR #21 and use its path-configurable
+1. **Use existing data and code.** PR #21 is merged; use its path-configurable
    loaders. The TruckScenes mini data is on the pair's machine; it was not found in
    Ricky's known dataset locations during this check. Avoid downloading it again merely
    to duplicate their exploration.
 2. **Resolve the checkpoint gate.** Obtain one verified TruckScenes detector and its
    preprocessing instructions. If none is available, record that blocker and ask the
-   team/client whether a clearly labelled transfer experiment is worthwhile. Do not
+   team/client whether a further clearly labelled transfer experiment is worthwhile.
+   The camera-only FCOS3D attempt does not establish a radar/LiDAR baseline. Do not
    silently substitute a nuScenes score or begin training from scratch.
 3. **Fix the sample selection before looking at predictions.** Use the official v1.2.0
    `mini_val` scene list. For a first-frame feasibility check, sort those scene names and
@@ -90,9 +100,10 @@ model results table.
 
 ## Actions that still need people
 
-- **Team reviewer:** reconcile the final GOOSE proposal (#26), survey correction (#25)
-  and earlier draft (#18); complete the cold read or record acceptance of its omission.
-  An omitted acceptance check is not a pass. Keep one agreed client note.
+- **Team reviewer:** use the GOOSE proposal (#26) and survey correction (#25); the
+  superseded draft #18 was closed without merging. Complete the cold read or record
+  acceptance of its omission. An omitted acceptance check is not a pass. Keep one
+  agreed client note.
 - **Damien and the team:** agree the revised scope against completed evidence and
   realistic next experiments. The repository draft does not establish client approval.
 - **Aiden/Fatima, supported by Ricky:** confirm checkpoint availability and own the

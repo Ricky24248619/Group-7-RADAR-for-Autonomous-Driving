@@ -1,5 +1,6 @@
 """Regression tests for the benchmark result validator."""
 
+import io
 import json
 import pathlib
 import sys
@@ -77,6 +78,22 @@ class ResultValidatorTests(unittest.TestCase):
         errors, warnings = self.check()
         self.assertEqual(errors, [])
         self.assertEqual(warnings, [])
+
+    def test_cli_checks_sequence_collisions_against_store_when_given_one_file(self):
+        existing = self.write()
+        incoming = self.write(dict(self.record, id="0001-incoming"), name="0001-incoming.json")
+        with mock.patch.object(validator, "REPO", self.root), \
+             mock.patch.object(validator, "RECORDS", self.root), \
+             mock.patch.object(validator, "defined_metrics", return_value=self.metric_names), \
+             mock.patch.object(sys, "argv", ["validate_result.py", str(incoming)]), \
+             mock.patch.object(sys, "stdout", new_callable=io.StringIO) as output:
+            self.assertEqual(validator.main(), 1)
+            self.assertIn("DUPLICATE SEQUENCE NUMBERS", output.getvalue())
+            existing.unlink()
+            output.seek(0)
+            output.truncate()
+            self.assertEqual(validator.main(), 0)
+            self.assertNotIn("DUPLICATE SEQUENCE NUMBERS", output.getvalue())
 
     def test_exact_previously_false_accepted_record_is_rejected(self):
         record = {

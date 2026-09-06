@@ -2,10 +2,9 @@
 """Run a nuScenes-pretrained FCOS3D detector zero-shot against TruckScenes
 camera images, and score it with the devkit's own detection evaluator.
 
-The model was never trained on TruckScenes, so a weak score reflects real
-domain gap (different camera height, FOV and mounting angle on a truck vs.
-a car) rather than a bug — see experiment-log/0006 for how that was told
-apart from an actual coordinate-transform mistake. This is deliberately a
+The model was never trained on TruckScenes. Domain shift is one possible
+cause of a weak score; calibration, conversion and completion still need
+independent checks — see experiment-log/0006's review update. This is a
 zero-shot cross-dataset test, not a fine-tuned baseline: no GPU is available
 on this machine, so training from scratch was never in scope.
 
@@ -19,8 +18,11 @@ truckscenes-devkit) and the version pitfalls that make this venv fussy.
 
 A long CPU run is expected to be chunked across several calls: pass
 --start/--end to process one slice of the split's sample list at a time.
-Each call merges into --out rather than overwriting it, and checkpoints
-every 5 samples, so a killed or timed-out chunk doesn't lose progress.
+Each call replaces predictions for its selected samples and preserves the
+other samples, so retrying a chunk does not duplicate boxes. Use the same
+model, split and complete camera list for every chunk of one output file.
+It checkpoints every 5 samples. Empty entries are pre-filled for the split
+and do not establish inference completion; retain each chunk's progress log.
 """
 
 from __future__ import annotations
@@ -221,6 +223,7 @@ def main():
     model = init_model(args.config, args.checkpoint, device="cpu")
 
     for idx, sample in enumerate(samples):
+        sample_results = []
         for cam in args.cameras:
             if cam not in sample["data"]:
                 continue
@@ -269,13 +272,14 @@ def main():
                 pred.labels_3d[keep].numpy(), cam2ego, ego2global)
             for e in entries:
                 e["sample_token"] = sample["token"]
-            results[sample["token"]].extend(entries)
+            sample_results.extend(entries)
 
         # Enforce the 500-boxes-per-sample submission limit, keep top scores.
-        if len(results[sample["token"]]) > MAX_BOXES_PER_SAMPLE:
-            results[sample["token"]] = sorted(
-                results[sample["token"]],
+        if len(sample_results) > MAX_BOXES_PER_SAMPLE:
+            sample_results = sorted(
+                sample_results,
                 key=lambda r: -r["detection_score"])[:MAX_BOXES_PER_SAMPLE]
+        results[sample["token"]] = sample_results
 
         if (idx + 1) % 5 == 0 or (idx + 1) == len(samples):
             print(f"  processed {idx + 1}/{len(samples)} samples "

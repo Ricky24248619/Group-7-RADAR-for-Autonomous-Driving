@@ -6,7 +6,32 @@
   against TruckScenes, following on from EXP-0004's devkit/dataset feasibility
   check. Produces `results/records/0007-fcos3d-truckscenes-zeroshot.json`.
 
-## Goal
+## Review update — 6 September 2026
+
+The original account below is retained as the author's experiment history. This
+review qualifies its interpretation and completion claims:
+
+- The committed prediction file contains 80 sample tokens, 959 boxes across 63
+  nonempty entries, and 17 empty entries. The saved evaluator reports mAP 0.0000.
+  No exact duplicate boxes were found in this file.
+- The runner pre-fills every sample with an empty list. Token coverage therefore
+  does not prove inference completed on every sample. Retain the reported 80-sample
+  run, but obtain chunk-completion logs to verify the 17 empty entries.
+- Camera-height/domain shift is a hypothesis. Reusing reference conversion code
+  does not validate its use with TruckScenes calibration or exclude a transform bug.
+  Check known geometry and same-camera visible ground truth before assigning a cause.
+- Aggregate mAP zero and default TP-error values do not establish range degradation.
+  No range-banded evaluation or controlled camera-height test is committed. Single-camera
+  coverage and unsupported classes limit the scored protocol.
+- Retrying a chunk previously appended boxes to its saved predictions. The reviewed
+  runner now replaces that chunk's sample predictions and preserves other samples.
+  Always use the same full camera list, model and split for one output file. This fix
+  does not regenerate or certify the historical inference artifacts.
+- The chunking references in record 0007 refer to this log (EXP-0006). Metric definitions
+  now include NDS and TP errors; their earlier absence is historical. No new metric
+  result or model run was produced by this review.
+
+## Original goal
 
 Get an actual detection result out of TruckScenes rather than just a devkit
 walkthrough: run an existing open-source 3D detector against TruckScenes data

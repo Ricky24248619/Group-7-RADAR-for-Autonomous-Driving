@@ -564,7 +564,7 @@ def main() -> int:
     # branches each taking "the next free number" merge cleanly and leave the store with
     # two 0006 records and nothing complaining. Citing "record 0006" then means nothing.
     by_prefix = {}
-    for path in paths:
+    for path in sorted({path.resolve() for path in [*RECORDS.glob("*.json"), *paths]}):
         prefix = path.stem[:4]
         if prefix.isdigit():
             by_prefix.setdefault(prefix, []).append(path.name)

@@ -306,23 +306,34 @@ Sprint 1 deliverables (Scope of Work, Risk Register, Acceptance Tests, Set of St
 live in the team OneDrive. Risk IDs (R-xx), acceptance criteria (P-x) and story IDs
 (DZ-n, RY-n) referenced around the repository point there.
 
+The repository's `Revised Sprint 1 Deliverables/` holds the revised Markdown sources
+and Word exports. The `Sprint 1.1`, `1.3`, `1.4` and `1.5` Word filenames are submission
+copies of the scope, risks, acceptance tests and stories respectively. Regenerate both
+Word filenames from the matching Markdown using `scripts/build_handbook.py --source
+SOURCE.md --output OUTPUT.docx` when editing them. `Sprint 1.2 Skills and Resources
+Audit.docx` is the retained **12 August baseline**, not a current hardware or access
+inventory; use the revised risk register and status below for later findings.
+
 ---
 
-## 9. Current status — 5 September 2026
+## 9. Current status — 6 September 2026
 
 | | |
 |---|---|
 | **GOOSE** | Full split characterised, traversability map and client figure produced; bounded PTv3 inference works on a 6 GiB GPU under the modified protocol above |
-| **TruckScenes** | Devkit installed, exploration under way |
-| **TruckDrive** | In progress |
+| **TruckScenes** | Mini exploration and survey merged; FCOS3D camera-only zero-shot submission reports mAP 0.0000 over 80 `mini_val` sample tokens |
+| **TruckDrive** | Mini statistics and selected multimodal loading merged; shared survey and result records still needed |
 | **STONE** | Dropped |
 | **Kaya (HPC)** | **Blocked** — awaiting Adrian to complete the application |
 | **First model run** | Done, partially. PTv3 on GOOSE, 10 of 961 frames, stopped deliberately |
 
 ### The honest gaps
 
-- **No complete benchmark number yet.** The one model run is 1% of a split and recorded
-  as diagnostics, not metrics.
-- **Kaya is the compute blocker**, and it depends on one person outside the team.
+- **No full-dataset or matched sensor benchmark yet.** GOOSE remains 10/961 frames.
+  FCOS3D's scored submission has 959 boxes in 63 nonempty entries; completion of its
+  17 empty entries needs logs because the runner pre-fills them. Camera-height/domain
+  shift is an untested explanation for the zero, not a verified cause or range result.
+- **Kaya access remains unresolved.** CPU camera inference and bounded local GOOSE
+  inference have worked; the team and PI still need to confirm application responsibilities.
 - **Two acceptance tests need a human**, not an agent: someone outside the GOOSE pair
   reading the client figure and the survey cold, and saying what they think they show.
