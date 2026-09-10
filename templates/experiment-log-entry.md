@@ -5,6 +5,16 @@ One file per experiment attempt in `experiment-log/`, numbered sequentially
 said negative results count as results, and an unlogged failure gets repeated
 by someone else.
 
+Choose the next unused number after updating your branch from `main`; keep the
+filename and `EXP-NNNN` heading in agreement. Before opening or merging a PR, run:
+
+```bash
+python scripts/validate_experiment_logs.py
+```
+
+This checks duplicate numbers, nested log folders and title IDs. It does not verify
+that an experiment ran or that its conclusions are supported.
+
 **What belongs here vs in a dataset survey:** *dataset* facts and feasibility
 (characters, sensors, licence, whether it can be obtained) go in
 `docs/dataset-surveys/<dataset>.md` — see `stone.md` §6 for a worked example of

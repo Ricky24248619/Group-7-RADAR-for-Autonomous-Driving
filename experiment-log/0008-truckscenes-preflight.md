@@ -1,4 +1,4 @@
-# TruckScenes baseline and CPU evaluator preflight
+# EXP-0008 — TruckScenes baseline and CPU evaluator preflight
 
 **Date:** 5 September 2026. **Owner:** Ricky Yuen.
 

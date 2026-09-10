@@ -21,9 +21,9 @@ Across the 24 mini scenes, the local statistics measured:
 - 526,148 3D bounding boxes
 - 27 object classes
 
-One annotated Radar frame was selected from each scene for range analysis. Across these 24 selected frames, 6,746 Radar detections were measured at 150 m or greater.
+One annotated Radar frame was selected from each scene for range analysis. Across these 24 selected frames, 6,746 radar returns were measured at 150 m or greater.
 
-`scene_28_22` was selected as an additional representative multimodal scene because its selected Radar frame contained the highest number of 150 m+ detections among the 24 scene samples.
+`scene_28_22` was selected as an additional representative multimodal scene because its selected Radar frame contained the highest number of 150 m+ radar returns among the 24 scene samples.
 
 ## Sample visualisations
 
@@ -44,3 +44,8 @@ No object-detection model has been run. Radar return counts and long-range measu
 ## Next stage
 
 The completed setup, statistics and sensor-loading workflow can now be used by Fariya for TruckDrive visualisation, dataset documentation and the final dataset survey.
+
+Fariya's [second-machine reproduction report](../experiment-log/0009-fariya-truckdrive-reproduction.md)
+documents a folder-layout fix for her extraction route and additional dependencies.
+Her NumPy/SciPy compatibility warning and empty camera channels remain unresolved;
+confirm them in that environment before calling the setup fully reproducible.

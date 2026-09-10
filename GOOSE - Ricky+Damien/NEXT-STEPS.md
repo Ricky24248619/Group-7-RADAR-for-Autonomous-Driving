@@ -1,5 +1,13 @@
 # Next steps — Damien & Ricky, from 29 August 2026
 
+> **Historical plan — status update 11 September.** The result store, R6 evidence
+> and bounded PTv3 attempt have since landed. GOOSE has six result records and four
+> experiment logs; inference stopped at 10/961 frames, with no full benchmark score.
+> The tasks and checkboxes below describe the August plan, not current completion.
+> Use [GOOSE-SUMMARY.md](GOOSE-SUMMARY.md) for the outcome and the
+> [11 September catch-up brief](../docs/meetings/2026-09-11-catchup.md) for proposed
+> next actions. Further sustained GPU inference still needs Ricky's explicit approval.
+
 **Read this after [`WORKPLAN.md`](WORKPLAN.md).** Same conventions: task IDs, disjoint
 file ownership, `scripts/session_check.py` before every session and every commit,
 branch per person, PR reviewed by the other. Numbering continues from the last
