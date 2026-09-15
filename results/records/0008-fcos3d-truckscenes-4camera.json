@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "id": "0008-fcos3d-truckscenes-4camera",
+  "title": "FCOS3D (nuScenes-pretrained) zero-shot on TruckScenes mini_val, all 4 cameras: mAP 0.0046, domain-gap finding reinforced",
+  "owner": "Aiden Blampain",
+  "date": "2026-09-12",
+  "status": "success",
+
+  "dataset": "MAN TruckScenes v1.2-mini, mini_val split (2 scenes, 80 samples, official split via truckscenes.utils.splits)",
+  "sensor_configuration": "All 4 TruckScenes cameras (CAMERA_LEFT_FRONT, CAMERA_RIGHT_FRONT, CAMERA_LEFT_BACK, CAMERA_RIGHT_BACK) — extends EXP-0006's single-camera run to full camera coverage",
+  "annotation_schema": "TruckScenes 12-class detection taxonomy (eval/detection/README.md remap of the 27-class general taxonomy)",
+
+  "task_type": "3d-object-detection",
+  "modality": "camera",
+  "split": "mini_val, all 80 samples, all 4 cameras",
+  "model": "FCOS3D (mmdetection3d 1.4.0), ResNet-101-caffe+DCN+GN head, official nuScenes-pretrained checkpoint fcos3d_r101_caffe_fpn_gn-head_dcn_2x8_1x_nus-mono3d_20210715_235813-4bed5239.pth — zero-shot, no fine-tuning or training on TruckScenes",
+  "conditions": "unknown — no weather/scenario filtering applied, mixed conditions across the split's 2 scenes",
+
+  "environment": {
+    "os": "Windows 11 Home 10.0.26200",
+    "hardware": "AMD Ryzen 7 5700U with Radeon Graphics — no NVIDIA GPU, no CUDA path (CPU-only inference)",
+    "python": "3.11.9, dedicated venv truckscenes-devkit/detection-env (same as EXP-0006, reused as-is)",
+    "packages": {
+      "numpy": "1.26.4",
+      "torch": "2.1.0+cpu",
+      "torchvision": "0.16.0+cpu",
+      "mmengine": "0.10.7",
+      "mmcv": "2.1.0",
+      "mmdet": "3.3.0",
+      "mmdet3d": "1.4.0",
+      "truckscenes-devkit": "1.2.0"
+    }
+  },
+
+  "commands": [
+    "python truckscenes_fcos3d_infer.py --dataroot <man-truckscenes> --version v1.2-mini --split mini_val --config <fcos3d config .py> --checkpoint <fcos3d .pth> --start 0 --end 2 --out results_mini_val_fcos3d_4cam.json",
+    "(repeated with --start/--end sliding in chunks of 4 across the full split: 2/6/10/.../78/80 — see experiment-log/0007)",
+    "python -m truckscenes.eval.detection.evaluate results_mini_val_fcos3d_4cam.json --dataroot <man-truckscenes> --version v1.2-mini --eval_set mini_val --output_dir ./metrics_4cam --plot_examples 0 --render_curves 0"
+  ],
+
+  "metrics": [
+    {"name": "mAP", "value": 0.0046,
+     "scope": "TruckScenes 12-class detection taxonomy, mini_val split, center-distance thresholds {0.5, 1, 2, 4}m averaged per detection_cvpr_2024.json config, all 4 cameras"}
+  ],
+
+  "hours_spent": 1.5,
+  "evidence": [
+    "experiment-log/0007-fcos3d-truckscenes-4camera.md",
+    "experiment-log/0006-fcos3d-truckscenes-zeroshot.md",
+    "scripts/truckscenes_fcos3d_infer.py",
+    "scripts/results_mini_val_fcos3d_4cam.json",
+    "scripts/fcos3d_truckscenes_metrics_summary_4cam.json"
+  ],
+  "notes": "Direct extension of EXP-0006 (0007-fcos3d-truckscenes-zeroshot.json), same model/checkpoint/machine, now scoring all 4 cameras instead of 1. mAP moved from 0.0000 to 0.0046 and NDS from 0.0000 to 0.0038 -- both still effectively zero. Per-class AP is 0.000 for every vehicle/pedestrian/cyclist class (car, truck, bus, trailer, other_vehicle, bicycle, barrier, animal, traffic_sign all 0.000 or ~0.001-0.002), except traffic_cone at 0.051, the one genuinely nonzero signal in either run. This is flagged as a hypothesis, not a diagnosed finding: EXP-0006 confirmed its zero result was real depth-estimation domain gap (5-21m nearest-match errors scaling with range) by reusing mmdet3d's reference box-conversion math; this run did not repeat that per-class distance analysis, so whether the traffic_cone AP reflects genuinely easier near-range detections or is noise from a small sample count is an open follow-up, not a claim made here. Overall conclusion is unchanged from EXP-0006: extending camera coverage did not surface a coordinate-transform bug or recover meaningful detector performance, reinforcing that the near-zero result is a genuine camera-height/pitch domain-gap effect (TruckScenes ~2.1m vs nuScenes ~1.5m), directly relevant to the project's D-04 range-degradation question. NDS and TP-error metrics (mATE 1.0448, mASE 0.9849, mAOE/mAVE/mAAE 1.0000) again withheld from the metrics list above per the same rationale as EXP-0006 (NDS is an open question in docs/metrics-definitions.md, assigned to Ricky) -- full raw numbers are in the evidence files."
+}
