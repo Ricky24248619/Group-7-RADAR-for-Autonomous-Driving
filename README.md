@@ -88,6 +88,13 @@ python scripts/validate_experiment_logs.py
 These validate record structure and log identity. They do not establish experiment
 completion or scientific correctness.
 
+## Sprint 2 deliverables
+
+The [Sprint 2 submission package](docs/sprint-2/README.md) contains the current
+team report, proposed Sprint 3 stories, combined retrospective and supporting
+documents. Read its report-correction notes before using the narrative claims.
+The package is a dated OneDrive snapshot, not proof of formal submission.
+
 ## Source documents
 
 Sprint 1 deliverables (Scope of Work, Skills & Resources Audit, Risk Register,
