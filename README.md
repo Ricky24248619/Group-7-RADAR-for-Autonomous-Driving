@@ -13,6 +13,12 @@ a future team.
 current models fail beyond ~150 m, and does 4D radar degrade less than LiDAR at
 that range? Reported by range band, never as one aggregate number.
 
+**Current planning:** [11 September catch-up brief](docs/meetings/2026-09-11-catchup.md)
+and [dataset comparison / next experiment](docs/dataset-comparison.md).
+The August GOOSE next-steps file is historical; its unchecked tasks are not a current
+status report. The project has bounded inference and a scored camera submission,
+but no verified matched radar/LiDAR benchmark yet.
+
 ## Team
 
 | Member | Epic | Owns |
@@ -25,6 +31,9 @@ that range? Reported by range band, never as one aggregate number.
 | Ricky Yuen | F | Evaluation framework, reproducibility, coordination |
 
 PM rotates each sprint: Damien (sprint 1) → Aiden (sprint 2) → …
+
+Sprint 2 work was organised as Damien/Ricky (GOOSE), Aiden/Fatima (TruckScenes),
+and Fariya/Kelsey (TruckDrive), per D-08. Confirm the next allocation at the catch-up.
 
 ## Repository layout
 
@@ -50,8 +59,8 @@ PM rotates each sprint: Damien (sprint 1) → Aiden (sprint 2) → …
 |---|---|---|
 | MAN **TruckScenes** (NeurIPS 2024) | Primary | Largest annotated 360° 4D-radar dataset; detection + tracking |
 | TORC **TruckDrive** (CVPR 2026) | Primary | Long-range (1000 m / 2D, 400 m / 3D); the D-04 dataset |
-| **GOOSE** (ICRA 2024) | Feasible — tested 22 Aug | Off-road terrain baseline; raw 360° radar (unlabelled); native ROS bags |
-| **STONE** (ICRA 2026) | Parked pending storage | Only off-road dataset with annotated 4D imaging radar; 346 GB single zip, no devkit |
+| **GOOSE** (ICRA 2024) | Characterised; PTv3 partial at 10/961 frames; closeout proposed | Off-road terrain segmentation. Released assets used here do not support a paired labelled radar/LiDAR experiment |
+| **STONE** (ICRA 2026) | Dropped from current plan, per D-06 | Off-road annotated radar candidate; revisit only if the recorded access/tooling blockers change |
 
 Surveys live in `docs/dataset-surveys/` — status, sensors, licence and fit
 assessment for each. Raw datasets are never committed (see `.gitignore`).
@@ -69,6 +78,16 @@ assessment for each. Raw datasets are never committed (see `.gitignore`).
 4. **Decisions that constrain the work go in `decision-log.md`** and are raised
    with Adrian at sprint boundaries, not applied silently.
 
+Before submitting result or experiment-log changes:
+
+```bash
+python scripts/validate_result.py
+python scripts/validate_experiment_logs.py
+```
+
+These validate record structure and log identity. They do not establish experiment
+completion or scientific correctness.
+
 ## Source documents
 
 Sprint 1 deliverables (Scope of Work, Skills & Resources Audit, Risk Register,
@@ -77,3 +96,8 @@ Acceptance Tests, Set of Stories) live in the team OneDrive under
 `decision-log.md` here — this file is the living copy. Risk register IDs
 (R-xx) and acceptance test IDs (P-x) referenced around this repo refer to
 those OneDrive documents.
+
+The [revised deliverables](Revised%20Sprint%201%20Deliverables/) and
+[project handbook](docs/PROJECT-HANDBOOK.md) are also stored here. The revised
+documents retain the original IDs and state acceptance gaps; merging them does not
+establish client approval.

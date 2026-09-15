@@ -1,4 +1,4 @@
-# EXP-0004 — MAN TruckScenes mini setup and paired sensor visualisation
+# EXP-0007 — MAN TruckScenes mini setup and paired sensor visualisation
 
 - **Date started / completed:** 2026-08-18 / 2026-09-03
 - **Owner:** Fatima Sher

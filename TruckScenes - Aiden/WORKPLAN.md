@@ -1,41 +1,48 @@
 # TruckScenes workplan
 
+**Status reconciled with the recorded review on 11 September 2026.**
+
 ## Work completed
 
 - Installed and verified `truckscenes-devkit` and the `v1.2-mini` dataset
   independently on Windows; ran the official tutorial notebook end to end.
 - Built a dedicated CPU-only detection environment (`detection-env`) able to
   run `mmdet3d`, separate from the devkit's own tutorial venv.
-- Ran a pretrained FCOS3D monocular detector zero-shot against all 80
-  `mini_val` samples (front-left camera) and scored it with the devkit's
-  detection evaluator.
-- Diagnosed the mAP 0.0 result as a genuine camera-height domain-gap finding
-  rather than a pipeline bug, by reusing mmdet3d's own reference box-scoring
-  math and checking prediction-to-ground-truth distances directly.
-- Recorded both stages properly: `experiment-log/0004` (setup),
-  `experiment-log/0006` (detection run), and
-  `results/records/0007-fcos3d-truckscenes-zeroshot.json` (validated against
-  `scripts/validate_result.py`).
+- Recorded a pretrained FCOS3D camera-only zero-shot submission containing all
+  80 `mini_val` sample tokens. The saved evaluator reports mAP 0.0.
+- The submission has 959 boxes in 63 nonempty entries. Completion logs are needed
+  for its 17 empty entries because the runner pre-fills them. The author's reported
+  80-sample inference has not been independently verified.
+- Camera-height/domain shift is a hypothesis. Reference conversion code alone
+  does not rule out calibration or integration errors, and an aggregate zero does
+  not establish range degradation.
+- The scored submission and review limitations are in
+  [EXP-0006](../experiment-log/0006-fcos3d-truckscenes-zeroshot.md) and
+  [result 0007](../results/records/0007-fcos3d-truckscenes-zeroshot.json).
+  Aiden's earlier Windows tutorial log was in closed, unmerged PR #20;
+  Fatima's separate mini exploration is now [EXP-0007](../experiment-log/0007-fatima-truckscenes-setup-visualisation.md).
 
 ## Current status
 
 TruckScenes devkit and dataset setup is confirmed working on Windows with no
-GPU. A first real, diagnosed detection result exists (zero-shot camera-only
-FCOS3D, mAP 0.0), reusable as evidence for the project's range-degradation
-question. No LiDAR or radar model has been run yet — this machine cannot run
-the paper's LiDAR baseline (needs a CUDA GPU for `spconv`).
+GPU. A scored camera-only submission exists; its zero-score cause and complete
+inference coverage remain unresolved. No LiDAR or radar model run is recorded here,
+so no matched sensor comparison or range-degradation conclusion is established.
 
 ## Next stage
 
-1. Extend the FCOS3D run to all 4 cameras once more CPU time, or a GPU, is
-   available (single-camera coverage was a deliberate compute scope cut, not
-   a limitation of the approach).
-2. Run the LiDAR path (CenterPoint, also nuScenes-pretrained) on a machine
-   with an NVIDIA GPU — the paper's strongest baseline, and not subject to
-   FCOS3D's depth-estimation domain-gap failure mode.
-3. Coordinate with Kelsey (Epic D — dataset exploration) before starting
-   `docs/dataset-surveys/truckscenes.md`, since this folder's statistics
-   would feed directly into it.
-4. Once NDS and the TP-error metrics are resolved in
-   `docs/metrics-definitions.md` (Ricky, open question), re-report the full
-   evaluator output rather than mAP alone.
+1. Use the saved predictions, input images, calibration and chunk logs to verify
+   completion and known geometry. Record what remains unknown; expanding camera
+   coverage is a later experiment, after these checks.
+2. With Fatima and Ricky, select one usable radar or LiDAR detector and verify its
+   checkpoint, training data, preprocessing, labels and compute requirements.
+   A nuScenes-pretrained CenterPoint candidate would be a transfer experiment;
+   its name alone does not establish TruckScenes compatibility.
+3. Follow the existing [comparison protocol](../docs/dataset-comparison.md):
+   fix samples, annotations and evaluator before a bounded feasibility check.
+   Stock TruckScenes class ranges stop at 75 or 150 m; a >150 m score needs a
+   separate agreed evaluation protocol.
+4. Update the already merged [survey](../docs/dataset-surveys/truckscenes.md)
+   with verified results. NDS and TP errors are now defined in
+   [metrics definitions](../docs/metrics-definitions.md); retain no-match and
+   protocol caveats when interpreting the saved output.
