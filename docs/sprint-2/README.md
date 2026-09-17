@@ -38,8 +38,13 @@ updated supporting documents:
 - The new Sprint 3 stories are proposals. Resolve the priority of Autoware and
   dashboard work against the proposed core analysis before treating either
   plan as committed.
+- The four-camera experiment log is now `experiment-log/0010-fcos3d-truckscenes-4camera.md`
+  and its record `results/records/0011-fcos3d-truckscenes-4camera.json`. Both were
+  renumbered off an identifier collision with Fatima's EXP-0007 and the 0008 evaluator
+  smoke record. The Sprint 3 stories DOCX still cites the old `0007-` path in its
+  Evidence section; correct it at the next OneDrive refresh.
 
-Evidence: [four-camera experiment](../../experiment-log/0007-fcos3d-truckscenes-4camera.md),
+Evidence: [four-camera experiment](../../experiment-log/0010-fcos3d-truckscenes-4camera.md),
 [raw metrics](../../scripts/fcos3d_truckscenes_metrics_summary_4cam.json),
 [predictions](../../scripts/results_mini_val_fcos3d_4cam.json),
 [TruckDrive reproduction](../../experiment-log/0009-fariya-truckdrive-reproduction.md).
