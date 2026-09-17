@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "id": "0008-fcos3d-truckscenes-4camera",
+  "id": "0011-fcos3d-truckscenes-4camera",
   "title": "FCOS3D (nuScenes-pretrained) zero-shot on TruckScenes mini_val, all 4 cameras: mAP 0.0046, domain-gap finding reinforced",
   "owner": "Aiden Blampain",
   "date": "2026-09-12",
@@ -45,7 +45,7 @@
 
   "hours_spent": 1.5,
   "evidence": [
-    "experiment-log/0007-fcos3d-truckscenes-4camera.md",
+    "experiment-log/0010-fcos3d-truckscenes-4camera.md",
     "experiment-log/0006-fcos3d-truckscenes-zeroshot.md",
     "scripts/truckscenes_fcos3d_infer.py",
     "scripts/results_mini_val_fcos3d_4cam.json",

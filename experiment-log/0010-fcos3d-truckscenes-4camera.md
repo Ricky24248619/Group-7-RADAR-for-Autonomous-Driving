@@ -1,9 +1,9 @@
-# EXP-0007 — FCOS3D (nuScenes-pretrained) zero-shot on TruckScenes, all 4 cameras, CPU-only
+# EXP-0010 — FCOS3D (nuScenes-pretrained) zero-shot on TruckScenes, all 4 cameras, CPU-only
 
 - **Date started / completed:** 2026-09-12 / 2026-09-12
 - **Owner:** Aiden Blampain
 - **Workstream / story:** Direct follow-on to EXP-0006 (single-camera zero-shot
-  run). Produces `results/records/0008-fcos3d-truckscenes-4camera.json`.
+  run). Produces `results/records/0011-fcos3d-truckscenes-4camera.json`.
 
 ## Goal
 
@@ -52,7 +52,7 @@ All 80 `mini_val` samples produced predictions across all 4 cameras
 (5,247 boxes total, vs. 959 in EXP-0006's single-camera run). The evaluator
 ran to completion with no errors.
 
-| Metric | EXP-0006 (1 camera) | EXP-0007 (4 cameras) |
+| Metric | EXP-0006 (1 camera) | EXP-0010 (4 cameras) |
 |---|---|---|
 | mAP | 0.0000 | 0.0046 |
 | NDS | 0.0000 | 0.0038 |
