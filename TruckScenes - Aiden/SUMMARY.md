@@ -17,7 +17,7 @@
   real domain-gap finding, not a coordinate-transform bug, by reusing
   mmdet3d's own reference box-conversion math and checking prediction-to-
   ground-truth distances directly.
-- Re-ran the same model against all 4 TruckScenes cameras (EXP-0007), to
+- Re-ran the same model against all 4 TruckScenes cameras (EXP-0010), to
   check whether single-camera coverage was hiding a better result.
 
 ## Outcome
@@ -30,7 +30,7 @@ back at:
 - 959 predicted boxes vs. 2,088 ground-truth boxes, front-left camera only
 - Nearest-match errors of 5-21m, scaling with range
 
-Extending to all 4 cameras (EXP-0007) reinforced rather than overturned this:
+Extending to all 4 cameras (EXP-0010) reinforced rather than overturned this:
 
 - mAP: 0.0046 (still effectively zero), NDS: 0.0038
 - 5,247 predicted boxes vs. the same 2,088 ground-truth boxes
@@ -51,7 +51,7 @@ Full dataset statistics (table row counts, sensor suite, split sizes) are in
 obstacles hit, and full reasoning are in
 [`experiment-log/0006-fcos3d-truckscenes-zeroshot.md`](../experiment-log/0006-fcos3d-truckscenes-zeroshot.md)
 (single camera) and
-[`experiment-log/0007-fcos3d-truckscenes-4camera.md`](../experiment-log/0007-fcos3d-truckscenes-4camera.md)
+[`experiment-log/0010-fcos3d-truckscenes-4camera.md`](../experiment-log/0010-fcos3d-truckscenes-4camera.md)
 (all 4 cameras).
 
 ## Current limits
@@ -59,7 +59,7 @@ obstacles hit, and full reasoning are in
 - No LiDAR or radar detection model has been run. This machine has no
   NVIDIA GPU, and the strongest published baseline (LiDAR CenterPoint) needs
   `spconv`, which has no practical CPU path.
-- The `traffic_cone` AP signal from EXP-0007 hasn't been diagnosed with the
+- The `traffic_cone` AP signal from EXP-0010 hasn't been diagnosed with the
   same rigor as the single-camera zero (no per-class distance analysis yet)
   — worth a quick follow-up before reading anything into it.
 - NDS and the TP-error metrics (mATE, mASE, mAOE, mAVE, mAAE) came out of
@@ -73,7 +73,7 @@ obstacles hit, and full reasoning are in
 ## Next stage
 
 - Optionally re-run EXP-0006's nearest-match distance diagnostic on
-  EXP-0007's predictions, broken down by class, to check whether the
+  EXP-0010's predictions, broken down by class, to check whether the
   `traffic_cone` AP is a genuine near-range effect or noise.
 - Try the LiDAR path (CenterPoint, also nuScenes-pretrained) on a machine
   with an NVIDIA GPU — it doesn't share FCOS3D's depth-estimation failure
