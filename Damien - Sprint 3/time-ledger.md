@@ -38,6 +38,8 @@ added together.
 |---|---|---|---|---|
 | 2026-09-18 | B3 | 2.5 | [PR #33](https://github.com/Ricky24248619/Group-7-RADAR-for-Autonomous-Driving/pull/33) — `.github/workflows/checks.yml`, `requirements-ci.txt` | Under estimate (3.5). Pinned 3.11 per SETUP.md; 3.14 collects 44 tests not 53. Stacked on #31 so it lands green |
 | 2026-09-18 | A1 | 2.0 | [PR #34](https://github.com/Ricky24248619/Group-7-RADAR-for-Autonomous-Driving/pull/34) — `docs/dataset-suitability.md` | On estimate. Week-1 portion; remaining 2.0 h of A1 in week 2 |
+| 2026-09-19 | B2 | 3.5 | [PR #35](https://github.com/Ricky24248619/Group-7-RADAR-for-Autonomous-Driving/pull/35) — `scripts/new_result.py`, issue form, `results/README.md` | Under estimate (7.0). 16 new tests; suite now 69 |
+| 2026-09-19 | A2 | 2.5 | [PR #34](https://github.com/Ricky24248619/Group-7-RADAR-for-Autonomous-Driving/pull/34) — `docs/dataset-suitability.md` §6 | On estimate. Class/level table verified against the CSV; caught one error in my own draft |
 
 <!--
 Row format:
@@ -56,7 +58,7 @@ Overruns get logged at their real length and the variance noted, not trimmed to 
 | Week | Planned | Actual | Cumulative | Variance and what changed |
 |---|---|---|---|---|
 | W1 · 17–20 Sep | 6.0 | 4.5 | 34.5 | B3 came in 1.0 under. 0.5 h checkpoint prep still to do on 20 Sep |
-| W2 · 21–27 Sep | 14.0 | | | |
+| W2 · 21–27 Sep | 14.0 | 6.0 | 40.5 | Started early. B2 came in 3.5 under. Remaining: A1 finish, A3, B1 |
 | W3 · 28 Sep–4 Oct | 15.0 | | | |
 | W4 · 5–12 Oct | 14.5 | | | |
 | **Total** | **49.5** | | | |
