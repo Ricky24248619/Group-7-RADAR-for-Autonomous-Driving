@@ -1,0 +1,199 @@
+name: Submit a result
+description: Report a run — successful, partial or failed — for someone to add to the results store.
+title: "[result] "
+labels: ["result-record"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        For anyone not working in a terminal. If you are, `python scripts/new_result.py`
+        writes the record directly and is faster.
+
+        **A run that did not work belongs here too.** A failure with its error,
+        environment and blocker is a first-class result in this project, not an
+        admission. Set the status accordingly and fill the last section.
+
+  - type: input
+    id: title
+    attributes:
+      label: Title
+      description: One line a human can scan.
+      placeholder: CenterPoint on TruckScenes mini_val, 6 LiDAR channels
+    validations:
+      required: true
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      options: [success, partial, failure]
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ### Identification
+
+        Decision **D-01**: these three say what the number is *of*. A number that
+        cannot say what it is of cannot be compared with anything, so none of them
+        may be blank — and "TBD" counts as blank.
+
+  - type: input
+    id: dataset
+    attributes:
+      label: Dataset
+      description: Name AND version.
+      placeholder: MAN TruckScenes v1.2-mini
+    validations:
+      required: true
+
+  - type: input
+    id: sensor_configuration
+    attributes:
+      label: Sensor configuration
+      description: The sensors this run actually used — not what the vehicle carries.
+      placeholder: 6 LiDAR channels (LIDAR_TOP_FRONT, LIDAR_LEFT, …)
+    validations:
+      required: true
+
+  - type: input
+    id: annotation_schema
+    attributes:
+      label: Annotation schema
+      description: Label set, format, version.
+      placeholder: TruckScenes 3D boxes, 27 categories, devkit detection mapping
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: "### What was run"
+
+  - type: dropdown
+    id: task_type
+    attributes:
+      label: Task type
+      description: Comparison happens only within one of these.
+      options:
+        - 3d-object-detection
+        - 2d-object-detection
+        - camera-lidar-fusion-detection
+        - 3d-multi-object-tracking
+        - semantic-segmentation-2d
+        - semantic-segmentation-3d
+        - traversability-prediction
+        - depth-estimation
+        - end-to-end-planning
+        - dataset-characterisation
+        - feasibility-test
+    validations:
+      required: true
+
+  - type: dropdown
+    id: modality
+    attributes:
+      label: Modality
+      options: [camera, lidar, radar, fusion, none]
+    validations:
+      required: true
+
+  - type: input
+    id: split
+    attributes:
+      label: Split and subset
+      placeholder: mini_val, all 80 samples
+    validations:
+      required: true
+
+  - type: input
+    id: model
+    attributes:
+      label: Model
+      description: Name and version or commit. Leave blank for a characterisation or feasibility record.
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      value: |
+        OS:
+        Hardware:
+        Python:
+        Key packages:
+    validations:
+      required: true
+
+  - type: textarea
+    id: commands
+    attributes:
+      label: Commands
+      description: The exact commands, in order, sufficient to repeat this.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: numbers
+    attributes:
+      label: Numbers
+      description: >
+        One per line as name / value / scope. Scope is which class set, split or
+        range band the number covers — an unscoped number is unusable. Metric names
+        must already exist in docs/metrics-definitions.md; if yours does not, say so
+        and it gets defined first.
+      placeholder: |
+        mAP / 0.0046 / all 12 detection classes, mini_val, stock evaluator
+        NDS / 0.0038 / same
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Repo-relative paths to figures, logs, experiment-log entries.
+    validations:
+      required: true
+
+  - type: input
+    id: hours
+    attributes:
+      label: Hours spent
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything a reader needs in order not to over-read the number.
+
+  - type: markdown
+    attributes:
+      value: |
+        ### Only if this did not succeed
+
+        Story DZ-3: a failure record without these four is a shrug, not a result.
+        Leave them blank if the status above is `success`.
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Error
+      description: The EXACT error text, copy-pasted. Paraphrased errors are unsearchable.
+      render: shell
+
+  - type: textarea
+    id: attempted_fixes
+    attributes:
+      label: Attempted fixes
+      description: What was tried, in order, and what happened after each.
+
+  - type: input
+    id: blocker
+    attributes:
+      label: Blocker
+      description: The one thing that stopped it.
+
+  - type: input
+    id: recommendation
+    attributes:
+      label: Recommendation
+      description: Retry with what, change to what, or stop.
