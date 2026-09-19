@@ -1,8 +1,8 @@
 # Dataset suitability — which question each dataset can answer
 
 **Story DZ-S3-1 · Owner: Damien Zhang · Reviewer: Fariya Zehrin**
-**Started 18 September 2026 · Status: in progress.** Sections 1–5 are complete against
-current evidence. Section 6 is a live gap register. Section 7 lists what is still
+**Started 18 September 2026 · Status: in progress.** Sections 1–6 are complete against
+current evidence. Section 7 is a live gap register. Section 8 lists what is still
 outstanding and who holds it.
 
 ---
@@ -169,7 +169,82 @@ and no performance comparison is available from any of them yet.
 
 ---
 
-## 6. Gap register
+## 6. The GOOSE traversability figures — what they show
+
+The figures that answer Adrian's off-road question are the most likely thing in this
+project to be over-read, so this section states plainly what produced them.
+
+### The mapping is a judgement, deliberately recorded as data
+
+All **64 GOOSE semantic classes** are assigned to one of four traversability levels
+borrowed from the STONE dataset, each with a written rationale:
+
+| Level | Classes | Members |
+|---|---:|---|
+| 0 · Free | 4 | `undefined`, `ego_vehicle`, `sky`, `outlier` — not surface questions at all; excluded from scoring |
+| 1 · Traversable | 9 | `asphalt`, `gravel`, `soil`, `low_grass`, `cobble`, `sidewalk`, `bikeway`, `pedestrian_crossing`, `road_marking` |
+| 2 · Potentially Traversable | 12 | `snow`, `leaves`, `moss`, `curb`, `rail_track`, `debris`, `crops`, `bridge`, `tunnel`, `high_grass`, `scenery_vegetation`, `tree_root` |
+| 3 · Non-Traversable | 39 | `water`, `traffic_cone`, and the remaining object, vegetation and structure classes |
+
+*Source: all 64 rows of [`traversability_map.csv`](../GOOSE%20-%20Ricky+Damien/traversability_map.csv).*
+
+This is a judgement call, not a calculation, and it is treated as one. **Fourteen
+assignments are recorded as genuinely contested** in
+[`traversability-map-notes.md`](../GOOSE%20-%20Ricky+Damien/traversability-map-notes.md),
+each with the open question attached — whether `snow` should be conditional or simply
+unknown, whether `sidewalk`'s legality belongs in a physical mapping at all, whether
+`high_grass` hiding holes makes it uncertain or blocked. Note `water` sits at
+Non-Traversable on an explicit unknown-depth rule: shallow water is crossable, but the
+class carries no depth, so the conservative reading wins.
+
+The mapping lives in a CSV rather than in the renderer's code, and the notes require it
+to stay there: *"Assignments should change in `traversability_map.csv`, never as
+hard-coded exceptions in Damien's renderer."* That is what makes the judgement
+reviewable — Fabian or Adrian can disagree with **one line**, with its stated rationale,
+rather than with the whole approach.
+
+### What the figures therefore do not show
+
+They group **existing human labels**. They do not show a model deciding where a vehicle
+can drive, and they do not establish a connected, vehicle-safe route. Apparent
+corridors in woodland are apparent corridors in the annotation, which is a different
+claim.
+
+### Two claims this pair had to withdraw
+
+Both are recorded because the correction is the useful part.
+
+**The canopy conclusion was wrong because the instrument was.** An absolute height
+threshold suggested woodland scenes were genuinely blocked at ground level. On sloping
+ground, absolute height does not separate canopy from terrain. Taking the lowest return
+per 0.4 m ground cell roughly **halves** the apparent blocked share — one scene moved
+from **92% to 58% non-traversable**. The conclusion did not survive a better instrument.
+
+**The `bush` claim was overstated and withdrawn.** The argument was that this single
+assignment decided whether a scene read as a drivable corridor or a blocked one.
+Rendering it both ways showed the Traversable share is **identical to one decimal
+place** either way; `bush` only moves points between *uncertain* and *blocked*.
+
+### Complete statistics and the partial model run are different evidence
+
+The most common misreading available here is to let the 961-frame characterisation lend
+its completeness to the 10-frame model run. They are kept apart:
+
+| Evidence | What it covers | What it supports |
+|---|---|---|
+| Split characterisation | **All 961 validation frames**, 174,891,807 labelled points | Scale, class distribution, range distribution |
+| Traversability figures | All 8 scenarios, derived from human labels | The team's interpretation of the annotation |
+| PTv3 inference | **10 of 961 frames**, modified configuration, then stopped | Bounded feasibility on 6 GiB — nothing about accuracy |
+| Bounded gates | Smallest frame 30,263 pts / 8.6 s; largest 270,720 pts / 35.4 s | No out-of-memory at these sizes |
+| **~5.1 hour full-pass figure** | Extrapolation of 18.94 s/frame mean loop-body time over 10 frames, **excluding data loading** | A lower bound. **Not a measured runtime** |
+| Published 0.8096 mIoU | The GOOSE authors' score for PTv3 | **Nothing this project measured.** Never report it as ours |
+
+No GOOSE accuracy number was produced by this project. The run established that the
+pipeline executes on the available hardware, and stopped there deliberately.
+
+---
+
+## 7. Gap register
 
 Every unresolved item found while assembling this document. Gaps are recorded as gaps.
 
@@ -187,13 +262,13 @@ Every unresolved item found while assembling this document. Gaps are recorded as
 
 ---
 
-## 7. Outstanding for this document
+## 8. Outstanding for this document
 
 Per the A1/A2/A3 breakdown in `Damien - Sprint 3/README.md`:
 
 - [x] A1 — comparison built from the three surveys, with denominators inline
-- [ ] **A2** — GOOSE traversability explainer: the 64-class mapping, its dependence on
-      human labels, and the 961-frame statistics kept separate from the 10-frame PTv3 run
+- [x] A2 — GOOSE traversability explainer (§6): the 64-class mapping, its dependence
+      on human labels, and the 961-frame statistics kept separate from the 10-frame run
 - [ ] **A3** — every claim link-checked to a survey, log or record; both validators run
 - [ ] **A4** — cold read by a reader outside the GOOSE pair, recorded unedited
 - [ ] Resolve G-2 and G-8, which are mine
@@ -202,7 +277,7 @@ Per the A1/A2/A3 breakdown in `Damien - Sprint 3/README.md`:
 
 ---
 
-## 8. Sources
+## 9. Sources
 
 Every claim above traces to one of these. No number in this document was
 re-derived; each was read from a merged record.
@@ -218,6 +293,9 @@ re-derived; each was read from a merged record.
 | [`DATASET_OVERVIEW.md`](../DATASET_OVERVIEW.md) | TruckDrive identity, sizes, licence terms |
 | [`docs/metrics-definitions.md`](metrics-definitions.md) | Evaluator range limits, open band-edge question |
 | [`decision-log.md`](../decision-log.md) | D-01 comparison basis, D-04 research question, D-05/D-06 |
+| [`GOOSE - Ricky+Damien/traversability_map.csv`](../GOOSE%20-%20Ricky+Damien/traversability_map.csv) | All 64 class assignments and rationales |
+| [`GOOSE - Ricky+Damien/traversability-map-notes.md`](../GOOSE%20-%20Ricky+Damien/traversability-map-notes.md) | The 14 contested assignments |
+| [`GOOSE - Ricky+Damien/GOOSE-SUMMARY.md`](../GOOSE%20-%20Ricky+Damien/GOOSE-SUMMARY.md) | PTv3 gates, the canopy correction, the withdrawn `bush` claim |
 | `experiment-log/0005`, `0009` | TruckDrive setup and reproduction |
 
 **Not used:** the Sprint 2 project report narrative. Where it and a merged record
