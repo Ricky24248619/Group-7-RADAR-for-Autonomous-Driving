@@ -88,6 +88,11 @@ python scripts/validate_experiment_logs.py
 These validate record structure and log identity. They do not establish experiment
 completion or scientific correctness.
 
+[GitHub Actions](.github/workflows/checks.yml) runs both, plus the test suite, on
+every pull request — so a numbering collision or a broken record is caught before
+review rather than after merge. Running them locally first is still faster than
+waiting for the run.
+
 ## Sprint 2 deliverables
 
 The [Sprint 2 submission package](docs/sprint-2/README.md) contains the current
