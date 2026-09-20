@@ -1,8 +1,8 @@
 # Dataset suitability — which question each dataset can answer
 
 **Story DZ-S3-1 · Owner: Damien Zhang · Reviewer: Fariya Zehrin**
-**Started 18 September 2026 · Status: in progress.** Sections 1–6 are complete against
-current evidence. Section 7 is a live gap register. Section 8 lists what is still
+**Started 18 September 2026 · Status: in progress.** Sections 1–7 are complete against
+current evidence. Section 8 is a live gap register. Section 9 lists what is still
 outstanding and who holds it.
 
 ---
@@ -244,40 +244,93 @@ pipeline executes on the available hardware, and stopped there deliberately.
 
 ---
 
-## 7. Gap register
+## 7. What each dataset can and cannot answer
+
+The point of the preceding six sections, in two tables.
+
+### Against the project's actual questions
+
+| Question | GOOSE | MAN TruckScenes | TORC TruckDrive |
+|---|---|---|---|
+| **D-04** — does perception degrade past 150 m? | **No.** 1.10% of labelled points beyond 150 m, and no labelled radar in the released assets | **Partly.** Annotates past 230 m, but the stock evaluator scores nothing beyond 150 m — needs an agreed custom protocol, not more compute | **Best placed.** 9.47% of returns beyond 150 m — but no model has been run, and the figure is coverage, not detection |
+| **Matched radar vs LiDAR detection** | **No.** Radar ships raw and unlabelled | **Yes, in principle** — the only one of the three with boxes shared across LiDAR and radar. Blocked on finding a runnable detector | **Not with what we hold.** Camera and LiDAR retained for 2 of 24 scenes |
+| **Off-road terrain and traversability** | **Yes — and only GOOSE** | No — on-road | No — on-road |
+| **Sensor coverage by range** | Yes, for labelled LiDAR points | **Not yet measured** | Yes, for radar returns |
+| **Reproducible on team hardware** | Yes, macOS and Windows | Yes, CPU-only inference viable | Viewer yes; no model run attempted |
+
+**The short version.** GOOSE is the off-road dataset and cannot address D-04.
+TruckScenes is the matched-sensor dataset and is range-limited by its evaluator rather
+than by its annotations. TruckDrive holds the long-range evidence and has had no model
+run against it. No single one of them answers the headline question alone, which is a
+finding about the question, not a failure of the datasets.
+
+### Experiments that are actually feasible before 12 October
+
+| Experiment | Feasible? | What it turns on |
+|---|---|---|
+| Range-band report from the saved TruckScenes predictions | **Yes** — CPU, no new inference | Band edges confirmed. The 5,247 predictions and 2,088 ground-truth boxes are already in `scripts/` |
+| TruckDrive long-range subset analysis | **Yes** for radar | KL-S3-1. Camera and LiDAR limited to 2 of 24 scenes, so multimodal claims must say so |
+| GOOSE PTv3 full split | **Technically, not usefully** | ~5.1 h lower bound on the one GTX 1660, and Ricky's explicit approval. It would produce segmentation mIoU, which has no detection equivalent — so it does not serve D-04 even if it completes |
+| Radar or LiDAR detector on TruckScenes | **Unknown** | AD-S3-1's time-boxed check: released code, checkpoint, licence, preprocessing, class mapping, hardware. A candidate's *name* establishes nothing |
+| Matched radar-vs-LiDAR benchmark | **Conditional** | S3-X1, and only if the above succeeds and the team agrees the compute |
+| Cross-dataset accuracy ranking | **Never** | Forbidden by D-01, and none of the numbers would support it anyway |
+
+---
+
+## 8. Gap register
 
 Every unresolved item found while assembling this document. Gaps are recorded as gaps.
 
 | # | Gap | Evidence | Holder |
 |---|---|---|---|
 | G-1 | **No TruckDrive survey exists** in template form. Its facts here come from Kelsey's statistics and summary, not a reviewed survey | DS-4 records "statistics recorded; survey not in template form" | Kelsey — KL-S3-1 |
-| G-2 | **GOOSE val split: 960 published, 961 extracted.** The survey records both without reconciling them. Every measurement here uses the measured 961 | `goose.md` §2 vs §6 and `dataset-statistics.md` | Me — resolve before this document is final |
+| G-2 | **Resolved as far as our data allows.** GOOSE val is published as 960 and extracts as 961. Our 961 is *internally consistent*: the eight per-scenario frame counts (151+103+123+133+191+106+73+81) sum to exactly 961, so this is not a counting error on our side. The one-frame difference from the published figure remains unexplained. To settle it, diff `lidar/val/` against the published file list for a duplicated or extra frame | `dataset-statistics.md` §3 vs `goose.md` §2 | Me — closed pending dataset access |
 | G-3 | **TruckScenes total size unverified** — ~560 GB carried from `DATASET_OVERVIEW.md`, never remeasured against the current AWS listing | `truckscenes.md` §2, marked Unverified | Open |
 | G-4 | **Band edges not harmonised** — GOOSE 50–100 vs TruckDrive 50–80/80–100. Blocks any combined range reporting | `metrics-definitions.md` open question 3 | Ricky |
 | G-5 | **No TruckScenes range-band distribution** exists at all | §5 above | Proposed as B4 |
 | G-6 | **TruckDrive licence clause unresolved** — non-commercial, plus the AV-business prohibition, against a stated CC/open-source deliverable | `DATASET_OVERVIEW.md` | Needs a client decision |
 | G-7 | **TruckDrive camera/LiDAR coverage is partial** — 2 of 24 scenes. Any multimodal TruckDrive claim must state this, not imply full-mini coverage | `TruckDrive - Kelsey/SUMMARY.md` | Kelsey — KL-S3-1 |
-| G-8 | **GOOSE radar elevation capability unverified** — Smartmicro UMRR is not described as 4D imaging. Affects how GOOSE is described in any radar comparison | `goose.md` §2 | Me |
+| G-8 | **GOOSE radar is not 4D as far as our sources go.** The survey records Smartmicro UMRR-96 (79 GHz, 0.4–55 m) and UMRR-11 (77 GHz, 1–175 m), neither described as 4D imaging, and elevation is nowhere asserted. Since the radar is unlabelled anyway this does not change any conclusion — but GOOSE must not be listed as a 4D-radar dataset. Settling it needs the Smartmicro datasheets, which we do not hold | `goose.md` §2–3 | Me — narrowed; needs a vendor datasheet |
 | G-9 | **TruckDrive empty camera channels and NumPy/SciPy warning** unresolved on the second machine | EXP-0009 | Fariya + Kelsey |
 
 ---
 
-## 8. Outstanding for this document
+## 9. Outstanding for this document
 
 Per the A1/A2/A3 breakdown in `Damien - Sprint 3/README.md`:
 
-- [x] A1 — comparison built from the three surveys, with denominators inline
+- [x] A1 — comparison built from the three surveys, with denominators inline (§2–5),
+      and what each dataset can and cannot answer (§7)
 - [x] A2 — GOOSE traversability explainer (§6): the 64-class mapping, its dependence
       on human labels, and the 961-frame statistics kept separate from the 10-frame run
-- [ ] **A3** — every claim link-checked to a survey, log or record; both validators run
-- [ ] **A4** — cold read by a reader outside the GOOSE pair, recorded unedited
-- [ ] Resolve G-2 and G-8, which are mine
+- [x] A3 — link check, arithmetic check, class/level check and both validators run;
+      see *Verification* below
+- [x] G-2 and G-8 resolved as far as the evidence we hold allows
+- [ ] **A4** — cold read by a reader outside the GOOSE pair, recorded unedited.
+      **The one acceptance condition this document cannot satisfy by itself**, and the
+      one that closes P-6 and DS-4
 - [ ] Fold in the TruckDrive survey once KL-S3-1 delivers it, replacing the
       statistics-derived rows here
 
+### Verification
+
+Run on every change to this document, not once at the end:
+
+| Check | Method | Result |
+|---|---|---|
+| Every relative link resolves | Each Markdown link target resolved against the repo | 14/14 |
+| Range tables sum to their stated totals | GOOSE bands → 174,891,807; TruckDrive bands → 71,206 | Both exact |
+| Every class in §6 sits at the level claimed | Each name cross-checked against `traversability_map.csv` | Pass — **caught `water` mis-filed in my own draft** |
+| Per-scenario frames sum to the split | §3 of `dataset-statistics.md` | 961, exact |
+| Record and log identity | `validate_result.py`, `validate_experiment_logs.py` | Pass |
+
+No number in this document was re-derived; each was read from a merged record and
+checked against its source. Where a number appears twice in the repository with
+different values, the discrepancy is recorded in §8 rather than silently resolved.
+
 ---
 
-## 9. Sources
+## 10. Sources
 
 Every claim above traces to one of these. No number in this document was
 re-derived; each was read from a merged record.
