@@ -5,6 +5,7 @@ import pathlib
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "scripts"))
 import new_result as nr
@@ -192,6 +193,45 @@ class WriteAndValidateTests(unittest.TestCase):
         path = self.root / "0012-goose-val-recount.json"
         nr.write_and_validate(record, path)
         self.assertTrue(path.read_text(encoding="utf-8").endswith("}\n"))
+
+    def test_duplicate_sequence_preserves_existing_record(self):
+        _, record = nr.build_record(ScriptedPrompter(SUCCESS_ANSWERS), number="0012")
+        first = self.root / "0012-goose-val-recount.json"
+        self.assertTrue(nr.write_and_validate(record, first)[0])
+        original = first.read_bytes()
+        record["id"] = "0012-other"
+        second = self.root / "0012-other.json"
+        self.assertFalse(nr.write_and_validate(record, second)[0])
+        self.assertFalse(second.exists())
+        self.assertEqual(first.read_bytes(), original)
+        self.assertFalse((self.root / ".0012.lock").exists())
+
+    def test_reserved_sequence_is_not_written_or_unlocked(self):
+        lock = self.root / ".0012.lock"
+        lock.touch()
+        _, record = nr.build_record(ScriptedPrompter(SUCCESS_ANSWERS), number="0012")
+        path = self.root / "0012-goose-val-recount.json"
+        self.assertFalse(nr.write_and_validate(record, path)[0])
+        self.assertFalse(path.exists())
+        self.assertTrue(lock.exists())
+
+    def test_existing_file_is_never_overwritten(self):
+        path = self.root / "0012-goose-val-recount.json"
+        path.write_text("original", encoding="utf-8")
+        self.assertFalse(nr.write_and_validate({}, path)[0])
+        self.assertEqual(path.read_text(encoding="utf-8"), "original")
+
+    def test_main_reallocates_after_prompting(self):
+        original_build = nr.build_record
+        def build_with_other_writer(prompter, *, number):
+            self.assertEqual(number, "0001")
+            (self.root / "0001-concurrent.json").write_text("{}", encoding="utf-8")
+            return original_build(ScriptedPrompter(SUCCESS_ANSWERS), number=number)
+        with patch.object(nr, "build_record", side_effect=build_with_other_writer), \
+                patch.object(nr, "Prompter", return_value=ScriptedPrompter([])):
+            self.assertEqual(nr.main(["--records-dir", str(self.root)]), 0)
+        result = json.loads((self.root / "0002-goose-val-recount.json").read_text())
+        self.assertEqual(result["id"], "0002-goose-val-recount")
 
 
 if __name__ == "__main__":
