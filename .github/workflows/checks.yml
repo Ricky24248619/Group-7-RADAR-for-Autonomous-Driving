@@ -1,0 +1,58 @@
+# Runs the checks the README already asks every contributor to run by hand.
+#
+# Both of this project's record-numbering collisions reached main because
+# nothing ran them automatically: 5dd6a8f had to repair two duplicate 0006s,
+# two 0007s and two experiment logs, and PR #29 then landed a second EXP-0007
+# past the very validator PR #28 had just added to catch it. Git finds no
+# conflict when two branches each add a differently-named file, so review is
+# the only other line of defence, and review missed it twice.
+#
+# This checks identity and structure. It does not check that an experiment
+# completed or that its conclusions are sound — that is still a human reading
+# the record against the raw output.
+
+name: checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 3.11 per SETUP.md. See requirements-ci.txt before changing it.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-ci.txt
+
+      - name: Install test dependencies
+        run: pip install -r requirements-ci.txt
+
+      # Each step names what a failure means, so whoever opens the red run
+      # knows whether they broke something or inherited it.
+
+      - name: "Result records: schema and unique sequence numbers"
+        run: python scripts/validate_result.py
+
+      - name: "Experiment logs: location, unique numbers, matching title IDs"
+        run: python scripts/validate_experiment_logs.py
+
+      - name: Test suite
+        run: python -m unittest discover -s tests -v
+
+      # Catches the whitespace damage that makes a later diff unreadable.
+      # Only checks what this branch changed, not the existing tree.
+      - name: Whitespace on changed lines
+        if: github.event_name == 'pull_request'
+        run: |
+          git fetch --no-tags --depth=1 origin "${{ github.base_ref }}"
+          git diff --check "origin/${{ github.base_ref }}"

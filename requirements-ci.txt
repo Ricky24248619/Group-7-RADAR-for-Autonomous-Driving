@@ -1,0 +1,22 @@
+# Dependencies needed to run the test suite and validators — nothing more.
+#
+# Deliberately NOT the project environment. The devkits and model stacks
+# (truckscenes-devkit, mmdet3d, rosbags, torch) are large, platform-specific and
+# in several cases impossible to install on a CI runner. See SETUP.md for the
+# real working environment; that is what you install to actually run an
+# experiment.
+#
+# The test suite passes without any of them, because the tests that touch a
+# devkit stub or skip it. If a future test genuinely needs a devkit, do not add
+# it here — mark the test as requiring extras instead, so the checks stay fast
+# and installable.
+#
+# Python 3.11, matching SETUP.md. Do not bump without checking the suite:
+# Python 3.14 changes a json error message that tests/test_validate_result.py
+# asserts on, and collects 44 tests instead of 53 because four modules fail to
+# import.
+
+matplotlib==3.11.2
+numpy==2.4.6
+python-docx==1.2.0
+PyYAML==6.0.3
