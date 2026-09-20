@@ -232,23 +232,87 @@ Cheap, and it stops a known-wrong number reaching the marker.
 
 ---
 
-## 4. Tiering against the hours target
+## 4. Hours — corrected 20 September
 
-| | Packages | Hours | Cumulative total |
-|---|---|---|---|
-| **Now** | — | — | **30** |
-| **Core** | Part A | 11.0 | 41 |
-| **Tier 1** | + B3, B1, B2 | 19.5 | **60.5** ✅ floor |
-| **Tier 2** | + B4, B5 | 11.0 | **71.5** ✅ preferred |
-| **Tier 3** | + B6, B7 | 7.5 | **79.0** ✅ stretch |
+**The original version of this section was wrong, and wrong in a way that mattered.**
+It listed one hours column and stacked it into tiers reaching 79. That column was
+*estimated effort for the work* and it got treated as *time I would log*. Those are not
+the same number, and after the first week the gap is measured rather than theoretical:
 
-Tier 1 is ordered deliberately: **B3 first** because it is 3.5 hours and protects
-everything after it, then B1 because it is the gap with my name on it, then B2 because
-it removes the dependency the rest of the team has on our pair.
+> **21.0 h of estimated scope delivered, 7.0 h logged. Roughly 3:1.**
 
-Tier 3 is the drop-zone if something overruns. B6 and B7 are the least
-sequence-dependent items here, which makes them the right things to lose — and B6 is
-the one I would most regret losing, so it moves earlier if week 3 runs light.
+So the tier ladder never mapped to my timesheet. It is rebuilt below with two columns.
+Effort is what the work is worth as a planning estimate; logged is what I actually
+spend, which is what the timesheet records.
+
+### Delivered so far
+
+| Task | Effort | Logged |
+|---|---:|---:|
+| B3 · CI | 3.5 | |
+| A1 · suitability comparison | 4.0 | |
+| A2 · traversability explainer | 2.5 | |
+| A3 · verification and gap resolution | 2.0 | |
+| B2 · submission path | 7.0 | |
+| B1 · WS1 scaffold (of 9.0) | 2.0 | |
+| **Total** | **21.0** | **7.0** |
+
+Logged time is recorded per session in [`time-ledger.md`](time-ledger.md), not split
+per task, because per-session is what I actually measured. Inventing a per-task split
+would be the same error again.
+
+### Remaining
+
+The ratio is not uniform. Some work is inherently mine and cannot compress; some is
+mostly delegated.
+
+| Item | Effort | Realistically mine | Why |
+|---|---:|---:|---|
+| B1 remainder | 7.0 | 2.5 | My source is mine; five other people's viewing is not my time |
+| **A4 · cold read** | 2.5 | **2.5** | Entirely mine |
+| **B5 · outside-team reproduction** | 4.0 | **4.0** | Entirely mine |
+| B4 · range-band harness | 7.0 | 2.0 | Mostly delegated |
+| B6 · handover | 5.0 | 1.5 | Mostly delegated |
+| B7 · report corrections | 2.5 | 1.0 | Mostly delegated |
+| Checkpoint prep | 0.5 | 0.5 | Mine |
+| **Total** | **28.5** | **14.0** | |
+
+### Where that lands
+
+| | Logged total |
+|---|---:|
+| Now | **37** |
+| Plan as written, finished in full — **Tier 3 included** | **51** |
+
+**Finishing everything no longer reaches the 60 floor.** That is the real finding, and
+it inverts the reading that Tier 3 was spare capacity: Tier 3 is still worth doing,
+because B6 and B7 close genuine gaps, but it is worth about 2.5 logged hours rather
+than the 7.5 the old table implied.
+
+### Closing the gap with work that is actually required
+
+The items that generate my hours are the same ones the acceptance tests still need,
+which is a real alignment rather than a convenient one.
+
+| Addition | Logged | What it closes |
+|---|---:|---|
+| Review depth on the open PRs | 3.5 | The checkpoint requires me to explain my input, script, output, conclusion and one limitation. I cannot do that for work I have not read |
+| Run it myself — reproduce the render, drive `new_result.py`, re-derive the 961 frame sum and the range tables | 2.5 | DS-4, and what the retrospective asked for |
+| Re-establish client contact | 2.0 | **P-1 and P-7.** Unowned by any story, and R-28 already names me as its owner |
+| A second WS1 source | 1.5 | P-2, the gap this workstream exists to close |
+| **Total** | **9.5** | |
+
+**37 + 14 + 9.5 = 60.5.** Defensible line by line.
+
+Reaching 70–80 would need work I am not delegating — a legitimate choice, but not one
+this plan arrives at by itself, and better said now than discovered in October.
+
+### Ordering
+
+**B3 first** was right and is done: 3.5 hours of effort that protects everything after
+it. Of what is left, **A4 and B5 come first** — 6.5 logged hours, entirely mine, and
+they close P-5, P-6 and DS-4, three criteria open since Sprint 1. They also both depend
+on other people's calendars, so they are the items that punish being left late.
 
 ---
 
