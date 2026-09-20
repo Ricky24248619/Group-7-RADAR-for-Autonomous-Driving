@@ -45,7 +45,7 @@ and Fariya/Kelsey (TruckDrive), per D-08. Confirm the next allocation at the cat
 | `docs/dataset-survey-template.md` | Fixed-checklist survey — one per dataset, owner fills, another member reviews |
 | `docs/dataset-surveys/` | The surveys themselves (GOOSE, STONE, …) |
 | `docs/domain-study-template.md` | WS1 keynote/course study entries |
-| `docs/domain-study/` | The study entries |
+| `docs/domain-study/` | WS1 index — coverage matrix, source assignments, claims ledger — and the study entries |
 | `docs/evidence/` | Rendered frames and other evidence referenced by surveys and logs |
 | `docs/metrics-definitions.md` | Every metric we report, defined once — nothing undefined leaves this repo |
 | `templates/experiment-log-entry.md` | One entry per experiment attempt (installs, model runs, Autoware) |
