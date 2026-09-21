@@ -1,0 +1,105 @@
+# Matched RADAR/LiDAR range-band coverage
+
+**Owner:** Fatima Sher · **Story:** FA-S3-1 · **Reviewer:** Kelsey Chen
+
+## What this is
+
+[`range-bands.csv`](range-bands.csv) counts how many RADAR and LiDAR returns
+fall within each distance band, for every sample in
+[`sample-manifest.csv`](sample-manifest.csv) and in total. Produced by
+`scripts/truckscenes_range_bands.py`.
+
+One row per sample, modality and band, plus aggregate rows. Every row states
+its sample count, modality, channel, band, count, denominator and what that
+denominator covers, so a row read on its own still says what it is.
+
+**This measures sensor coverage — how far returns reach — and nothing else.**
+It is not object-detection accuracy, and a populated far band is not evidence
+that anything can be detected at that distance. No detection model has been
+run. The stock TruckScenes v1.2.0 evaluator produces no detection score beyond
+150 m at all.
+
+## Bands
+
+Default edges are 0 / 50 / 100 / 150 / 400 m, the set proposed in
+`docs/metrics-definitions.md`. **That decision is still open** — see
+[`RANGE-BANDS-OPEN-QUESTION.md`](RANGE-BANDS-OPEN-QUESTION.md) — so the edges
+are a command-line option, not a constant:
+
+```bash
+python scripts/truckscenes_range_bands.py --band-edges 0,25,50,80,100,150
+```
+
+An open band above the highest edge is always added. Without it a return past
+400 m would belong to no band and vanish from the table while still sitting in
+the point cloud. With it, every return lands in exactly one band and the
+proportions always cover the whole.
+
+`0` and `no data` mean different things. A band that was measured and held no
+returns is a real `0`. A band that could not be measured — the channel was not
+present for that sample — reads `no data`, and its sample is excluded from the
+`sample_count` of the aggregate row.
+
+## How to regenerate
+
+```bash
+# activate the project virtualenv first -- see SETUP.md
+export TRUCKSCENES_ROOT=/path/to/man-truckscenes
+python scripts/truckscenes_range_bands.py
+```
+
+Then confirm nothing moved:
+
+```bash
+git status --short
+```
+
+No output means the regenerated file is byte-identical to the committed one.
+The CSV contains no timestamp or machine detail, so this holds on any machine.
+
+## Result
+
+From the committed CSV, aggregated over all 10 samples in the manifest:
+
+| Modality | 0–50 m | 50–100 m | 100–150 m | 150–400 m | > 400 m | Total returns | Furthest return |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| RADAR_LEFT_FRONT | 1,655 | 1,670 | 941 | 305 | 0 | 4,571 | 189.46 m |
+| LIDAR_TOP_FRONT | 165,520 | 53 | 15 | 0 | 0 | 165,588 | 140.25 m |
+
+Radar returns are spread across the bands out to a furthest return of 189 m.
+This LiDAR channel's returns sit almost entirely below 50 m, with a furthest
+return of 140 m.
+
+## Limits
+
+**The LiDAR channel is not representative of the dataset's LiDAR.**
+TruckScenes carries two different LiDAR models: Hesai Pandar64 units rated to
+roughly 200 m, and Ouster OS0 units rated to roughly 35 m at 10% reflectivity.
+Result record `0010-truckscenes-macos-devkit-feasibility` describes
+`LIDAR_TOP_FRONT` as an Ouster OS0. If that identification is correct, then the
+concentration of returns below 50 m largely reflects **which sensor was
+selected**, not what LiDAR can do on this truck. This comparison is therefore
+**channel-specific and must not be read as a modality-level result**.
+Confirming the sensor behind each LiDAR channel, and repeating the measurement
+on a Pandar64 channel, is the next step before any comparative claim is made.
+
+**One radar of six against one LiDAR of six.** These two channels were chosen
+to match the existing Sprint 2 figures and statistics, not because they are
+representative. Fields of view differ between channels and are not accounted
+for here.
+
+**Ten of 400 annotated samples**, the first of each scene. A declared
+development subset, not dataset coverage. Percentages are shares of the
+returns in this subset, never of the dataset.
+
+**No shared coordinate frame.** Range is `sqrt(x² + y²)` in each sensor's own
+frame, so radar and LiDAR distances are measured from two different physical
+positions on the truck. No ego or global transform is applied.
+
+**Point counts are not a quality measure.** LiDAR produced roughly 36 times as
+many returns as radar here. That describes sensor density, as recorded in
+Sprint 2, and says nothing about detection performance for either modality.
+
+**Weather is not analysed.** The manifest includes every scene without
+filtering, and a handful of differently labelled scenes cannot support a
+weather claim.

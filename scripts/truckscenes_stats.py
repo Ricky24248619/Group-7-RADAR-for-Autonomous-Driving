@@ -39,11 +39,22 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def range_counts(points: np.ndarray) -> list[int]:
+def range_counts(points: np.ndarray, edges: list[float] | None = None) -> list[int]:
+    """Count points falling into each range band.
+
+    ``edges`` defaults to this script's own RANGE_EDGES, so every existing
+    caller -- and the six-band numbers already published in result record
+    0009-truckscenes-mini-characterisation -- are unchanged.
+
+    The Sprint 3 range analysis passes its own band edges instead of copying
+    this function, because the band decision is still open. See
+    "TruckScenes - Fatima/RANGE-BANDS-OPEN-QUESTION.md".
+    """
+    edges = RANGE_EDGES if edges is None else edges
     radial = np.linalg.norm(points[:2, :], axis=0)
     return [
         int(np.count_nonzero((radial >= low) & (radial < high)))
-        for low, high in zip(RANGE_EDGES[:-1], RANGE_EDGES[1:])
+        for low, high in zip(edges[:-1], edges[1:])
     ]
 
 
