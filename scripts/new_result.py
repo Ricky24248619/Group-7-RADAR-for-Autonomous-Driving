@@ -18,8 +18,8 @@ Hand-picking numbers also does not work across parallel branches. Git reports no
 conflict when two branches each add a differently-named file, so two people both
 take "the next free number", both are right on their own branch, and main ends up
 with two records claiming one identifier. That has happened to this project
-twice. This script allocates the number at write time instead of asking a human
-to guess it, which removes the guess rather than restating the instruction.
+twice. Local allocation prevents local collisions; independent Git branches
+still require validation against current main before merging.
 
 Every rule enforced here is imported from ``validate_result`` rather than
 restated, so the two can never drift. If the schema changes, this script follows
@@ -278,13 +278,36 @@ def write_and_validate(record: dict[str, Any], path: pathlib.Path
     serialisation itself changes.
     """
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n",
-                    encoding="utf-8")
-    errors, warnings = vr.check(path, vr.defined_metrics())
-    if errors:
-        path.unlink(missing_ok=True)
-        return False, errors, warnings
-    return True, [], warnings
+    # A per-number exclusive reservation covers differently named records too.
+    # ponytail: local writers only; cross-branch collisions require merge validation.
+    reservation = path.parent / f".{path.stem[:4]}.lock"
+    try:
+        lock = reservation.open("x", encoding="utf-8")
+    except FileExistsError:
+        return False, ["Sequence is reserved by another writer; retry. If its "
+                       "process crashed, remove the stale lock after checking."], []
+    try:
+        with lock:
+            matches = list(path.parent.glob(f"{path.stem[:4]}-*.json"))
+            if matches:
+                return False, [f"Sequence already used by {matches[0].name}; retry."], []
+            try:
+                output = path.open("x", encoding="utf-8")
+            except FileExistsError:
+                return False, [f"{path.name} already exists; nothing overwritten."], []
+            try:
+                with output:
+                    output.write(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+                errors, warnings = vr.check(path, vr.defined_metrics())
+                if errors:
+                    path.unlink()
+                    return False, errors, warnings
+                return True, [], warnings
+            except BaseException:
+                path.unlink(missing_ok=True)
+                raise
+    finally:
+        reservation.unlink()
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -302,6 +325,9 @@ def main(argv: list[str] | None = None) -> int:
         prompter.say(f"\n{YELLOW}Cancelled. Nothing written.{RESET}")
         return 130
 
+    # A second writer may have finished while the user was answering prompts.
+    number = next_sequence_number(args.records_dir)
+    record["id"] = f"{number}-{short_name}"
     path = args.records_dir / f"{number}-{short_name}.json"
     if path.exists():
         prompter.say(f"{RED}{path} already exists. Nothing written.{RESET}")

@@ -79,8 +79,11 @@ status to `partial` or `failure`.
 > each add a differently-named file, so two people can both take "the next free
 > number", both be right on their own branch, and leave `main` with two records
 > claiming one identifier. That has happened here twice. `new_result.py`
-> allocates at write time and CI rejects duplicates, but this path still depends
-> on you checking.
+> allocates after prompting and reserves the number while writing locally.
+> Separate branches can still choose the same number: update from current main,
+> run both validators before merging, and renumber the later record and its
+> references if necessary. CI must check the current merge result, not only a
+> stale branch head.
 
 If a metric you want to report is not yet defined in
 [`../docs/metrics-definitions.md`](../docs/metrics-definitions.md), **the validator will
