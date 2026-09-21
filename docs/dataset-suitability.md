@@ -152,8 +152,20 @@ evaluator filters classes at 75 m or 150 m and therefore **produces no detection
 beyond 150 m at all**, so testing D-04 here needs an agreed custom evaluator
 configuration rather than more compute.
 
-This gap is what package B4 in my Sprint 3 plan proposes to close, using the 5,247
-saved FCOS3D predictions and 2,088 ground-truth boxes already in `scripts/`.
+Package B4 proposes to close this gap. The 5,247 FCOS3D predictions are saved in
+`scripts/results_mini_val_fcos3d_4cam.json`; the reported 2,088 ground-truth boxes
+are a count, not a committed box-level export. Reproduction also needs the mini
+metadata: annotations, samples, sample_data and ego_pose, plus calibrated_sensor
+if a sensor-relative origin is chosen. The dataset holder must confirm the input
+location and access before B4 starts; no owner or path is confirmed here.
+
+The inference script saves predictions in global coordinates. Compute distances
+relative to a declared, time-aligned ego or sensor origin, not the global origin.
+Agree planar versus 3D distance, band boundaries and sample/class filters in
+`metrics-definitions.md`, then apply the same convention to predictions and truth.
+Verify joins for all 80 sample tokens and report missing metadata explicitly.
+These counts describe coverage; they do not become per-band accuracy without a
+separate matching and evaluation protocol.
 
 ### Reading these three together
 
@@ -161,8 +173,11 @@ The only cross-dataset statement the evidence supports is about **suitability**:
 labelled data is overwhelmingly near-field, with 1.1% of points beyond 150 m and no
 labelled radar at all, so it cannot address D-04. TruckDrive's retained radar has
 substantially more of its returns at long range, which is why it is the D-04 dataset.
-TruckScenes is the only one of the three with **boxes shared across LiDAR and radar**,
-which makes it the matched-sensor dataset.
+TruckScenes is the current preferred dataset for the matched-sensor protocol.
+TruckDrive also has annotations, calibration and poses, with camera and LiDAR
+retained for two scenes. A matched comparison on that subset remains conditional
+on verifying synchronized overlap, coordinate alignment and a runnable evaluator;
+partial local coverage does not establish that the dataset is incapable of it.
 
 That is a statement about what each is *made of*. It is not a performance comparison,
 and no performance comparison is available from any of them yet.
@@ -253,7 +268,7 @@ The point of the preceding six sections, in two tables.
 | Question | GOOSE | MAN TruckScenes | TORC TruckDrive |
 |---|---|---|---|
 | **D-04** — does perception degrade past 150 m? | **No.** 1.10% of labelled points beyond 150 m, and no labelled radar in the released assets | **Partly.** Annotates past 230 m, but the stock evaluator scores nothing beyond 150 m — needs an agreed custom protocol, not more compute | **Best placed.** 9.47% of returns beyond 150 m — but no model has been run, and the figure is coverage, not detection |
-| **Matched radar vs LiDAR detection** | **No.** Radar ships raw and unlabelled | **Yes, in principle** — the only one of the three with boxes shared across LiDAR and radar. Blocked on finding a runnable detector | **Not with what we hold.** Camera and LiDAR retained for 2 of 24 scenes |
+| **Matched radar vs LiDAR detection** | **Not with the current released-label workflow.** No radar detection ground truth established | **Preferred protocol, conditional** on runnable radar/LiDAR detectors and identical samples, ground truth and evaluator settings | **Conditional on the retained two-scene subset.** Verify sensor overlap, calibration, annotation alignment and evaluator support before claiming feasibility |
 | **Off-road terrain and traversability** | **Yes — and only GOOSE** | No — on-road | No — on-road |
 | **Sensor coverage by range** | Yes, for labelled LiDAR points | **Not yet measured** | Yes, for radar returns |
 | **Reproducible on team hardware** | Yes, macOS and Windows | Yes, CPU-only inference viable | Viewer yes; no model run attempted |
@@ -268,7 +283,7 @@ finding about the question, not a failure of the datasets.
 
 | Experiment | Feasible? | What it turns on |
 |---|---|---|
-| Range-band report from the saved TruckScenes predictions | **Yes** — CPU, no new inference | Band edges confirmed. The 5,247 predictions and 2,088 ground-truth boxes are already in `scripts/` |
+| Range-band report from the saved TruckScenes predictions | **Conditional** — CPU, no new inference needed | Obtain annotation and pose metadata or a verified derived export; confirm input holder/path, sample joins, distance origin, filters and band edges as described in §5 |
 | TruckDrive long-range subset analysis | **Yes** for radar | KL-S3-1. Camera and LiDAR limited to 2 of 24 scenes, so multimodal claims must say so |
 | GOOSE PTv3 full split | **Technically, not usefully** | ~5.1 h lower bound on the one GTX 1660, and Ricky's explicit approval. It would produce segmentation mIoU, which has no detection equivalent — so it does not serve D-04 even if it completes |
 | Radar or LiDAR detector on TruckScenes | **Unknown** | AD-S3-1's time-boxed check: released code, checkpoint, licence, preprocessing, class mapping, hardware. A candidate's *name* establishes nothing |
@@ -287,7 +302,7 @@ Every unresolved item found while assembling this document. Gaps are recorded as
 | G-2 | **Resolved as far as our data allows.** GOOSE val is published as 960 and extracts as 961. Our 961 is *internally consistent*: the eight per-scenario frame counts (151+103+123+133+191+106+73+81) sum to exactly 961, so this is not a counting error on our side. The one-frame difference from the published figure remains unexplained. To settle it, diff `lidar/val/` against the published file list for a duplicated or extra frame | `dataset-statistics.md` §3 vs `goose.md` §2 | Me — closed pending dataset access |
 | G-3 | **TruckScenes total size unverified** — ~560 GB carried from `DATASET_OVERVIEW.md`, never remeasured against the current AWS listing | `truckscenes.md` §2, marked Unverified | Open |
 | G-4 | **Band edges not harmonised** — GOOSE 50–100 vs TruckDrive 50–80/80–100. Blocks any combined range reporting | `metrics-definitions.md` open question 3 | Ricky |
-| G-5 | **No TruckScenes range-band distribution** exists at all | §5 above | Proposed as B4 |
+| G-5 | **No TruckScenes range-band distribution**; annotation/pose inputs and distance convention still need confirmation | §5 above | Proposed B4; input holder to be agreed |
 | G-6 | **TruckDrive licence clause unresolved** — non-commercial, plus the AV-business prohibition, against a stated CC/open-source deliverable | `DATASET_OVERVIEW.md` | Needs a client decision |
 | G-7 | **TruckDrive camera/LiDAR coverage is partial** — 2 of 24 scenes. Any multimodal TruckDrive claim must state this, not imply full-mini coverage | `TruckDrive - Kelsey/SUMMARY.md` | Kelsey — KL-S3-1 |
 | G-8 | **GOOSE radar is not 4D as far as our sources go.** The survey records Smartmicro UMRR-96 (79 GHz, 0.4–55 m) and UMRR-11 (77 GHz, 1–175 m), neither described as 4D imaging, and elevation is nowhere asserted. Since the radar is unlabelled anyway this does not change any conclusion — but GOOSE must not be listed as a 4D-radar dataset. Settling it needs the Smartmicro datasheets, which we do not hold | `goose.md` §2–3 | Me — narrowed; needs a vendor datasheet |
@@ -322,7 +337,7 @@ Run on every change to this document, not once at the end:
 | Range tables sum to their stated totals | GOOSE bands → 174,891,807; TruckDrive bands → 71,206 | Both exact |
 | Every class in §6 sits at the level claimed | Each name cross-checked against `traversability_map.csv` | Pass — **caught `water` mis-filed in my own draft** |
 | Per-scenario frames sum to the split | §3 of `dataset-statistics.md` | 961, exact |
-| Record and log identity | `validate_result.py`, `validate_experiment_logs.py` | Pass |
+| Record and log identity | `validate_result.py`, `validate_experiment_logs.py` | Rechecked 20 September on this branch: both fail on inherited duplicate record 0008 / EXP-0007. Integrate the numbering fix from PR #31 and rerun before claiming a pass |
 
 No number in this document was re-derived; each was read from a merged record and
 checked against its source. Where a number appears twice in the repository with
