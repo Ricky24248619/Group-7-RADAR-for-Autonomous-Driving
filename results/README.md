@@ -44,12 +44,46 @@ and `recommendation`.
 
 ## How to add a result
 
+```bash
+python scripts/new_result.py
+```
+
+It asks for each field, allocates the next free number itself, and **refuses to
+write anything the validator would reject** — so a record either lands valid or
+does not land at all. Roughly a minute for a characterisation record. Then open
+a PR.
+
+You do not need to read the rest of this document to use it, and you do not need
+to ask the GOOSE pair.
+
+**Not in a terminal?** Open a [Submit a result][issue] issue with the same fields
+and someone will add the record.
+
+**A run that did not work belongs here too.** A failure with its error,
+environment and blocker is a first-class result in this project, not an
+admission. The script asks for those four fields automatically once you set the
+status to `partial` or `failure`.
+
+[issue]: https://github.com/Ricky24248619/Group-7-RADAR-for-Autonomous-Driving/issues/new?template=result-record.yml
+
+### By hand, if you prefer
+
 1. Copy [`records/TEMPLATE.json`](records/TEMPLATE.json) to
    `records/NNNN-short-name.json`, using the next free number.
 2. Fill it in. Do not delete fields you cannot answer — say what is true
    (`"unknown"`, `"none"`, `"not measured"`) so the gap is visible.
 3. Run `python scripts/validate_result.py results/records/NNNN-short-name.json`.
 4. Open a PR. Nobody edits anyone else's record; you only add your own.
+
+> **On picking the number by hand.** Git reports no conflict when two branches
+> each add a differently-named file, so two people can both take "the next free
+> number", both be right on their own branch, and leave `main` with two records
+> claiming one identifier. That has happened here twice. `new_result.py`
+> allocates after prompting and reserves the number while writing locally.
+> Separate branches can still choose the same number: update from current main,
+> run both validators before merging, and renumber the later record and its
+> references if necessary. CI must check the current merge result, not only a
+> stale branch head.
 
 If a metric you want to report is not yet defined in
 [`../docs/metrics-definitions.md`](../docs/metrics-definitions.md), **the validator will
