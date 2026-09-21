@@ -70,6 +70,37 @@ Radar returns are spread across the bands out to a furthest return of 189 m.
 This LiDAR channel's returns sit almost entirely below 50 m, with a furthest
 return of 140 m.
 
+## Figures
+
+`scripts/plot_truckscenes_range_bands.py` plots the committed CSV. It reads the
+CSV only — it never opens the dataset and never recomputes a count — so every
+value on a figure traces back to a committed number.
+
+```bash
+python scripts/plot_truckscenes_range_bands.py
+```
+
+![Share of each sensor's returns by distance band](../docs/evidence/truckscenes/range_bands_share.png)
+
+![Returns per distance band on a log scale](../docs/evidence/truckscenes/range_bands_counts.png)
+
+Two figures, because the two questions need different scales. The first shows
+what **share** of each sensor's returns falls in each band, on one shared
+0–100% axis; that is the only fair common scale for a paired comparison here,
+since the two sensors produce very different numbers of returns and raw counts
+on a shared linear axis would flatten the smaller series onto the baseline. The
+second shows the **absolute counts** on a shared logarithmic axis, drawn as
+markers rather than bars — a bar encodes magnitude as length from zero, and a
+log axis has no meaningful zero, so log bars would misstate every value.
+
+Both figures state the sample count, both channels and both denominators, and
+both carry the coverage-not-detection caveat. Bands holding no returns are
+drawn as a hollow marker with a `0` label rather than being left blank, so an
+empty band cannot be mistaken for a missing measurement.
+
+Like the CSVs, the figures carry no date or software stamp, so regenerating
+them produces the same files.
+
 ## Limits
 
 **The LiDAR channel is not representative of the dataset's LiDAR.**
