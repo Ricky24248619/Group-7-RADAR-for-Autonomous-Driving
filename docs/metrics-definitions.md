@@ -192,6 +192,16 @@ matching criterion remains outstanding.
 
 ### Saved-output comparison diagnostics
 
+The [22 September raw comparison](truckscenes-raw-comparison.md) additionally
+reports counts in a reference ego x-y plane, using the nearest ego pose to each
+annotated sample timestamp. Sensor clouds use the release calibration and
+acquisition ego poses to reach that reference. Its forward region is x>0,
+absolute ego azimuth <=30°, without an elevation filter. Denominators are all
+returns from the named channel inside the named region across the 80 mini_val
+samples. Raw box-centre counts use the same frame and report both full azimuth
+and forward region; they do not apply evaluator filters or imply box matching.
+These are new descriptive measurements; the stock evaluator remains unchanged.
+
 The [TruckScenes saved-output analysis](truckscenes-saved-comparison.md) adds
 descriptive diagnostics, not a new evaluation protocol:
 
