@@ -148,6 +148,16 @@ class SharedAxisTests(unittest.TestCase):
 
 
 class CaptionTests(unittest.TestCase):
+    def test_caption_does_not_claim_missing_samples_are_matched(self):
+        rows = aggregate_rows()
+        for item in rows:
+            if item["modality"] == "lidar":
+                item["sample_count"] = "9"
+        subtitle = subtitle_for({m: aggregate_series(rows, m) for m in ("radar", "lidar")})
+        self.assertIn("10 samples", subtitle)
+        self.assertIn("9 samples", subtitle)
+        self.assertNotIn("matched", subtitle)
+
     def test_subtitle_states_sample_count_channels_and_denominators(self):
         rows = aggregate_rows()
         subtitle = subtitle_for(
@@ -157,7 +167,8 @@ class CaptionTests(unittest.TestCase):
             }
         )
 
-        self.assertIn("10 matched samples", subtitle)
+        self.assertIn("10 samples", subtitle)
+        self.assertNotIn("matched", subtitle)
         self.assertIn("RADAR_LEFT_FRONT", subtitle)
         self.assertIn("LIDAR_TOP_FRONT", subtitle)
         self.assertIn("4,571", subtitle)

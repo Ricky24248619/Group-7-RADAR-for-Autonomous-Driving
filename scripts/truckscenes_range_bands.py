@@ -25,6 +25,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import os
 from pathlib import Path
 
@@ -101,8 +102,10 @@ def parse_band_edges(text):
 
     if len(edges) < 2:
         raise RangeBandError("Give at least two band edges, e.g. 0,50,100,150,400")
-    if edges[0] < 0:
-        raise RangeBandError("The first band edge cannot be negative")
+    if not all(math.isfinite(edge) for edge in edges):
+        raise RangeBandError("Band edges must be finite")
+    if edges[0] != 0:
+        raise RangeBandError("The first band edge must be zero so no returns are omitted")
     if any(high <= low for low, high in zip(edges, edges[1:])):
         raise RangeBandError(f"Band edges must strictly increase: {edges}")
     return edges
@@ -123,12 +126,15 @@ def band_bounds(edges):
 
 def band_label(lower, upper):
     if upper == float("inf"):
-        return f"> {lower:g} m"
+        return f">= {lower:g} m"
     return f"{lower:g}-{upper:g} m"
 
 
 def measure_points(points, edges):
     """Summarise one point cloud: per-band counts, total, and furthest return."""
+    parse_band_edges(",".join(str(edge) for edge in edges))
+    if not np.isfinite(points[:2, :]).all():
+        raise RangeBandError("Non-finite x/y coordinates cannot be assigned to range bands")
     counts = range_counts(points, edges + [float("inf")])
     total = int(points.shape[1])
     if total:

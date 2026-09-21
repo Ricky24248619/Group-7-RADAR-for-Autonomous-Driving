@@ -44,7 +44,7 @@ below is satisfied:
 | Evaluation subset | Same split and exact set of sample tokens; an empty prediction list is valid, a missing sample token is not |
 | Ground truth | Same annotation release, 12-class detection taxonomy, ignored classes and preprocessing |
 | Evaluator | Same devkit commit, config file, matching thresholds, class ranges and missing-value handling |
-| Range treatment | Same declared range filter or band edges; empty bands read `no data`, never zero |
+| Range treatment | Same declared range filter or band edges; measured coverage counts may be zero, while unavailable measurements and undefined scores read `no data` |
 | Temporal input | Same past-time horizon; record the sensor-specific number of sweeps actually used |
 | Training protocol | Same train/validation split, initialization policy, schedule, augmentations, seed policy and stopping rule |
 | Reporting | Same metric set, class set, per-class aggregation and confidence/repeat policy |
@@ -143,10 +143,9 @@ traversability.
    modality-comparison metric.
 2. **TruckDrive matching criterion.** TruckScenes v1.2.0 is now pinned above. Record
    TruckDrive's official thresholds separately and do not normalise across datasets.
-3. **Range bands (D-04).** Confirm band edges: the proposal is 0–50 / 50–100 /
-   100–150 / 150–400 m. The stock TruckScenes evaluator ends at 75 or 150 m by class,
-   so any custom extension requires explicit approval. Bands with no results read
-   "no data", never 0.
+3. **Range bands (D-04).** The 21 September working coverage protocol below fixes
+   descriptive bands. A custom detection benchmark beyond the stock class ranges
+   still requires explicit approval; coverage bands do not change the evaluator.
 4. **Radar-specific metrics.** If no radar-first baseline exists (D-02 gap,
    to confirm with Fabian), what do we report for radar — qualitative
    comparison only? Raise with Fabian alongside D-01/D-04 confirmation.
@@ -156,3 +155,37 @@ traversability.
 Every number carries: metric name → defined above; threshold; range band;
 dataset + version; modality; model + version. If any of those is missing, the
 number can't be compared to anything and shouldn't leave this repo.
+
+
+## Sprint 3 working coverage protocol — 21 September 2026
+
+Prepared for RY-S3-1 under Ricky's instruction to complete the protocol work.
+This is the implementation baseline for descriptive sensor-return counts;
+it does not claim client approval of a new detection metric or evaluator.
+
+- Bands are **[0,50), [50,100), [100,150), [150,400), [400,infinity) metres**.
+  A return exactly on an edge goes into the band starting at that edge.
+  Parameters remain available for explicitly labelled alternative analyses.
+- The existing FA-S3-1 output uses planar `sqrt(x*x+y*y)` in each sensor's own
+  stored frame. It has separate physical origins and, for the tilted LiDAR,
+  a different plane from ego-ground distance. Preserve that definition and label
+  it; do not relabel the historical counts as ego-frame or 3D ranges.
+- Scope: the first annotated sample of each of ten mini scenes; one
+  `RADAR_LEFT_FRONT` and one `LIDAR_TOP_FRONT` channel. Report each modality's
+  available sample count and its own return denominator. Missing channels must
+  not be described as a complete matched sample set.
+- A measured count of no returns is **0**. Unavailable data is **no data**.
+  A share with denominator zero is undefined and also **no data**. An empty
+  ground-truth band has no defined detection score merely because it has zero
+  returns; detection scoring must follow its separately declared evaluator.
+- Reject non-finite ranges and band definitions that leave near returns out of
+  the denominator. Do not silently drop invalid coordinates.
+- These panels describe channel coverage. They cannot rank modalities, prove
+  weather robustness, or establish object detection beyond 150 m.
+- A future fairer geometry comparison needs a declared common ego frame/time,
+  transformed clouds, overlapping field of view and matched sample tokens.
+  Publish that as a new analysis with its own manifest and outputs.
+
+The stock detection evaluator and its class limits remain unchanged. Fabian's
+confirmation of any custom detection protocol, primary metric and TruckDrive
+matching criterion remains outstanding.

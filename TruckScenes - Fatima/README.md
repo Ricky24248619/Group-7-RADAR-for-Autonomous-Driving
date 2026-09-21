@@ -58,7 +58,7 @@ Because no transform is applied, RADAR and LiDAR distances are measured from
 
 Default `0–50 / 50–100 / 100–150 / 150–400 m`, plus an open band above the
 highest edge so every return is counted somewhere. The edges are a
-command-line option, not a constant, because the band decision is still open:
+command-line option, not a constant, for explicitly labelled alternative analyses:
 
 ```bash
 python scripts/truckscenes_range_bands.py --band-edges 0,25,50,80,100,150

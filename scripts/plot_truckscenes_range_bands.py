@@ -133,9 +133,8 @@ def subtitle_for(series_by_modality):
         denominator = "no data" if series["denominator"] is None else f"{series['denominator']:,}"
         # The channel name already says which modality it is, so naming both
         # would read "RADAR RADAR_LEFT_FRONT".
-        parts.append(f"{series['channel']}: {denominator} returns")
-    samples = series_by_modality[PLOT_ORDER[0]]["sample_count"]
-    return f"{samples} matched samples  ·  " + "  ·  ".join(parts)
+        parts.append(f"{series['channel']}: {denominator} returns ({series['sample_count']} samples)")
+    return "  ·  ".join(parts)
 
 
 FOOTER = (
@@ -143,7 +142,7 @@ FOOTER = (
     "No detection model has been run.\n"
     "Range is measured in each sensor's own frame, so the two modalities are measured "
     "from different positions on the truck.\n"
-    "One radar channel and one LiDAR channel out of six each; see RANGE-BANDS.md for limits."
+    "One radar channel versus a downward-tilted Ouster OS0 blind-spot LiDAR; different fields of view."
 )
 
 
@@ -328,7 +327,7 @@ def main():
 
     samples = series_by_modality[PLOT_ORDER[0]]["sample_count"]
     print(f"plotted {len(rows)} CSV row(s) from {args.csv.name}")
-    print(f"{samples} matched sample(s); no dataset was read")
+    print("Per-modality sample counts are in the captions; no dataset was read")
     for path in paths:
         print(path)
 

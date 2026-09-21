@@ -48,6 +48,11 @@ def manifest(sample_tokens=("s1", "s2")):
 
 
 class BandEdgeParsingTests(unittest.TestCase):
+    def test_rejects_edges_that_lose_or_cannot_classify_returns(self):
+        for edges in ("10,50", "0,nan,100", "0,50,inf"):
+            with self.subTest(edges=edges), self.assertRaises(RangeBandError):
+                parse_band_edges(edges)
+
     def test_parses_the_sprint_3_default_edges(self):
         self.assertEqual(parse_band_edges("0,50,100,150,400"), DEFAULT_BAND_EDGES)
 
@@ -71,22 +76,30 @@ class BandLayoutTests(unittest.TestCase):
         bounds = band_bounds([0.0, 50.0, 100.0])
 
         self.assertEqual(bounds[-1], (100.0, float("inf")))
-        self.assertEqual(band_label(*bounds[-1]), "> 100 m")
+        self.assertEqual(band_label(*bounds[-1]), ">= 100 m")
 
     def test_default_edges_give_the_four_proposed_bands_plus_an_open_one(self):
         labels = [band_label(low, high) for low, high in band_bounds(DEFAULT_BAND_EDGES)]
 
         self.assertEqual(
-            labels, ["0-50 m", "50-100 m", "100-150 m", "150-400 m", "> 400 m"]
+            labels, ["0-50 m", "50-100 m", "100-150 m", "150-400 m", ">= 400 m"]
         )
 
     def test_changing_the_edges_changes_the_bands(self):
         labels = [band_label(low, high) for low, high in band_bounds([0.0, 25.0])]
 
-        self.assertEqual(labels, ["0-25 m", "> 25 m"])
+        self.assertEqual(labels, ["0-25 m", ">= 25 m"])
 
 
 class MeasurementTests(unittest.TestCase):
+    def test_boundary_400_is_in_open_band(self):
+        self.assertEqual(measure_points(cloud([400]), DEFAULT_BAND_EDGES)["counts"], [0, 0, 0, 0, 1])
+
+    def test_nonfinite_coordinates_are_rejected(self):
+        for distance in (float("nan"), float("inf")):
+            with self.assertRaises(RangeBandError):
+                measure_points(cloud([distance]), DEFAULT_BAND_EDGES)
+
     def test_points_are_assigned_to_the_band_containing_them(self):
         points = cloud([10, 49.999, 50, 120, 200, 399.999])
         result = measure_points(points, DEFAULT_BAND_EDGES)
