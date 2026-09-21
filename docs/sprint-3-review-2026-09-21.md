@@ -33,8 +33,9 @@ It does not yet have a matched radar-versus-LiDAR object-detection benchmark.
 ## Reproduction evidence and limits
 
 The review used an isolated Windows Python 3.11 environment with the repository's
-four pinned CI dependencies. All 118 tests in the TruckScenes branch passed after
-the fixes; both record/log validators passed. The baseline had 114 tests and
+four pinned CI dependencies. All 138 tests in the integrated branch passed,
+including the result-entry collision regressions from PR #37; both record/log
+validators passed (11 result records). The TruckScenes baseline had 114 tests and
 failed the existing Windows JSON newline check. New regressions cover invalid
 edges, non-finite coordinates, the exact upper boundary and unequal sample captions.
 

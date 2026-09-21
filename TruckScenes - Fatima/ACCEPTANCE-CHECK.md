@@ -80,3 +80,8 @@ are representative, or what the numbers mean. Those limits are in
 or another member runs step 2 on their own machine and reports the outcome,
 P-5 remains partly met for this workflow, exactly as the revised acceptance
 tests record it for the project as a whole.
+
+The 21 September integration review passed the automated checks on Windows
+and regenerated both plots from the committed CSV. This verifies the plotting
+and committed-artefact checks; it does not close A-6. See the
+[review evidence](../docs/sprint-3-review-2026-09-21.md).
