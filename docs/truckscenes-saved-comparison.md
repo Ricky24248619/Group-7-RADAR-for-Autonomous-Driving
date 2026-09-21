@@ -4,6 +4,10 @@ This starts the comparison work while the integration PR is awaiting approval.
 It reanalyses committed outputs; it does not run a new detector, rescore ground
 truth or reproduce counts from raw sensor files. Source files are unchanged.
 
+**Follow-up:** the official mini dataset has now been downloaded locally and
+the separate [raw-data rebuild](truckscenes-raw-rebuild.md) exactly reproduced
+the manifest and range CSV. The saved-output comparisons below are unchanged.
+
 ## What we learned
 
 1. **Long-range radar returns recur across the selected scenes.** Nine of ten

@@ -1,5 +1,10 @@
 # Sprint 3 review and next steps — 21 September 2026
 
+**Later update, 21 September:** the [raw-data rebuild](truckscenes-raw-rebuild.md)
+now resolves the local TruckScenes availability blocker described in this review.
+The manifest and range CSV match exactly after a fresh official mini download.
+Human acceptance and common-frame comparison remain separate next steps.
+
 ## What the project now establishes
 
 The project has working dataset exploration and bounded feasibility evidence.

@@ -85,3 +85,8 @@ The 21 September integration review passed the automated checks on Windows
 and regenerated both plots from the committed CSV. This verifies the plotting
 and committed-artefact checks; it does not close A-6. See the
 [review evidence](../docs/sprint-3-review-2026-09-21.md).
+
+**Later on 21 September:** an agent-run [raw-data rebuild](../docs/truckscenes-raw-rebuild.md)
+on Ricky's machine, using a fresh official mini download, reproduced both
+manifest files and the range CSV byte for byte. The technical A-6 equality
+check now has evidence; an outside-pair human reproduction/signoff remains open.
