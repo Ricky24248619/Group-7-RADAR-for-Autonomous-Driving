@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "id": "0012-truckscenes-shared-frame-coverage",
+  "title": "TruckScenes mini_val shared-ego coverage across radar, corner LiDAR and roof LiDAR",
+  "owner": "Ricky Yuen",
+  "date": "2026-09-22",
+  "status": "success",
+  "dataset": "MAN TruckScenes v1.2-mini",
+  "sensor_configuration": "RADAR_LEFT_FRONT, LIDAR_LEFT, LIDAR_TOP_FRONT, analysed separately; no point-cloud fusion or detector inference",
+  "annotation_schema": "TruckScenes v1.2 oriented global 3D boxes; official 12-class detection mapping for the separate box-count diagnostic",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "split": "All 80 official mini_val samples from two scenes; exact tokens in evidence manifest",
+  "conditions": "No condition filtering; descriptive two-scene mini subset, no weather-stratified claims",
+  "environment": {
+    "os": "Windows",
+    "hardware": "Local CPU-only execution; no GPU or new model run",
+    "python": "3.11.9",
+    "packages": {"truckscenes-devkit": "1.2.0", "numpy": "1.26.4", "pypcd4": "1.4.3", "pyquaternion": "0.9.9"}
+  },
+  "commands": ["python scripts/compare_truckscenes_raw.py --data-root <data-root>"],
+  "measurements": [
+    {"name": "analysed samples", "value": 80, "scope": "Official mini_val sample tokens, all three channels present"},
+    {"name": "radar returns at >=150 m", "value": 4643, "scope": "RADAR_LEFT_FRONT; forward +/-30 degrees; denominator 37482 returns; shared reference ego x-y plane; all 80 samples"},
+    {"name": "corner lidar points at >=150 m", "value": 26367, "scope": "LIDAR_LEFT; forward +/-30 degrees; denominator 1863339 points; shared reference ego x-y plane; all 80 samples"},
+    {"name": "roof lidar points at >=150 m", "value": 0, "scope": "LIDAR_TOP_FRONT; forward +/-30 degrees; denominator 1087879 points; shared reference ego x-y plane; all 80 samples"}
+  ],
+  "evidence": [
+    "docs/truckscenes-raw-comparison.md",
+    "experiment-log/0011-truckscenes-shared-frame-comparison.md",
+    "scripts/compare_truckscenes_raw.py",
+    "docs/evidence/truckscenes/raw-comparison/manifest.json",
+    "docs/evidence/truckscenes/raw-comparison/aggregate_ranges.csv"
+  ],
+  "notes": "The controlled modality vocabulary uses fusion for multi-modality characterisation; no sensor streams or detector predictions are fused here. These are separate channel distributions in a common spatial region, not a sensor accuracy ranking. Rigid ego alignment leaves residual timing, per-point scan motion, object motion, vertical field of view and occlusion differences. Agent-run analysis, not a human acceptance signoff. Original historical ten-sample counts are unchanged. Camera reevaluation is recorded separately in the experiment report and reproduces the existing scores."
+}

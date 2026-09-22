@@ -1,0 +1,21 @@
+sample_index,sample_token,scene_name,modality,channel,coordinate_frame,total_returns,returns_ge150m,share_ge150m
+3,1eb6c0c7adad4cf29e8da13dcf8ef16b,scene-23160c4bff134cdd86b96ee822b4aca9-14,lidar,LIDAR_TOP_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),16091,0,0.0
+3,1eb6c0c7adad4cf29e8da13dcf8ef16b,scene-23160c4bff134cdd86b96ee822b4aca9-14,radar,RADAR_LEFT_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),488,58,0.11885245901639344
+1,32d2bcf46e734dffb14fe2e0a823d059,scene-0044384af3d8494e913fb8b14915239e-3,lidar,LIDAR_TOP_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),17180,0,0.0
+1,32d2bcf46e734dffb14fe2e0a823d059,scene-0044384af3d8494e913fb8b14915239e-3,radar,RADAR_LEFT_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),800,0,0.0
+4,454fa18d64d94009914137ce901c8e7c,scene-3195e3bfd1de4f9ba82f874790c7856c-15,lidar,LIDAR_TOP_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),17458,0,0.0
+4,454fa18d64d94009914137ce901c8e7c,scene-3195e3bfd1de4f9ba82f874790c7856c-15,radar,RADAR_LEFT_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),612,41,0.06699346405228758
+2,80ad351eb99e4b28bfbec1105b6ac8eb,scene-13f4b71b1bd04a9e88747ad8f58a3f67-4,lidar,LIDAR_TOP_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),16657,0,0.0
+2,80ad351eb99e4b28bfbec1105b6ac8eb,scene-13f4b71b1bd04a9e88747ad8f58a3f67-4,radar,RADAR_LEFT_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),534,29,0.054307116104868915
+8,9d75f3c77f384353b5477c981fb46011,scene-b13542304b244af585a646082c57a079-1,lidar,LIDAR_TOP_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),10301,0,0.0
+8,9d75f3c77f384353b5477c981fb46011,scene-b13542304b244af585a646082c57a079-1,radar,RADAR_LEFT_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),408,45,0.11029411764705882
+6,a5d7d3dc07d345cfb5649e4fac1cdd87,scene-6be74229febb4aad9e7ae1a37217b231-4,lidar,LIDAR_TOP_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),17923,0,0.0
+6,a5d7d3dc07d345cfb5649e4fac1cdd87,scene-6be74229febb4aad9e7ae1a37217b231-4,radar,RADAR_LEFT_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),136,9,0.0661764705882353
+5,c697554e47f54d808bc04430ee0c096a,scene-3f542f89ec5241b6a4e30ca743adcf34-29,lidar,LIDAR_TOP_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),18225,0,0.0
+5,c697554e47f54d808bc04430ee0c096a,scene-3f542f89ec5241b6a4e30ca743adcf34-29,radar,RADAR_LEFT_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),503,58,0.11530815109343936
+10,e43ae3c9b670423d89fe92170f0c87e9,scene-fb64d203d417452f830ca73efed80c41-11,lidar,LIDAR_TOP_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),18858,0,0.0
+10,e43ae3c9b670423d89fe92170f0c87e9,scene-fb64d203d417452f830ca73efed80c41-11,radar,RADAR_LEFT_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),277,23,0.08303249097472924
+9,e9f4a50a1b0a41a492edf7a4870f594c,scene-b201f6e737e34c2d87830fc1e2911516-6,lidar,LIDAR_TOP_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),15173,0,0.0
+9,e9f4a50a1b0a41a492edf7a4870f594c,scene-b201f6e737e34c2d87830fc1e2911516-6,radar,RADAR_LEFT_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),416,12,0.028846153846153848
+7,fa2acde00fe3439786ccd631c78fd641,scene-a6a87db5125846bda72ccfc9931ee153-11,lidar,LIDAR_TOP_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),17722,0,0.0
+7,fa2acde00fe3439786ccd631c78fd641,scene-a6a87db5125846bda72ccfc9931ee153-11,radar,RADAR_LEFT_FRONT,sensor (per-sensor frame as stored; no ego/global transform applied),397,30,0.07556675062972293

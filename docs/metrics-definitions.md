@@ -189,3 +189,31 @@ it does not claim client approval of a new detection metric or evaluator.
 The stock detection evaluator and its class limits remain unchanged. Fabian's
 confirmation of any custom detection protocol, primary metric and TruckDrive
 matching criterion remains outstanding.
+
+### Saved-output comparison diagnostics
+
+The [22 September raw comparison](truckscenes-raw-comparison.md) additionally
+reports counts in a reference ego x-y plane, using the nearest ego pose to each
+annotated sample timestamp. Sensor clouds use the release calibration and
+acquisition ego poses to reach that reference. Its forward region is x>0,
+absolute ego azimuth <=30°, without an elevation filter. Denominators are all
+returns from the named channel inside the named region across the 80 mini_val
+samples. Raw box-centre counts use the same frame and report both full azimuth
+and forward region; they do not apply evaluator filters or imply box matching.
+These are new descriptive measurements; the stock evaluator remains unchanged.
+
+The [TruckScenes saved-output analysis](truckscenes-saved-comparison.md) adds
+descriptive diagnostics, not a new evaluation protocol:
+
+- **Per-sample >=150 m share:** returns in [150,400) and [400,infinity), divided
+  by all returns in that sample/channel. A zero denominator is undefined.
+- **Pooled share:** sum of distant returns divided by sum of available returns.
+  **Median sample share:** median of the defined per-sample shares, giving each
+  sample equal weight. Report sample counts alongside both.
+- **Exact retained/added/removed boxes:** multiset comparison of complete saved
+  box dictionaries within the same sample token; key ordering is ignored and
+  duplicate multiplicity is preserved. These count records, not unique objects,
+  correct detections or completed inference jobs.
+- **Eleven-class AP mean excluding traffic cones:** unweighted mean of the saved
+  per-class APs for the other eleven classes. This sensitivity diagnostic is
+  separate from the official twelve-class mAP and never replaces it.

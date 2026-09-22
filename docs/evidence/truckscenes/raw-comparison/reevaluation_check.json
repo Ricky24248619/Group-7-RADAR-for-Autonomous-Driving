@@ -1,0 +1,12 @@
+{
+  "one": {
+    "all_scoring_fields_match_saved_summary": true,
+    "mAP": 0.0,
+    "NDS": 0.0
+  },
+  "four": {
+    "all_scoring_fields_match_saved_summary": true,
+    "mAP": 0.004648002183176288,
+    "NDS": 0.0038295311318037304
+  }
+}
