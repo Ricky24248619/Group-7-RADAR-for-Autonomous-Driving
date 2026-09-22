@@ -98,8 +98,14 @@ both carry the coverage-not-detection caveat. Bands holding no returns are
 drawn as a hollow marker with a `0` label rather than being left blank, so an
 empty band cannot be mistaken for a missing measurement.
 
-Like the CSVs, the figures carry no date or software stamp, so regenerating
-them produces the same files.
+The figures carry no date or software stamp, so regenerating them **on the
+same machine** produces identical files and the repository does not churn.
+Unlike the CSVs, they are **not** byte-identical across operating systems:
+text is rendered by the host's own font stack, so the same script on macOS
+and on Linux produces visually identical figures of different byte length.
+Compare figures by regenerating on one machine, and compare the CSVs when
+comparing across machines. See
+[`ACCEPTANCE-CHECK.md`](ACCEPTANCE-CHECK.md).
 
 ## Limits
 
