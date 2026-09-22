@@ -1,5 +1,9 @@
 # TruckScenes comparison from saved outputs — 21 September 2026
 
+**22 September:** the [raw comparison](truckscenes-raw-comparison.md) now adds
+shared-frame measurements on all 80 mini_val samples and independently
+reproduces both official camera scores against the downloaded ground truth.
+
 This starts the comparison work while the integration PR is awaiting approval.
 It reanalyses committed outputs; it does not run a new detector, rescore ground
 truth or reproduce counts from raw sensor files. Source files are unchanged.
