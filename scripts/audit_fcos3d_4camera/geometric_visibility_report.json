@@ -1,0 +1,25 @@
+{
+  "method": "For every saved EXP-0010 predicted box, reprojected with the devkit's own boxes_to_sensor()+box_in_image() into each of the sample's 4 cameras. This is a geometric visibility PROXY, not per-call provenance -- EXP-0010's output does not record which camera produced each box, and overlapping camera frustums mean a box can legitimately reproject validly into more than one camera.",
+  "total_boxes_checked": 5247,
+  "per_camera_checked": {
+    "CAMERA_LEFT_FRONT": 5247,
+    "CAMERA_RIGHT_FRONT": 5247,
+    "CAMERA_LEFT_BACK": 5247,
+    "CAMERA_RIGHT_BACK": 5247
+  },
+  "per_camera_geometrically_valid": {
+    "CAMERA_LEFT_FRONT": 1775,
+    "CAMERA_RIGHT_FRONT": 1828,
+    "CAMERA_LEFT_BACK": 1031,
+    "CAMERA_RIGHT_BACK": 2441
+  },
+  "per_camera_valid_fraction": {
+    "CAMERA_LEFT_FRONT": 0.3383,
+    "CAMERA_RIGHT_FRONT": 0.3484,
+    "CAMERA_LEFT_BACK": 0.1965,
+    "CAMERA_RIGHT_BACK": 0.4652
+  },
+  "boxes_with_zero_valid_cameras": 5,
+  "boxes_with_zero_valid_cameras_fraction": 0.001,
+  "boxes_with_multiple_valid_cameras": 1815
+}
