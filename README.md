@@ -13,6 +13,11 @@ a future team.
 current models fail beyond ~150 m, and does 4D radar degrade less than LiDAR at
 that range? Reported by range band, never as one aggregate number.
 
+**Latest evidence audit (22 September):** [does LiDAR work better at long range?](docs/long-range-evidence-audit.md)
+checks scene/class/track sensitivity and discovers a recorded radar boundary near
+189.52 m. The supported claim concerns this dataset's geometric support, not a
+universal sensor or detector ranking.
+
 **Client briefing (22 September):** [paired radar/LiDAR results and next experiment](docs/client-comparison-brief.md)
 covers all 12 sensor channels, per-point LiDAR motion correction and 25,117 matched
 object observations. These are geometric support results, not detector accuracy.

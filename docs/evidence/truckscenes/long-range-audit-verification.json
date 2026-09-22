@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "checks": [
+    "All 2400 radar frames and 1145496 returns reconcile with channel histograms",
+    "All observed sensor ranges below 190 m",
+    "Long-range summary recomputed from per-object evidence",
+    "Scene and class summaries independently reconciled",
+    "Leave-one-scene-out differences recomputed",
+    "30 unique diagnostic samples and 1968 observations",
+    "All four hypothesis summary counts recomputed"
+  ],
+  "output_hash_method": "UTF-8 text normalized to LF; images hashed as raw bytes",
+  "output_sha256": {
+    "docs/evidence/truckscenes/long-range-audit/by_activity.csv": "f512d223fd95e5dac1c823dfc12bcec007709b7346830f3b5e3246fdd635c45c",
+    "docs/evidence/truckscenes/long-range-audit/by_class.csv": "3ff61e1615495f69ea0a97df959b7d66b40e488702b491d7e8649da794d0ab8e",
+    "docs/evidence/truckscenes/long-range-audit/by_scene.csv": "c3174b9fe9c3f101c30a715fffd5f9559ff740031c3600659b41134a0a3e053f",
+    "docs/evidence/truckscenes/long-range-audit/fine_ranges.csv": "09a39648e432eea7b4b29d550de3d81932c5e7198db72fc480e1d5e10e214505",
+    "docs/evidence/truckscenes/long-range-audit/leave_one_scene_out.csv": "930a850a671aa41e7446d28eabf42807794749a50029b2720adae2bff427a417",
+    "docs/evidence/truckscenes/long-range-audit/long_range_by_scene.png": "b9aa40e583afaac91f62d2b1aacf5ae31d972e13d01dade5b756de3bd04a96e3",
+    "docs/evidence/truckscenes/long-range-audit/sensitivity.csv": "23b6325341930f0decd56962e22803d1e195ff41a08f2fd180824baa32d19097",
+    "docs/evidence/truckscenes/long-range-audit/summary.json": "1e96542e506e4571f1fe31ac3d2c99ea4c50bd3404beee3937b7b31461fb8f22",
+    "docs/evidence/truckscenes/long-range-audit/track_support.csv": "fcaff0298f338bb0fb74058649a0eff57b96799775c692a58d04e5a59584e8c9",
+    "docs/evidence/truckscenes/preprocessing-audit/lidar_hypothesis_counts.csv": "30abd45dec2c21725e497f7b8aecc27ea78f544d707839b7759256f6e9a6db2b",
+    "docs/evidence/truckscenes/preprocessing-audit/lidar_hypothesis_summary.csv": "96c5766dc5bca8c943cf4d6752bf4fce41ce4b222492ab80926790a40468a01b",
+    "docs/evidence/truckscenes/preprocessing-audit/manifest.json": "1ad05da4bb54a3c78dd69df6611622e9894f12fae7686c3c21a14c45076d36b1",
+    "docs/evidence/truckscenes/preprocessing-audit/radar_range_histogram.csv": "0e3c779f14b8bc438507beb3b7c5b52a29c8f551eba020e506e3cc868fc41dfb",
+    "docs/evidence/truckscenes/preprocessing-audit/radar_sensor_ranges.csv": "a2e0b6ffa4fb3af8f297086cd4f739b00cae511a04a5aef13c9ed9e55c16201d",
+    "docs/evidence/truckscenes/preprocessing-audit/recorded_radar_range_boundary.png": "99704141244b84969d190df25a3956da56499ff53b5a8ec6c2cea2f525cd6b22"
+  },
+  "validation": {
+    "unit_suite": "171 passed with 3 optional-runtime skips",
+    "new_focused_tests": "4 passed in raw runtime",
+    "result_records": "17 valid",
+    "experiment_log_ids": "passed",
+    "figures": "Both new plots visually inspected"
+  }
+}

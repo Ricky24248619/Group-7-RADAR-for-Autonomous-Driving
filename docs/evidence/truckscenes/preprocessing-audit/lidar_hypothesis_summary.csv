@@ -1,0 +1,9 @@
+scope,method,observations,exact_matches,mean_absolute_count_difference,raw_positive,publisher_positive
+all,point_all_six,1968,327,220.4893292682927,1938,1968
+all,point_main_two,1968,323,193.0680894308943,1929,1968
+all,rigid_all_six,1968,165,222.92174796747966,1769,1968
+all,sector_mean_1deg_all_six,1968,336,220.45426829268294,1937,1968
+ge150,point_all_six,176,53,2.227272727272727,170,176
+ge150,point_main_two,176,56,2.085227272727273,170,176
+ge150,rigid_all_six,176,22,6.3352272727272725,123,176
+ge150,sector_mean_1deg_all_six,176,52,2.25,168,176

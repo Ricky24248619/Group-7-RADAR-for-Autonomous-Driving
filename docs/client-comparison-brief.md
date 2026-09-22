@@ -2,6 +2,12 @@
 
 22 September 2026 · Group 7 · Measured geometric support, not detector accuracy
 
+**Important follow-up:** the [deeper evidence audit](long-range-evidence-audit.md)
+found that all recorded radar returns end near **189.52 m from each sensor**.
+The LiDAR support advantage persists within 150–180 m and across scene/class/track
+checks, but the data does not establish a universal long-range sensor ranking.
+The maximum observed labelled object range is **229.42 m**, not 400 m.
+
 **Our current evidence does not justify replacing LiDAR with radar for long-range object coverage.** In the inspected TruckScenes mini data, LiDAR puts returns inside many more of the labelled objects. Radar may still contribute motion information and robustness; those benefits need a separate detector or tracking experiment. The labels were created using LiDAR, so this is a deliberately limited conclusion about this annotation population.
 
 ## Results we can present
