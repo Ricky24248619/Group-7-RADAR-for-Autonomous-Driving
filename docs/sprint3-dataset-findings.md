@@ -2,6 +2,11 @@
 
 Updated 22 September 2026. Analysis executed through Codex on the local CPU.
 
+**Follow-up:** the [client comparison briefing](client-comparison-brief.md) adds
+all 12 TruckScenes sensor channels, paired raw object counts and per-point LiDAR
+ego-motion correction. Use that briefing for the latest paired support results;
+the three-channel and publisher-count summaries below retain their original scope.
+
 We now have a larger, reproducible **sensor-coverage comparison within TruckScenes**,
 an object-level breakdown of its annotation point support, and a complete GOOSE
 range/semantic breakdown. TruckDrive's committed evidence has been reanalysed, but
