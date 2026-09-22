@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "id": "0013-truckscenes-full-mini-support",
+  "title": "TruckScenes full mini raw coverage and publisher object support",
+  "owner": "Ricky Yuen",
+  "date": "2026-09-22",
+  "status": "success",
+  "dataset": "MAN TruckScenes v1.2-mini",
+  "sensor_configuration": "RADAR_LEFT_FRONT, LIDAR_LEFT and LIDAR_TOP_FRONT separately; publisher per-box counts additionally aggregate radar sensors",
+  "annotation_schema": "All original released 3D-box classes for object support; stock detection mapping for separate raw box-centre plot",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "split": "All 400 mini samples across 10 scenes; characterisation includes training scenes, no detector scoring",
+  "environment": {
+    "os": "Windows",
+    "hardware": "Local CPU; no new GPU/model inference",
+    "python": "3.11.9",
+    "packages": {
+      "truckscenes-devkit": "1.2.0",
+      "numpy": "1.26.4",
+      "matplotlib": "3.8.4",
+      "pypcd4": "1.4.3",
+      "pyquaternion": "0.9.9"
+    }
+  },
+  "commands": [
+    "python scripts/compare_truckscenes_raw.py --data-root <data-root> --split mini",
+    "python scripts/truckscenes_object_support.py --data-root <data-root> --output-dir docs/evidence/truckscenes/object-support"
+  ],
+  "measurements": [
+    {
+      "name": "box observations",
+      "value": 25750,
+      "scope": "All released annotations; 1094 instance tokens, repeated over 400 samples"
+    },
+    {
+      "name": "radar-supported observations",
+      "value": 12060,
+      "scope": "Publisher num_radar_pts > 0; denominator 25750 LiDAR-supported released box observations"
+    },
+    {
+      "name": "radar returns at 150-400 m",
+      "value": 17014,
+      "scope": "RADAR_LEFT_FRONT, shared ego forward +/-30 degrees, denominator 147829 returns over 400 samples"
+    },
+    {
+      "name": "corner LiDAR points at 150-400 m",
+      "value": 73413,
+      "scope": "LIDAR_LEFT, same 400 samples and sector, denominator 9708528 points"
+    }
+  ],
+  "evidence": [
+    "docs/sprint3-dataset-findings.md",
+    "experiment-log/0012-dataset-range-and-support-comparison.md",
+    "docs/evidence/truckscenes/full-mini-coverage/manifest.json",
+    "docs/evidence/truckscenes/full-mini-coverage/aggregate_ranges.csv",
+    "docs/evidence/truckscenes/object-support/manifest.json",
+    "docs/evidence/truckscenes/object-support/class_range_support.csv"
+  ],
+  "notes": "Fusion is the controlled vocabulary for multi-modality characterisation, not point-cloud or detector fusion. Raw data reread locally; publisher object counts not independently recounted. Every released box has LiDAR support, so neither count is detector recall. Calibration/timing/annotation-population limitations are recorded in the report. Agent-run evidence, not human signoff."
+}

@@ -1,5 +1,10 @@
 # Dataset suitability — which question each dataset can answer
 
+**22 September evidence update:** see [the new comparison report](sprint3-dataset-findings.md)
+for the 400-sample TruckScenes run and 961-frame GOOSE analysis. TruckDrive data held
+by the pair below has not been reproduced on Ricky's machine: account access is
+granted, but the file download was blocked by Chrome.
+
 **Story DZ-S3-1 · Owner: Damien Zhang · Reviewer: Fariya Zehrin**
 **Started 18 September 2026 · Status: in progress.** Sections 1–7 are complete against
 current evidence. Section 8 is a live gap register. Section 9 lists what is still
@@ -46,12 +51,16 @@ below ever loses its denominator, that is a regression.
 | Domain | Off-road — forest, campus, grassland, urban fringe; four seasons | On-road — motorway, feeder road, city, terminal | On-road — long-range highway |
 | Primary task | Semantic segmentation (2D + 3D) | 3D object detection and tracking | 3D object detection |
 | Annotation geometry | Pointwise + pixelwise semantic/instance labels. **No 3D boxes** | Oriented 3D bounding boxes | 3D bounding boxes + lane lines |
-| Radar present | **Yes — 6 sensors, 360°. Raw only, not annotated** | Yes — 6 × Continental ARS 548 RDI, 4D | Yes — 7 long-range + 3 short-range |
-| Radar type | Smartmicro UMRR, 77/79 GHz. **Not described as 4D imaging**; elevation unverified | **4D** — range, azimuth, elevation, Doppler | ARS540 family, long-range |
-| LiDAR | 3 units (1 × 128-ch, 2 × 32-ch) | 6 units (2 × Pandar64, 4 × Ouster OS0) | 11–15 per the paper's comparison table |
-| Camera | 6 RGB/NIR + 1 thermal IR | 4 × Sekonix SF3324 | Present |
+| Radar present | **Yes — 6 sensors, 360°. Raw only, not annotated** | Yes — 6 × Continental ARS 548 RDI, 4D | Yes — 10 4D radars |
+| Radar type | Smartmicro UMRR, 77/79 GHz. **Not described as 4D imaging**; elevation unverified | **4D** — range, azimuth, elevation, Doppler | Continental 4D; released joint stream is named `conti542` |
+| LiDAR | 3 units (1 × 128-ch, 2 × 32-ch) | 6 units (2 × Pandar64, 4 × Ouster OS0) | 7 long-range FMCW + 3 short-range LiDARs |
+| Camera | 6 RGB/NIR + 1 thermal IR | 4 × Sekonix SF3324 | 11–15 cameras |
 | **Annotated modalities** | **RGB + LiDAR only.** Radar, NIR, thermal, INS released raw and unlabelled | Boxes shared across LiDAR and radar | Boxes over the sensor suite |
 | Max annotation range | Not published. **Measured ~±200 m** on val frames | **>230 m** | **±400 m** (paper) |
+
+TruckDrive sensor counts above were corrected against the
+[official release card](https://huggingface.co/datasets/Torc-Robotics/TruckDrive)
+on 22 September; the older table mixed camera and LiDAR counts.
 
 **The single most consequential row is "annotated modalities".** GOOSE ships radar, but
 not labelled radar. That one fact is why GOOSE cannot answer the project's headline

@@ -1,5 +1,11 @@
 # Dataset comparison and next experiment
 
+**22 September update:** [extended comparisons and next steps](sprint3-dataset-findings.md)
+now cover all 400 TruckScenes mini samples, per-box sensor support, all 961 GOOSE
+frames and committed TruckDrive evidence. TruckScenes raw data is now installed and
+both saved camera scores have been reproduced. The older proposal below is historical;
+TruckDrive file delivery and matched detector checkpoints remain open.
+
 **21 September update:** the [saved-output comparison](truckscenes-saved-comparison.md)
 now analyses TruckScenes per-sample coverage and the one-/four-camera submissions.
 The historical checkpoint search and proposed pilot below are dated evidence,
