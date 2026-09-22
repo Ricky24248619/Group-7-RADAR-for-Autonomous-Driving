@@ -109,16 +109,30 @@ comparing across machines. See
 
 ## Limits
 
-**The LiDAR channel is not representative of the dataset's LiDAR.**
-TruckScenes carries two different LiDAR models: Hesai Pandar64 units rated to
-roughly 200 m, and Ouster OS0 units rated to roughly 35 m at 10% reflectivity.
-Result record `0010-truckscenes-macos-devkit-feasibility` describes
-`LIDAR_TOP_FRONT` as an Ouster OS0. If that identification is correct, then the
-concentration of returns below 50 m largely reflects **which sensor was
-selected**, not what LiDAR can do on this truck. This comparison is therefore
-**channel-specific and must not be read as a modality-level result**.
-Confirming the sensor behind each LiDAR channel, and repeating the measurement
-on a Pandar64 channel, is the next step before any comparative claim is made.
+**The LiDAR channel measured here is a short-range blind-spot sensor.**
+This is now established rather than suspected — see
+[`sensor-inventory.csv`](sensor-inventory.csv).
+
+TruckScenes carries two LiDAR models: two Hesai Pandar64 rated 200 m at 10%
+reflectivity, and four Ouster OS0 rated 35 m. The paper places the Pandar64s
+in the two corner modules at roughly 2.2 m, and the Ousters three on the cabin
+roof "tilted downwards for blindspot coverage" at roughly 3.2 m plus one at
+the trailer rear. The mounting heights in the dataset's own
+`calibrated_sensor` table match that split exactly: `LIDAR_LEFT` at 2.191 m
+and `LIDAR_RIGHT` at 2.189 m sit in the corner modules beside the cameras and
+radars, while `LIDAR_TOP_FRONT`, `LIDAR_TOP_LEFT` and `LIDAR_TOP_RIGHT` sit at
+3.23–3.32 m on the roof.
+
+`LIDAR_TOP_FRONT` is therefore a roof Ouster: short range, angled down at the
+truck's blind spot. Its returns concentrating below 50 m is that sensor doing
+its job, **not** a finding about LiDAR range. **The comparison on this page is
+channel-specific and must not be read as a modality-level result.**
+
+The LiDAR to compare against `RADAR_LEFT_FRONT` is **`LIDAR_LEFT`**: the same
+corner module, the same side of the truck, a nearly identical origin, and
+rated to 200 m rather than 35. Repeating the measurement on that channel is
+the next step, and until it is done no radar-versus-LiDAR range claim should
+be made from this data.
 
 **One radar of six against one LiDAR of six.** These two channels were chosen
 to match the existing Sprint 2 figures and statistics, not because they are
