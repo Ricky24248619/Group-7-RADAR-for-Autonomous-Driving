@@ -1,5 +1,7 @@
 # Is LiDAR better at long range? Evidence audit
 
+**New follow-up:** [TruckDrive paired results to 399 m and the cross-dataset review](long-range-cross-dataset-review.md) supersede the earlier TruckDrive download blocker. This document retains the TruckScenes-specific results.
+
 22 September 2026 · Follow-up to [the paired client comparison](client-comparison-brief.md)
 
 **The defensible finding is narrower: on these TruckScenes mini keyframes, LiDAR provides substantially more geometric support inside the released long-range object boxes. That finding survives our subgroup checks. We have not established that LiDAR generally detects distant objects better than radar.**

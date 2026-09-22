@@ -1,5 +1,7 @@
 # Radar and LiDAR: what our TruckScenes experiment shows
 
+**New follow-up:** [TruckDrive paired results to 399 m and the cross-dataset review](long-range-cross-dataset-review.md) supersede the earlier TruckDrive download blocker. This document retains the TruckScenes-specific results.
+
 22 September 2026 · Group 7 · Measured geometric support, not detector accuracy
 
 **Important follow-up:** the [deeper evidence audit](long-range-evidence-audit.md)

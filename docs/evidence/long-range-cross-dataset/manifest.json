@@ -1,0 +1,10 @@
+{
+  "input_sha256_lf_normalized": {
+    "docs/evidence/truckscenes/paired-point-motion-support/object_counts.csv": "8bdc290998047cf55d7a4e707f7be3d6f7ac91c4df592dd82bee87d8824ee57d",
+    "docs/evidence/truckdrive/paired-scene-28-1/object_counts.csv": "cbef41974bde8bc3fa11c95df264ba869b0357196827cb59950aa15ef14cbf76",
+    "docs/evidence/truckdrive/paired-scene-28-1-acquisition-aligned/object_counts.csv": "becc8a1bd7749be4927b9551dd66b2b8bccba8ddf9e4422490bae55a00358fa5"
+  },
+  "band_semantics": "lower inclusive, upper exclusive; no empty bands reported",
+  "point_quantiles": "Across every labelled observation, including zero-point boxes",
+  "interpretation": "Separate descriptive datasets, never pooled; different hardware, annotation and processing protocols; no trained detector scores"
+}

@@ -1,0 +1,41 @@
+{
+  "date": "2026-09-22",
+  "raw_hashes_rechecked": true,
+  "static_objects": 8113,
+  "aligned_objects": 8043,
+  "five_calibration_transforms_match_publisher": true,
+  "publisher_commit": "a09217e877fe6bad821f9828240c4c1b64d29da1",
+  "independent_full_cloud_counts": {
+    "sync_keys": [
+      65,
+      263,
+      459
+    ],
+    "selection": "first five valid non-ego boxes by released order per frame",
+    "independent_count_comparisons": 120,
+    "passed": true
+  },
+  "paired_identity_and_margin_monotonicity": true,
+  "timing_summary_recomputed": true,
+  "portable_brief_embedded_images": 4,
+  "hashes_text_lf_normalized": {
+    "docs/evidence/long-range-cross-dataset/class_profiles.csv": "5523df11bd4490b8c1fee0d60156ed6d9152c5fe7121914e4c22ccd5a7e53930",
+    "docs/evidence/long-range-cross-dataset/cohort_profiles.csv": "9d2d9d3c5b560f0e30e8c9cecc6c0f01936361fcf40bbb466d9ae5b5d9f2cf84",
+    "docs/evidence/long-range-cross-dataset/distance_profiles.png": "0565397359b316f72d9d902ee73c479047ae8ff92fe478f88b9a919a7752924d",
+    "docs/evidence/long-range-cross-dataset/manifest.json": "5dfcfacfe65bbedde5883c5b6bb203e4ae2260cb897fbdd769254900b688c555",
+    "docs/evidence/long-range-cross-dataset/range_profiles.csv": "fbf698accc8f4a6ad2353d813087499dd736e07718b00d9f70c86abc78d595ad",
+    "docs/evidence/long-range-cross-dataset/timing_sensitivity.csv": "1e7fcac550678418b6f23f96dcddc2d7204c2f385dc6a80eed637a823698c624",
+    "docs/evidence/long-range-cross-dataset/truckdrive_vehicle_sensitivity.png": "07a8a81eaa0f6957cf2bb749791568d43ade05d21dae1d8c8208ba155be6e5a5",
+    "docs/evidence/truckdrive/paired-scene-28-1/download_manifest.json": "3319d5abbd75d561666c41f732d382c5ab2262cec148fd4376d5fcad4e40d2d5",
+    "docs/evidence/truckdrive/paired-scene-28-1/example_car_200_250m.png": "1db8b19580d671c6bb286e20813b618ec4c241c70b8f3ce3d17f396c50c4508d",
+    "docs/evidence/truckdrive/paired-scene-28-1/excluded_annotations.csv": "3986605c9cb83ea94eb8dee49aa98b4524f1c8ab7759ab6f9e22c66ea30ede27",
+    "docs/evidence/truckdrive/paired-scene-28-1/manifest.json": "e31ebb82f868adfddd3483c50606778a07e71509f792b2d39c3a969a2d75c78a",
+    "docs/evidence/truckdrive/paired-scene-28-1/object_counts.csv": "cbef41974bde8bc3fa11c95df264ba869b0357196827cb59950aa15ef14cbf76",
+    "docs/evidence/truckdrive/paired-scene-28-1/sensor_frames.csv": "8990ff4c700f76046d9089090a90fa6a4571de925f4ef276a6693887304f7d4e",
+    "docs/evidence/truckdrive/paired-scene-28-1-acquisition-aligned/example_car_200_250m.png": "c9e98eca44111a5e664e2b91278a8aeb6c82754e202d6f5abe6810b7abae34b3",
+    "docs/evidence/truckdrive/paired-scene-28-1-acquisition-aligned/excluded_annotations.csv": "faaab17843dc609eb8cb9bb9961938e9747b4dad214ffa7f6fb5370d1c0d0de8",
+    "docs/evidence/truckdrive/paired-scene-28-1-acquisition-aligned/manifest.json": "24e77dbb187a594e7db176118fbd94e896c6d098015bd6dfddc8554f0187cdba",
+    "docs/evidence/truckdrive/paired-scene-28-1-acquisition-aligned/object_counts.csv": "becc8a1bd7749be4927b9551dd66b2b8bccba8ddf9e4422490bae55a00358fa5",
+    "docs/evidence/truckdrive/paired-scene-28-1-acquisition-aligned/sensor_frames.csv": "29b9f15b1f493183299a82e5c283c47ce5a1d800b6a273481f4d2fa601fc2191"
+  }
+}
