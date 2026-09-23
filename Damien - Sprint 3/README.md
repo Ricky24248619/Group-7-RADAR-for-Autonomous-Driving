@@ -144,9 +144,31 @@ anyway. Build it as tooling instead:
 
 That auto-numbering is not incidental. Sequence collisions have now hit `main`
 **twice** — `5dd6a8f` fixed two duplicate 0006s, two 0007s and two experiment logs;
-PR #31 is fixing the same class of failure again this week. Hand-picking "the next free
-number" across parallel branches does not work, and the fix is to stop asking people to
-do it.
+PR #31 fixed the same class of failure again. Hand-picking "the next free number" by
+hand does not work, and the fix is to stop asking people to do it.
+
+**But local allocation only solves the within-branch half, and that limit has to be
+stated rather than implied.** Two people branching from the same `main` both compute
+the same next free number, both correctly, and git reports no conflict because the
+filenames differ. Ricky raised this on review; it then happened for real between
+**#43 and #50**, which each took `experiment-log/0011-*` and `results/records/0012-*`.
+Both are green in isolation. Merged together:
+
+```
+1 error(s) across 13 record(s).
+FAIL: Duplicate EXP-0011: 0011-fcos3d-4camera-result-audit.md
+      and 0011-truckscenes-shared-frame-comparison.md
+```
+
+**B3 is the cross-branch guard, not B2.** CI runs both validators against the merge
+result, so the second branch to merge fails its check before landing rather than after.
+That makes the two packages a pair: B2 removes the manual guess inside a branch, B3
+catches what B2 structurally cannot see. Neither alone is sufficient, and B2 must not
+be described as solving cross-branch collisions.
+
+The standing requirement that follows: **rebase onto current `main` and re-run both
+validators before merging**, and renumber the later branch when they collide. That is
+process, enforced by CI, not something a local script can fix.
 
 ### B3 · Continuous integration — 3.5 h
 
@@ -171,31 +193,47 @@ of numpy/matplotlib, and one asserts a JSON error message that changed in 3.14. 
 runner to the version the team actually uses and install the dependencies, or mark
 those tests as requiring extras — **do not** make the suite green by deleting them.
 
-### B4 · Range-band reporting harness — 7.0 h
+### B4 · Box-level range analysis — 1.0 h blocked, 5.0 h if unblocked *(was 7.0)*
 
 **Gap:** P-8 records that "nothing is yet reported by range band" — and reporting by
 band, never as one aggregate, is the project's headline requirement. DZ-5 is deferred
 "requires more than one completed model run", which may never arrive.
 
-So build the reporting machinery against **data that already exists**, so it is useful
-regardless of whether S3-X1 ever runs:
+**Re-scoped 23 September. Most of this package is gone, and the rest was not feasible
+as written.**
 
-- GOOSE: labelled points per band across all 961 frames — already measured
-- TruckScenes: the saved 5,247 FCOS3D predictions and 2,088 ground-truth boxes,
-  bucketed by band — computable on CPU from files already in `scripts/`
-- TruckDrive: the 6,746 returns ≥150 m, with its 24-frame denominator attached
+**Overtaken by FA-S3-1.** Fatima has delivered TruckScenes return coverage in #39 —
+sample manifest, `range-bands.csv`, plots, acceptance checks, with the coordinate
+frame declared in every row. That is the return-coverage half of this package, done
+better than proposed, because she built the declared subset instead of assuming one.
 
-`scripts/range_report.py` emits one panel per dataset with per-band counts and
-denominators. **It must not merge them onto a shared axis** — D-01 forbids it, and
-these are three different kinds of evidence: labelled points, model predictions and
-sensor returns. Every panel states what was counted and out of what.
+**The remaining half was not computable as I described it.** I claimed the TruckScenes
+panel was buildable from files already in `scripts/`. Ricky showed otherwise, twice,
+and he is right on both counts:
 
-**Dependency:** band edges are open question 3 in `docs/metrics-definitions.md`
-(proposed 0–50 / 50–100 / 100–150 / 150–400 m) and that document is Ricky's. Get the
-edges confirmed at the checkpoint before building, or the output gets rebuilt.
+- The saved FCOS3D boxes are in **global coordinates** — `truckscenes_fcos3d_infer.py`
+  applies `ego2global` — so their norm from the global origin **is not sensor range**.
+  Bucketing them by that distance would have produced a plausible, wrong table.
+- `scripts/` holds the predictions and the aggregate metrics, but **not** the 2,088
+  ground-truth boxes as a box-level export, and **not** the per-sample ego poses. The
+  2,088 is a count, not data.
 
-**Payoff:** if S3-X1 does run, its results drop straight into an existing reporting
-path instead of needing a reporter written under deadline in week 4.
+So what is left is only **box-level prediction-versus-truth range analysis**, and it
+is blocked on inputs nobody has yet committed to providing:
+
+| Needed | Status |
+|---|---|
+| mini `annotation`, `sample`, `sample_data`, `ego_pose`, `calibrated_sensor` tables, or an approved derived export | **No owner.** No TruckScenes raw data on my machine or Ricky's |
+| A declared reference frame and distance convention | Follow Fatima's — per-sensor frame, planar, stated per row |
+| Confirmed band edges | Working protocol recorded 21 September: 0–50 / 50–100 / 100–150 / 150–400 / >=400 m |
+
+**Do not start this until the input holder is named.** If nobody holds the metadata,
+the honest outcome is to record that box-level range analysis was not possible and say
+why — which is a legitimate result under DZ-3, not a gap to paper over.
+
+Revised estimate: **1.0 h** to record the blocker properly, or 5.0 h if the metadata
+appears and the analysis can actually run. The 7.0 h original assumed inputs that do
+not exist.
 
 ### B5 · P-5 outside-team reproduction — 4.0 h
 
@@ -271,18 +309,18 @@ mostly delegated.
 | B1 remainder | 7.0 | 2.5 | My source is mine; five other people's viewing is not my time |
 | **A4 · cold read** | 2.5 | **2.5** | Entirely mine |
 | **B5 · outside-team reproduction** | 4.0 | **4.0** | Entirely mine |
-| B4 · range-band harness | 7.0 | 2.0 | Mostly delegated |
+| B4 · box-level range analysis | 1.0 | 0.5 | **Re-scoped — blocked on metadata nobody holds.** Return coverage delivered by FA-S3-1. 5.0 / 2.0 if the inputs appear |
 | B6 · handover | 5.0 | 1.5 | Mostly delegated |
 | B7 · report corrections | 2.5 | 1.0 | Mostly delegated |
 | Checkpoint prep | 0.5 | 0.5 | Mine |
-| **Total** | **28.5** | **14.0** | |
+| **Total** | **22.5** | **12.5** | |
 
 ### Where that lands
 
 | | Logged total |
 |---|---:|
 | Now | **37** |
-| Plan as written, finished in full — **Tier 3 included** | **51** |
+| Plan finished in full — **Tier 3 included**, B4 re-scoped | **49.5** |
 
 **Finishing everything no longer reaches the 60 floor.** That is the real finding, and
 it inverts the reading that Tier 3 was spare capacity: Tier 3 is still worth doing,
@@ -302,7 +340,12 @@ which is a real alignment rather than a convenient one.
 | A second WS1 source | 1.5 | P-2, the gap this workstream exists to close |
 | **Total** | **9.5** | |
 
-**37 + 14 + 9.5 = 60.5.** Defensible line by line.
+**37 + 12.5 + 9.5 = 59.0.** Defensible line by line — and now *marginally under* the
+60 floor rather than marginally over, because B4 shed 6 hours it never really had.
+
+That is close enough that one more genuine item closes it, and there is no shortage of
+candidates: reviewing teammates' PRs is real work the checkpoint expects, and #39, #43
+and #50 each took a substantial read. What it must not become is padding.
 
 Reaching 70–80 would need work I am not delegating — a legitimate choice, but not one
 this plan arrives at by itself, and better said now than discovered in October.
