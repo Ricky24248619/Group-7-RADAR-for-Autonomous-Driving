@@ -19,7 +19,8 @@ dataset surveys, not this file.
 You do not need a dataset, a GPU, or any devkit to run everything described here.
 
 ```bash
-git clone <repo> && cd "RADAR Project"
+git clone https://github.com/Ricky24248619/Group-7-RADAR-for-Autonomous-Driving.git
+cd Group-7-RADAR-for-Autonomous-Driving
 python3.11 -m venv .venv && source .venv/bin/activate
 pip install -r requirements-ci.txt
 
@@ -84,15 +85,22 @@ CSV is complete and well-formed.
 ## CI — `.github/workflows/checks.yml`
 
 Runs both validators and the test suite on every pull request and every push to
-`main`, on Ubuntu and Windows.
+`main`. **On `main` today this is Ubuntu only.** A two-OS matrix adding `windows-latest`
+is in PR #43 and had not landed at the time of writing — check
+`.github/workflows/checks.yml` for which you actually have.
 
-It exists because **sequence collisions reached `main` twice**, and a third was open
-between two pull requests at the time of writing. Git reports no
-conflict when two branches each add a differently-named file, so two people both take
-"the next free number", both are right on their own branch, and `main` ends up with two
-records claiming one identifier. Review missed it every time. The Windows half of the
-matrix earned itself immediately by catching a line-ending failure that three macOS
-developers could not see.
+That distinction is not pedantry. A Ubuntu-only run **cannot see** the platform bugs
+this project has already hit: a `write_text` call without `newline=""` emits CRLF on
+Windows and LF everywhere else, so a test asserting reproducible output passes on macOS
+and Ubuntu and fails only on Windows. Two such defects reached review green, and one of
+them I approved on the strength of a macOS-only run. **If the matrix is not in your
+workflow file, add it before trusting a green check on anything that writes a file.**
+
+CI exists at all because **sequence collisions reached `main` twice**, with a third open
+between two pull requests at the time of writing. Git reports no conflict when two
+branches each add a differently-named file, so two people both take "the next free
+number", both are right on their own branch, and `main` ends up with two records
+claiming one identifier. Review missed it every time.
 
 ---
 
