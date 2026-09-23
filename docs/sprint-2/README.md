@@ -30,7 +30,7 @@ Reviewed against the repository on 23 September 2026.
 |---|---|---|---|
 | C-1 | *"Only ~1–6% of GOOSE points sit beyond 100 m"* (§4) | That is the **per-scenario** range from `findings-damien.md`. The split-level figure is **3.84% beyond 100 m and 1.10% beyond 150 m**, which is what the acceptance tests and Scope of Work both quote. It currently reads as a split-level claim beside split-level numbers | Damien |
 | C-2 | *"LiDAR samples substantially denser than paired radar in TruckScenes"* (§4) | True **for the channels compared**, and not generalisable. `LIDAR_TOP_FRONT` is a downward-tilted Ouster OS0 blind-spot unit, nominal 35 m at 10% reflectivity; the 200 m Hesai Pandar64 units are in the corner modules and were not used. Measured coverage bears this out — **165,520 of 165,588 LiDAR points fall inside 50 m**. Any range reading of this comparison is wrong | Fatima |
-| C-3 | Four-camera FCOS3D: *"cause of its low score remains unresolved"* | Still true, but narrower. The audit establishes 80/80 sample coverage with no missing channels, and round-trip geometric validity, so **missing data and gross coordinate error are excluded**. Height versus scene-domain content remains unseparated and needs a controlled check | Aiden |
+| C-3 | Four-camera FCOS3D: *"cause of its low score remains unresolved"* | **Still true, and stays as written.** What the audit adds is narrower than it first appears: all 80 sample metadata records contain the four camera channels, and 247 camera-tagged boxes from the four-sample rerun are visible in their source-camera frustums. Those checks do **not** establish metric coordinate accuracy, nor that every original inference call succeeded — a frustum test is blind to depth error, because scaling distance and extent together leaves the projection unchanged. Height, preprocessing and scene-domain causes all remain unresolved. Treat as **provisional** while PR #50 is under review | Aiden |
 | C-4 | Four-camera FCOS3D result | **5,247 saved boxes across 80 mini_val samples, mAP 0.0046, NDS 0.0038.** A scored camera-only transfer experiment, not a matched radar/LiDAR benchmark | Aiden |
 | C-5 | GOOSE PTv3 | **10 of 961 frames** under a modified configuration. The ~5 hour figure extrapolates processing-loop timing and **excludes loading**, so it is a lower bound, not a measured runtime or a proven bound | Ricky |
 | C-6 | GOOSE validation split size | The report quotes **961 frames**; the published split is **960**. Our 961 is internally consistent — the eight scenario counts sum to it exactly — but the one-frame difference is unexplained. Needs a local-versus-published file inventory comparison, **which requires the GOOSE data** (on Ricky's machine, not Damien's) | Ricky |
@@ -57,8 +57,8 @@ Not corrections — new evidence the final version should cite rather than omit:
   with PR #34; not linked here until it is on `main`
 - TruckScenes range-band coverage with a declared sample manifest, per-sensor
   coordinate frame stated per row, and its channel caveat
-- The four-camera result audit, and CI that runs both validators plus the test suite
-  on every pull request
+- The four-camera result audit (provisional — PR #50 still under review), and CI that
+  runs both validators plus the test suite on every pull request
 
 ### Evidence
 
