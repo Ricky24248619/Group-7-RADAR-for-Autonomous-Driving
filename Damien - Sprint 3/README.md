@@ -223,17 +223,23 @@ is blocked on inputs nobody has yet committed to providing:
 
 | Needed | Status |
 |---|---|
-| mini `annotation`, `sample`, `sample_data`, `ego_pose`, `calibrated_sensor` tables, or an approved derived export | **No owner.** No TruckScenes raw data on my machine or Ricky's |
+| mini `annotation`, `sample`, `sample_data`, `ego_pose`, `calibrated_sensor` tables, or an approved derived export | **Holder found — Ricky.** He has since obtained v1.2-mini and published raw-data analyses in #46/#49. This row said "no owner" and is now out of date |
 | A declared reference frame and distance convention | Follow Fatima's — per-sensor frame, planar, stated per row |
 | Confirmed band edges | Working protocol recorded 21 September: 0–50 / 50–100 / 100–150 / 150–400 / >=400 m |
 
-**Do not start this until the input holder is named.** If nobody holds the metadata,
-the honest outcome is to record that box-level range analysis was not possible and say
-why — which is a legitimate result under DZ-3, not a gap to paper over.
+**The blocker has cleared, and the package has probably been overtaken with it.**
+Ricky's #49 already measures paired geometric support on raw data to 399 m and audits
+the TruckScenes boundary at ~189.52 m. Before starting anything here, check #46 and #49
+for what is already answered — duplicating it would be worse than dropping it.
 
-Revised estimate: **1.0 h** to record the blocker properly, or 5.0 h if the metadata
-appears and the analysis can actually run. The 7.0 h original assumed inputs that do
-not exist.
+The live question is no longer "can this be computed" but "does anyone still need it".
+Settle that with Ricky rather than assuming, and if the answer is no, record the
+package as overtaken with a pointer to the work that replaced it. That is a legitimate
+DZ-3 outcome, not a gap.
+
+Revised estimate: **1.0 h** to confirm overlap with #49 and record the outcome, or 5.0 h
+if a genuinely distinct box-level analysis survives that check. The 7.0 h original
+assumed inputs that did not exist at the time.
 
 ### B5 · P-5 outside-team reproduction — 4.0 h
 
@@ -400,9 +406,9 @@ Team checkpoint: review, handover, rehearse explanations.
 - B6 HANDOVER.md — 5.0 h
 - B7 report corrections — 2.5 h (drop first if week 4 compresses)
 
-**Planned total: 49.5 h** — 49.0 h of task work plus 0.5 h checkpoint prep — **→ 79.5 h
-cumulative.** At the top of the 70–80 target, with Tier 3 as buffer rather than as a
-requirement.
+~~**Planned total: 49.5 h → 79.5 h cumulative.**~~ **Superseded by §4.** That figure
+treated estimated effort as logged time. The corrected projection is **49.5 logged**
+finishing the plan in full, or **59.0** with the §4 additions.
 
 ---
 

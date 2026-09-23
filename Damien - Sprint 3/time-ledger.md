@@ -23,13 +23,14 @@ Every row names a task from [`README.md`](README.md) and links the output it pro
 | Preferred | 70–80 |
 | Est. effort, plan as written | 49.5 |
 | **Logged** so far | **7.0** |
-| Projected logged total, plan finished in full | **51** |
-| With the §4 additions | **60.5** |
+| Projected logged total, plan finished in full | **49.5** |
+| With the §4 additions | **59.0** |
 
 **Cumulative: 37.0 · remaining to the 60 floor: 23.0**
 
-Finishing the plan in full, Tier 3 included, projects to ~51. The §4 additions
-close the rest. See §4 for why the original 79.5 was the wrong unit.
+Finishing the plan in full, Tier 3 included, projects to **49.5**. The §4 additions
+close the rest, reaching **59.0** — marginally under the floor, because B4 shed six
+hours it never really had. See §4 for why the original 79.5 was the wrong unit.
 
 Reconcile against the team timesheet weekly. Note that the Week 7 cumulative sheet and
 its break-plus-Week-7 column are different views of the same records and must not be
@@ -71,7 +72,7 @@ Overruns get logged at their real length and the variance noted, not trimmed to 
 | W2 · 21–27 Sep | — | | | Re-plan at the checkpoint: W2's planned work (A1, A2, B1, B2) already landed in W1. A4 and B5 move here |
 | W3 · 28 Sep–4 Oct | — | | | Re-plan at the checkpoint. Candidates: B4, B1 entries, review depth |
 | W4 · 5–12 Oct | — | | | Re-plan at the checkpoint. Candidates: B6, B7, client contact |
-| **Total** | 49.5 est | | | Target 60.5 logged |
+| **Total** | 22.5 est remaining | | | Target 59.0 logged; 60 floor needs one more genuine item |
 
 At each checkpoint, compare actual against estimate, explain the variance, and cut
 optional scope early rather than late — Tier 3 (B6, B7) is the designated drop-zone.
