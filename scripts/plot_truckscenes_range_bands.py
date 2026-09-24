@@ -19,7 +19,7 @@ Two figures, because the two questions need different scales:
 
 WHAT THE FIGURES SHOW: how many sensor returns fall in each distance band.
 That is coverage. It is not object-detection accuracy, and the denser
-modality is not the better one. No detection model has been run.
+modality is not the better one. These figures use no detection model.
 """
 
 from __future__ import annotations
@@ -133,17 +133,16 @@ def subtitle_for(series_by_modality):
         denominator = "no data" if series["denominator"] is None else f"{series['denominator']:,}"
         # The channel name already says which modality it is, so naming both
         # would read "RADAR RADAR_LEFT_FRONT".
-        parts.append(f"{series['channel']}: {denominator} returns")
-    samples = series_by_modality[PLOT_ORDER[0]]["sample_count"]
-    return f"{samples} matched samples  ·  " + "  ·  ".join(parts)
+        parts.append(f"{series['channel']}: {denominator} returns ({series['sample_count']} samples)")
+    return "  ·  ".join(parts)
 
 
 FOOTER = (
     "Counts are sensor returns per distance band — coverage, not detection accuracy. "
-    "No detection model has been run.\n"
+    "These figures use no detection model.\n"
     "Range is measured in each sensor's own frame, so the two modalities are measured "
     "from different positions on the truck.\n"
-    "One radar channel and one LiDAR channel out of six each; see RANGE-BANDS.md for limits."
+    "One radar channel versus a downward-tilted Ouster OS0 blind-spot LiDAR; different fields of view."
 )
 
 
@@ -326,9 +325,8 @@ def main():
     except PlotError as error:
         raise SystemExit(str(error))
 
-    samples = series_by_modality[PLOT_ORDER[0]]["sample_count"]
     print(f"plotted {len(rows)} CSV row(s) from {args.csv.name}")
-    print(f"{samples} matched sample(s); no dataset was read")
+    print("Per-modality sample counts are in the captions; no dataset was read")
     for path in paths:
         print(path)
 

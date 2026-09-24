@@ -21,10 +21,11 @@ run. The stock TruckScenes v1.2.0 evaluator produces no detection score beyond
 
 ## Bands
 
-Default edges are 0 / 50 / 100 / 150 / 400 m, the set proposed in
-`docs/metrics-definitions.md`. **That decision is still open** — see
-[`RANGE-BANDS-OPEN-QUESTION.md`](RANGE-BANDS-OPEN-QUESTION.md) — so the edges
-are a command-line option, not a constant:
+The 21 September working coverage protocol in `docs/metrics-definitions.md`
+uses 0 / 50 / 100 / 150 / 400 m, with a final >=400 m band. Lower edges are
+inclusive and upper edges exclusive. These are descriptive coverage bins;
+custom detection scoring still needs approval. Alternative edges remain an
+explicit command-line option:
 
 ```bash
 python scripts/truckscenes_range_bands.py --band-edges 0,25,50,80,100,150
@@ -98,16 +99,22 @@ both carry the coverage-not-detection caveat. Bands holding no returns are
 drawn as a hollow marker with a `0` label rather than being left blank, so an
 empty band cannot be mistaken for a missing measurement.
 
-Like the CSVs, the figures carry no date or software stamp, so regenerating
-them produces the same files.
+The figures carry no date or software stamp, so regenerating them **on the
+same machine** produces identical files and the repository does not churn.
+Unlike the CSVs, they are **not** byte-identical across operating systems:
+text is rendered by the host's own font stack, so the same script on macOS
+and on Linux produces visually identical figures of different byte length.
+Compare figures by regenerating on one machine, and compare the CSVs when
+comparing across machines. See
+[`ACCEPTANCE-CHECK.md`](ACCEPTANCE-CHECK.md).
 
 ## Limits
 
 **The LiDAR channel is not representative of the dataset's LiDAR.**
 TruckScenes carries two different LiDAR models: Hesai Pandar64 units rated to
 roughly 200 m, and Ouster OS0 units rated to roughly 35 m at 10% reflectivity.
-Result record `0010-truckscenes-macos-devkit-feasibility` describes
-`LIDAR_TOP_FRONT` as an Ouster OS0. If that identification is correct, then the
+The source paper, Figure 2 and section 3.1, identifies the top-front unit
+as one of the downward-tilted Ouster roof sensors. Therefore the
 concentration of returns below 50 m largely reflects **which sensor was
 selected**, not what LiDAR can do on this truck. This comparison is therefore
 **channel-specific and must not be read as a modality-level result**.

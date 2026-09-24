@@ -187,7 +187,7 @@ def write_csv(rows, path):
 def write_json(rows, path, version=VERSION):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
-        json.dumps(manifest_document(rows, version), indent=2) + "\n", encoding="utf-8"
+        json.dumps(manifest_document(rows, version), indent=2) + "\n", encoding="utf-8", newline="\n"
     )
 
 
