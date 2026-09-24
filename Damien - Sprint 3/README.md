@@ -88,7 +88,12 @@ Every claim links to a survey, experiment log or saved record. Unresolved gaps g
 recorded as gaps rather than smoothed over. Run both validators after integrating any
 new records.
 
-### A4 · Cold read — 2.5 h
+### A4 · Cold read — 2.5 h · **protocol ready**
+
+**Ready to run:** [`docs/cold-read-protocol.md`](../docs/cold-read-protocol.md) — ten
+questions in two parts, a recording form, and the rule that matters most (say nothing
+while they read). 30 minutes with a reader plus 30 to write up. All that is missing is
+a name and a time.
 
 The story's real acceptance condition: **an outside-pair reader explains the GOOSE
 figure and its limitations**. Show the figure with no narration, record what they say,
@@ -193,55 +198,32 @@ of numpy/matplotlib, and one asserts a JSON error message that changed in 3.14. 
 runner to the version the team actually uses and install the dependencies, or mark
 those tests as requiring extras — **do not** make the suite green by deleting them.
 
-### B4 · Box-level range analysis — 1.0 h blocked, 5.0 h if unblocked *(was 7.0)*
+### B4 · Box-level range analysis — ~~closed 24 September~~
 
-**Gap:** P-8 records that "nothing is yet reported by range band" — and reporting by
-band, never as one aggregate, is the project's headline requirement. DZ-5 is deferred
-"requires more than one completed model run", which may never arrive.
+**Closed as overtaken. No work remains.** Recording why, because a package that
+quietly disappears is indistinguishable from one that was forgotten.
 
-**Re-scoped 23 September. Most of this package is gone, and the rest was not feasible
-as written.**
+Two things happened. FA-S3-1 delivered TruckScenes return coverage with a declared
+sample manifest and the coordinate frame stated per row — better than B4 proposed,
+because Fatima built the subset rather than assuming one. Then EXP-0014 found the
+recorded radar boundary at **~189.52 m**, which makes box-level analysis at 200–400 m
+impossible on that dataset regardless of tooling: there are no returns out there to
+bucket.
 
-**Overtaken by FA-S3-1.** Fatima has delivered TruckScenes return coverage in #39 —
-sample manifest, `range-bands.csv`, plots, acceptance checks, with the coordinate
-frame declared in every row. That is the return-coverage half of this package, done
-better than proposed, because she built the declared subset instead of assuming one.
+So the remaining box-level work would only have addressed the **under-190 m** band,
+which nobody has asked for and which does not serve D-04. Recording the package as
+overtaken, with pointers to EXP-0014, EXP-0017 and EXP-0018, is the DZ-3 outcome. The
+gap register entry G-5 in `docs/dataset-suitability.md` says the same.
 
-**The remaining half was not computable as I described it.** I claimed the TruckScenes
-panel was buildable from files already in `scripts/`. Ricky showed otherwise, twice,
-and he is right on both counts:
+**Effort released: the full 7.0 h original, or 1.0 h against the re-scope.**
 
-- The saved FCOS3D boxes are in **global coordinates** — `truckscenes_fcos3d_infer.py`
-  applies `ego2global` — so their norm from the global origin **is not sensor range**.
-  Bucketing them by that distance would have produced a plausible, wrong table.
-- `scripts/` holds the predictions and the aggregate metrics, but **not** the 2,088
-  ground-truth boxes as a box-level export, and **not** the per-sample ego poses. The
-  2,088 is a count, not data.
+### B5 · P-5 outside-team reproduction — 4.0 h · **protocol ready**
 
-So what is left is only **box-level prediction-versus-truth range analysis**, and it
-is blocked on inputs nobody has yet committed to providing:
-
-| Needed | Status |
-|---|---|
-| mini `annotation`, `sample`, `sample_data`, `ego_pose`, `calibrated_sensor` tables, or an approved derived export | **Holder found — Ricky.** He has since obtained v1.2-mini and published raw-data analyses in #46/#49. This row said "no owner" and is now out of date |
-| A declared reference frame and distance convention | Follow Fatima's — per-sensor frame, planar, stated per row |
-| Confirmed band edges | Working protocol recorded 21 September: 0–50 / 50–100 / 100–150 / 150–400 / >=400 m |
-
-**The blocker has cleared, and the package has probably been overtaken with it.**
-Ricky's #49 already measures paired geometric support on raw data to 399 m and audits
-the TruckScenes boundary at ~189.52 m. Before starting anything here, check #46 and #49
-for what is already answered — duplicating it would be worse than dropping it.
-
-The live question is no longer "can this be computed" but "does anyone still need it".
-Settle that with Ricky rather than assuming, and if the answer is no, record the
-package as overtaken with a pointer to the work that replaced it. That is a legitimate
-DZ-3 outcome, not a gap.
-
-Revised estimate: **1.0 h** to confirm overlap with #49 and record the outcome, or 5.0 h
-if a genuinely distinct box-level analysis survives that check. The 7.0 h original
-assumed inputs that did not exist at the time.
-
-### B5 · P-5 outside-team reproduction — 4.0 h
+**Ready to run:** [`docs/outside-reproduction-protocol.md`](../docs/outside-reproduction-protocol.md)
+— self-contained instructions and a recording form. The target needs **no dataset**:
+regenerating the range-band figures from the committed CSV, verified beforehand to
+produce **byte-identical** output. About 15 minutes for the reproducer. All that is
+missing is a person who is not in this unit.
 
 **Gap:** P-5 is "partly met" — Ricky reproduced my macOS workflow on Windows, but both
 of us are team members, so *"reproduction by an outside-team reader remains
