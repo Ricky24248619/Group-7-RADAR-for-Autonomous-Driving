@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "id": "0020-truckdrive-multiscene-long-range-support",
+  "title": "Five-scene TruckDrive vehicle geometric support at 200-400 m",
+  "owner": "Ricky Yuen",
+  "date": "2026-09-24",
+  "status": "success",
+  "dataset": "TruckDrive official mini scenes 28_1, 28_6, 28_12, 28_18, 28_24",
+  "sensor_configuration": "Released joint radar, joint Aeva FMCW LiDAR and three Ouster streams; static and acquisition-aligned sensitivity",
+  "annotation_schema": "Released velodyne-frame oriented cuboids; invalid 3D and ego annotations excluded",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "split": "40 timestamp-spaced frames per scene; 190 frames in matched timing comparison",
+  "environment": {
+    "os": "Windows",
+    "hardware": "Local CPU; no new inference",
+    "python": "3.11.9",
+    "packages": {
+      "numpy": "1.26.4",
+      "scipy": "1.13.1"
+    }
+  },
+  "commands": [
+    "python scripts/truckdrive_paired_support.py --scene-root <dataset>/<scene> --frame-count 40 --output-dir <evidence>/<scene>/static",
+    "python scripts/truckdrive_paired_support.py --scene-root <dataset>/<scene> --frame-count 40 --align-ego --output-dir <evidence>/<scene>/aligned",
+    "python scripts/truckdrive_multiscene_summary.py --evidence-root docs/evidence/truckdrive-multiscene --scenes scene_28_1 scene_28_6 scene_28_12 scene_28_18 scene_28_24 --output-dir docs/evidence/truckdrive-multiscene/summary"
+  ],
+  "measurements": [
+    {
+      "name": "Matched vehicle observations",
+      "value": 504,
+      "scope": "200 <= range <400 m, four eligible scenes of five selected, repeated tracks"
+    },
+    {
+      "name": "Static LiDAR geometric support",
+      "value": 80.35714285714286,
+      "unit": "percent",
+      "scope": "Exact-box >=1 return on matched 200-400 m vehicle observations"
+    },
+    {
+      "name": "Static radar geometric support",
+      "value": 37.5,
+      "unit": "percent",
+      "scope": "Same exact boxes and observations as LiDAR"
+    }
+  ],
+  "evidence": [
+    "docs/truckdrive-multiscene-result.md",
+    "docs/truckdrive-multiscene-protocol.md",
+    "docs/evidence/truckdrive-multiscene/summary/summary.csv",
+    "docs/evidence/truckdrive-multiscene/verification.json",
+    "experiment-log/0017-truckdrive-multiscene-support.md"
+  ],
+  "notes": "Completed selected-scene geometric-support study, not detector accuracy or universal modality superiority. Both timing variants and box/threshold/track sensitivities retained; forward/cohort exceptions reported. No new model inference."
+}

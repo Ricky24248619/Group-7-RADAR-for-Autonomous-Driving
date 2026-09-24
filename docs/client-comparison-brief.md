@@ -1,5 +1,7 @@
 # Radar and LiDAR: what our TruckScenes experiment shows
 
+**24 September follow-up:** [five-scene TruckDrive result](truckdrive-multiscene-result.md) extends the pilot with four additional scenes and reports the qualified 200-400 m vehicle-support conclusion.
+
 **New follow-up:** [TruckDrive paired results to 399 m and the cross-dataset review](long-range-cross-dataset-review.md) supersede the earlier TruckDrive download blocker. This document retains the TruckScenes-specific results.
 
 22 September 2026 · Group 7 · Measured geometric support, not detector accuracy

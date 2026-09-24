@@ -62,6 +62,15 @@ def valid_box(box):
                 and not (values[:3] == -1000).any())
 
 
+def select_annotation_syncs(annotations, count):
+    ordered=sorted(annotations,key=lambda sync:annotations[sync][0])
+    if count is None or count>=len(ordered):
+        return ordered
+    if count<2:
+        raise ValueError('Select at least two annotation frames')
+    return [ordered[round(i*(len(ordered)-1)/(count-1))] for i in range(count)]
+
+
 def annotation_pose_interpolator(annotations):
     """Interpolate released ego poses only; never use object trajectories."""
     from scipy.spatial.transform import Rotation, Slerp
@@ -94,6 +103,7 @@ def main():
     parser.add_argument('--scene-root', type=Path, required=True)
     parser.add_argument('--output-dir', type=Path, default=Path('docs/evidence/truckdrive/paired-scene-28-1'))
     parser.add_argument('--align-ego', action='store_true',help='Sensitivity: correct each joint scan by its filename acquisition time using released annotation ego poses')
+    parser.add_argument('--frame-count',type=int,help='Select evenly spaced annotation timestamps before sensor matching')
     args = parser.parse_args()
     root, output = args.scene_root, args.output_dir
     output.mkdir(parents=True, exist_ok=True)
@@ -107,7 +117,8 @@ def main():
                           for name in ('forward_center','sideward_left','sideward_right'))
     sensors = [(mode, folder, frame_index(root/folder), calibration_transform(calibration, node), dtype, columns)
                for mode, folder, node, dtype, columns in specifications]
-    common = sorted(set(annotations).intersection(*(set(s[2]) for s in sensors)))
+    selected=select_annotation_syncs(annotations,args.frame_count)
+    common = sorted(set(selected).intersection(*(set(s[2]) for s in sensors)))
     if not common:
         raise ValueError('No common sync keys across all sensors and annotations')
     timing_excluded = []
@@ -156,7 +167,7 @@ def main():
             size = np.array([box[k] for k in ('w','l','h')])
             rotation = Rotation.from_euler('z',box['yaw']).as_matrix()
             if not example_saved and box['class-id']=='Vehicle-Passenger' and 200<=np.hypot(*center[:2])<250:
-                plot_example(clouds,center,rotation,size,sync,output)
+                plot_example(clouds,center,rotation,size,sync,output,args.align_ego)
                 example_saved = True
             for margin in (0.0,0.5):
                 counts = {}
@@ -173,8 +184,9 @@ def main():
     write_csv(output/'object_counts.csv',rows)
     write_csv(output/'sensor_frames.csv',frames)
     write_csv(output/'excluded_annotations.csv',exclusions)
-    manifest = dict(dataset='TruckDrive official mini, scene_28_1', paired_frames=len(common),
+    manifest = dict(dataset=f'TruckDrive official mini, {root.name}', paired_frames=len(common),
         available_annotation_frames=len(annotations), unmatched_annotation_syncs=sorted(set(annotations)-set(common)),
+        selected_annotation_syncs=selected, missing_sensor_syncs=sorted(set(selected)-set(common)-set(timing_excluded)),
         alignment='filename acquisition-pose correction' if args.align_ego else 'static calibration',
         pose_extrapolation_excluded_syncs=timing_excluded,
         valid_object_observations=len(rows)//2, exclusions=dict((reason,sum(r['reason']==reason for r in exclusions))
@@ -193,7 +205,7 @@ def main():
     print(json.dumps({k:v for k,v in manifest.items() if k not in ('input_sha256','transforms')},indent=2))
 
 
-def plot_example(clouds,center,rotation,size,sync,output):
+def plot_example(clouds,center,rotation,size,sync,output,align_ego=False):
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -213,7 +225,8 @@ def plot_example(clouds,center,rotation,size,sync,output):
                    title=mode.title()+(' top view' if b==1 else ' side view'))
             ax.set_aspect('equal');ax.grid(alpha=.2)
     fig.suptitle(f'First passenger-car box at 200-250 m: sync {sync}, range {np.hypot(*center[:2]):.1f} m')
-    fig.text(.015,.02,'Black rectangle: released annotation. Points: released scans, statically calibrated.\n'
+    alignment = 'acquisition-pose correction hypothesis' if align_ego else 'static calibration'
+    fig.text(.015,.02,f'Black rectangle: released annotation. Points: released scans, {alignment}.\n'
              'Deterministic example, not representative accuracy; nearby returns may belong to background.',fontsize=10)
     fig.tight_layout(rect=(0,.085,1,.95));fig.savefig(output/'example_car_200_250m.png',dpi=150);plt.close(fig)
 

@@ -1,5 +1,7 @@
 # Radar versus LiDAR at long range: what the evidence can answer
 
+**24 September follow-up:** [five-scene TruckDrive result](truckdrive-multiscene-result.md) extends the pilot with four additional scenes and reports the qualified 200-400 m vehicle-support conclusion.
+
 22 September 2026 · Group 7 · Follow-up to the [TruckScenes audit](long-range-evidence-audit.md)
 
 **There is no single long-range winner established by our evidence.** A sensor can return a signal from a distant vehicle while providing too little spatial detail for a model to estimate its shape accurately. Conversely, a sensor can provide detailed geometry when it sees an object, but fail under a different recording configuration or environment. We need to measure these separately.
