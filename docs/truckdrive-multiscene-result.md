@@ -139,6 +139,10 @@ Raw data remains outside Git. The [summary CSV](evidence/truckdrive-multiscene/s
 
 ## Decision and next experiment
 
+**Detector follow-up:** the [checkpoint compatibility audit](detector-compatibility-decision.md)
+downloaded a published radar/LiDAR model pair, but their embedded input grids end
+near 70 m. The 200–400 m detector comparison remains open pending compatible models.
+
 Close the descriptive long-range geometric-support comparison with the qualified result above and present it to the client. More copies of the same point-count experiment are not a substitute for testing perception performance.
 
 The next substantive claim should be whether that geometric-support advantage translates into vehicle detection/localization at 200-300 m. First verify numerical coordinate conversion and establish one runnable LiDAR detector and one radar detector with compatible labels and evaluation. If matched inference is not feasible on the available hardware, keep the result explicitly at the sensor-support level. Independent-dataset replication (for example L-RadSet once accessible) would strengthen generalisation; it is not completed here.
