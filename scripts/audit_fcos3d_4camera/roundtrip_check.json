@@ -1,0 +1,22 @@
+{
+  "method": "For each camera-tagged rerun box, the devkit reprojects it into its recorded source camera and checks image-frustum visibility. The rerun boxes use the inference script conversion helpers. Visibility does not establish metric depth, dimensions or calibration accuracy, and cannot exclude shared preprocessing errors.",
+  "per_camera_total": {
+    "CAMERA_LEFT_FRONT": 62,
+    "CAMERA_RIGHT_FRONT": 46,
+    "CAMERA_LEFT_BACK": 61,
+    "CAMERA_RIGHT_BACK": 78
+  },
+  "per_camera_valid": {
+    "CAMERA_LEFT_FRONT": 62,
+    "CAMERA_RIGHT_FRONT": 46,
+    "CAMERA_LEFT_BACK": 61,
+    "CAMERA_RIGHT_BACK": 78
+  },
+  "per_camera_valid_fraction": {
+    "CAMERA_LEFT_FRONT": 1.0,
+    "CAMERA_RIGHT_FRONT": 1.0,
+    "CAMERA_LEFT_BACK": 1.0,
+    "CAMERA_RIGHT_BACK": 1.0
+  },
+  "invalid_examples": []
+}

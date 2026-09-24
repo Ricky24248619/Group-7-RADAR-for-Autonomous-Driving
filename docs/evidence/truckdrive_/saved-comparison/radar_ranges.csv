@@ -1,0 +1,7 @@
+band_m,returns,denominator,percent,selected_frames,source
+0–25 m,13717,71206,19.263826082071734,24,TruckDrive - Kelsey/dataset-statistics.md
+25–50 m,22264,71206,31.267028059433194,24,TruckDrive - Kelsey/dataset-statistics.md
+50–80 m,16396,71206,23.026149481785243,24,TruckDrive - Kelsey/dataset-statistics.md
+80–100 m,5356,71206,7.52183804735556,24,TruckDrive - Kelsey/dataset-statistics.md
+100–150 m,6727,71206,9.447237592337725,24,TruckDrive - Kelsey/dataset-statistics.md
+150 m+,6746,71206,9.473920737016543,24,TruckDrive - Kelsey/dataset-statistics.md

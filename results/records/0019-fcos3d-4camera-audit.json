@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "id": "0019-fcos3d-4camera-audit",
+  "title": "EXP-0010 camera metadata coverage and source-camera visibility audit; metric geometry and low-score cause remain open",
+  "owner": "Aiden Blampain",
+  "date": "2026-09-22",
+  "status": "success",
+  "dataset": "MAN TruckScenes v1.2-mini, mini_val split (2 scenes, 80 samples)",
+  "sensor_configuration": "All 4 TruckScenes cameras for coverage/visibility checks; 4 samples x 4 cameras (16 calls) for the instrumented rerun and round-trip check",
+  "annotation_schema": "TruckScenes 12-class detection taxonomy",
+  "task_type": "3d-object-detection",
+  "modality": "camera",
+  "split": "mini_val, full 80 samples for checks 1-2; split indices 0/20/40/60 for checks 3-4",
+  "model": "FCOS3D (mmdetection3d 1.4.0), same nuScenes-pretrained checkpoint as EXP-0006/EXP-0010, zero-shot",
+  "conditions": "unknown -- no weather/scenario filtering applied",
+  "environment": {
+    "os": "Windows 11 Home 10.0.26200",
+    "hardware": "AMD Ryzen 7 5700U with Radeon Graphics -- no NVIDIA GPU, CPU-only inference",
+    "python": "3.11.9, truckscenes-devkit/detection-env (same venv as EXP-0006/EXP-0010, reused as-is)",
+    "packages": {
+      "numpy": "1.26.4",
+      "torch": "2.1.0+cpu",
+      "mmdet3d": "1.4.0",
+      "truckscenes-devkit": "1.2.0"
+    }
+  },
+  "commands": [
+    "python scripts/audit_fcos3d_4camera_result.py --dataroot <man-truckscenes> --version v1.2-mini --split mini_val --config <fcos3d config .py> --checkpoint <fcos3d .pth> --existing-results scripts/results_mini_val_fcos3d_4cam.json --out-dir scripts/audit_fcos3d_4camera --rerun-indices 0 20 40 60"
+  ],
+  "measurements": [
+    {
+      "name": "camera_data_coverage",
+      "value": 80,
+      "scope": "of 80 mini_val samples with all 4 camera channels present in sample_data; 0 missing"
+    },
+    {
+      "name": "geometric_visibility_zero_camera_fraction",
+      "value": 0.001,
+      "scope": "fraction of EXP-0010's 5,247 predicted boxes that reproject into none of the sample's 4 cameras via the devkit's own boxes_to_sensor()+box_in_image() (geometric proxy, not per-call provenance)"
+    },
+    {
+      "name": "roundtrip_valid_fraction",
+      "value": 1.0,
+      "scope": "Fraction of 247 tagged rerun boxes intersecting their known source-camera frustums; visibility only, not metric coordinate correctness."
+    },
+    {
+      "name": "instrumented_rerun_call_success_rate",
+      "value": 0.8125,
+      "scope": "13 of 16 (sample, camera) calls in the instrumented rerun produced >=1 box above the score threshold; 0 skipped for missing data, 3 skipped for zero detections"
+    }
+  ],
+  "hours_spent": 2,
+  "evidence": [
+    "experiment-log/0016-fcos3d-4camera-result-audit.md",
+    "scripts/audit_fcos3d_4camera_result.py",
+    "scripts/audit_fcos3d_4camera/coverage_report.json",
+    "scripts/audit_fcos3d_4camera/geometric_visibility_report.json",
+    "scripts/audit_fcos3d_4camera/roundtrip_check.json",
+    "scripts/audit_fcos3d_4camera/instrumented_rerun_success_skip.json",
+    "scripts/audit_fcos3d_4camera/overlays/32d2bcf46e_CAMERA_LEFT_FRONT.png",
+    "scripts/audit_fcos3d_4camera/overlays/8502c7bf06_CAMERA_RIGHT_BACK.png",
+    "scripts/audit_fcos3d_4camera/visibility_counterexample.json"
+  ],
+  "notes": "The devkit inverse projection checks visibility of boxes generated using the inference conversion helpers. All 80 sample metadata records name four cameras; this does not verify every original image load or inference call. In the four-sample rerun, 13 of 16 calls produced above-threshold boxes and all 247 tagged boxes were visible in their source-camera frustums. Review counterexample: doubling camera-relative box distance and dimensions still passes 247/247, so metric depth/size accuracy and transform errors remain unresolved. Camera height, scene domain and preprocessing remain candidate causes of the low score. Original prediction values and reported active time are preserved; only interpretation and identifiers were corrected during integration on 24 September."
+}

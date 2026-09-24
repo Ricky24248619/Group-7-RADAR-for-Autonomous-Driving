@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "0014-goose-range-semantic-support",
+  "title": "GOOSE full validation class and traversability composition by range",
+  "owner": "Ricky Yuen",
+  "date": "2026-09-22",
+  "status": "success",
+  "dataset": "GOOSE labelled 3D validation download, individually hashed inputs",
+  "sensor_configuration": "Released labelled LiDAR scans only; no raw radar bags",
+  "annotation_schema": "64-class semantic labels in low 16 bits; existing project traversability mapping",
+  "task_type": "dataset-characterisation",
+  "modality": "lidar",
+  "split": "All 961 paired frames across 8 scenarios",
+  "environment": {
+    "os": "Windows",
+    "hardware": "Local CPU; no new GPU/model inference",
+    "python": "3.11.9",
+    "packages": {
+      "numpy": "2.4.6",
+      "matplotlib": "3.11.2",
+      "PyYAML": "6.0.3"
+    }
+  },
+  "commands": [
+    "python scripts/goose_range_support.py --root <goose_3d_val-root> --output-dir docs/evidence/goose/range-support"
+  ],
+  "measurements": [
+    {
+      "name": "points",
+      "value": 174891807,
+      "scope": "All 961 frames"
+    },
+    {
+      "name": "points at 150-400 m",
+      "value": 1928423,
+      "scope": "Released LiDAR planar x-y range; denominator 174891807 points"
+    },
+    {
+      "name": "identical scan-and-label content pairs",
+      "value": 0,
+      "scope": "SHA-256 pairing across 961 input pairs"
+    }
+  ],
+  "evidence": [
+    "docs/sprint3-dataset-findings.md",
+    "experiment-log/0012-dataset-range-and-support-comparison.md",
+    "docs/evidence/goose/range-support/manifest.json",
+    "docs/evidence/goose/range-support/class_ranges.csv",
+    "docs/evidence/goose/range-support/traversability_ranges.csv"
+  ],
+  "notes": "Ground-truth semantic distribution and project remap, not inference, mIoU or verified driveability. No GOOSE radar/LiDAR benchmark. ALL rows duplicate the sum of scenario rows; do not double count them."
+}

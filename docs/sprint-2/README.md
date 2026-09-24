@@ -17,38 +17,59 @@ This dated package does not silently replace their Markdown sources.
 
 ## Report corrections to carry into the final team version
 
-The current OneDrive project report is Aiden's original narrative version. It
-contains older claims that need reconciling with the raw evidence and the
-updated supporting documents:
+The OneDrive project report is Aiden's original narrative version, written before
+Sprint 3. Each row below is a claim in it that the evidence no longer supports, or
+supports more narrowly. **Every row has an owner** — this list previously had none,
+which is how it stayed unactioned.
 
-- Four-camera FCOS3D has **5,247 saved boxes across 80 nonempty mini_val samples**,
-  with **mAP 0.0046 and NDS 0.0038**. It is a scored camera-only transfer
-  experiment, not a matched radar/LiDAR benchmark. The cause of its low score
-  remains unresolved; using reference box conversion does not rule out
-  calibration, geometry or preprocessing errors.
-- GOOSE PTv3 remains **10/961 frames** under a modified configuration. Its
-  roughly five-hour estimate extrapolates processing-loop timing and excludes
-  loading; it is not a measured complete run or a proven runtime bound.
-- Ground-truth traversability maps, sensor-return counts and model detection
-  scores are different evidence. The stock TruckScenes evaluator's 75 m or
-  150 m class limits do not provide a detection score beyond 150 m.
-- Fariya's TruckDrive reproduction is documented in EXP-0009, including
-  remaining dependency, empty-channel and overlay warnings. Shared TruckDrive
-  survey/result integration and independent checks are still outstanding.
-- The new Sprint 3 stories are proposals. Resolve the priority of Autoware and
-  dashboard work against the proposed core analysis before treating either
-  plan as committed.
-- The four-camera experiment log is now `experiment-log/0010-fcos3d-truckscenes-4camera.md`
-  and its record `results/records/0011-fcos3d-truckscenes-4camera.json`. Both were
-  renumbered off an identifier collision with Fatima's EXP-0007 and the 0008 evaluator
-  smoke record. The Sprint 3 stories DOCX still cites the old `0007-` path in its
-  Evidence section; correct it at the next OneDrive refresh.
+Reviewed against the repository on 23 September 2026.
 
-Evidence: [four-camera experiment](../../experiment-log/0010-fcos3d-truckscenes-4camera.md),
-[raw metrics](../../scripts/fcos3d_truckscenes_metrics_summary_4cam.json),
-[predictions](../../scripts/results_mini_val_fcos3d_4cam.json),
-[TruckDrive reproduction](../../experiment-log/0009-fariya-truckdrive-reproduction.md).
-Source code/results snapshot: `234212e5ef91ec3247ea50ad8da4dad3116651b6`.
+### Corrections
+
+| # | Claim in the report | What the evidence supports | Owner |
+|---|---|---|---|
+| C-1 | *"Only ~1–6% of GOOSE points sit beyond 100 m"* (§4) | That is the **per-scenario** range from `findings-damien.md`. The split-level figure is **3.84% beyond 100 m and 1.10% beyond 150 m**, which is what the acceptance tests and Scope of Work both quote. It currently reads as a split-level claim beside split-level numbers | Damien |
+| C-2 | *"LiDAR samples substantially denser than paired radar in TruckScenes"* (§4) | True **for the channels compared**, and not generalisable. `LIDAR_TOP_FRONT` is a downward-tilted Ouster OS0 blind-spot unit, nominal 35 m at 10% reflectivity; the 200 m Hesai Pandar64 units are in the corner modules and were not used. Measured coverage bears this out — **165,520 of 165,588 LiDAR points fall inside 50 m**. Any range reading of this comparison is wrong | Fatima |
+| C-3 | Four-camera FCOS3D: *"cause of its low score remains unresolved"* | **Still true, and stays as written.** What the audit adds is narrower than it first appears: all 80 sample metadata records contain the four camera channels, and 247 camera-tagged boxes from the four-sample rerun are visible in their source-camera frustums. Those checks do **not** establish metric coordinate accuracy, nor that every original inference call succeeded — a frustum test is blind to depth error, because scaling distance and extent together leaves the projection unchanged. Height, preprocessing and scene-domain causes all remain unresolved. The integrated EXP-0016 records this limitation explicitly | Aiden |
+| C-4 | Four-camera FCOS3D result | **5,247 saved boxes across 80 mini_val samples, mAP 0.0046, NDS 0.0038.** A scored camera-only transfer experiment, not a matched radar/LiDAR benchmark | Aiden |
+| C-5 | GOOSE PTv3 | **10 of 961 frames** under a modified configuration. The ~5 hour figure extrapolates processing-loop timing and **excludes loading**, so it is a lower bound, not a measured runtime or a proven bound | Ricky |
+| C-6 | GOOSE validation split size | The report quotes **961 frames**; the published split is **960**. Our 961 is internally consistent — the eight scenario counts sum to it exactly — but the one-frame difference is unexplained. Needs a local-versus-published file inventory comparison, **which requires the GOOSE data** (on Ricky's machine, not Damien's) | Ricky |
+| C-7 | Range reporting generally | Ground-truth traversability maps, sensor-return counts and model detection scores are **different evidence**. The stock TruckScenes evaluator filters classes at 75 m or 150 m and therefore produces **no detection score beyond 150 m** | Ricky |
+| C-8 | Any combined range figure | The working coverage protocol recorded 21 September uses **0–50 / 50–100 / 100–150 / 150–400 / >=400 m** for new descriptive runs. Historical tables keep their original bins. Shared edges do **not** make different denominators or coordinate frames comparable | Ricky |
+| C-9 | TruckDrive status | Fariya's reproduction is EXP-0009, with dependency, empty-channel and overlay warnings outstanding. The shared survey and result records are still not delivered. Camera and LiDAR are retained for **2 of 24 scenes** — no multimodal claim may imply full-mini coverage | Kelsey |
+| C-10 | Sprint 3 scope | The new stories are proposals. The report's §6.4 says to start Autoware and the dashboard; the stories place both outside the core plan. **The two documents contradict each other** and the team has not resolved it | Ricky |
+
+### Path changes since the snapshot
+
+The four-camera experiment log is now
+[`experiment-log/0010-fcos3d-truckscenes-4camera.md`](../../experiment-log/0010-fcos3d-truckscenes-4camera.md)
+and its record `results/records/0011-fcos3d-truckscenes-4camera.json`, renumbered off
+an identifier collision with Fatima's EXP-0007 and the 0008 evaluator smoke record.
+**The Sprint 3 stories DOCX still cites the old `0007-` path** in its Evidence section;
+correct it at the next OneDrive refresh.
+
+### What Sprint 3 added that the report predates
+
+Not corrections — new evidence the final version should cite rather than omit:
+
+- Dataset suitability comparison — which question each dataset can answer, with
+  denominators inline and no cross-dataset ranking. Lands at `docs/dataset-suitability.md`
+  in the integrated `docs/dataset-suitability.md`
+- TruckScenes range-band coverage with a declared sample manifest, per-sensor
+  coordinate frame stated per row, and its channel caveat
+- The four-camera coverage/visibility audit (EXP-0016; metric geometry remains open), and CI that
+  runs both validators plus the test suite on every pull request
+
+### Evidence
+
+[Four-camera experiment](../../experiment-log/0010-fcos3d-truckscenes-4camera.md) ·
+[raw metrics](../../scripts/fcos3d_truckscenes_metrics_summary_4cam.json) ·
+[predictions](../../scripts/results_mini_val_fcos3d_4cam.json) ·
+[TruckDrive reproduction](../../experiment-log/0009-fariya-truckdrive-reproduction.md) ·
+[GOOSE statistics](../../GOOSE%20-%20Ricky+Damien/dataset-statistics.md)
+
+Sprint 2 snapshot: `234212e5ef91ec3247ea50ad8da4dad3116651b6`.
+Corrections reviewed against: `711c3f7`.
 
 ## Maintaining this package
 

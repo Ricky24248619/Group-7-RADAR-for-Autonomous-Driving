@@ -1,0 +1,84 @@
+{
+  "analysis": "saved-output comparison; no inference or raw-data rebuild",
+  "source_sha256_lf_normalized_utf8": {
+    "scripts/results_mini_val_fcos3d.json": "d98bde5937fca1faea3f9ffb42a81a093b97ea1129e42ca9028af6b2d23c074b",
+    "scripts/results_mini_val_fcos3d_4cam.json": "c6d6b26623d19b211b4fd923496c3981ec56e459cead215b321aa69ec0580de7",
+    "scripts/fcos3d_truckscenes_metrics_summary.json": "a9189ec417749919419bb2a0c1905d39343ab603a52ab95597c592c624ff980c",
+    "scripts/fcos3d_truckscenes_metrics_summary_4cam.json": "f06c09b9978266d4b165d3d47d4ce27c4a290ce6f36249683819d20df788ae21",
+    "TruckScenes - Fatima/range-bands.csv": "78fc8641aa13660df49c23cbd3f47ede540f97d2ad273c79bb94e73975b8f637"
+  },
+  "camera": {
+    "sample_count": 80,
+    "one_camera_boxes": 959,
+    "four_camera_boxes": 5247,
+    "one_camera_empty_entries": 17,
+    "four_camera_empty_entries": 0,
+    "exactly_retained_boxes": 959,
+    "added_boxes": 4288,
+    "removed_boxes": 0,
+    "one_camera_map": 0.0,
+    "four_camera_map": 0.004648002183176288,
+    "one_camera_nds": 0.0,
+    "four_camera_nds": 0.0038295311318037304,
+    "four_camera_map_without_traffic_cone": 0.00041555175412465195,
+    "four_camera_map_by_matching_threshold": {
+      "0.5": 0.0,
+      "1.0": 0.0,
+      "2.0": 0.0016172547578290264,
+      "4.0": 0.016974753974876126
+    },
+    "evaluator_config": {
+      "class_range": {
+        "car": 150,
+        "truck": 150,
+        "bus": 150,
+        "trailer": 150,
+        "other_vehicle": 150,
+        "pedestrian": 75,
+        "motorcycle": 75,
+        "bicycle": 75,
+        "traffic_cone": 75,
+        "barrier": 75,
+        "animal": 75,
+        "traffic_sign": 75
+      },
+      "dist_fcn": "center_distance",
+      "dist_ths": [
+        0.5,
+        1.0,
+        2.0,
+        4.0
+      ],
+      "dist_th_tp": 2.0,
+      "min_recall": 0.1,
+      "min_precision": 0.1,
+      "max_boxes_per_sample": 500,
+      "mean_ap_weight": 5
+    }
+  },
+  "coverage": {
+    "lidar": {
+      "sample_count": 10,
+      "total_returns": 165588,
+      "returns_ge150m": 0,
+      "samples_with_returns_ge150m": 0,
+      "pooled_share_ge150m": 0.0,
+      "median_sample_share_ge150m": 0.0,
+      "min_sample_share_ge150m": 0.0,
+      "max_sample_share_ge150m": 0.0,
+      "largest_sample_fraction_of_distant_returns": null
+    },
+    "radar": {
+      "sample_count": 10,
+      "total_returns": 4571,
+      "returns_ge150m": 305,
+      "samples_with_returns_ge150m": 9,
+      "pooled_share_ge150m": 0.06672500546926274,
+      "median_sample_share_ge150m": 0.07128010734100526,
+      "min_sample_share_ge150m": 0.0,
+      "max_sample_share_ge150m": 0.11885245901639344,
+      "largest_sample_fraction_of_distant_returns": 0.1901639344262295
+    }
+  },
+  "coverage_camera_token_overlap": 2
+}

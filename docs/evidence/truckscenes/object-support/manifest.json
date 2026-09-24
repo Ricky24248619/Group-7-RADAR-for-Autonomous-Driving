@@ -1,0 +1,2056 @@
+{
+  "dataset": "MAN TruckScenes v1.2-mini",
+  "scene_count": 10,
+  "sample_count": 400,
+  "summary": {
+    "box_observations": 25750,
+    "unique_instances": 1094,
+    "samples": 400,
+    "lidar_supported": 25750,
+    "radar_supported": 12060,
+    "both_supported": 12060,
+    "neither_supported": 0,
+    "radar_support_percent": 46.834951456310684,
+    "median_lidar_points": 38.0,
+    "median_radar_points": 0.0
+  },
+  "input_sha256": {
+    "attribute.json": "ccd5158886a566a6c8233128bff834d9f870988b00555e6285745c606c23b42b",
+    "calibrated_sensor.json": "64bbec73309465428442b26ea2103f77c3cf4f195914e55247ce5d1a0d3fbec9",
+    "category.json": "29fd88dd1a83a931f904f4e144a702e5e4b99ad3e28d43cc76f2cda28dde8bcf",
+    "ego_motion_cabin.json": "8121a88d025a0ce3ceb71b57cfae74cf444d555c3d118c0d7e403d68b8028025",
+    "ego_motion_chassis.json": "bf9628e08dcc2e88add31a1fdb1ecaa1f4f7042083e692c4949742cc5eec098b",
+    "ego_pose.json": "9809591684088a7aae22bbc741d5331823c0727101940f2a0566a22be65dd02d",
+    "instance.json": "981c708c8547406aaceee08a4a15e3bf9fbda14a92e95be4b0c04673902944cf",
+    "sample.json": "cc94f484304aa37f746cb47113887e282518c12fd4fe4ceb375f470dba3baf42",
+    "sample_annotation.json": "5d93f5b4d4ad3d696f14c9a82b35f275130220493a0b1b6a7e5ae3133f830ba5",
+    "sample_data.json": "910ee01e3a685284a9d8b1d1e840bbf1ed5ea82de1d3f01d6a6c0f643c2d73d8",
+    "scene.json": "abb3c56bbdb2434d59d1b3a3c16f57faacf594badc0e283a970bae0488b0d5b6",
+    "sensor.json": "5f7c064c2739f59ba03215a3efb033d12ae84b8a65f8691dd48c0cd6fb4f8a01",
+    "visibility.json": "f7f9d701cacc789aa02cb88352b668dd0dc19a1402162b16b00d0ec6eb8570e0",
+    "weather_annotation.json": "a1b2db9281937e319def500c6d29228103bbc5ceab6b71c8bdaa13d41522ccdf"
+  },
+  "reference": "Nearest sample-time ego pose; box-centre planar x-y range; all released classes",
+  "count_source": "Publisher num_lidar_pts and num_radar_pts; not independently recounted. Radar count sums all radar sensors without invalid-point filtering per official schema",
+  "schema_source": "https://github.com/TUMFTM/truckscenes-devkit/blob/main/docs/schema_truckscenes.md",
+  "limitations": [
+    "Repeated box observations are not independent objects",
+    "All released boxes have LiDAR support; no radar-only or unsupported annotation population",
+    "Nonzero radar returns inside a released box do not establish a correct model detection",
+    "Scene comparisons are descriptive, with confounded road, weather and class composition"
+  ],
+  "scene_descriptions": {
+    "scene-0044384af3d8494e913fb8b14915239e-3": "weather.clear;area.terminal;daytime.noon;season.autumn;lighting.illuminated;structure.regular;construction.unchanged",
+    "scene-13f4b71b1bd04a9e88747ad8f58a3f67-4": "weather.clear;area.highway;daytime.evening;season.autumn;lighting.dark;structure.overpass;construction.unchanged",
+    "scene-23160c4bff134cdd86b96ee822b4aca9-14": "weather.overcast;area.city;daytime.noon;season.winter;lighting.illuminated;structure.bridge;construction.unchanged",
+    "scene-3195e3bfd1de4f9ba82f874790c7856c-15": "weather.overcast;area.highway;daytime.noon;season.summer;lighting.illuminated;structure.regular;construction.unchanged",
+    "scene-3f542f89ec5241b6a4e30ca743adcf34-29": "weather.overcast;area.highway;daytime.morning;season.summer;lighting.illuminated;structure.regular;construction.roadworks",
+    "scene-6be74229febb4aad9e7ae1a37217b231-4": "weather.rain;area.terminal;daytime.morning;season.summer;lighting.illuminated;structure.regular;construction.unchanged",
+    "scene-a6a87db5125846bda72ccfc9931ee153-11": "weather.clear;area.city;daytime.noon;season.winter;lighting.twilight;structure.regular;construction.unchanged",
+    "scene-b13542304b244af585a646082c57a079-1": "weather.snow;area.city;daytime.noon;season.autumn;lighting.illuminated;structure.regular;construction.unchanged",
+    "scene-b201f6e737e34c2d87830fc1e2911516-6": "weather.rain;area.highway;daytime.noon;season.autumn;lighting.illuminated;structure.regular;construction.unchanged",
+    "scene-fb64d203d417452f830ca73efed80c41-11": "weather.clear;area.city;daytime.noon;season.winter;lighting.other_lighting;structure.regular;construction.unchanged"
+  },
+  "references": [
+    {
+      "sample_token": "0085b50c1d064bbba1c214e4d712d514",
+      "ego_pose_token": "f0d9cedfffb249d3b481428486912e5d",
+      "offset_us": 2861
+    },
+    {
+      "sample_token": "00b7a051298345d7a162393e5c0e2764",
+      "ego_pose_token": "1844676b34f74937adac37c7ef375869",
+      "offset_us": 2697.0
+    },
+    {
+      "sample_token": "0113d3fc23954918ab040dd627bb4b0f",
+      "ego_pose_token": "261a57346c704ee98d22dd965ded2eee",
+      "offset_us": 4946
+    },
+    {
+      "sample_token": "01ac03ac6766489fb3bcd9ecf5700ce5",
+      "ego_pose_token": "85d20566ca474c268c9bb570f8cca4d0",
+      "offset_us": 3034
+    },
+    {
+      "sample_token": "03595fbbc36e4b509eec679e8fbfe3b0",
+      "ego_pose_token": "93ee9f6a37744ef9be2fc7d17c82c189",
+      "offset_us": 4213
+    },
+    {
+      "sample_token": "03a5d7bd3d0043998d6a760637d9aa50",
+      "ego_pose_token": "a6416fc6e67340d5806270a061efc60e",
+      "offset_us": 4925
+    },
+    {
+      "sample_token": "03aa237df45142e3a7e743192bdab1a4",
+      "ego_pose_token": "5e2c9c0d0f334478bad6e1ce5bb33868",
+      "offset_us": 3872
+    },
+    {
+      "sample_token": "047569d8cae6404c97d074a86f30e636",
+      "ego_pose_token": "ebcbc7ac9a1941ad8b1b3ca05afef835",
+      "offset_us": 2919
+    },
+    {
+      "sample_token": "0531b8003c4941c481d29ed1caa924f7",
+      "ego_pose_token": "8bc9827e7b3346fea52dfb0a1de5886d",
+      "offset_us": 1948.0
+    },
+    {
+      "sample_token": "053bc5e0decd465aa6fc47606f82b17f",
+      "ego_pose_token": "e67f10130af24bab94950a9fddf4ae3e",
+      "offset_us": 2102
+    },
+    {
+      "sample_token": "0556486618ae429895ef8caa898ee953",
+      "ego_pose_token": "4d3415c8859f4f93a009b5db26467612",
+      "offset_us": 3003
+    },
+    {
+      "sample_token": "05dd1b152df640e5bb7b915f5758b739",
+      "ego_pose_token": "902ab3fcd7aa4d809b72e4fe3cc4e8d6",
+      "offset_us": 2983
+    },
+    {
+      "sample_token": "08a1174ca5f54446bf5e560929f47307",
+      "ego_pose_token": "7a76893dad2a421cbcb1c399249ae529",
+      "offset_us": 2655.0
+    },
+    {
+      "sample_token": "092cd0954cc7490e8432fd9eb6358ad7",
+      "ego_pose_token": "728feb334e974554a0804e0836577ec2",
+      "offset_us": 2328
+    },
+    {
+      "sample_token": "09620b9499344b80a7870dc1b80cb4ed",
+      "ego_pose_token": "47d20a1b57f9412cb3de36ade2145aaf",
+      "offset_us": 4146
+    },
+    {
+      "sample_token": "0a159eaf8c1e42b4b94186d43230a214",
+      "ego_pose_token": "1ed0db9c75a6400fa768e05142bdff6d",
+      "offset_us": 2404
+    },
+    {
+      "sample_token": "0a7844ac9902454292fe37c39d7e27ba",
+      "ego_pose_token": "83e9c9c9a14048c9b67180f968de5ca1",
+      "offset_us": 2749
+    },
+    {
+      "sample_token": "0c69f9d5815d4907a8438044c04201ef",
+      "ego_pose_token": "f120ddbad6254ca6a2af272c8e0d8894",
+      "offset_us": 2755
+    },
+    {
+      "sample_token": "0efe8fc67f014c2ebaf8b12581ae2b6d",
+      "ego_pose_token": "874d68c65577474bbba7f05aa8f114d6",
+      "offset_us": 2318
+    },
+    {
+      "sample_token": "0ffd727ee4d04207843493199bf12fe9",
+      "ego_pose_token": "3cbabb0c0c564c54b72641bda3eb5940",
+      "offset_us": 1907
+    },
+    {
+      "sample_token": "107022cffcc148f299350a9344f26f84",
+      "ego_pose_token": "7a96f4591c31428ea78c0cecd9f35188",
+      "offset_us": 2678.0
+    },
+    {
+      "sample_token": "1156d73df84547b1a9e2c81cd67dbbce",
+      "ego_pose_token": "6d43b17856ae4369ba0dd05ae37d8ed1",
+      "offset_us": 2295
+    },
+    {
+      "sample_token": "11ec72961e774527ac42ae08e165c7da",
+      "ego_pose_token": "ddf1ef41de394797b45045127a8d0b3b",
+      "offset_us": 3605
+    },
+    {
+      "sample_token": "121b9bbeb7e249ff80f308a6967413d7",
+      "ego_pose_token": "9509617ee13946e787846631238633a7",
+      "offset_us": 2815
+    },
+    {
+      "sample_token": "1393759bf6ff4f8e88deff0da0dc2aca",
+      "ego_pose_token": "e6b808d1903643f291e4925b66b81868",
+      "offset_us": 4156
+    },
+    {
+      "sample_token": "14a220becf67423cb187002e685e95bc",
+      "ego_pose_token": "13531560decf440b8212588bd6731cb9",
+      "offset_us": 4288
+    },
+    {
+      "sample_token": "16aa20e30fe94de9b51a9dac5cb919c4",
+      "ego_pose_token": "5fea02452aca4ce88c20eb0622bd7587",
+      "offset_us": 3259
+    },
+    {
+      "sample_token": "17f7f55abf7149808ac93fbceb62dc4b",
+      "ego_pose_token": "c64d46a3349d4dcb896799319cee3f36",
+      "offset_us": 3968
+    },
+    {
+      "sample_token": "18049a9e579045b0bffd3fd107fc7ee7",
+      "ego_pose_token": "65aa05ed12064f1dadc7383b480ddb08",
+      "offset_us": 2835
+    },
+    {
+      "sample_token": "18636993a6aa40fa8d5ac8a038d9d050",
+      "ego_pose_token": "35725c157dc842608f9ffce1d82763c7",
+      "offset_us": 3455
+    },
+    {
+      "sample_token": "188173f8e91a4090a439f6038577bf1d",
+      "ego_pose_token": "387a7a94ffd54ce68056b71f5eb651fd",
+      "offset_us": 3730
+    },
+    {
+      "sample_token": "198a52743df64f89b4f6b639c49712f8",
+      "ego_pose_token": "15c8f2309ffe426189a9187e1db2f038",
+      "offset_us": 2116
+    },
+    {
+      "sample_token": "19980a921db84f85aa54ef0ea75c3a8c",
+      "ego_pose_token": "241bc9f55a844d438b9989155ddbbd54",
+      "offset_us": 3511
+    },
+    {
+      "sample_token": "1b5208835de344f3b2e9a3d138c0f164",
+      "ego_pose_token": "d7a8819ad2e44f41af27af0cb3e1f944",
+      "offset_us": 1718.0
+    },
+    {
+      "sample_token": "1c2acee839b34c158452d570f1ebf203",
+      "ego_pose_token": "ac48849817c749d3800c21d5077acb43",
+      "offset_us": 3536.0
+    },
+    {
+      "sample_token": "1c5c51644f6146768f20095390d245f1",
+      "ego_pose_token": "71f2e319ca794a85b1e106e689d40fbc",
+      "offset_us": 2718
+    },
+    {
+      "sample_token": "1c9adfec38f84c1792e008a8a1771cca",
+      "ego_pose_token": "b6734ab3edd34214b6c6e64951159802",
+      "offset_us": 2799.0
+    },
+    {
+      "sample_token": "1cfd4f53ec5b4d5fa4ced38e29274968",
+      "ego_pose_token": "f848138efcfa45d49eba33bc51b47236",
+      "offset_us": 2777
+    },
+    {
+      "sample_token": "1d111bf7b99d4a6cb886c4cc8525c855",
+      "ego_pose_token": "6f2f3a36e4da4f40980ca881adf568d3",
+      "offset_us": 2292
+    },
+    {
+      "sample_token": "1d22c6a108994cc9862094c5b3f454fd",
+      "ego_pose_token": "66196fdf5ea94a7d94d1fda2181e1e53",
+      "offset_us": 2729
+    },
+    {
+      "sample_token": "1d6eca27a2d846babba94511cdb92ce8",
+      "ego_pose_token": "9e5cd739ee1048aea4edb5699ee32942",
+      "offset_us": 3414
+    },
+    {
+      "sample_token": "1de6a44eff4749f494dd0b6cb5c48e84",
+      "ego_pose_token": "8761588e2cbb4a3e87ea426fdcf77615",
+      "offset_us": 3325.0
+    },
+    {
+      "sample_token": "1e4312d50f3f432e95142cfe773af936",
+      "ego_pose_token": "af56f407e0294160b9bf5611f1bb82e9",
+      "offset_us": 3268
+    },
+    {
+      "sample_token": "1eb6c0c7adad4cf29e8da13dcf8ef16b",
+      "ego_pose_token": "6a49effc3fc24354a387e81deb6cd18c",
+      "offset_us": 2500
+    },
+    {
+      "sample_token": "200accc64ca644669f74bdc5749a52c2",
+      "ego_pose_token": "b51404122a584e1d99467cb7d27bfab6",
+      "offset_us": 2424.0
+    },
+    {
+      "sample_token": "2034f1707ec7419b9c3479fbef98c9b3",
+      "ego_pose_token": "3cf43031ad2f4816a99fb0314ba5ff47",
+      "offset_us": 2743
+    },
+    {
+      "sample_token": "2137f8fd8f78489fb089b818d8215c34",
+      "ego_pose_token": "66d61eda5349423f8ca4cf94992926d7",
+      "offset_us": 2848
+    },
+    {
+      "sample_token": "22a144007355442b88302e98c8bdfcc3",
+      "ego_pose_token": "7070536a60e24a319b625b5fa11363a8",
+      "offset_us": 4075
+    },
+    {
+      "sample_token": "22c8e66994d848fa9e7c5b818a74e929",
+      "ego_pose_token": "0a5eb86e777f4b80a4e15b8c59323d31",
+      "offset_us": 4084
+    },
+    {
+      "sample_token": "22f971faaa804e60a46de1b33b76167c",
+      "ego_pose_token": "a2c4d6cc3463449ab189cb1c291721f0",
+      "offset_us": 2352
+    },
+    {
+      "sample_token": "233456c1dd114acab949de6a6bb8c704",
+      "ego_pose_token": "c2a1398d15e749938c6812bcbd57acfa",
+      "offset_us": 2686
+    },
+    {
+      "sample_token": "23846abe608f4f79bc6d05d5ccc0ace7",
+      "ego_pose_token": "041e7866139b48b0bc35f929ffdd08cf",
+      "offset_us": 3386
+    },
+    {
+      "sample_token": "23c0fc0644ba458781ecb6d10976ba8f",
+      "ego_pose_token": "34238b8bcc774fe9b04dd82b66a242dc",
+      "offset_us": 2384
+    },
+    {
+      "sample_token": "25196b4ce7f3453aacba1b878527a664",
+      "ego_pose_token": "028792b575d64e378bd16411727b84fe",
+      "offset_us": 4634
+    },
+    {
+      "sample_token": "2575a0787cf74a83ab4e558ba732b8d4",
+      "ego_pose_token": "4165de43b3fd4ad7b5ec760e3b092e4f",
+      "offset_us": 3879
+    },
+    {
+      "sample_token": "25b220729c6b4209804da4a588c3c84c",
+      "ego_pose_token": "7a51d95537b4406ab099ec92dafb6a02",
+      "offset_us": 4466
+    },
+    {
+      "sample_token": "25d2fdbc5fab4e93b80c4064eb60fa38",
+      "ego_pose_token": "7c5d40f39c974f5c8ebceedc095fa8d8",
+      "offset_us": 2195
+    },
+    {
+      "sample_token": "268efcebbf824f24b960d30a7162183b",
+      "ego_pose_token": "2b316a681f7d41ffb99c9d0ba9fa8309",
+      "offset_us": 4392
+    },
+    {
+      "sample_token": "27b21c33300842fdb87fcae94c6eef64",
+      "ego_pose_token": "3ea19df736bf48ee8304ff30ca521b23",
+      "offset_us": 3749
+    },
+    {
+      "sample_token": "2a75e8b11a3b4e64bbea3de7c0886379",
+      "ego_pose_token": "efd2eae709104c5a834d5abd46ad07b6",
+      "offset_us": 2685
+    },
+    {
+      "sample_token": "2b3dddad1f5c45b88b589d928aabd5c5",
+      "ego_pose_token": "0f4344f874c448b0be794bc74c710488",
+      "offset_us": 4335
+    },
+    {
+      "sample_token": "2bb86f1a816c41d6ac274402246a24fc",
+      "ego_pose_token": "991f36373e7e43d4bd809cce13ab2d41",
+      "offset_us": 2627.0
+    },
+    {
+      "sample_token": "2c61cb7566c948d8be146eb265fde451",
+      "ego_pose_token": "bcec93e9204941b0987fae9430e36ccc",
+      "offset_us": 2700.0
+    },
+    {
+      "sample_token": "2c8a57a97fd140919df0708d479a972b",
+      "ego_pose_token": "69bdf922fd8947ea82eca99301fe2779",
+      "offset_us": 2574
+    },
+    {
+      "sample_token": "2c8d8a964ecd48c3ace81f8fdf2050c9",
+      "ego_pose_token": "e7defe183ba34687a226c3a73d0d0ab5",
+      "offset_us": 4626
+    },
+    {
+      "sample_token": "2cc0eeeeb89f4626b3455f3851b01034",
+      "ego_pose_token": "345966a8caa34862aaae0b4dac958943",
+      "offset_us": 1836
+    },
+    {
+      "sample_token": "2e2ac9d98ef0429b8be1a17bb9ef0074",
+      "ego_pose_token": "06db1b96acb4443a933bd3061e44b920",
+      "offset_us": 2470.0
+    },
+    {
+      "sample_token": "2e32e4f5865b472a9a5fbe25fbe36c64",
+      "ego_pose_token": "21dc1fe7b0a14e63830c4df59b5e7231",
+      "offset_us": 3647
+    },
+    {
+      "sample_token": "2e9658149ff64abe863691ca1ab21659",
+      "ego_pose_token": "e229ef7487ac4a9db0612e2f38648d15",
+      "offset_us": 2274
+    },
+    {
+      "sample_token": "2ef9cc68aad54b5dbd7ba1656b162bb6",
+      "ego_pose_token": "3346852a4dc3494fab5db05a83f9da02",
+      "offset_us": 3926
+    },
+    {
+      "sample_token": "2f4fede395ca4289b5163cffe58d0501",
+      "ego_pose_token": "4811e046589845a2a0e3c83c3a3da022",
+      "offset_us": 3695
+    },
+    {
+      "sample_token": "2f54f880546c4537b1562888bef4a710",
+      "ego_pose_token": "6cdcb38a730b44e9afd5c162d5e9c301",
+      "offset_us": 2298
+    },
+    {
+      "sample_token": "301cc77681c94addbbafd10011477b45",
+      "ego_pose_token": "14b486d1c3594c21b7a59998f6a6e71f",
+      "offset_us": 2558
+    },
+    {
+      "sample_token": "30408918ea7844f589bcb7b3f5b0cb17",
+      "ego_pose_token": "344b9ef73227495fb112800aec28925b",
+      "offset_us": 3658
+    },
+    {
+      "sample_token": "30b294a43eae4f00a0856cee1c22502a",
+      "ego_pose_token": "d412754ca35f40528c1e35a3444b0bf2",
+      "offset_us": 2785
+    },
+    {
+      "sample_token": "30c09473abfb4055ade3017dd7875cb6",
+      "ego_pose_token": "ba74d1743fbd4a30a2ea90cbb1cef8c1",
+      "offset_us": 2279
+    },
+    {
+      "sample_token": "30dbdc20e13249cd8117d7215071b4c8",
+      "ego_pose_token": "012f954477da4fc6a7d3db1172359786",
+      "offset_us": 2653
+    },
+    {
+      "sample_token": "30e96baf00fa44d49a50640917bdea00",
+      "ego_pose_token": "a45fdcf06af14b69844179ecac34d501",
+      "offset_us": 3497.0
+    },
+    {
+      "sample_token": "30f771e62a3a44f4975189ece9b83c26",
+      "ego_pose_token": "7f07e3447b684b228317a634f8d31ae3",
+      "offset_us": 3135.0
+    },
+    {
+      "sample_token": "31a1c724a02d46a1bbe2b8685fb871a2",
+      "ego_pose_token": "26b7db5613a34e17a35e9a963e855b2f",
+      "offset_us": 2940
+    },
+    {
+      "sample_token": "31c077270b154d97aa6e93489fd55140",
+      "ego_pose_token": "b3ad4738cacf4f98b92fcc1090c75e98",
+      "offset_us": 2534
+    },
+    {
+      "sample_token": "31f10293e9214bcda362d7d968b80297",
+      "ego_pose_token": "b5c1641c0d1843c889e29d4ec42581da",
+      "offset_us": 2665
+    },
+    {
+      "sample_token": "32473bdc06a342d4b42c978227abfe55",
+      "ego_pose_token": "036573613cb74bc3b8cf8e403423bdd1",
+      "offset_us": 2638
+    },
+    {
+      "sample_token": "32d2bcf46e734dffb14fe2e0a823d059",
+      "ego_pose_token": "9f5d4bc97327401cabe5726c0deb153e",
+      "offset_us": 3948
+    },
+    {
+      "sample_token": "34031c02dc804642aa6520be28ce39c0",
+      "ego_pose_token": "5f3e8c7fc5d64d2fb19d054d5b7b4826",
+      "offset_us": 2450.0
+    },
+    {
+      "sample_token": "3452bee1bda54634bf9e197ca371bf97",
+      "ego_pose_token": "e1feb300dd6949ee8d8faaaf4251ed0a",
+      "offset_us": 2281.0
+    },
+    {
+      "sample_token": "34d0b00f1801498c803ec07dce543b72",
+      "ego_pose_token": "65d97937568a4ddf8ae325ec3c4a4d50",
+      "offset_us": 2077
+    },
+    {
+      "sample_token": "3513b52c0aff4b35b81bea8dc55ede6b",
+      "ego_pose_token": "6d873832167749188ae41899c93607d0",
+      "offset_us": 2677
+    },
+    {
+      "sample_token": "364e9aeabf004d098c42b93bd3f73344",
+      "ego_pose_token": "21c09cd2dede4d088d38b5b774b62f4e",
+      "offset_us": 3454
+    },
+    {
+      "sample_token": "368662645c194921b716c026347db664",
+      "ego_pose_token": "fd62fbe49d334c1d9093a29444cfb90a",
+      "offset_us": 3871
+    },
+    {
+      "sample_token": "36b65dcf8d8d4266bf5802677195cc15",
+      "ego_pose_token": "1af049c854324fe28d288f5ef2a12a6b",
+      "offset_us": 4535
+    },
+    {
+      "sample_token": "37e26c60741142d7811e41f7a35448c9",
+      "ego_pose_token": "c0cf4ae09e834792918108652edb5e2e",
+      "offset_us": 2758.0
+    },
+    {
+      "sample_token": "38f31e131030482e9d3d398811131fc9",
+      "ego_pose_token": "62f6c8cd71bb444fb3d43329482d52d2",
+      "offset_us": 4471
+    },
+    {
+      "sample_token": "39dae22600564a6b9c130435f3475a77",
+      "ego_pose_token": "0199401c35904fb0ad29edd63ee95b99",
+      "offset_us": 2283
+    },
+    {
+      "sample_token": "3c15136415cb4333964d4cc2936356dd",
+      "ego_pose_token": "65fbaa84b9fd4598aac600499fb6f338",
+      "offset_us": 2135
+    },
+    {
+      "sample_token": "3c7fe0a51cdd45da9a49624782c511f1",
+      "ego_pose_token": "420b7a53ab58454b845db33471c9a82b",
+      "offset_us": 3681
+    },
+    {
+      "sample_token": "3cddaef43c124e2aa3814cd251fcb131",
+      "ego_pose_token": "d0aba6108a0f4127af1bf9d48122f411",
+      "offset_us": 2084
+    },
+    {
+      "sample_token": "3d64d76d8a914f1dad6e09956d6443b7",
+      "ego_pose_token": "7dc52574b20e46dd81eddc4ca100cf02",
+      "offset_us": 2935
+    },
+    {
+      "sample_token": "3df88bfb6b784a84849fee4c12bd6821",
+      "ego_pose_token": "0ece345b8e7e42c5a683c3f653b4bf2f",
+      "offset_us": 3523
+    },
+    {
+      "sample_token": "3f58555db3e348fd911d4a6df37d83d0",
+      "ego_pose_token": "31bd26f59bc44b939f9299eda36362d9",
+      "offset_us": 2365
+    },
+    {
+      "sample_token": "403389bcbf164b2db48c73b913662b48",
+      "ego_pose_token": "2412002fe4d14c82a6f50a1846df1387",
+      "offset_us": 2375
+    },
+    {
+      "sample_token": "40b040ffc4934d349184dfe3e8bf9e0c",
+      "ego_pose_token": "4c14980a4bc049348437bb68510e4566",
+      "offset_us": 2708
+    },
+    {
+      "sample_token": "41c3b9f01b734b9cb4328ae85a868bf8",
+      "ego_pose_token": "4c8fc5e692f1448bac7ad907ee057add",
+      "offset_us": 4162
+    },
+    {
+      "sample_token": "4235fb5749094aeca76c365d88d2e901",
+      "ego_pose_token": "3708fadf801c424f92d46e5586bdf0fe",
+      "offset_us": 2774
+    },
+    {
+      "sample_token": "42d984d09e10442096c330abcaaa16b8",
+      "ego_pose_token": "3e374e5288b54e0baab75ec5a472d1fe",
+      "offset_us": 3257
+    },
+    {
+      "sample_token": "43f5fe636d6e459a8c858e6f82ba835c",
+      "ego_pose_token": "841ee83c9d604d23a24248315c862481",
+      "offset_us": 2373.0
+    },
+    {
+      "sample_token": "4403795d081d4150ab7174f19e8a2f0b",
+      "ego_pose_token": "2bc4f737a3cf45ea8d6f69f37a020423",
+      "offset_us": 1843.0
+    },
+    {
+      "sample_token": "446ab39c270845e3871ec28d5c13fb2c",
+      "ego_pose_token": "6e58a6c708614f0b858b51ad0b5b8a26",
+      "offset_us": 2234
+    },
+    {
+      "sample_token": "454cf93d8f564ed4b6850fd594a7c089",
+      "ego_pose_token": "2b6e3778cae84445be5553b85edf77d4",
+      "offset_us": -4938
+    },
+    {
+      "sample_token": "454fa18d64d94009914137ce901c8e7c",
+      "ego_pose_token": "697812df941846469bf152e310d41e06",
+      "offset_us": 3405
+    },
+    {
+      "sample_token": "4551a79e00f24684b35672591431ec8c",
+      "ego_pose_token": "ead67fedadc84c838b12f541ef9d4b9a",
+      "offset_us": 3269
+    },
+    {
+      "sample_token": "4629ab4eef614bcc88799f3c2a481464",
+      "ego_pose_token": "0925439783f64bd197f6b113151dae29",
+      "offset_us": 3745
+    },
+    {
+      "sample_token": "4658e0b5cf6446b19273607532f1d7a8",
+      "ego_pose_token": "72277a9f3f5e4567b6033fa7dec613ce",
+      "offset_us": 2289
+    },
+    {
+      "sample_token": "46e9fde57b0845da94c549c832796659",
+      "ego_pose_token": "b8747f4b4e2141fd9c30c4e825115303",
+      "offset_us": 2438
+    },
+    {
+      "sample_token": "4752b1aca7c741f9b932631474a5a1f4",
+      "ego_pose_token": "bd8a3b2d45234f94a0db0c8c8fdb0197",
+      "offset_us": 2562
+    },
+    {
+      "sample_token": "4808479e83bc48d78248ece72cb7ae5f",
+      "ego_pose_token": "dba89f0e189343c0ae6815666be80d11",
+      "offset_us": 2972
+    },
+    {
+      "sample_token": "49f482b35bec43b393b9593fdc313248",
+      "ego_pose_token": "911435ddd9e84ec5b7c3614e37a3ed0b",
+      "offset_us": 3202
+    },
+    {
+      "sample_token": "4a2da2b50d9749bc82bd567c13c6dc79",
+      "ego_pose_token": "beb1a5f9c78e4e439c0c3534b5fb6408",
+      "offset_us": 1908
+    },
+    {
+      "sample_token": "4ada9cbed75249478210480ecae22937",
+      "ego_pose_token": "1b8876d728ed4e3b8c61bdb7ab374dab",
+      "offset_us": 2670.0
+    },
+    {
+      "sample_token": "4c0504969c67482cbdced0f9b049f6b8",
+      "ego_pose_token": "21ac863c53b64dd797ecb74dd00c9c6a",
+      "offset_us": 3255
+    },
+    {
+      "sample_token": "4d113d0314e041d990d2e6448b87de40",
+      "ego_pose_token": "f84915590f444346a16b4038ee0a9533",
+      "offset_us": 2349
+    },
+    {
+      "sample_token": "4d89463ec72c4a1a81f6d023b979b265",
+      "ego_pose_token": "d314092e01624fb4ade8fc470ff66e78",
+      "offset_us": 2738
+    },
+    {
+      "sample_token": "4e85946701964f37bb8990ffa14b1c4e",
+      "ego_pose_token": "cf61c28c9e00483e89326db5f9ae5c8f",
+      "offset_us": 3165.0
+    },
+    {
+      "sample_token": "4fdb484979df426c9c795f52552887e7",
+      "ego_pose_token": "72f72a9d7e924cb489bef1b74bb7cb18",
+      "offset_us": 2287
+    },
+    {
+      "sample_token": "500f2b2e4f264f54913ffef41af3e3f3",
+      "ego_pose_token": "add1c46a821e458ebeb7b4e812ee3a62",
+      "offset_us": 2870
+    },
+    {
+      "sample_token": "5141a31284164a69ac4307cb2b9ae6df",
+      "ego_pose_token": "6c505c035d36452b89ec47087367a3f2",
+      "offset_us": 3840
+    },
+    {
+      "sample_token": "51a6e5b5fe5f4f5a99c05a1540d6d92a",
+      "ego_pose_token": "87b7685c411a4afe96b44f882324d9f7",
+      "offset_us": 2413
+    },
+    {
+      "sample_token": "51c116a371d645668dac1af0a02ee674",
+      "ego_pose_token": "938bf2bfb7164e5897ff76126b90b40b",
+      "offset_us": 2395
+    },
+    {
+      "sample_token": "5246ab26fe1e49679c1feb5a49f2155b",
+      "ego_pose_token": "0b7faf3bf63940949f3b481e0dd825b9",
+      "offset_us": 3233
+    },
+    {
+      "sample_token": "5319f3d4f415475a82018472f7055951",
+      "ego_pose_token": "45918e1ba4a149dca190dce83133bf46",
+      "offset_us": 3371.0
+    },
+    {
+      "sample_token": "5491f8939d344ac58185f2a7c73d86d7",
+      "ego_pose_token": "ea30268b36f94f979d5eaf840075f674",
+      "offset_us": 2353
+    },
+    {
+      "sample_token": "5506016eb8744666a78cdf74299839bb",
+      "ego_pose_token": "c57cc57a596b4eb09dfe814b4028dbad",
+      "offset_us": 3156
+    },
+    {
+      "sample_token": "56d617998a924daab151906f9f927ce8",
+      "ego_pose_token": "8ed3dd3b08ad4b5a86ace5a653565019",
+      "offset_us": 4360
+    },
+    {
+      "sample_token": "57f8607a62fd4faa8b7a0bb5458c6a1d",
+      "ego_pose_token": "990622052d294fa6aa9079631c2b6f4e",
+      "offset_us": 2408
+    },
+    {
+      "sample_token": "58813f71db1447779ee3edc3fced1b68",
+      "ego_pose_token": "d9597eb65a534d79ade208ee606138ad",
+      "offset_us": 2776
+    },
+    {
+      "sample_token": "58fbc3f0113b492796494ca3ed721221",
+      "ego_pose_token": "35c493b4e4ab4a44800d57fbcf4ad146",
+      "offset_us": 2514
+    },
+    {
+      "sample_token": "5ab589390a0f4fc9a6e5acd152aea650",
+      "ego_pose_token": "c9d8cce56bc240b58cf2b13a41b30de3",
+      "offset_us": 2795
+    },
+    {
+      "sample_token": "5ba8f82a2e3a4160b9e1243aafb78712",
+      "ego_pose_token": "54ff8bf853c046e38dfff6a5265b75b9",
+      "offset_us": 2590
+    },
+    {
+      "sample_token": "5bfc3e2a975245f99dbdea34259ddd3c",
+      "ego_pose_token": "c11e6638ef8c44d7a0fb6e87c5f77ace",
+      "offset_us": 1412
+    },
+    {
+      "sample_token": "5d019ee18c50449591f26cf683e09898",
+      "ego_pose_token": "7f429e51f3a343e0af849673683221ed",
+      "offset_us": 2418.0
+    },
+    {
+      "sample_token": "5dd62b98623c4212947265c15294f822",
+      "ego_pose_token": "2eb9fb017971418ea718657ef0986b11",
+      "offset_us": 2659.0
+    },
+    {
+      "sample_token": "5e7ef242185a4143814462c9fcf614c0",
+      "ego_pose_token": "a93a409d587b47368fb92d6c9e6eee7b",
+      "offset_us": 2821
+    },
+    {
+      "sample_token": "5ecba197ec55474fbb2a146cd1ca2594",
+      "ego_pose_token": "2598fb2bafb9445aa7f91ec9eb9862c6",
+      "offset_us": 2387
+    },
+    {
+      "sample_token": "5fa7a0d7ce294937aa6c752ffc289a99",
+      "ego_pose_token": "5ae0718c469b4b669caa3d9e7e63461e",
+      "offset_us": 3985
+    },
+    {
+      "sample_token": "618a863a1fcf4eb794fc783c366aa20f",
+      "ego_pose_token": "35e9406e3e3f40a39d90ace9b68f9130",
+      "offset_us": 2329
+    },
+    {
+      "sample_token": "63ca8d3dcbb0491a9a77079626a73c0d",
+      "ego_pose_token": "4af38b98556d438380dab8e6460b0215",
+      "offset_us": 2741
+    },
+    {
+      "sample_token": "655c93866d21488d8b14981be5ddfd36",
+      "ego_pose_token": "522766c388e045eb91728a2b5f0d6ae2",
+      "offset_us": 4571
+    },
+    {
+      "sample_token": "6576cf45096c4d6f8a4f4d976e0e83b9",
+      "ego_pose_token": "db4e4b0bc3f346f2b2f57380e823caba",
+      "offset_us": 2196.0
+    },
+    {
+      "sample_token": "65e601eefa2c4897aa403b73eb732f4b",
+      "ego_pose_token": "bea3753a094548aaa33a63b177d6312b",
+      "offset_us": 3757
+    },
+    {
+      "sample_token": "65f73fc2d0c343fc8e5018c4f42219c6",
+      "ego_pose_token": "39bb7093d23f4e10a18493cd4b7a99c6",
+      "offset_us": 3168
+    },
+    {
+      "sample_token": "662e13a0a54646e2a85061b8fd8b82cf",
+      "ego_pose_token": "9e9e9c239cb74eb38781588e309863f8",
+      "offset_us": 3179
+    },
+    {
+      "sample_token": "6639726833f3487e84af32dcdeb5ca97",
+      "ego_pose_token": "9f20190a75b24ce589fc2c96100effa1",
+      "offset_us": 3757
+    },
+    {
+      "sample_token": "66a01830f80f4eed9d8f405334842f78",
+      "ego_pose_token": "44e0996ee48147dd851989c9f524f6af",
+      "offset_us": 3288
+    },
+    {
+      "sample_token": "66b74e3b07944e3093c3ff399906a677",
+      "ego_pose_token": "ee2f01a7bbaf4341b487971a801f8b34",
+      "offset_us": 4103
+    },
+    {
+      "sample_token": "66ec211e07194e3798d84dfe70729910",
+      "ego_pose_token": "fdeb6ec8edd2476cbefb21e019af3f62",
+      "offset_us": 3044
+    },
+    {
+      "sample_token": "67256e243cb14abeaa96f0be03dd3e9a",
+      "ego_pose_token": "df2609b32b0d41b49b618a3b39cb257b",
+      "offset_us": 2874
+    },
+    {
+      "sample_token": "67a6f2f5662d4035984509589c50c6b9",
+      "ego_pose_token": "5357b1eb32d44f4397ef2162dc425c55",
+      "offset_us": 2801
+    },
+    {
+      "sample_token": "67ea7a1a866d4942b2f389567d11272f",
+      "ego_pose_token": "78d09069cfaf492b99ae18baabf51746",
+      "offset_us": 2868.0
+    },
+    {
+      "sample_token": "685bef7dd155486cbb378a6ee743b1d9",
+      "ego_pose_token": "46f0cf417d7044a99ea240b261226904",
+      "offset_us": 4223
+    },
+    {
+      "sample_token": "68d8f0410d4342a1a6d2687b0deeb24c",
+      "ego_pose_token": "143b6d76cfa5410db9ff6d57916590a8",
+      "offset_us": 2273
+    },
+    {
+      "sample_token": "690c33ea05ed4616a30b2fee826bb639",
+      "ego_pose_token": "b29420b04f4f4d10ab7c4c4e0c7d1068",
+      "offset_us": 4628
+    },
+    {
+      "sample_token": "6971d80d24be4b029be0e143233f4261",
+      "ego_pose_token": "022a81c07d6348d2b9cb3920df479e8a",
+      "offset_us": 2500
+    },
+    {
+      "sample_token": "69a9e258759e4c43931a00be16410656",
+      "ego_pose_token": "03b7a3efd67d477ea55d789f3cceee2d",
+      "offset_us": 2497
+    },
+    {
+      "sample_token": "69c7cd93ec6444f799d8f65f16430e17",
+      "ego_pose_token": "c3c4c33d42a04fe28b254dab7377fe29",
+      "offset_us": 3527
+    },
+    {
+      "sample_token": "69ed8f84bcd94a91b68a82957b623904",
+      "ego_pose_token": "27deb4a84bf04738a80fb715ee3581c1",
+      "offset_us": 1794.0
+    },
+    {
+      "sample_token": "6ae89c7a1da948eb9e935bcc5f7b09e0",
+      "ego_pose_token": "cd0bb4d691754ccd8e6a933f9f2b3ce5",
+      "offset_us": 2379
+    },
+    {
+      "sample_token": "6b21f9f8d72a436f9c8fc5dc60657af6",
+      "ego_pose_token": "78652e63e651403fb33193b4260c38c4",
+      "offset_us": 3062.0
+    },
+    {
+      "sample_token": "6c9019c9a675472299004ca44e4af1ae",
+      "ego_pose_token": "fde842d6e8614f649320d8ab17b406e4",
+      "offset_us": 2515
+    },
+    {
+      "sample_token": "6d6cd02cde33436197a7820145262674",
+      "ego_pose_token": "fb4f0cadf73a4fd785f3fe777f1743e0",
+      "offset_us": 2520
+    },
+    {
+      "sample_token": "6d95ec0691e34461837902237666da14",
+      "ego_pose_token": "abba2138a73c429099f01763cdad3a44",
+      "offset_us": 2985
+    },
+    {
+      "sample_token": "6da4714588654dcb98fd4b687c4d84b1",
+      "ego_pose_token": "b62972044a6f4f44a48a51103108bced",
+      "offset_us": 3853
+    },
+    {
+      "sample_token": "6e169e7d226d47ba88c32424fc414937",
+      "ego_pose_token": "f0f16e1012bd46aba4475037ff8e8c24",
+      "offset_us": 2142
+    },
+    {
+      "sample_token": "6e2e1eaa68694c8f8c8d11993ec856e7",
+      "ego_pose_token": "b63be809dcff45e189197d648e053583",
+      "offset_us": 2348
+    },
+    {
+      "sample_token": "6e85e65d164646609515e2482f43f9e8",
+      "ego_pose_token": "66f01fdf614644c09788e1e864350968",
+      "offset_us": 3226
+    },
+    {
+      "sample_token": "6eaa78ca11614526ae026ae75686c69e",
+      "ego_pose_token": "db93d2bd07a040b6b6882e7382f0abb9",
+      "offset_us": 2462
+    },
+    {
+      "sample_token": "6eae67dc76ff47b5af097b413c2447a5",
+      "ego_pose_token": "8a42f6ae45b3416486d1e9a5bf07c79a",
+      "offset_us": 2254
+    },
+    {
+      "sample_token": "6f61d7af183f4094919330d51465c1aa",
+      "ego_pose_token": "9bd1712ca7df445dbcd269ba4e147e82",
+      "offset_us": 3057
+    },
+    {
+      "sample_token": "6f6b53e9b5144d3eb5efa6759877586e",
+      "ego_pose_token": "29561d6ba5ba49c89fb7cd7a211a38e3",
+      "offset_us": 2836
+    },
+    {
+      "sample_token": "6fb7001af5df4b89bc914daebf9b8b9c",
+      "ego_pose_token": "43c4bf0086aa43fd922ecf64fe111ccd",
+      "offset_us": 4443
+    },
+    {
+      "sample_token": "6fc67d6877724bbea6efa6d09a5f97d6",
+      "ego_pose_token": "7ffec10da7194ff59aa7bab71ebb4ef3",
+      "offset_us": 3115
+    },
+    {
+      "sample_token": "7097d2353e914bcf834c196a6a21be63",
+      "ego_pose_token": "dc752f4a17e34160a70a43a173899bf3",
+      "offset_us": 1607
+    },
+    {
+      "sample_token": "709d08c09f2c4c0e81dd3ecf76e57168",
+      "ego_pose_token": "0592d528b2d749baad9f42fa47ec90de",
+      "offset_us": 2633
+    },
+    {
+      "sample_token": "70ea4677eb1f4126a217de41eb5119ee",
+      "ego_pose_token": "ea33c8152f7244f492f0548b07f6ed0d",
+      "offset_us": 3298.0
+    },
+    {
+      "sample_token": "717a5295dd944f6f9b9edef6562b48e9",
+      "ego_pose_token": "0ff1d7572036465fbf4b81e5e23c8dbb",
+      "offset_us": 1874.0
+    },
+    {
+      "sample_token": "7225b605df0940e88cdc695c21771415",
+      "ego_pose_token": "5f28450619834370a633b54e91d138e3",
+      "offset_us": 2252.0
+    },
+    {
+      "sample_token": "724d874e90e446e2af1871a702dc8dd7",
+      "ego_pose_token": "00fb618906c8478a931c8b6a20a54af0",
+      "offset_us": 1679
+    },
+    {
+      "sample_token": "728fb789245746ae9c5979f49181de0a",
+      "ego_pose_token": "5dd5497996cb4d11b1034c7c8b8d042d",
+      "offset_us": 1925
+    },
+    {
+      "sample_token": "73cd609690224547b69224dad987f4f3",
+      "ego_pose_token": "3a45668b518c40c68a1b4448a3f08d63",
+      "offset_us": 2752
+    },
+    {
+      "sample_token": "74315069a83c4013bcacf251d9928fe1",
+      "ego_pose_token": "3f6b9c0775074c2796d6ddb21bbddaab",
+      "offset_us": 2372
+    },
+    {
+      "sample_token": "750d50a1a10d48efb33ccaa7280fa010",
+      "ego_pose_token": "bfebc80183cb439285e4ada291748f5a",
+      "offset_us": 1377
+    },
+    {
+      "sample_token": "755ac2cd4ee1493785ccc9de7b96c907",
+      "ego_pose_token": "2ac987b2ff7d4a029139c5f15ca00907",
+      "offset_us": 2872
+    },
+    {
+      "sample_token": "75f794a6f0dd4e2c9910b2f8f1192b04",
+      "ego_pose_token": "fb206b3940f840b0bbc87a14ab973ae9",
+      "offset_us": 2373.0
+    },
+    {
+      "sample_token": "7794802fda86401d8d0a7935731f18a8",
+      "ego_pose_token": "69916a1d7d2c4a6aa68c4b01d9d0753e",
+      "offset_us": 2054
+    },
+    {
+      "sample_token": "77f8596f82c948efa5231a656b64a313",
+      "ego_pose_token": "a5d402d3a8344173a348e6ccd862cc1b",
+      "offset_us": 2296.0
+    },
+    {
+      "sample_token": "7941a96d59d44b35a64d6b5cc2046a2e",
+      "ego_pose_token": "029ed53abadc4e3ea2ad6b6de5bae613",
+      "offset_us": 3831
+    },
+    {
+      "sample_token": "7a7c5575a7c342619ce96378e04038a1",
+      "ego_pose_token": "951d6d50b35b415a9b5ca3797d238207",
+      "offset_us": 2054
+    },
+    {
+      "sample_token": "7aab37b38b4344b2a5f9b4d56bdc8cf9",
+      "ego_pose_token": "285f4103cc37416b848b3781ac513f67",
+      "offset_us": 2288.0
+    },
+    {
+      "sample_token": "7d86c0bd95b449658921145955fea4e0",
+      "ego_pose_token": "2f308dd2d54f4622889485962fbd7a3e",
+      "offset_us": 2209
+    },
+    {
+      "sample_token": "7e342d779b5d446981801c5dfae2990e",
+      "ego_pose_token": "fd0f362dc6704671956c30bfc2dad841",
+      "offset_us": 2904
+    },
+    {
+      "sample_token": "7e82125df00b40aaaa57a34ba7907771",
+      "ego_pose_token": "e46f6bfdc22b464991d04615d356c9d6",
+      "offset_us": 2718
+    },
+    {
+      "sample_token": "7eb7840ac6e1479da2bd15325e0569a0",
+      "ego_pose_token": "0459252a422d48db89316b0fea4fb4d5",
+      "offset_us": 3037
+    },
+    {
+      "sample_token": "7ebdaf01abe2419bbc2f437149052f7e",
+      "ego_pose_token": "ab053eadb7aa45299d9a07b0b61f9bfe",
+      "offset_us": 2610.0
+    },
+    {
+      "sample_token": "7f551a9ca9144a289797b1de66b1bfa3",
+      "ego_pose_token": "11acb0dbff914391ad247fe220cc0089",
+      "offset_us": 2838.0
+    },
+    {
+      "sample_token": "7fd37cf3b62b49a6a1cd62db392c9575",
+      "ego_pose_token": "f341f60ca8684120a7abae763eebc387",
+      "offset_us": 4305
+    },
+    {
+      "sample_token": "80587e2bcbc24524967ae3d9ebb2517a",
+      "ego_pose_token": "287d6e6274e540ee97076cf4088cfa66",
+      "offset_us": 2349
+    },
+    {
+      "sample_token": "8087e38a235948e1a12fc698a2fbd73d",
+      "ego_pose_token": "53a38646c322486a9ce526f896f34231",
+      "offset_us": 1768
+    },
+    {
+      "sample_token": "80ad351eb99e4b28bfbec1105b6ac8eb",
+      "ego_pose_token": "ed58f26a89ab4a2099a63f9991d1aacb",
+      "offset_us": 3290
+    },
+    {
+      "sample_token": "80bf2114c8b94da1b824ade14128ea7a",
+      "ego_pose_token": "336dfa67c1374a9f866ade6e22b44531",
+      "offset_us": 2411
+    },
+    {
+      "sample_token": "814d7dd86f1a47e28385ee434cdb6b1a",
+      "ego_pose_token": "dd670f6b57bc47f99517972edf0dd32f",
+      "offset_us": 3964
+    },
+    {
+      "sample_token": "820da4bfc83143079d6444793dea903a",
+      "ego_pose_token": "15dc785fa2874e05910132725e28dad6",
+      "offset_us": 3134
+    },
+    {
+      "sample_token": "840bbca5b29741d29de0fc1a00d81cd4",
+      "ego_pose_token": "86e0e27c9759408885fa5b2c23c066ce",
+      "offset_us": 2921.0
+    },
+    {
+      "sample_token": "843eca25e8c742deb381c7ed8642fb40",
+      "ego_pose_token": "d76933632d55425f81ce09862dc10ee8",
+      "offset_us": 2190
+    },
+    {
+      "sample_token": "848b9e73fd014bf0a78da8c453978822",
+      "ego_pose_token": "062f66b7a36a49f2b93f75c672d14af7",
+      "offset_us": 2786
+    },
+    {
+      "sample_token": "8502c7bf06fc4f319f1847b4a6e179e7",
+      "ego_pose_token": "5865b99ef1924f76bcc5b53d7d0e4226",
+      "offset_us": 3691
+    },
+    {
+      "sample_token": "853e1e0907f14966be0c22eab0f4f05c",
+      "ego_pose_token": "8e7520d98bad42a1bf75a84773e45dae",
+      "offset_us": 2910.0
+    },
+    {
+      "sample_token": "856048bc4191462888a39dde92751b25",
+      "ego_pose_token": "f3fa3589fa6b4719b98e8d7e7f8891b5",
+      "offset_us": 2456.0
+    },
+    {
+      "sample_token": "85badd1a12cc4ba18d56fb12eab19d5d",
+      "ego_pose_token": "e6656044f4ce4c76bc7b9c989c0c8df1",
+      "offset_us": 2549
+    },
+    {
+      "sample_token": "85c5ca01cfb34d3e92d1c0c265235d04",
+      "ego_pose_token": "707556baddb649cb83d18972465f9814",
+      "offset_us": 2554
+    },
+    {
+      "sample_token": "8632c70a010c410ea60e0e03c605659a",
+      "ego_pose_token": "f6593d8298394f299442c80f85caca3a",
+      "offset_us": 2834
+    },
+    {
+      "sample_token": "8645dd1e937d48dfb703be785dee3145",
+      "ego_pose_token": "9bb4b4ddb5564e0f99b3299b3ebdddd7",
+      "offset_us": 2365
+    },
+    {
+      "sample_token": "868eb15fdbc047509a14c0a966dcd7b6",
+      "ego_pose_token": "624a459ed6ae44e4ae642ed4153aed68",
+      "offset_us": 2324
+    },
+    {
+      "sample_token": "876fc60ede7d47aa8eb3d1c396aa8ee1",
+      "ego_pose_token": "70e459f37d2046fc97016b7232d41037",
+      "offset_us": 2577.0
+    },
+    {
+      "sample_token": "87ba8b5a4c294644890ddfad19209e7a",
+      "ego_pose_token": "59685dc44c144c828cdca77a23ed0b2a",
+      "offset_us": 2911
+    },
+    {
+      "sample_token": "8853f77c7306460e8a319a0e56f1b3fd",
+      "ego_pose_token": "a980ffef3ca14b14b722415f0bc68c19",
+      "offset_us": 1931
+    },
+    {
+      "sample_token": "885bbe9d84d94c9f925437acf6e31921",
+      "ego_pose_token": "02269127c5c147f2ba27de7a08160867",
+      "offset_us": 2117.0
+    },
+    {
+      "sample_token": "88ad6593a97f46dcaca8401aa7b36d8b",
+      "ego_pose_token": "fa10ecf8219442279c9be93f0f966d1a",
+      "offset_us": 4269
+    },
+    {
+      "sample_token": "88c836e904e34f6cb1cbf68901b2515c",
+      "ego_pose_token": "1f391ea0577e43c691c74043f91d8d74",
+      "offset_us": 4228
+    },
+    {
+      "sample_token": "88f45c2252de4a4ab521c379295691b8",
+      "ego_pose_token": "e66166adf36e4aa998b694d81e8533b7",
+      "offset_us": 3789
+    },
+    {
+      "sample_token": "890b47ea4045423a9b0ca56f584c1aee",
+      "ego_pose_token": "fcfd973be0604101beb700ebc157a2dd",
+      "offset_us": 2522
+    },
+    {
+      "sample_token": "896fee4da88548658064bbe791974249",
+      "ego_pose_token": "619c348af9ca4e03857238a665f7d434",
+      "offset_us": 2378
+    },
+    {
+      "sample_token": "8a1ee4d450f94cfe8b07030adcaddf6b",
+      "ego_pose_token": "cdc997c69d0c461ba3d33b861dfb1316",
+      "offset_us": 2331
+    },
+    {
+      "sample_token": "8a5f89a6ebaa4d75aa70bf4b31734ea5",
+      "ego_pose_token": "c61455280e9c4167adf0bf23112b8e9b",
+      "offset_us": 4096
+    },
+    {
+      "sample_token": "8dbf50814d614cfbb323d8e822654eb1",
+      "ego_pose_token": "0c1b09ecb3284a2ca5329fff871926f2",
+      "offset_us": 4406
+    },
+    {
+      "sample_token": "8def0cf89dd94f1483002d209d33a00e",
+      "ego_pose_token": "ca30f5c1382a41ce9dbfc8da53f2c310",
+      "offset_us": 4472
+    },
+    {
+      "sample_token": "8fca58701c884e49b255c3f8eb2846d6",
+      "ego_pose_token": "5efa13d92a044dc68eeefeae993adbd0",
+      "offset_us": 3590
+    },
+    {
+      "sample_token": "8fead37877da4451b2cb3fc28c0a2df9",
+      "ego_pose_token": "62990f72503a4d6bb15a9a4d251a335d",
+      "offset_us": 2438
+    },
+    {
+      "sample_token": "9091d1c8f6f94b2cb32e0d4774429988",
+      "ego_pose_token": "9b6db1b5735a4f9987f138a5ff7f311b",
+      "offset_us": 2383
+    },
+    {
+      "sample_token": "90b359f78a9a4ef0bc84ff7b47b5f95e",
+      "ego_pose_token": "0d52fd459f0d45829819ef5c1444f5ca",
+      "offset_us": 4633
+    },
+    {
+      "sample_token": "930001ae599e48d6aabc373742c462a5",
+      "ego_pose_token": "9db99eab9d72407e8075a7e1ec750511",
+      "offset_us": 2431
+    },
+    {
+      "sample_token": "94640f753b284a1c9c0e8694243f60cd",
+      "ego_pose_token": "8637eee2cd5f438f9bf08f9a995b8b2b",
+      "offset_us": 4648
+    },
+    {
+      "sample_token": "960323dc7d534ab5aa9280808a29f280",
+      "ego_pose_token": "bdb7066be30c48dbb13e78204fefe41a",
+      "offset_us": 2186
+    },
+    {
+      "sample_token": "961dd8adb97f43b190a8d038db47cccb",
+      "ego_pose_token": "36a8a58c8de448af954382267c0d812a",
+      "offset_us": 3981
+    },
+    {
+      "sample_token": "966d4b3345e945a8a99fd3b0752f42e0",
+      "ego_pose_token": "b395321a672b48ad8e652da5e2c9ea01",
+      "offset_us": 3071
+    },
+    {
+      "sample_token": "9698580f407f42b3a66fa06c3d67fc7b",
+      "ego_pose_token": "237806f86cf840cba7c45d2e81fc2bb4",
+      "offset_us": 2263
+    },
+    {
+      "sample_token": "97366e0a4e504322aaae6e8b07884f2f",
+      "ego_pose_token": "d1cd1ff881034457ad1afd54694e5fa4",
+      "offset_us": 2840.0
+    },
+    {
+      "sample_token": "9aaeea7462be41baacf3ceb9126136e7",
+      "ego_pose_token": "e38b2227b74f410f896f73438d8884a1",
+      "offset_us": 2588
+    },
+    {
+      "sample_token": "9b3984d9e3094104a34f06910c521a08",
+      "ego_pose_token": "0c9a394389e74a6ba523b468483e6597",
+      "offset_us": 3019
+    },
+    {
+      "sample_token": "9bb4c0e43cf34d73bf44859d4880e87b",
+      "ego_pose_token": "d108a0e4c899425bb9e43470da0bd5c0",
+      "offset_us": 3470
+    },
+    {
+      "sample_token": "9bd153ce54554cc9a028e6456d2751d2",
+      "ego_pose_token": "de74bae678b045ad98dc4f359c880741",
+      "offset_us": 2625
+    },
+    {
+      "sample_token": "9bd4a2d0f3ae4c5fbc8f9b25c3a5fc05",
+      "ego_pose_token": "b63e0fb3edf64d7fa1a63e41290a4f6b",
+      "offset_us": 3137
+    },
+    {
+      "sample_token": "9c55592e36884436880465b77c75a2de",
+      "ego_pose_token": "60ee5b6ecaff4161ac8516c236edbd9f",
+      "offset_us": 2726.0
+    },
+    {
+      "sample_token": "9d75f3c77f384353b5477c981fb46011",
+      "ego_pose_token": "3730af70adb64dff976147467e3628a8",
+      "offset_us": 2611
+    },
+    {
+      "sample_token": "9d872a2768df4239af24b78af494435f",
+      "ego_pose_token": "4f0bd638e07f434fbf148a0bf2a68c0a",
+      "offset_us": 2962
+    },
+    {
+      "sample_token": "9e7a04dbb9dd4f41a103ef7280d51b19",
+      "ego_pose_token": "223256d9599a452c94b34547b1b09505",
+      "offset_us": 2487
+    },
+    {
+      "sample_token": "9e8d42cc2ec2408ba1ae5cb948b5615f",
+      "ego_pose_token": "d31560c4f24947fa84ddca82e63c6c07",
+      "offset_us": 3502
+    },
+    {
+      "sample_token": "9eefc874f88a490cba62967ad2ea68be",
+      "ego_pose_token": "13e83a2c4ac5425daf96b233ae6feff2",
+      "offset_us": 1958.0
+    },
+    {
+      "sample_token": "9f4cd7e6a69444c7afa7208021183235",
+      "ego_pose_token": "84fb08220cfc4d60a1bdaeb4a92bfe2d",
+      "offset_us": 3120
+    },
+    {
+      "sample_token": "9f765fcab1c54fe19aa84192ba6dab76",
+      "ego_pose_token": "d45f3e0c162c4a86804b986a149ac110",
+      "offset_us": 3279
+    },
+    {
+      "sample_token": "a0eaf36b2f7a4598bb0ae21a3e6d44cd",
+      "ego_pose_token": "97eb907bfb7e4789954d8793b9cc34ad",
+      "offset_us": 3109
+    },
+    {
+      "sample_token": "a1bcff3507ba48d991ec098093d75394",
+      "ego_pose_token": "240d9644de824630a84000568fe7e420",
+      "offset_us": 4181
+    },
+    {
+      "sample_token": "a24b8e21a49746d196ba067b09e21a4f",
+      "ego_pose_token": "5e65bcc96fb54bf2b5f582465a129696",
+      "offset_us": 2542.0
+    },
+    {
+      "sample_token": "a253c803a4244cb9aa2a2b1963eeeea3",
+      "ego_pose_token": "018bc90a5920487abc0ad96147f17861",
+      "offset_us": 3727
+    },
+    {
+      "sample_token": "a3c36b28774345169f106bf634cbe1ae",
+      "ego_pose_token": "d5c96c8733f8413a9f575ded8abca489",
+      "offset_us": 2645
+    },
+    {
+      "sample_token": "a42b482121464aa795d24f55400c574f",
+      "ego_pose_token": "5b49ae62273a4ca599972767be5a6c7b",
+      "offset_us": 3748
+    },
+    {
+      "sample_token": "a574551be31547e4b7c78ff87c75abb3",
+      "ego_pose_token": "e312e478556b4552a4c6bceb4599b629",
+      "offset_us": 3834
+    },
+    {
+      "sample_token": "a5d7d3dc07d345cfb5649e4fac1cdd87",
+      "ego_pose_token": "36f2cd176da0455f88868d6acedd550a",
+      "offset_us": 3586
+    },
+    {
+      "sample_token": "a5f45502b1624983896e28a213edfc32",
+      "ego_pose_token": "94a9cd39104d4d05a91c14aa4ac0ac9f",
+      "offset_us": 4037
+    },
+    {
+      "sample_token": "a6ede53ff2014741a2924a3dc6735aee",
+      "ego_pose_token": "6bd0727b06e044eeb533dee28f47afad",
+      "offset_us": 2659
+    },
+    {
+      "sample_token": "a83f7b2127814ba5a0ded665a015e769",
+      "ego_pose_token": "2b7c66a188b44013805b75202841c4ac",
+      "offset_us": 1833
+    },
+    {
+      "sample_token": "a87217a4529f494e9da56915badf6a85",
+      "ego_pose_token": "d08b39b8844447b08cba9649f33b6bb7",
+      "offset_us": 2407
+    },
+    {
+      "sample_token": "a98bbe5b6e394642a61d40b80e282bd2",
+      "ego_pose_token": "a48da0125c754f93a59179595bc78241",
+      "offset_us": 2746
+    },
+    {
+      "sample_token": "a9b293108091418c9170311735a14d38",
+      "ego_pose_token": "e67ac9499fd041f8a3a9bf54d2b1c086",
+      "offset_us": 2761
+    },
+    {
+      "sample_token": "aad3fc22cae6450ba76ce8c10ceb5862",
+      "ego_pose_token": "f424407c45744c838e465205183c3991",
+      "offset_us": 4870
+    },
+    {
+      "sample_token": "ab1028c0aef4497481ce6ead95eae8b4",
+      "ego_pose_token": "caf1b223471d4109b989073e0056ab5d",
+      "offset_us": 2215
+    },
+    {
+      "sample_token": "abc3a19f07de4554ac44b788cce7315b",
+      "ego_pose_token": "718209b2ef7b449a9e24b67dcb907f03",
+      "offset_us": 1912
+    },
+    {
+      "sample_token": "ac4e4e1e38fc42f69e1a1b91086ce77a",
+      "ego_pose_token": "97edf788c3934fc4a39681ff1d32e35e",
+      "offset_us": 2387
+    },
+    {
+      "sample_token": "ac66e06eade741ea8e18d7ed4ce20120",
+      "ego_pose_token": "2294aa5cfd3746cb9c874d269ef42084",
+      "offset_us": 2775
+    },
+    {
+      "sample_token": "ad06fdbd34fd4dd4b0f0ef8f8bd7ac68",
+      "ego_pose_token": "fd0481e6a5004664b237707c230b8191",
+      "offset_us": 2753.0
+    },
+    {
+      "sample_token": "ad8c44a11384426e915df188732b1a80",
+      "ego_pose_token": "1bc553706d5f4ba2a5f5a359d896223c",
+      "offset_us": 4212
+    },
+    {
+      "sample_token": "ae92726ca1c7497b8d312122603399ec",
+      "ego_pose_token": "39cda4d122644cdba0295f60baebb975",
+      "offset_us": 2586
+    },
+    {
+      "sample_token": "af7b2ad4a2604df3886477c19c351ceb",
+      "ego_pose_token": "c02e5f6bee954be99d99799bee019615",
+      "offset_us": 3935
+    },
+    {
+      "sample_token": "b0c7aef37dee49a6ac2236b212af059c",
+      "ego_pose_token": "130d945163bb44c6a763da976503fcf0",
+      "offset_us": 2141.0
+    },
+    {
+      "sample_token": "b1724a8b614640e39cd18857d741d2d3",
+      "ego_pose_token": "715a47e3cd0742289f69c3d567ec7d38",
+      "offset_us": 2717.0
+    },
+    {
+      "sample_token": "b18f83cbe8b44e8c80dcac5b4bdf1de5",
+      "ego_pose_token": "9bc7c9479bcc413184e5070aa9157211",
+      "offset_us": 2802
+    },
+    {
+      "sample_token": "b193a929462d4b28b559eda6d21dba5d",
+      "ego_pose_token": "d478a607066b415a82989f5e77d46b04",
+      "offset_us": 2264.0
+    },
+    {
+      "sample_token": "b213083c83b74031b2a23040e38861aa",
+      "ego_pose_token": "9781845a66f1440ea0e641237e3de512",
+      "offset_us": 2862.0
+    },
+    {
+      "sample_token": "b47fb153d525405b9a0969ed13866d47",
+      "ego_pose_token": "32a5171ca485467fa2844d5ade4c6571",
+      "offset_us": 4206
+    },
+    {
+      "sample_token": "b4d713a4172242c2851e8281de40e92e",
+      "ego_pose_token": "2b5b7f5faab84249ad02f6948467d879",
+      "offset_us": 3260
+    },
+    {
+      "sample_token": "b512ae4bb98c4adcb570163a783ba1b1",
+      "ego_pose_token": "983875cf711f4dbdb81cc139edcf9ee8",
+      "offset_us": 2110
+    },
+    {
+      "sample_token": "b5e85c3fdd73410bbd64b73e699641ed",
+      "ego_pose_token": "dae2884145e14c7587afe31b4a50b57b",
+      "offset_us": 2188.0
+    },
+    {
+      "sample_token": "b6a30d50fb9f41eea4cce04d65fbadd1",
+      "ego_pose_token": "04b85e9b6cd6433bb3e1820412e51eeb",
+      "offset_us": 2351.0
+    },
+    {
+      "sample_token": "b758c76a38de4c96a259024c2603f725",
+      "ego_pose_token": "519921d15e884fc5a2a5f96dd60ebec4",
+      "offset_us": 4419
+    },
+    {
+      "sample_token": "b7aef90fff4146c5b2fbd5938dbe2317",
+      "ego_pose_token": "3db28cf477eb4ed084ec03aaa7d66e83",
+      "offset_us": 2715.0
+    },
+    {
+      "sample_token": "b7db9773713a454e8148f86a84ab6a53",
+      "ego_pose_token": "810890489f98497d974533719137c024",
+      "offset_us": 1663
+    },
+    {
+      "sample_token": "b9a7ec7fce4a4a4f96f5314c1c686fcf",
+      "ego_pose_token": "b0ddf0625a944d41872b4e42615794af",
+      "offset_us": -4900
+    },
+    {
+      "sample_token": "b9d620dd5b0d460c9e6bcbba8869e234",
+      "ego_pose_token": "ee54056d24164d328cdd3a8622b284b8",
+      "offset_us": 4333
+    },
+    {
+      "sample_token": "bab11f9d759141a1a62ff8bedf2f5815",
+      "ego_pose_token": "d858d56208584ebb8003a08506510d76",
+      "offset_us": 2923.0
+    },
+    {
+      "sample_token": "bb645fdd377641b0bf0cc0e237c8f921",
+      "ego_pose_token": "40d513b67c904c64a82dab5b7fef97a3",
+      "offset_us": 4359
+    },
+    {
+      "sample_token": "bd1b98fca97642d596c968d4df826df0",
+      "ego_pose_token": "40075ea891764daa8bcaa3175ff4e54e",
+      "offset_us": 2356
+    },
+    {
+      "sample_token": "bd668ece51fe418db7990a8539513299",
+      "ego_pose_token": "3abd5ff3c81a453d8228a716008f0e69",
+      "offset_us": 2621
+    },
+    {
+      "sample_token": "bdba889f16cc459ea62e9510edae53ad",
+      "ego_pose_token": "e7fa5812f8db4801be543173c4ef20a9",
+      "offset_us": 4350
+    },
+    {
+      "sample_token": "be06e5f9e4414f1e9b9280620e8059cc",
+      "ego_pose_token": "43877379d58c4413b19e144d7e199eb5",
+      "offset_us": 3818
+    },
+    {
+      "sample_token": "be75e2cea76844e0ac64bdf7ab68721b",
+      "ego_pose_token": "771f89b4ffe443c8b0bb8c66e9d777a8",
+      "offset_us": 2831.0
+    },
+    {
+      "sample_token": "be9fd92af46f405a81143c4ebc2ec6e8",
+      "ego_pose_token": "37cdcfbc538f445cb468f0583afe28e0",
+      "offset_us": 4068
+    },
+    {
+      "sample_token": "bef4f31700da4be6b6d5e00e8d2f069f",
+      "ego_pose_token": "99c4ab13bdfa48028e5c3777856b86a3",
+      "offset_us": 4558
+    },
+    {
+      "sample_token": "bf562ad191424bd7b701bb1dfddf068f",
+      "ego_pose_token": "5c7214a6bb844362a894092a556e3b52",
+      "offset_us": 2353.0
+    },
+    {
+      "sample_token": "bf5cf015771d44108d314771d3ace51d",
+      "ego_pose_token": "ef412fc859e44dd899300c6a4a1945ee",
+      "offset_us": 4850
+    },
+    {
+      "sample_token": "bfa3a0b5782c4aa59d27134daa9a314f",
+      "ego_pose_token": "21e4b90a68944202aca45b71fc818e40",
+      "offset_us": 2634
+    },
+    {
+      "sample_token": "c077a9424ba74b41b1f7388437a26db8",
+      "ego_pose_token": "25da1b12d8b4434e8d71d52114084bc0",
+      "offset_us": 3770
+    },
+    {
+      "sample_token": "c0b2ee117e004da190dcfd033a30f641",
+      "ego_pose_token": "244e49bbcc6c407383940dd009f70ab0",
+      "offset_us": 2746
+    },
+    {
+      "sample_token": "c0c731e2934f4f61a21f188dbfafd519",
+      "ego_pose_token": "9bf24a02606c42b2a34ba9fe71af9b71",
+      "offset_us": 4706
+    },
+    {
+      "sample_token": "c103c5de42ae4cef9bbbb29bbd240528",
+      "ego_pose_token": "734e2bca97ea48cd945f494e478ddc02",
+      "offset_us": 3169
+    },
+    {
+      "sample_token": "c1fa7ae3e9e841669977535cab99f9e5",
+      "ego_pose_token": "6b203d23e69d4ee4af69250fdaafe6f7",
+      "offset_us": 4133
+    },
+    {
+      "sample_token": "c274731e59da4059ae35fd5e543870cd",
+      "ego_pose_token": "53289f428c2048e69a930aa8ab202262",
+      "offset_us": 2556
+    },
+    {
+      "sample_token": "c436471660d04308a31787eaac3325ba",
+      "ego_pose_token": "b08a255b96514f3dad533a8d4fc4f75f",
+      "offset_us": 3244
+    },
+    {
+      "sample_token": "c47d261c32ec405b836f0b832b776438",
+      "ego_pose_token": "a2f8325ebb10487dbdf3c0c143f0dae3",
+      "offset_us": 2763
+    },
+    {
+      "sample_token": "c483d412789d4b13991fc1f36cdd06a8",
+      "ego_pose_token": "d6c0899750564ef19fb53463bc11f217",
+      "offset_us": 2682
+    },
+    {
+      "sample_token": "c5dc48287d064c87939d630ff4c21065",
+      "ego_pose_token": "dd5936d2ef514fe2aac90b5048495318",
+      "offset_us": 2813.0
+    },
+    {
+      "sample_token": "c65dea1742af45629519f0f94af9f031",
+      "ego_pose_token": "a1021dea273d41a38450a55d830f2b35",
+      "offset_us": 2421
+    },
+    {
+      "sample_token": "c689aeff0cd344188c9272316a7d57c0",
+      "ego_pose_token": "461ca225ed9b463abd7d5e53bd987952",
+      "offset_us": 2362.0
+    },
+    {
+      "sample_token": "c697554e47f54d808bc04430ee0c096a",
+      "ego_pose_token": "34dafb4af1bf4bd58a75ba1fbbfae174",
+      "offset_us": 4197
+    },
+    {
+      "sample_token": "c6cd487764a64b81b6be7b68a5da2867",
+      "ego_pose_token": "cf68a7b1fa3b4982baea1f0d3061ad0b",
+      "offset_us": 3178
+    },
+    {
+      "sample_token": "c83bd7f9373d4dbda92199888bb50db2",
+      "ego_pose_token": "a55634cf52ce49d8a5fb110834e00c1d",
+      "offset_us": 2807
+    },
+    {
+      "sample_token": "ca174280df424acfacaab13a606faf99",
+      "ego_pose_token": "cf7cd245747c4830b01b7db18c3f30dc",
+      "offset_us": 2269.0
+    },
+    {
+      "sample_token": "cd0ad0366409452ba84ed09a88762098",
+      "ego_pose_token": "4b3a7a608c6e49b5919671b12dcd93b4",
+      "offset_us": 4471
+    },
+    {
+      "sample_token": "cdcb5969e1824bc4bd262ff795fbeae1",
+      "ego_pose_token": "d36a038d365e4a209f00cfac0be4e17d",
+      "offset_us": 2533
+    },
+    {
+      "sample_token": "ce95e0afbb7245018e8645c3fd8a1bc6",
+      "ego_pose_token": "8eacebf964bf4250b766a6078da6a48f",
+      "offset_us": 2582
+    },
+    {
+      "sample_token": "ceb501e033a5449fa766450a05e0ba4a",
+      "ego_pose_token": "7d2c1307eac649b4aa4742fbcbc97a4e",
+      "offset_us": 1612
+    },
+    {
+      "sample_token": "cf11812a2090490bb96be72aa701cd97",
+      "ego_pose_token": "54fb744f71bc4535b306d9bbf00292a0",
+      "offset_us": 2476
+    },
+    {
+      "sample_token": "cf37919cc2204541a25798673dc06bdb",
+      "ego_pose_token": "34de6241a67840ccab0b6d1a24bdac4f",
+      "offset_us": 4968
+    },
+    {
+      "sample_token": "d088162159534984bbe9c0e4ca87de81",
+      "ego_pose_token": "aca8c322c3f04612853fb62ec8084553",
+      "offset_us": 3543.0
+    },
+    {
+      "sample_token": "d189106bfea940e6b0645b020a817274",
+      "ego_pose_token": "c815c629944f4b6592e477dbba26d33e",
+      "offset_us": 4063
+    },
+    {
+      "sample_token": "d1a194be3c4d4ab3946f088897e0f578",
+      "ego_pose_token": "1a572d27a76c4e2caf36487ea1cd1d1d",
+      "offset_us": 2798.0
+    },
+    {
+      "sample_token": "d5c1c80145214282b058cf815792baa9",
+      "ego_pose_token": "3a65390b7b9249eca2b918b0fd20913f",
+      "offset_us": 2995
+    },
+    {
+      "sample_token": "d61070d1f0eb4ebdbf6a3082758cfd57",
+      "ego_pose_token": "90d33b1ad4c94295848a4b4bf0ea6fa5",
+      "offset_us": 2804
+    },
+    {
+      "sample_token": "d6749e370cac44b5af7a04924435ff6b",
+      "ego_pose_token": "5739c95276e94af0b6a30ad0dafda09b",
+      "offset_us": 2425.0
+    },
+    {
+      "sample_token": "d6d99b8b342f4683b8d98bb6d9d27c2f",
+      "ego_pose_token": "0a6fa5fe7fcd4603a40de729056f3fa3",
+      "offset_us": 3016
+    },
+    {
+      "sample_token": "d6faf332666e480aa7391cf082b0267c",
+      "ego_pose_token": "23fe2089c6de48d9997c948cbae08ad9",
+      "offset_us": 2557
+    },
+    {
+      "sample_token": "d71e2bb51e3246e0a8e9546b8f99ae00",
+      "ego_pose_token": "9d5d9303f7da4032ab6be2e7061e8a48",
+      "offset_us": 4221
+    },
+    {
+      "sample_token": "d7e011704a8042ccb7957f46d4ca1071",
+      "ego_pose_token": "6ea28409aa5e4c0b8b23904af40b94a2",
+      "offset_us": 3279
+    },
+    {
+      "sample_token": "d90d09439b8049c2967999fc4a8fd2a4",
+      "ego_pose_token": "4a469e9d6f7c4709971353f7053a1d11",
+      "offset_us": 2456.0
+    },
+    {
+      "sample_token": "d9a0ffc7dc7a4932af41044c29c0c558",
+      "ego_pose_token": "cf16b3f5d7de405ea2a4f15e11ce87c9",
+      "offset_us": 2393.0
+    },
+    {
+      "sample_token": "d9d945f2ecff47eaa09f9c2dd283a89d",
+      "ego_pose_token": "4c8bed6380a34e22927fe9a9fa81fe7a",
+      "offset_us": 2765.0
+    },
+    {
+      "sample_token": "da505831bbb84ffc8e5ce6cf794037be",
+      "ego_pose_token": "32983bac318247bcb9392985796a3be7",
+      "offset_us": 4035
+    },
+    {
+      "sample_token": "db2c0e4d75654d4db21937c518e75957",
+      "ego_pose_token": "6efc20541e33446da2f7a473a4c6af0b",
+      "offset_us": 2011
+    },
+    {
+      "sample_token": "db3eb0f710004882b55e2dd1e7b9f606",
+      "ego_pose_token": "e4a47380398f47888d2df1d68dbf2dc1",
+      "offset_us": 3340
+    },
+    {
+      "sample_token": "db875de1c58748c0a4f273f4200b0841",
+      "ego_pose_token": "e3f12cb0b3e3471499a86bf2c826cdb4",
+      "offset_us": 2790
+    },
+    {
+      "sample_token": "db8f3abb2d1440889ce9d8a759ce855e",
+      "ego_pose_token": "6dcecc7402714f71a110c521c90892dd",
+      "offset_us": 3176
+    },
+    {
+      "sample_token": "dbc47884027c46d3863f5bd9d34521a3",
+      "ego_pose_token": "b55e5d5331f141d58eef4ae089817f56",
+      "offset_us": 3765
+    },
+    {
+      "sample_token": "dc80f86d4864439d98edf0612e4892dc",
+      "ego_pose_token": "a625c9e2ca8543728ae7b7fbc678cc76",
+      "offset_us": 2800
+    },
+    {
+      "sample_token": "de022c96a11f48ee9a677c4147696a42",
+      "ego_pose_token": "ff2f8a2d87024cff971661ddc91d44e1",
+      "offset_us": 2899
+    },
+    {
+      "sample_token": "de4ed400cbab46b88194dc982bfb35a7",
+      "ego_pose_token": "4497cfef73824ca48121da38800a0082",
+      "offset_us": 3766
+    },
+    {
+      "sample_token": "de5890acd09f4e34801b92e9e73369db",
+      "ego_pose_token": "7394164ba2194254a47c87d57675a95f",
+      "offset_us": 2772.0
+    },
+    {
+      "sample_token": "deb7b3f332f042d49e7636d6e4959354",
+      "ego_pose_token": "7ed9bf4957754ae9965eb434e40f96e8",
+      "offset_us": 3472
+    },
+    {
+      "sample_token": "dfb9c2cee4824b6ea827e2cfac0dda0c",
+      "ego_pose_token": "b440cc560a864d98a5c77b0a04b5a866",
+      "offset_us": 2484.0
+    },
+    {
+      "sample_token": "dfbf91bd129943158cfe23b97304b5c1",
+      "ego_pose_token": "534930a8650c4585b82ac4f6f537e3e4",
+      "offset_us": 4589
+    },
+    {
+      "sample_token": "e070823623784061a8cba3a3849f218e",
+      "ego_pose_token": "dcb14263a0b04dcaaf516f5586681257",
+      "offset_us": 3260
+    },
+    {
+      "sample_token": "e12831dd0e5040abaced46ee13f3c414",
+      "ego_pose_token": "ce86a0d53776449293aa9260c7984efb",
+      "offset_us": 2384
+    },
+    {
+      "sample_token": "e261df7d29c84cde8d408c5571ae44a5",
+      "ego_pose_token": "11c5add8dd164701964c9cb6eb0c710e",
+      "offset_us": 2485
+    },
+    {
+      "sample_token": "e36adaf2da754ffdb49216769a94fd5e",
+      "ego_pose_token": "b334562127f7461e97d681fa35065e25",
+      "offset_us": 2053
+    },
+    {
+      "sample_token": "e4081856fd5349b5a7b89b944a5b543f",
+      "ego_pose_token": "7a0add566ba445aebef8e1b8e2b29289",
+      "offset_us": 2231
+    },
+    {
+      "sample_token": "e43ae3c9b670423d89fe92170f0c87e9",
+      "ego_pose_token": "8cb07c0d65bd475f9a7fbd48cf56bbbc",
+      "offset_us": 2278.0
+    },
+    {
+      "sample_token": "e4615d6d7e5b4d8989a3bed70a3f8aba",
+      "ego_pose_token": "553dc51f89b54736b8b25c722533ee42",
+      "offset_us": 1940
+    },
+    {
+      "sample_token": "e527f6f066f143d68f20aadb009db2a7",
+      "ego_pose_token": "cdae6d0d82b048e5b9d9df538ae85f71",
+      "offset_us": 3693
+    },
+    {
+      "sample_token": "e55da1b1790746d28026543b91d35035",
+      "ego_pose_token": "e40a723ae08a4df9a975cf0f1fe73adf",
+      "offset_us": 4226
+    },
+    {
+      "sample_token": "e59952ad704f4cb58c01f74e21c6251c",
+      "ego_pose_token": "d9b897b261e5409aa1602e5b037e9a83",
+      "offset_us": 2498
+    },
+    {
+      "sample_token": "e8d9d7b84b384c95ad0eff56dc1f0a99",
+      "ego_pose_token": "049cb61cad344bda94c4aeb8d6f80ee3",
+      "offset_us": 3127
+    },
+    {
+      "sample_token": "e99ad15689f74cc1a7f2e92052fddbac",
+      "ego_pose_token": "91f837ba524b45ac846ba12c32ee131d",
+      "offset_us": 3220
+    },
+    {
+      "sample_token": "e9dab1896acf4c0fa04f85f5c3b047fa",
+      "ego_pose_token": "c5916835810341f0aae41f8dc8395b22",
+      "offset_us": 2846
+    },
+    {
+      "sample_token": "e9f4a50a1b0a41a492edf7a4870f594c",
+      "ego_pose_token": "43e3fd50423a405da9dab3c5b646568f",
+      "offset_us": 2675
+    },
+    {
+      "sample_token": "eb1934dd31474c05868325b6c31fc2df",
+      "ego_pose_token": "aad1c2039d2d4e0c89a0c564968f382b",
+      "offset_us": 3363
+    },
+    {
+      "sample_token": "eb589fd9cd944cf5918b7d02b675c9e0",
+      "ego_pose_token": "8b40aa87ea6f4a298f26acfec3126755",
+      "offset_us": 3597
+    },
+    {
+      "sample_token": "ec17dfb1934341549f650afd60325801",
+      "ego_pose_token": "0062eaa803cc45179e8d2780f97bb6c3",
+      "offset_us": 1937
+    },
+    {
+      "sample_token": "ecac575c0ef94854bd31474102fc7bdd",
+      "ego_pose_token": "4907d963c96041a3a57ddb51572b154b",
+      "offset_us": 2871
+    },
+    {
+      "sample_token": "ecda125ef7114f1e95e3376a422ca987",
+      "ego_pose_token": "d5a66122862f48c8a973558b601393c9",
+      "offset_us": 3579
+    },
+    {
+      "sample_token": "ecfeab9c4ce14cc0a2f94a111172f157",
+      "ego_pose_token": "d72d79ae91b5410abfde325d7d012230",
+      "offset_us": 2842.0
+    },
+    {
+      "sample_token": "ed4081026261436197a9c66f1939d830",
+      "ego_pose_token": "968e6bd064bb45718370d5388377cbdb",
+      "offset_us": 2853
+    },
+    {
+      "sample_token": "edda21af0d3746509b92cd66626f3c22",
+      "ego_pose_token": "d83a1086258646a08ca439a265576bc4",
+      "offset_us": 3587
+    },
+    {
+      "sample_token": "efdf43b811f84e0c90b8615a9bb45c95",
+      "ego_pose_token": "8e0f2350cca34052b0b555f9a5363887",
+      "offset_us": 2157
+    },
+    {
+      "sample_token": "f03439e032294f6989ef7d6d91b32101",
+      "ego_pose_token": "d4421e69e79143e2842d54fba8928767",
+      "offset_us": 2836
+    },
+    {
+      "sample_token": "f1c03220990143e19b983bf3da478764",
+      "ego_pose_token": "a842d5d96ab1408e8c76751cb1286c5e",
+      "offset_us": 2928
+    },
+    {
+      "sample_token": "f2aa8afaba7249398e32f59a538ec5bf",
+      "ego_pose_token": "47623eafed314fcf9afb47e5ab96e867",
+      "offset_us": 3396.0
+    },
+    {
+      "sample_token": "f30cc75a84fd4777b255f7d540c150d6",
+      "ego_pose_token": "74e5c5a0765b46d4bbd0a566f0850ee6",
+      "offset_us": 2477
+    },
+    {
+      "sample_token": "f31befb82f864a368e6164a75a1733f9",
+      "ego_pose_token": "d1b9e0e278114a9d998a84019ddf9a0a",
+      "offset_us": 2925.0
+    },
+    {
+      "sample_token": "f52dde90d62b4d3a9024e9280cb73179",
+      "ego_pose_token": "901cdfdda40b4bc8ae1fa9edcda61d54",
+      "offset_us": 2547
+    },
+    {
+      "sample_token": "f5db1031dd334e8c8eb03bedf91c5bba",
+      "ego_pose_token": "ebc7acfc0a4c4d34bbc158c440061b40",
+      "offset_us": 2805
+    },
+    {
+      "sample_token": "f7266f0631c84eac82c76a41a661eda1",
+      "ego_pose_token": "0acb718591a747989f16f1954f0842b8",
+      "offset_us": 2531
+    },
+    {
+      "sample_token": "f78fc07d7ea847ceb289a9a695a9a01b",
+      "ego_pose_token": "6eb4436e03044e9baa7cd4330d447e2c",
+      "offset_us": 2681.0
+    },
+    {
+      "sample_token": "f7ad54940a674f25be6c22317b0e3815",
+      "ego_pose_token": "95aaf567dc2540a49766771c66ad0937",
+      "offset_us": 2676.0
+    },
+    {
+      "sample_token": "f82496cfbd55402eb388ca3b2de1ff00",
+      "ego_pose_token": "3e3be4d736fa4b1998bef252e15e29ac",
+      "offset_us": 2899.0
+    },
+    {
+      "sample_token": "f8a3068c788b4ef385f381a1896324ff",
+      "ego_pose_token": "113cfdaac1b540c187f5abd1f2405814",
+      "offset_us": 3569
+    },
+    {
+      "sample_token": "fa2acde00fe3439786ccd631c78fd641",
+      "ego_pose_token": "2dee9c3c5ffc4ec68be4d3657c5753c8",
+      "offset_us": 2612.0
+    },
+    {
+      "sample_token": "fb586e9af9bc4ded87c306e7964345e6",
+      "ego_pose_token": "3ed042a1bbbe4f0ea71d31f07507c452",
+      "offset_us": 3619.0
+    },
+    {
+      "sample_token": "fc1d4a5b3ab94addad4ee0e5ae6cc62f",
+      "ego_pose_token": "ac27ca149a354e988165653e5d9a1e0f",
+      "offset_us": 2273.0
+    },
+    {
+      "sample_token": "fc33e12c049840889efde7b2218b5c51",
+      "ego_pose_token": "7aad0b5776434cc8943c6aafa0e3e5c2",
+      "offset_us": 2348.0
+    },
+    {
+      "sample_token": "fc4f2122f1d44b22bf8ad29854af135f",
+      "ego_pose_token": "479be4e6a8ec419f8ac43f8a0811b505",
+      "offset_us": 3437
+    },
+    {
+      "sample_token": "fd46341537f34c16b8f37389b25b5eff",
+      "ego_pose_token": "44bca0a4630f41fc9fd528d9e8c22a96",
+      "offset_us": 2756.0
+    },
+    {
+      "sample_token": "fd6f19fe58c1488f9c45ccd70f25561c",
+      "ego_pose_token": "311f8ba54bb44f1789edef94381b74d1",
+      "offset_us": 3203.0
+    },
+    {
+      "sample_token": "fe0fd4d7662043a1801a7b179bbca83e",
+      "ego_pose_token": "b3fa42e0930c4c849aa8643c48e3d0a2",
+      "offset_us": 4902
+    },
+    {
+      "sample_token": "ff8de0a92fcd4c80bd500c8559a13c4a",
+      "ego_pose_token": "d93eddc1d2634ef7908cea1116c61c24",
+      "offset_us": 3456
+    }
+  ]
+}

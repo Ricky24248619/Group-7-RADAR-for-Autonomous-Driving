@@ -1,0 +1,11 @@
+{
+  "total_samples": 80,
+  "cameras_expected_per_sample": 4,
+  "present_count_per_camera": {
+    "CAMERA_LEFT_FRONT": 80,
+    "CAMERA_RIGHT_FRONT": 80,
+    "CAMERA_LEFT_BACK": 80,
+    "CAMERA_RIGHT_BACK": 80
+  },
+  "missing": []
+}

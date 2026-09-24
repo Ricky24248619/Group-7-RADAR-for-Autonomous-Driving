@@ -1,0 +1,98 @@
+[
+  {
+    "sample_token": "32d2bcf46e734dffb14fe2e0a823d059",
+    "camera": "CAMERA_LEFT_FRONT",
+    "status": "success",
+    "n_boxes": 53
+  },
+  {
+    "sample_token": "32d2bcf46e734dffb14fe2e0a823d059",
+    "camera": "CAMERA_RIGHT_FRONT",
+    "status": "success",
+    "n_boxes": 38
+  },
+  {
+    "sample_token": "32d2bcf46e734dffb14fe2e0a823d059",
+    "camera": "CAMERA_LEFT_BACK",
+    "status": "success",
+    "n_boxes": 16
+  },
+  {
+    "sample_token": "32d2bcf46e734dffb14fe2e0a823d059",
+    "camera": "CAMERA_RIGHT_BACK",
+    "status": "success",
+    "n_boxes": 18
+  },
+  {
+    "sample_token": "8502c7bf06fc4f319f1847b4a6e179e7",
+    "camera": "CAMERA_LEFT_FRONT",
+    "status": "success",
+    "n_boxes": 6
+  },
+  {
+    "sample_token": "8502c7bf06fc4f319f1847b4a6e179e7",
+    "camera": "CAMERA_RIGHT_FRONT",
+    "status": "success",
+    "n_boxes": 6
+  },
+  {
+    "sample_token": "8502c7bf06fc4f319f1847b4a6e179e7",
+    "camera": "CAMERA_LEFT_BACK",
+    "status": "success",
+    "n_boxes": 37
+  },
+  {
+    "sample_token": "8502c7bf06fc4f319f1847b4a6e179e7",
+    "camera": "CAMERA_RIGHT_BACK",
+    "status": "success",
+    "n_boxes": 60
+  },
+  {
+    "sample_token": "80ad351eb99e4b28bfbec1105b6ac8eb",
+    "camera": "CAMERA_LEFT_FRONT",
+    "status": "success",
+    "n_boxes": 3
+  },
+  {
+    "sample_token": "80ad351eb99e4b28bfbec1105b6ac8eb",
+    "camera": "CAMERA_RIGHT_FRONT",
+    "status": "success",
+    "n_boxes": 1
+  },
+  {
+    "sample_token": "80ad351eb99e4b28bfbec1105b6ac8eb",
+    "camera": "CAMERA_LEFT_BACK",
+    "status": "success",
+    "n_boxes": 3
+  },
+  {
+    "sample_token": "80ad351eb99e4b28bfbec1105b6ac8eb",
+    "camera": "CAMERA_RIGHT_BACK",
+    "status": "skip_no_detections",
+    "n_boxes": 0
+  },
+  {
+    "sample_token": "6e2e1eaa68694c8f8c8d11993ec856e7",
+    "camera": "CAMERA_LEFT_FRONT",
+    "status": "skip_no_detections",
+    "n_boxes": 0
+  },
+  {
+    "sample_token": "6e2e1eaa68694c8f8c8d11993ec856e7",
+    "camera": "CAMERA_RIGHT_FRONT",
+    "status": "success",
+    "n_boxes": 1
+  },
+  {
+    "sample_token": "6e2e1eaa68694c8f8c8d11993ec856e7",
+    "camera": "CAMERA_LEFT_BACK",
+    "status": "success",
+    "n_boxes": 5
+  },
+  {
+    "sample_token": "6e2e1eaa68694c8f8c8d11993ec856e7",
+    "camera": "CAMERA_RIGHT_BACK",
+    "status": "skip_no_detections",
+    "n_boxes": 0
+  }
+]

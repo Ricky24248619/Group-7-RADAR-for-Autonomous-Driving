@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "id": "0017-truckscenes-long-range-evidence-audit",
+  "title": "Long-range support robustness and observed radar range boundary",
+  "owner": "Ricky Yuen",
+  "date": "2026-09-22",
+  "status": "success",
+  "dataset": "MAN TruckScenes v1.2-mini",
+  "sensor_configuration": "Six radar and six LiDAR channels; saved paired point-motion recount plus independent raw radar audit",
+  "annotation_schema": "Released oriented 3D object boxes; LiDAR-derived annotation population",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "split": "Paired 389 samples; all 400 samples for raw radar range; fixed 30-frame LiDAR hypothesis subset",
+  "environment": {
+    "os": "Windows",
+    "hardware": "Local CPU; no new inference",
+    "python": "3.11.9",
+    "packages": {
+      "truckscenes-devkit": "1.2.0",
+      "numpy": "1.26.4"
+    }
+  },
+  "commands": [
+    "python scripts/audit_long_range_support.py --data-root <TruckScenes-root>",
+    "python scripts/audit_truckscenes_preprocessing.py --data-root <TruckScenes-root>"
+  ],
+  "measurements": [
+    {
+      "name": "Maximum observed radar sensor-frame range",
+      "value": 189.52414730288532,
+      "unit": "m",
+      "scope": "1145496 returns, all 2400 raw radar keyframes; hardware limit not established"
+    },
+    {
+      "name": "LiDAR-supported observations at 150-180 m",
+      "value": 1172,
+      "scope": "1258 exact-box observations; per-point ego correction"
+    },
+    {
+      "name": "Radar-supported observations at 150-180 m",
+      "value": 278,
+      "scope": "Same 1258 exact-box observations"
+    },
+    {
+      "name": "Long-range tracked instances",
+      "value": 436,
+      "scope": "At least one observation at >=150 m; maximum observed centre distance 229.418 m"
+    }
+  ],
+  "evidence": [
+    "docs/long-range-evidence-audit.md",
+    "experiment-log/0014-long-range-evidence-audit.md",
+    "docs/evidence/truckscenes/long-range-audit/summary.json",
+    "docs/evidence/truckscenes/preprocessing-audit/manifest.json",
+    "docs/evidence/truckscenes/preprocessing-audit/radar_sensor_ranges.csv",
+    "docs/evidence/truckscenes/long-range-audit/sensitivity.csv"
+  ],
+  "notes": "Geometric support, not detector accuracy, hardware range specification or a universal sensor ranking. LiDAR support advantage survives observed subgroup checks, but annotation selection, temporal history and the recorded radar boundary limit inference. Four preprocessing hypotheses do not reproduce all publisher LiDAR counts. Published model results are explicitly attributed rather than claimed as new runs."
+}

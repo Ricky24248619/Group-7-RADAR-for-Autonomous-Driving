@@ -1,5 +1,10 @@
 # Dataset suitability — which question each dataset can answer
 
+**22 September evidence update:** see [the new comparison report](sprint3-dataset-findings.md)
+for the 400-sample TruckScenes run and 961-frame GOOSE analysis. TruckDrive data held
+by the pair below has not been reproduced on Ricky's machine: account access is
+granted, but the file download was blocked by Chrome.
+
 **Story DZ-S3-1 · Owner: Damien Zhang · Reviewer: Fariya Zehrin**
 **Started 18 September 2026 · Status: in progress.** Sections 1–7 are complete against
 current evidence. Section 8 is a live gap register. Section 9 lists what is still
@@ -46,12 +51,16 @@ below ever loses its denominator, that is a regression.
 | Domain | Off-road — forest, campus, grassland, urban fringe; four seasons | On-road — motorway, feeder road, city, terminal | On-road — long-range highway |
 | Primary task | Semantic segmentation (2D + 3D) | 3D object detection and tracking | 3D object detection |
 | Annotation geometry | Pointwise + pixelwise semantic/instance labels. **No 3D boxes** | Oriented 3D bounding boxes | 3D bounding boxes + lane lines |
-| Radar present | **Yes — 6 sensors, 360°. Raw only, not annotated** | Yes — 6 × Continental ARS 548 RDI, 4D | Yes — 7 long-range + 3 short-range |
-| Radar type | Smartmicro UMRR, 77/79 GHz. **Not described as 4D imaging**; elevation unverified | **4D** — range, azimuth, elevation, Doppler | ARS540 family, long-range |
-| LiDAR | 3 units (1 × 128-ch, 2 × 32-ch) | 6 units (2 × Pandar64, 4 × Ouster OS0) | 11–15 per the paper's comparison table |
-| Camera | 6 RGB/NIR + 1 thermal IR | 4 × Sekonix SF3324 | Present |
+| Radar present | **Yes — 6 sensors, 360°. Raw only, not annotated** | Yes — 6 × Continental ARS 548 RDI, 4D | Yes — 10 4D radars |
+| Radar type | Smartmicro UMRR, 77/79 GHz. **Not described as 4D imaging**; elevation unverified | **4D** — range, azimuth, elevation, Doppler | Continental 4D; released joint stream is named `conti542` |
+| LiDAR | 3 units (1 × 128-ch, 2 × 32-ch) | 6 units (2 × Pandar64, 4 × Ouster OS0) | 7 long-range FMCW + 3 short-range LiDARs |
+| Camera | 6 RGB/NIR + 1 thermal IR | 4 × Sekonix SF3324 | 11–15 cameras |
 | **Annotated modalities** | **RGB + LiDAR only.** Radar, NIR, thermal, INS released raw and unlabelled | Boxes shared across LiDAR and radar | Boxes over the sensor suite |
 | Max annotation range | Not published. **Measured ~±200 m** on val frames | **>230 m** | **±400 m** (paper) |
+
+TruckDrive sensor counts above were corrected against the
+[official release card](https://huggingface.co/datasets/Torc-Robotics/TruckDrive)
+on 22 September; the older table mixed camera and LiDAR counts.
 
 **The single most consequential row is "annotated modalities".** GOOSE ships radar, but
 not labelled radar. That one fact is why GOOSE cannot answer the project's headline
@@ -106,12 +115,15 @@ it is a lower bound, not a prediction of a run nobody has performed.
 
 These panels are **coverage**, not accuracy. None of them shows whether a model detects
 anything. They are presented separately and are **not to be merged onto a shared axis**:
-the three quantities are labelled LiDAR points, raw radar returns, and nothing at all.
+the quantities include labelled LiDAR points and raw sensor returns, with different
+sampling and sensor geometry.
 
-Note also that the band edges differ between the two datasets that have them — GOOSE
-uses 50–100, TruckDrive splits 50–80 and 80–100. Harmonising them is open question 3 in
-`metrics-definitions.md` (proposed 0–50 / 50–100 / 100–150 / 150–400 m) and is Ricky's
-to confirm. Until then these tables are reproduced as measured rather than re-bucketed.
+Historical band edges differ: GOOSE uses 50–100 m while TruckDrive splits
+50–80 and 80–100 m. The 21 September working protocol in
+[`metrics-definitions.md`](metrics-definitions.md) adopts 0–50 / 50–100 /
+100–150 / 150–400 / >=400 m for new descriptive coverage runs. Historical
+tables remain as measured; adopting common edges does not make their different
+denominators or coordinate frames comparable.
 
 ### GOOSE — labelled LiDAR points
 *Denominator: 174,891,807 labelled points across all 961 validation frames.*
@@ -145,14 +157,35 @@ scene, not the full mini split.*
 18.92% of returns fall beyond 100 m. These are **sensor returns, not detections**.
 Point presence at range shows the sensor produces data there and nothing more.
 
-### MAN TruckScenes — not yet measured
+### MAN TruckScenes — selected-channel return coverage
 
-No range-band distribution exists. The dataset annotates beyond 230 m, but the stock
+*Denominators: 4,571 RADAR_LEFT_FRONT returns and 165,588 LIDAR_TOP_FRONT
+points, each across the first annotated sample in each of ten mini scenes.*
+
+| Band | Radar returns | LiDAR points |
+|---|---:|---:|
+| [0, 50) m | 1,655 | 165,520 |
+| [50, 100) m | 1,670 | 53 |
+| [100, 150) m | 941 | 15 |
+| [150, 400) m | 305 | 0 |
+| >=400 m | 0 | 0 |
+
+Source: [committed range CSV](../TruckScenes%20-%20Fatima/range-bands.csv).
+These are planar distances in each sensor's own coordinate frame. The selected
+LiDAR is a downward-tilted Ouster OS0 blind-spot sensor; its plane and field of
+view differ from the selected radar. These counts do not establish that radar
+outperforms LiDAR. See the [sensor check](../TruckScenes%20-%20Fatima/SENSOR-CHECK.md)
+and [coverage workflow](../TruckScenes%20-%20Fatima/RANGE-BANDS.md).
+CSV arithmetic and plot regeneration passed; an independent raw-data rebuild
+remains open.
+
+**Prediction and ground-truth box coverage remains separate work.**
+The dataset annotates beyond 230 m, but the stock
 evaluator filters classes at 75 m or 150 m and therefore **produces no detection score
 beyond 150 m at all**, so testing D-04 here needs an agreed custom evaluator
 configuration rather than more compute.
 
-Package B4 proposes to close this gap. The 5,247 FCOS3D predictions are saved in
+Package B4 proposes box-level range analysis. The 5,247 FCOS3D predictions are saved in
 `scripts/results_mini_val_fcos3d_4cam.json`; the reported 2,088 ground-truth boxes
 are a count, not a committed box-level export. Reproduction also needs the mini
 metadata: annotations, samples, sample_data and ego_pose, plus calibrated_sensor
@@ -270,7 +303,7 @@ The point of the preceding six sections, in two tables.
 | **D-04** — does perception degrade past 150 m? | **No.** 1.10% of labelled points beyond 150 m, and no labelled radar in the released assets | **Partly.** Annotates past 230 m, but the stock evaluator scores nothing beyond 150 m — needs an agreed custom protocol, not more compute | **Best placed.** 9.47% of returns beyond 150 m — but no model has been run, and the figure is coverage, not detection |
 | **Matched radar vs LiDAR detection** | **Not with the current released-label workflow.** No radar detection ground truth established | **Preferred protocol, conditional** on runnable radar/LiDAR detectors and identical samples, ground truth and evaluator settings | **Conditional on the retained two-scene subset.** Verify sensor overlap, calibration, annotation alignment and evaluator support before claiming feasibility |
 | **Off-road terrain and traversability** | **Yes — and only GOOSE** | No — on-road | No — on-road |
-| **Sensor coverage by range** | Yes, for labelled LiDAR points | **Not yet measured** | Yes, for radar returns |
+| **Sensor coverage by range** | Yes, for labelled LiDAR points | Yes, ten samples of one radar and one tilted blind-spot LiDAR; geometry differs | Yes, for radar returns |
 | **Reproducible on team hardware** | Yes, macOS and Windows | Yes, CPU-only inference viable | Viewer yes; no model run attempted |
 
 **The short version.** GOOSE is the off-road dataset and cannot address D-04.
@@ -299,10 +332,10 @@ Every unresolved item found while assembling this document. Gaps are recorded as
 | # | Gap | Evidence | Holder |
 |---|---|---|---|
 | G-1 | **No TruckDrive survey exists** in template form. Its facts here come from Kelsey's statistics and summary, not a reviewed survey | DS-4 records "statistics recorded; survey not in template form" | Kelsey — KL-S3-1 |
-| G-2 | **Resolved as far as our data allows.** GOOSE val is published as 960 and extracts as 961. Our 961 is *internally consistent*: the eight per-scenario frame counts (151+103+123+133+191+106+73+81) sum to exactly 961, so this is not a counting error on our side. The one-frame difference from the published figure remains unexplained. To settle it, diff `lidar/val/` against the published file list for a duplicated or extra frame | `dataset-statistics.md` §3 vs `goose.md` §2 | Me — closed pending dataset access |
+| G-2 | **Open file-level reconciliation.** GOOSE val is published as 960 and extracts as 961. The eight scenario counts sum to 961, establishing internal arithmetic only; this does not rule out a duplicate or extra frame. Compare the local file inventory with the published inventory before resolving the discrepancy | `dataset-statistics.md` §3 vs `goose.md` §2 | Damien — inventory comparison pending |
 | G-3 | **TruckScenes total size unverified** — ~560 GB carried from `DATASET_OVERVIEW.md`, never remeasured against the current AWS listing | `truckscenes.md` §2, marked Unverified | Open |
-| G-4 | **Band edges not harmonised** — GOOSE 50–100 vs TruckDrive 50–80/80–100. Blocks any combined range reporting | `metrics-definitions.md` open question 3 | Ricky |
-| G-5 | **No TruckScenes range-band distribution**; annotation/pose inputs and distance convention still need confirmation | §5 above | Proposed B4; input holder to be agreed |
+| G-4 | **Working coverage protocol recorded.** New runs use five explicit bands; historical tables retain their original bins. Shared edges alone do not fix different coordinate frames, subsets or fields of view | `metrics-definitions.md`, 21 September protocol | Ricky — team walkthrough pending |
+| G-5 | **TruckScenes return coverage available; box-level analysis pending.** Ten selected-channel samples have a manifest, CSV and charts. Raw-data reproduction remains open; B4 prediction/truth analysis still needs annotation/pose inputs and its aligned distance convention | §5 above | Fatima/Kelsey for reproduction; B4 input holder to be agreed |
 | G-6 | **TruckDrive licence clause unresolved** — non-commercial, plus the AV-business prohibition, against a stated CC/open-source deliverable | `DATASET_OVERVIEW.md` | Needs a client decision |
 | G-7 | **TruckDrive camera/LiDAR coverage is partial** — 2 of 24 scenes. Any multimodal TruckDrive claim must state this, not imply full-mini coverage | `TruckDrive - Kelsey/SUMMARY.md` | Kelsey — KL-S3-1 |
 | G-8 | **GOOSE radar is not 4D as far as our sources go.** The survey records Smartmicro UMRR-96 (79 GHz, 0.4–55 m) and UMRR-11 (77 GHz, 1–175 m), neither described as 4D imaging, and elevation is nowhere asserted. Since the radar is unlabelled anyway this does not change any conclusion — but GOOSE must not be listed as a 4D-radar dataset. Settling it needs the Smartmicro datasheets, which we do not hold | `goose.md` §2–3 | Me — narrowed; needs a vendor datasheet |
@@ -320,7 +353,8 @@ Per the A1/A2/A3 breakdown in `Damien - Sprint 3/README.md`:
       on human labels, and the 961-frame statistics kept separate from the 10-frame run
 - [x] A3 — link check, arithmetic check, class/level check and both validators run;
       see *Verification* below
-- [x] G-2 and G-8 resolved as far as the evidence we hold allows
+- [x] Internal GOOSE frame-count sum checked and G-8 sensor claim narrowed
+- [ ] G-2 file-level reconciliation and G-8 vendor-datasheet confirmation
 - [ ] **A4** — cold read by a reader outside the GOOSE pair, recorded unedited.
       **The one acceptance condition this document cannot satisfy by itself**, and the
       one that closes P-6 and DS-4
@@ -333,11 +367,11 @@ Run on every change to this document, not once at the end:
 
 | Check | Method | Result |
 |---|---|---|
-| Every relative link resolves | Each Markdown link target resolved against the repo | 14/14 |
-| Range tables sum to their stated totals | GOOSE bands → 174,891,807; TruckDrive bands → 71,206 | Both exact |
+| Every relative link resolves | Each Markdown link target resolved against the repo | Rechecked on 21 September; all resolve |
+| Range tables sum to their stated totals | GOOSE → 174,891,807; TruckDrive → 71,206; TruckScenes radar → 4,571 and LiDAR → 165,588 | All exact |
 | Every class in §6 sits at the level claimed | Each name cross-checked against `traversability_map.csv` | Pass — **caught `water` mis-filed in my own draft** |
 | Per-scenario frames sum to the split | §3 of `dataset-statistics.md` | 961, exact |
-| Record and log identity | `validate_result.py`, `validate_experiment_logs.py` | Rechecked 20 September on this branch: both fail on inherited duplicate record 0008 / EXP-0007. Integrate the numbering fix from PR #31 and rerun before claiming a pass |
+| Record and log identity | `validate_result.py`, `validate_experiment_logs.py` | Passed on the integrated branch, 21 September; 11 result records validated |
 
 No number in this document was re-derived; each was read from a merged record and
 checked against its source. Where a number appears twice in the repository with
@@ -359,7 +393,7 @@ re-derived; each was read from a merged record.
 | [`TruckDrive - Kelsey/SUMMARY.md`](../TruckDrive%20-%20Kelsey/SUMMARY.md) | Retained modality coverage, storage constraint |
 | [`TruckScenes - Aiden/dataset-statistics.md`](../TruckScenes%20-%20Aiden/dataset-statistics.md) | Mini table counts, channel names, mini_val figures |
 | [`DATASET_OVERVIEW.md`](../DATASET_OVERVIEW.md) | TruckDrive identity, sizes, licence terms |
-| [`docs/metrics-definitions.md`](metrics-definitions.md) | Evaluator range limits, open band-edge question |
+| [`docs/metrics-definitions.md`](metrics-definitions.md) | Evaluator limits and working descriptive coverage protocol |
 | [`decision-log.md`](../decision-log.md) | D-01 comparison basis, D-04 research question, D-05/D-06 |
 | [`GOOSE - Ricky+Damien/traversability_map.csv`](../GOOSE%20-%20Ricky+Damien/traversability_map.csv) | All 64 class assignments and rationales |
 | [`GOOSE - Ricky+Damien/traversability-map-notes.md`](../GOOSE%20-%20Ricky+Damien/traversability-map-notes.md) | The 14 contested assignments |

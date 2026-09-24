@@ -13,7 +13,25 @@ a future team.
 current models fail beyond ~150 m, and does 4D radar degrade less than LiDAR at
 that range? Reported by range band, never as one aggregate number.
 
-**Current planning:** [11 September catch-up brief](docs/meetings/2026-09-11-catchup.md)
+**New cross-dataset findings (22 September):** [long-range radar versus LiDAR, including TruckDrive](docs/long-range-cross-dataset-review.md)
+adds a verified 200-frame TruckDrive scene out to 399 m, vehicle/distance/point-density
+profiles and acquisition-time sensitivity. L-RadSet and Boreas-RT are assessed as
+independent follow-ups. One scene and geometric support do not establish detector accuracy.
+
+**Latest evidence audit (22 September):** [does LiDAR work better at long range?](docs/long-range-evidence-audit.md)
+checks scene/class/track sensitivity and discovers a recorded radar boundary near
+189.52 m. The supported claim concerns this dataset's geometric support, not a
+universal sensor or detector ranking.
+
+**Client briefing (22 September):** [paired radar/LiDAR results and next experiment](docs/client-comparison-brief.md)
+covers all 12 sensor channels, per-point LiDAR motion correction and 25,117 matched
+object observations. These are geometric support results, not detector accuracy.
+
+**Dataset findings (22 September):** [expanded dataset comparisons and next steps](docs/sprint3-dataset-findings.md)
+cover 400 TruckScenes samples, all 961 GOOSE frames and a reanalysis of saved
+TruckDrive evidence. The saved-table report is historical for TruckDrive; the new paired scene is linked above.
+Matched detector evaluation remains open.
+Earlier planning: [11 September catch-up brief](docs/meetings/2026-09-11-catchup.md)
 and [dataset comparison / next experiment](docs/dataset-comparison.md).
 The August GOOSE next-steps file is historical; its unchecked tasks are not a current
 status report. The project has bounded inference and a scored camera submission,
@@ -52,6 +70,7 @@ and Fariya/Kelsey (TruckDrive), per D-08. Confirm the next allocation at the cat
 | `templates/comparison-record.md` | One record per benchmark result, mandatory D-01 identification fields |
 | `client-notes/` | Short findings notes written for Adrian and Fabian (RY-4 format) |
 | `scripts/` | Utility scripts, each logged in an experiment-log entry |
+| `docs/HANDOVER-TOOLING.md` | How the shared tooling works, where it is weak, and what is deliberately unfinished |
 
 ## Datasets
 

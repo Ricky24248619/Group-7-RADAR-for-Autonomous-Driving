@@ -1,0 +1,14 @@
+{
+  "sample_token": "e43ae3c9b670423d89fe92170f0c87e9",
+  "annotation_token": "2652b85d90de4d64975f583a09fa27d4",
+  "instance_token": "0dd12e5e3b744d2a9f245ca36a46484c",
+  "scene": "scene-fb64d203d417452f830ca73efed80c41-11",
+  "category": "vehicle.car",
+  "range_m": 128.59855008367578,
+  "band_m": "100-150",
+  "margin_m": 0.0,
+  "lidar_points": 37,
+  "radar_points": 0,
+  "publisher_lidar_points": 37,
+  "publisher_radar_points": 0
+}
