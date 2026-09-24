@@ -1,4 +1,4 @@
-"""CPU-only mini_val coverage comparison in a shared ego frame.
+"""CPU-only mini_val or full-mini coverage comparison in a shared ego frame.
 
 Requires truckscenes-devkit 1.2.0 for the raw run, but helper tests need only NumPy.
 No new inference, box matching, custom detection score or sweep accumulation.
@@ -62,7 +62,7 @@ def write_csv(path, rows):
         writer.writerows(rows)
 
 
-def plot(output, totals):
+def plot(output, totals, sample_count=80):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -80,9 +80,11 @@ def plot(output, totals):
         ax.set(title=f"{channel}\nn={denominator:,} sector returns", xlabel="Ego planar range (m)", ylim=(0, 105))
         ax.tick_params(axis="x", rotation=35)
         for i, value in enumerate(shares):
-            ax.text(i, value + 1, f"{value:.2f}%", ha="center", fontsize=8)
+            label = ("<0.01%" if 0 < value < .005 else
+                     ">99.99%" if 99.995 <= value < 100 else f"{value:.2f}%")
+            ax.text(i, value + 1, label, ha="center", fontsize=8)
     axes[0].set_ylabel("Share of this channel's forward-sector returns (%)")
-    fig.suptitle("Raw coverage: same 80 mini_val samples, shared ego frame and forward ±30° sector")
+    fig.suptitle(f"Raw coverage: same {sample_count} samples, shared ego frame and forward ±30° sector")
     fig.text(0.02, 0.01, "Different sensors, scan patterns and vertical fields of view; this is not detection accuracy.\n"
              "Rigid ego-motion alignment only: residual timing, scan motion and moving objects are not corrected.", fontsize=9)
     fig.tight_layout(rect=(0, 0.13, 1, 0.94))
@@ -90,14 +92,18 @@ def plot(output, totals):
     plt.close(fig)
 
     fig, ax = plt.subplots(figsize=(10, 5))
-    for offset, source in enumerate(("ground_truth", "camera_one", "camera_four")):
+    sources = [source for source in ("ground_truth", "camera_one", "camera_four")
+               if (source, "all_azimuth") in totals]
+    for offset, source in enumerate(sources):
         values = totals[(source, "all_azimuth")]
         ax.bar(np.arange(5) + (offset - 1) * .25, values, width=.25, label=source.replace("_", " "))
     ax.set(xticks=np.arange(5), xticklabels=LABELS, xlabel="Box-centre planar range from reference ego (m)",
-           ylabel="Box records (not matched objects)", title="Saved predictions and mapped annotations by range — 80 mini_val samples")
+           ylabel="Box records (not matched objects)", title=f"Mapped box records by range — {sample_count} samples")
     ax.legend()
-    fig.text(.02, .02, "Full azimuth; no evaluator range/visibility/point-count filtering. Predictions retain saved scores.\n"
-             "Extra predictions are not extra correct detections. This plot does not measure recall or precision.", fontsize=9)
+    caption = "Full azimuth; no evaluator range/visibility/point-count filtering. This is not recall or precision."
+    if len(sources) > 1:
+        caption += "\nPredictions retain saved scores; extra predictions are not extra correct detections."
+    fig.text(.02, .02, caption, fontsize=9)
     fig.tight_layout(rect=(0, .12, 1, 1))
     fig.savefig(output / "box_ranges.png", dpi=150, metadata={"Software": None})
     plt.close(fig)
@@ -106,7 +112,8 @@ def plot(output, totals):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-root", type=Path, required=True)
-    parser.add_argument("--output-dir", type=Path, default=ROOT / "docs/evidence/truckscenes/raw-comparison")
+    parser.add_argument("--split", choices=("mini_val", "mini"), default="mini_val")
+    parser.add_argument("--output-dir", type=Path)
     args = parser.parse_args()
     from truckscenes import TruckScenes
     from truckscenes.utils.data_classes import LidarPointCloud, RadarPointCloud
@@ -120,15 +127,16 @@ def main():
         return transform_matrix(np.array(record["translation"]), Quaternion(record["rotation"]))
 
     truck = TruckScenes(version="v1.2-mini", dataroot=str(args.data_root), verbose=False)
-    scene_names = set(create_splits_scenes()["mini_val"])
+    scene_names = (set(create_splits_scenes()["mini_val"]) if args.split == "mini_val"
+                   else {s["name"] for s in truck.scene})
     samples = sorted((s for s in truck.sample if truck.get("scene", s["scene_token"])["name"] in scene_names),
                      key=lambda s: (s["scene_token"], s["timestamp"]))
     predictions = {name: json.loads((ROOT / "scripts" / filename).read_text(encoding="utf-8"))["results"]
                    for name, filename in (("camera_one", "results_mini_val_fcos3d.json"),
-                                          ("camera_four", "results_mini_val_fcos3d_4cam.json"))}
+                                          ("camera_four", "results_mini_val_fcos3d_4cam.json"))} if args.split == "mini_val" else {}
     tokens = {s["token"] for s in samples}
-    if len(samples) != 80 or any(set(p) != tokens for p in predictions.values()):
-        raise ValueError("Expected both saved submissions to match all 80 official mini_val samples")
+    if len(samples) != (80 if args.split == "mini_val" else 400) or any(set(p) != tokens for p in predictions.values()):
+        raise ValueError("Unexpected mini split size or saved submission sample tokens")
     rows, manifest = [], []
     totals = defaultdict(lambda: np.zeros(5, dtype=np.int64))
     class_totals = defaultdict(lambda: np.zeros(5, dtype=np.int64))
@@ -185,7 +193,8 @@ def main():
         if i % 10 == 0:
             print(f"Processed {i}/{len(samples)} samples", flush=True)
 
-    output = args.output_dir
+    output = args.output_dir or ROOT / "docs/evidence/truckscenes" / (
+        "raw-comparison" if args.split == "mini_val" else "full-mini-coverage")
     output.mkdir(parents=True, exist_ok=True)
     aggregates = [{"source": source, "region": region, "band_m": band, "count": int(count),
                    "denominator": int(sum(counts)), "sample_count": len(samples)}
@@ -195,7 +204,7 @@ def main():
     write_csv(output / "sample_ranges.csv", rows)
     write_csv(output / "aggregate_ranges.csv", aggregates)
     write_csv(output / "box_class_ranges.csv", classes)
-    provenance = {"dataset": "MAN TruckScenes v1.2-mini", "split": "mini_val", "scene_names": sorted(scene_names),
+    provenance = {"dataset": "MAN TruckScenes v1.2-mini", "split": args.split, "scene_names": sorted(scene_names),
                   "sample_count": len(samples), "channels": CHANNELS,
                   "reference": "Nearest ego_pose to annotated sample timestamp; planar ego x-y range",
                   "forward_sector": "x>0 and absolute ego azimuth <=30 degrees; no elevation mask",
@@ -206,10 +215,10 @@ def main():
     for name in ("sample", "sample_data", "sample_annotation", "calibrated_sensor", "ego_pose", "sensor", "category", "instance"):
         path = args.data_root / "v1.2-mini" / (name + ".json")
         provenance["input_sha256_lf_normalized"][f"v1.2-mini/{path.name}"] = hashlib.sha256(path.read_text(encoding="utf-8").encode()).hexdigest()
-    for filename in ("results_mini_val_fcos3d.json", "results_mini_val_fcos3d_4cam.json"):
+    for filename in (("results_mini_val_fcos3d.json", "results_mini_val_fcos3d_4cam.json") if predictions else ()):
         provenance["input_sha256_lf_normalized"]["scripts/" + filename] = hashlib.sha256((ROOT / "scripts" / filename).read_text().encode()).hexdigest()
     (output / "manifest.json").write_text(json.dumps(provenance, indent=2, allow_nan=False) + "\n", encoding="utf-8", newline="\n")
-    plot(output, totals)
+    plot(output, totals, len(samples))
     print(json.dumps({f"{k[0]}:{k[1]}": v.tolist() for k, v in totals.items()}, indent=2))
 
 

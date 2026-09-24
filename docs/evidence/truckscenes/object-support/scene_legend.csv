@@ -1,0 +1,11 @@
+label,scene,description
+"S01: clear, terminal",scene-0044384af3d8494e913fb8b14915239e-3,weather.clear;area.terminal;daytime.noon;season.autumn;lighting.illuminated;structure.regular;construction.unchanged
+"S02: clear, highway",scene-13f4b71b1bd04a9e88747ad8f58a3f67-4,weather.clear;area.highway;daytime.evening;season.autumn;lighting.dark;structure.overpass;construction.unchanged
+"S03: overcast, city",scene-23160c4bff134cdd86b96ee822b4aca9-14,weather.overcast;area.city;daytime.noon;season.winter;lighting.illuminated;structure.bridge;construction.unchanged
+"S04: overcast, highway",scene-3195e3bfd1de4f9ba82f874790c7856c-15,weather.overcast;area.highway;daytime.noon;season.summer;lighting.illuminated;structure.regular;construction.unchanged
+"S05: overcast, highway",scene-3f542f89ec5241b6a4e30ca743adcf34-29,weather.overcast;area.highway;daytime.morning;season.summer;lighting.illuminated;structure.regular;construction.roadworks
+"S06: rain, terminal",scene-6be74229febb4aad9e7ae1a37217b231-4,weather.rain;area.terminal;daytime.morning;season.summer;lighting.illuminated;structure.regular;construction.unchanged
+"S07: clear, city",scene-a6a87db5125846bda72ccfc9931ee153-11,weather.clear;area.city;daytime.noon;season.winter;lighting.twilight;structure.regular;construction.unchanged
+"S08: snow, city",scene-b13542304b244af585a646082c57a079-1,weather.snow;area.city;daytime.noon;season.autumn;lighting.illuminated;structure.regular;construction.unchanged
+"S09: rain, highway",scene-b201f6e737e34c2d87830fc1e2911516-6,weather.rain;area.highway;daytime.noon;season.autumn;lighting.illuminated;structure.regular;construction.unchanged
+"S10: clear, city",scene-fb64d203d417452f830ca73efed80c41-11,weather.clear;area.city;daytime.noon;season.winter;lighting.other_lighting;structure.regular;construction.unchanged

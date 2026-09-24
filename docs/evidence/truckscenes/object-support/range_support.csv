@@ -1,0 +1,5 @@
+band_m,box_observations,unique_instances,samples,lidar_supported,radar_supported,both_supported,neither_supported,radar_support_percent,median_lidar_points,median_radar_points
+0-50,10458,667,400,10458,6922,6922,0,66.18856377892523,203.0,1.0
+100-150,4427,627,317,4427,1209,1209,0,27.309690535351255,9.0,0.0
+150-400,2376,440,297,2376,363,363,0,15.277777777777779,6.0,0.0
+50-100,8489,807,358,8489,3566,3566,0,42.00730356932501,25.0,0.0

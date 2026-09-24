@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "0016-truckscenes-paired-point-support",
+  "title": "All-sensor paired TruckScenes geometric support with per-point ego correction",
+  "owner": "Ricky Yuen",
+  "date": "2026-09-22",
+  "status": "success",
+  "dataset": "MAN TruckScenes v1.2-mini",
+  "sensor_configuration": "All six radar and all six LiDAR keyframes, same sample tokens, LiDAR point-wise ego correction",
+  "annotation_schema": "Released 3D oriented boxes; all classes; exact boxes and separately expanded 0.5 m faces",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "split": "389 of 400 mini samples after symmetric timing exclusions; 25117 box observations",
+  "environment": {
+    "os": "Windows",
+    "hardware": "Local CPU; no detector inference",
+    "python": "3.11.9",
+    "packages": {
+      "truckscenes-devkit": "1.2.0",
+      "numpy": "1.26.4",
+      "scipy": "1.13.1",
+      "pypcd4": "1.4.3",
+      "pyquaternion": "0.9.9"
+    }
+  },
+  "commands": [
+    "python scripts/truckscenes_paired_support.py --data-root <TruckScenes-root> --lidar-motion point --output-dir docs/evidence/truckscenes/paired-point-motion-support",
+    "python scripts/truckscenes_paired_support.py --data-root <TruckScenes-root> --lidar-motion rigid --output-dir docs/evidence/truckscenes/paired-all-sensor-support"
+  ],
+  "measurements": [
+    {
+      "name": "Paired samples",
+      "value": 389,
+      "scope": "Both sensor suites, after timing exclusions"
+    },
+    {
+      "name": "Paired box observations",
+      "value": 25117,
+      "scope": "All released classes; 1092 tracked instances"
+    },
+    {
+      "name": "Radar-supported observations at 150-400 m",
+      "value": 350,
+      "scope": "At least one return in exact 3D box; denominator 2309"
+    },
+    {
+      "name": "LiDAR-supported observations at 150-400 m",
+      "value": 2118,
+      "scope": "Per-point ego correction; denominator 2309; publisher LiDAR counts not fully reproduced"
+    },
+    {
+      "name": "Radar-only observations at 150-400 m",
+      "value": 6,
+      "scope": "Exact box; denominator 2309; falls to zero with 0.5 m expansion"
+    }
+  ],
+  "evidence": [
+    "docs/client-comparison-brief.md",
+    "experiment-log/0013-paired-truckscenes-support.md",
+    "docs/evidence/truckscenes/paired-point-motion-support/manifest.json",
+    "docs/evidence/truckscenes/paired-point-motion-support/object_counts.csv",
+    "docs/evidence/truckscenes/paired-point-motion-support/range_support.csv",
+    "docs/evidence/truckscenes/paired-support-verification.json"
+  ],
+  "notes": "Success applies to the documented geometric recount, not detector evaluation or full publisher LiDAR-count reproduction. All radar counts match; only 4164 LiDAR counts match exactly. Annotation population is LiDAR-based. Repeated observations, target motion, cabin articulation and box-margin sensitivity limit inference. Modality fusion means both suites were inspected; no learned fusion model was run."
+}

@@ -13,7 +13,14 @@ a future team.
 current models fail beyond ~150 m, and does 4D radar degrade less than LiDAR at
 that range? Reported by range band, never as one aggregate number.
 
-**Current planning:** [11 September catch-up brief](docs/meetings/2026-09-11-catchup.md)
+**Client briefing (22 September):** [paired radar/LiDAR results and next experiment](docs/client-comparison-brief.md)
+covers all 12 sensor channels, per-point LiDAR motion correction and 25,117 matched
+object observations. These are geometric support results, not detector accuracy.
+
+**Dataset findings (22 September):** [expanded dataset comparisons and next steps](docs/sprint3-dataset-findings.md)
+cover 400 TruckScenes samples, all 961 GOOSE frames and a reanalysis of saved
+TruckDrive evidence. TruckDrive raw delivery and matched detector checkpoints remain open.
+Earlier planning: [11 September catch-up brief](docs/meetings/2026-09-11-catchup.md)
 and [dataset comparison / next experiment](docs/dataset-comparison.md).
 The August GOOSE next-steps file is historical; its unchecked tasks are not a current
 status report. The project has bounded inference and a scored camera submission,

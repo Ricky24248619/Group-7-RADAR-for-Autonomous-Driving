@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-22",
+  "truckscenes_sample_aggregate_reconciliation": "PASS: every band/source/region has 400 samples and matches its aggregate",
+  "truckscenes_object_group_reconciliation": "PASS: 25750 unique observations; range, class/range and scene/range groups independently recounted from exported object rows",
+  "goose_total_reconciliation": "PASS: ALL, separate scenario sum and frame sum each equal 174891807",
+  "truckdrive_source_table_checks": "PASS: plot script checks 71206 returns and 526148 boxes",
+  "unit_tests": 160,
+  "result_records_valid": 15,
+  "experiment_logs": "PASS",
+  "human_review": "Not performed by this automated check"
+}

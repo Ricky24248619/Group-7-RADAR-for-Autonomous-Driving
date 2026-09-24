@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "checks": [
+    "Unique annotations and exact shared sample set",
+    "All 12 channels for each included sample",
+    "No excluded sample in result tables",
+    "All range/class/scene threshold partitions recomputed",
+    "Expanded boxes cannot lose points",
+    "Per-channel totals reconcile with suites",
+    "Radar recount equals publisher on all 25117 observations",
+    "Rigid comparison restricted to same 25117 annotations",
+    "Paired example regenerated from raw files and in-box counts reconciled",
+    "167-test full suite: passed, 3 optional-runtime skips; all 7 focused raw-runtime tests passed"
+  ],
+  "preprocessing_comparison": {
+    "matched_observations": 25117,
+    "rigid": {
+      "observations": 25117,
+      "instances": 1092,
+      "threshold": 1,
+      "lidar_only": 11090,
+      "radar_only": 185,
+      "both": 11560,
+      "neither": 2282
+    },
+    "per_point": {
+      "observations": 25117,
+      "instances": 1092,
+      "threshold": 1,
+      "lidar_only": 12910,
+      "radar_only": 39,
+      "both": 11706,
+      "neither": 462
+    }
+  },
+  "output_sha256": {
+    "docs/evidence/truckscenes/paired-point-motion-support/class_range_support.csv": "f1d51e3c954da85d7fdb41e3f77ad10cae42749bb3ecc26a0d378214cd3ba23e",
+    "docs/evidence/truckscenes/paired-point-motion-support/example.json": "d0624abdbc175c6a96d987623394914aa1e1fd4b55a1aa2c8b0c0f7f5dc9f4cc",
+    "docs/evidence/truckscenes/paired-point-motion-support/manifest.json": "fb2529fbd708dc3d67cf1de5c2329608eb658984a3fff241dbd757f611d91ec6",
+    "docs/evidence/truckscenes/paired-point-motion-support/object_counts.csv": "8bdc290998047cf55d7a4e707f7be3d6f7ac91c4df592dd82bee87d8824ee57d",
+    "docs/evidence/truckscenes/paired-point-motion-support/paired_car_example.png": "b0d975dcbaf2d1457febb983316197d8e811ab4b49a672bb0da95d383c89e4e1",
+    "docs/evidence/truckscenes/paired-point-motion-support/paired_object_support.png": "ca55fcb8871713f120d108c820dac0a94c6f635e01fdece8b86b717bcb0aa0b1",
+    "docs/evidence/truckscenes/paired-point-motion-support/range_support.csv": "3d8332a7905af0b5294452481c13d532aa8253a2e1d0e80264184c0a49adaa34",
+    "docs/evidence/truckscenes/paired-point-motion-support/sample_channel_ranges.csv": "1cc949c65737e48ca25979a4948fb180aefb4fc78379e27bc2b89081234d01f0",
+    "docs/evidence/truckscenes/paired-point-motion-support/scene_range_support.csv": "74aa8fa7ee57ffa316e12761a87a6f7b95cbd63cba341da0dcedb50a17346e79",
+    "docs/evidence/truckscenes/paired-point-motion-support/sensor_alignment.csv": "f143594a74adbffda2c54846fbefc4f0ded70610786bfe81dd8cf039b569f3a2",
+    "docs/evidence/truckscenes/paired-point-motion-support/suite_ranges.csv": "b71cf416964a1a430ce510c5ee9620eb72ed8e6048ac8212030c427b7a259e50"
+  },
+  "output_hash_method": "SHA-256; UTF-8 CSV/JSON normalized to LF, PNG hashed as raw bytes",
+  "online_resource_attempts": {
+    "date": "2026-09-22",
+    "K-Radar LiDAR model": "Google Drive quota exceeded; no ZIP saved",
+    "K-Radar radar model": "Google Drive quota exceeded; no ZIP saved",
+    "K-Radar sequence 1": "Google Drive size label 219G; not downloaded",
+    "WSL runtime": "PyTorch 2.0.1+cu117, CUDA available, spconv 2.3.6; new detector compatibility untested"
+  }
+}
