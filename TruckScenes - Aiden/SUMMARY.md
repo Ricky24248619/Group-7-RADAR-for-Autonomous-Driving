@@ -13,17 +13,14 @@
 - Ran a pretrained (nuScenes-trained) FCOS3D monocular detector zero-shot
   against all 80 `mini_val` samples, and scored it with the devkit's own
   detection evaluator.
-- Diagnosed the result rather than just reporting the number: confirmed a
-  real domain-gap finding, not a coordinate-transform bug, by reusing
-  mmdet3d's own reference box-conversion math and checking prediction-to-
-  ground-truth distances directly.
+- Investigated the low score using reference box conversions and prediction-to-
+  ground-truth distances. Domain shift remains a hypothesis; those diagnostics
+  do not exclude coordinate or preprocessing errors.
 - Re-ran the same model against all 4 TruckScenes cameras (EXP-0010), to
   check whether single-camera coverage was hiding a better result.
-- Independently audited the EXP-0010 result (EXP-0011, AD-S3-1 bullet 1):
-  checked calibration/box coordinates and camera/sample coverage using the
-  devkit's own geometry code (not the code that produced the result),
-  added visual checks against ground truth, and recorded real per-camera
-  success/skip counts from a small instrumented rerun.
+- Audited metadata channel coverage and image-frustum visibility (EXP-0016,
+  AD-S3-1). Added ground-truth overlays and recorded per-camera outcomes for
+  a four-sample rerun. These checks do not establish metric box accuracy.
 
 ## Outcome
 
@@ -44,21 +41,14 @@ Extending to all 4 cameras (EXP-0010) reinforced rather than overturned this:
   (possibly a near-range effect), not yet diagnosed the way the single-camera
   zero was
 
-EXP-0011 then independently audited this result, using the devkit's own
-geometry code rather than the code that produced it. That audit **rules
-out** a coordinate-transform/calibration bug (100% of a rerun sample's boxes
-round-trip validly into their true source camera) and a missing-data
-explanation (0/80 samples missing a camera channel) — the model does
-produce output on ~81% of individual camera views checked, so the near-zero
-score isn't the model failing to run. What the audit deliberately does
-**not** claim is the root cause: camera-height/pitch (EXP-0006's original
-hypothesis) is still plausible, but the audit's visual check also surfaced a
-second, previously unflagged candidate — both `mini_val` scenes are
-container/logistics yards, a visually distinct domain from nuScenes' street
-scenes, independent of camera height. Distinguishing the two needs a
-controlled isolating check that hasn't been run yet. This is real,
-audited evidence relevant to the project's D-04 range-degradation question,
-short of a proven single cause.
+EXP-0016 found four camera-channel metadata entries for every sample and
+source-camera visibility for all 247 tagged boxes in a four-sample rerun.
+Thirteen of the 16 rerun calls produced above-threshold boxes. This does not
+verify every original inference call or establish metric coordinate accuracy:
+doubling camera-relative distance and box dimensions still passed 247/247 in
+a review counterexample. Camera height/pitch, scene-domain differences and
+preprocessing remain unresolved possible causes of the low score. A controlled
+numerical/experimental check is needed before attributing the result to one cause.
 
 ## Sample data
 
@@ -69,7 +59,7 @@ obstacles hit, and full reasoning are in
 (single camera) and
 [`experiment-log/0010-fcos3d-truckscenes-4camera.md`](../experiment-log/0010-fcos3d-truckscenes-4camera.md)
 (all 4 cameras). The independent audit's method and full numbers are in
-[`experiment-log/0011-fcos3d-4camera-result-audit.md`](../experiment-log/0011-fcos3d-4camera-result-audit.md),
+[`experiment-log/0016-fcos3d-4camera-result-audit.md`](../experiment-log/0016-fcos3d-4camera-result-audit.md),
 with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
 
 ## Current limits
@@ -80,16 +70,14 @@ with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
 - The `traffic_cone` AP signal from EXP-0010 hasn't been diagnosed with the
   same rigor as the single-camera zero (no per-class distance analysis yet)
   — worth a quick follow-up before reading anything into it.
-- EXP-0011 rules out a coordinate bug but does not isolate camera-height
-  vs. scene-domain (container yards vs. nuScenes streets) as the cause of
-  the low score — a controlled check for that hasn't been run.
+- EXP-0016 checks visibility, not metric coordinate correctness. Transform,
+  preprocessing, height and scene-domain causes remain unresolved.
 - NDS and the TP-error metrics (mATE, mASE, mAOE, mAVE, mAAE) came out of
   the same evaluator run but are not reported as validated metrics here,
   because NDS is an explicitly open question in `docs/metrics-definitions.md`
   (assigned to Ricky) and the TP-error metrics aren't defined there yet.
-- No `docs/dataset-surveys/truckscenes.md` has been written — dataset
-  exploration sits under Kelsey's epic (D), so that survey should be
-  coordinated with her rather than started solo from this folder.
+- The shared survey is available at `docs/dataset-surveys/truckscenes.md`;
+  coordinate updates with its contributors.
 
 ## Next stage
 
@@ -99,10 +87,9 @@ with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
   EXP-0010's predictions, broken down by class, to check whether the
   `traffic_cone` AP is a genuine near-range effect or noise.
 - A controlled check to separate camera-height from scene-domain as the
-  cause of the low score (EXP-0011 could not, and deliberately did not
+  cause of the low score (EXP-0016 could not, and deliberately did not
   claim to).
 - Try the LiDAR path (CenterPoint, also nuScenes-pretrained) on a machine
   with an NVIDIA GPU — it doesn't share FCOS3D's depth-estimation failure
   mode and was the paper's strongest baseline.
-- Confirm with Kelsey whether `docs/dataset-surveys/truckscenes.md` should
-  follow from this work.
+- Keep the shared TruckScenes survey aligned with verified results.

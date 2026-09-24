@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 """Audit the EXP-0010 four-camera FCOS3D result (AD-S3-1, acceptance bullet 1).
 
-Independently re-checks calibration/box-coordinate correctness and
-camera/sample coverage for the four-camera zero-shot run, using the
-devkit's own (trusted) geometry code -- Box, TruckScenes.boxes_to_sensor,
-box_in_image -- rather than reusing truckscenes_fcos3d_infer.py's own
-conversion math. A bug shared between "produce the result" and "check the
-result" can't hide from an audit that uses different code for each.
+Checks metadata channel coverage and image-frustum visibility for the four-camera
+zero-shot run. Verification uses the devkit's geometry; the instrumented rerun
+uses the inference script's conversion helpers to produce the boxes under test.
+Visibility does not establish metric depth, size, calibration accuracy or the
+absence of transform errors. Scaling camera-relative distance and size together
+can preserve projection while making the boxes metrically wrong.
 
 Three checks, in order:
 
 1. Camera/sample data coverage (full 80-sample mini_val split, no
    inference): confirms every sample actually has all 4 camera channels in
-   its sample_data, so "4 cameras" wasn't silently short of data for some
-   samples.
+   its sample_data. This does not verify image-file readability or the
+   success of every original inference call.
 
 2. Geometric visibility audit of the EXISTING EXP-0010 predictions
    (results_mini_val_fcos3d_4cam.json, no rerun): for every saved
@@ -31,11 +31,11 @@ Three checks, in order:
    untouched) to get genuine per-call, per-camera success/skip counts, and
    to independently verify: for a box tagged with its real source camera,
    does it round-trip validly into THAT SAME camera via the devkit's own
-   geometry? This directly answers "is the box-coordinate conversion
-   correct", using code the original run never called.
+   geometry? This checks source-camera visibility only; it cannot establish
+   correct metric box coordinates or exclude shared preprocessing errors.
 
 Visual overlays (devkit GT boxes + our predicted boxes, both rendered via
-the devkit's own Box.render(), on the same real camera image) are saved for
+a wireframe routine using devkit corners, on the same real camera image) are saved for
 each sample/camera pair processed in step 3.
 """
 
@@ -265,9 +265,8 @@ def run_instrumented_subset(trucksc, dataroot, samples, indices, config, checkpo
 def roundtrip_check(trucksc, tagged_results):
     """For each camera-tagged prediction, does it reproject validly back into
     the SAME camera it was reported as coming from, using the devkit's own
-    geometry (not the inference script's)? This is the real correctness
-    check on calibration/box-coordinate conversion, independent of check 2's
-    cross-camera proxy.
+    geometry? This is a visibility check with known camera provenance,
+    not a numerical check of depth, dimensions or calibration accuracy.
     """
     per_camera_valid = {ch: 0 for ch in CAMERA_CHANNELS}
     per_camera_total = {ch: 0 for ch in CAMERA_CHANNELS}
@@ -307,15 +306,7 @@ def roundtrip_check(trucksc, tagged_results):
             })
 
     return {
-        "method": (
-            "For each box from the instrumented rerun (source camera known with "
-            "certainty), reprojected with the devkit's own boxes_to_sensor()+"
-            "box_in_image() into that SAME camera. A high valid fraction here "
-            "means the calibration/box-coordinate conversion in "
-            "truckscenes_fcos3d_infer.py is geometrically consistent with the "
-            "devkit's own trusted geometry code -- independent confirmation, "
-            "since this check never calls that script's own conversion math."
-        ),
+        "method": 'For each camera-tagged rerun box, the devkit reprojects it into its recorded source camera and checks image-frustum visibility. The rerun boxes use the inference script conversion helpers. Visibility does not establish metric depth, dimensions or calibration accuracy, and cannot exclude shared preprocessing errors.',
         "per_camera_total": per_camera_total,
         "per_camera_valid": per_camera_valid,
         "per_camera_valid_fraction": {

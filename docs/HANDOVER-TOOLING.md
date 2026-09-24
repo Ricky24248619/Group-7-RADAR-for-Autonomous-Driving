@@ -85,9 +85,8 @@ CSV is complete and well-formed.
 ## CI — `.github/workflows/checks.yml`
 
 Runs both validators and the test suite on every pull request and every push to
-`main`. **On `main` today this is Ubuntu only.** A two-OS matrix adding `windows-latest`
-is in PR #43 and had not landed at the time of writing — check
-`.github/workflows/checks.yml` for which you actually have.
+`main` on Ubuntu and Windows. The two-OS matrix from PR #43 is included in the
+24 September integration; check `.github/workflows/checks.yml` for the commands.
 
 That distinction is not pedantry. A Ubuntu-only run **cannot see** the platform bugs
 this project has already hit: a `write_text` call without `newline=""` emits CRLF on
@@ -219,7 +218,5 @@ Files above are mine unless noted: the results store and its validator (SH-1, SH
 are Ricky Yuen's. TruckScenes scripts are Fatima Sher's and Aiden Blampain's;
 TruckDrive scripts are Kelsey Chen's.
 
-Some of this is still in review at the time of writing: `new_result.py` and the issue
-form (#35), the WS1 index (#36), the suitability comparison (#34). If a path here does
-not exist in your checkout, that PR did not land — check the closed pull requests
-before assuming the file was deleted.
+The result-entry tool and issue form (#35), WS1 index (#36), suitability
+comparison (#34), and this handover are included in the integrated tree.

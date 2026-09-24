@@ -1,5 +1,5 @@
 {
-  "method": "For each box from the instrumented rerun (source camera known with certainty), reprojected with the devkit's own boxes_to_sensor()+box_in_image() into that SAME camera. A high valid fraction here means the calibration/box-coordinate conversion in truckscenes_fcos3d_infer.py is geometrically consistent with the devkit's own trusted geometry code -- independent confirmation, since this check never calls that script's own conversion math.",
+  "method": "For each camera-tagged rerun box, the devkit reprojects it into its recorded source camera and checks image-frustum visibility. The rerun boxes use the inference script conversion helpers. Visibility does not establish metric depth, dimensions or calibration accuracy, and cannot exclude shared preprocessing errors.",
   "per_camera_total": {
     "CAMERA_LEFT_FRONT": 62,
     "CAMERA_RIGHT_FRONT": 46,

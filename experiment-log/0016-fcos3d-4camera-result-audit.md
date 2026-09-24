@@ -1,10 +1,10 @@
-# EXP-0011 — Independent audit of the EXP-0010 four-camera FCOS3D result
+# EXP-0016 — Independent audit of the EXP-0010 four-camera FCOS3D result
 
 - **Date started / completed:** 2026-09-22 / 2026-09-22
 - **Owner:** Aiden Blampain
 - **Workstream / story:** AD-S3-1 ("Camera-result audit and detector
   feasibility"), acceptance bullet 1. Produces
-  `results/records/0012-fcos3d-4camera-audit.json`.
+  `results/records/0019-fcos3d-4camera-audit.json`.
 
 ## Goal
 
@@ -12,16 +12,16 @@ AD-S3-1 requires checking calibration, preprocessing, box coordinates and
 camera/sample coverage for the EXP-0010 four-camera output, adding visual
 checks against annotations, and recording channel-level success/skip —
 while explicitly keeping the low-score cause open unless a controlled check
-isolates it. This audit does exactly those checks, deliberately using code
-paths EXP-0006/EXP-0010 never called, so a bug shared between "produce the
-result" and "check the result" can't hide from it.
+isolates it. The audit checks metadata coverage and frustum visibility, not metric
+coordinate correctness. Its inverse projection uses devkit geometry, while the
+instrumented rerun uses the original inference conversion helpers.
 
 ## Method
 
 Four checks, implemented in `scripts/audit_fcos3d_4camera_result.py`:
 
 1. **Camera/sample data coverage** (full 80-sample `mini_val`, no inference):
-   confirms every sample's ground truth actually has all 4 camera channels.
+   checks that every sample metadata record names all 4 camera channels.
 2. **Geometric visibility audit of the existing EXP-0010 predictions**
    (`results_mini_val_fcos3d_4cam.json`, no rerun): every saved global-frame
    predicted box is reprojected, with the devkit's own
@@ -39,9 +39,9 @@ Four checks, implemented in `scripts/audit_fcos3d_4camera_result.py`:
    with certainty), reproject it — again with the devkit's own
    `boxes_to_sensor()`/`box_in_image()`, never with
    `truckscenes_fcos3d_infer.py`'s own conversion math — into that *same*
-   camera. A box that round-trips validly confirms the calibration/
-   box-coordinate conversion is geometrically consistent, checked by code
-   that had no part in producing the result.
+   camera. This tests visibility with known camera provenance; it does not
+   establish metric depth, dimensions, calibration accuracy or freedom from
+   shared preprocessing errors.
 
 Visual overlays (devkit ground-truth boxes in green, our predicted boxes in
 red, both drawn with the same wireframe routine over the real camera image)
@@ -61,8 +61,8 @@ anything.
 ## Results
 
 **1. Coverage — clean.** All 80 `mini_val` samples have all 4 camera
-channels present in `sample["data"]`. Zero missing. "4 cameras" was never
-silently short of data for any sample.
+channels present in `sample["data"]`. Zero metadata entries are missing.
+This does not establish image-file readability or success of all original calls.
 
 **2. Geometric visibility (existing EXP-0010 predictions, 5,247 boxes).**
 
@@ -75,11 +75,10 @@ silently short of data for any sample.
 | Valid fraction, CAMERA_LEFT_BACK | 19.7% |
 | Valid fraction, CAMERA_RIGHT_BACK | 46.5% |
 
-99.9% of predicted boxes are geometrically plausible from at least one
-camera — a coordinate bug producing systematically nonsensical positions
-would not look like this. The per-camera spread (LEFT_BACK lowest,
-RIGHT_BACK highest) is noted but not explained by this audit; it may reflect
-scene content or truck-mounting asymmetry rather than a defect.
+99.9% of predicted boxes intersect at least one camera frustum. This is a
+visibility result, not a check of metric localization or dimensions. The
+per-camera spread may reflect scene content or mounting asymmetry; its cause
+is not established here.
 
 **3. Instrumented rerun — 16 calls (4 samples × 4 cameras).**
 
@@ -89,11 +88,9 @@ scene content or truck-mounting asymmetry rather than a defect.
 | skip — zero detections above threshold | 3 |
 | skip — no camera data | 0 |
 
-No call skipped for lack of data (consistent with check 1). FCOS3D *is*
-running and producing output on the large majority of camera views —
-the near-zero mAP is not explained by the model failing to execute or
-returning nothing; whatever the cause, it happens after detection, not
-instead of it.
+Within these 16 rerun calls, none lacked data and 13 produced boxes above the
+threshold. These are observed rerun outcomes, not a complete execution log for
+the original 320 camera calls.
 
 **4. Round-trip check — 247/247 boxes valid (100%) in all 4 cameras.**
 
@@ -104,11 +101,12 @@ instead of it.
 | CAMERA_LEFT_BACK | 61 / 61 |
 | CAMERA_RIGHT_BACK | 78 / 78 |
 
-Every single predicted box, checked with code that never produced it,
-correctly reprojects into the camera it actually came from. **This rules out
-a coordinate-transform/calibration bug in the box-conversion pipeline** —
-the strongest and most direct answer this audit gives to bullet 1's
-calibration/box-coordinate check.
+Every tagged box is visible in its source-camera frustum according to the devkit.
+This does not rule out coordinate or calibration errors. During review on
+23 September, the same check still passed 247/247 after every box's distance
+from its source camera and its dimensions were doubled. The deliberately
+incorrect metric boxes preserve projection. The result is saved in
+`scripts/audit_fcos3d_4camera/visibility_counterexample.json`.
 
 **Visual check (16 overlays, `scripts/audit_fcos3d_4camera/overlays/`).**
 Two samples reviewed directly: predicted boxes (red) cluster in generally
@@ -117,8 +115,8 @@ the camera, not off in an unrelated part of the frame — but are frequently
 thin/sliver-shaped and duplicated densely over single large objects
 (shipping containers, trailers), rather than one clean box per object. This
 is a localization/scale failure pattern, consistent with EXP-0010's
-evaluator output (mASE 0.9849, mATE 1.0448), not a sign-flip or frame-swap
-bug. **New observation, not previously flagged**: both scenes in `mini_val`
+evaluator output (mASE 0.9849, mATE 1.0448); it does not exclude transform
+or preprocessing bugs. **New observation, not previously flagged**: both scenes in `mini_val`
 are container/logistics yards — a visually distinct domain from nuScenes'
 street driving footage, independent of camera height/pitch. This is a
 second plausible contributing factor to the domain gap, alongside the
@@ -132,11 +130,13 @@ two.
 ## What this does and does not establish
 
 **Established, with direct evidence:**
-- No coordinate-transform/calibration bug (100% round-trip validity, code
-  that never produced the result)
-- No missing-data explanation (0/80 samples missing a camera channel)
-- The model runs and produces output on ~81% of individual camera views in
-  the audited subset — failure is in what it predicts, not whether it runs
+- All 80 sample metadata records name all four camera channels.
+- All 247 camera-tagged rerun boxes intersect their source-camera frustums.
+- Of 16 rerun calls, 13 produced at least one above-threshold box and three
+  produced none. None were skipped for missing camera data.
+
+**Not established:** metric depth/size accuracy, correctness of every transform
+or preprocessing convention, or successful execution of every original call.
 
 **Still open** (per AD-S3-1's explicit instruction not to close this without
 a controlled isolating check):
@@ -149,10 +149,9 @@ a controlled isolating check):
 
 ## Decision
 
-- [x] Change approach — the audit is complete for what a non-controlled
-      check can establish. The remaining open question (height vs. scene
-      domain) needs a controlled experiment, not more auditing of the
-      existing result, and is out of scope for AD-S3-1's bullet 1.
+- [x] Change approach — preserve the coverage/visibility findings, but keep
+      metric geometry and the low-score cause open. A numerical transform
+      check and controlled experiments are needed before closing those questions.
 - [ ] Retry
 - [ ] Stop
 
