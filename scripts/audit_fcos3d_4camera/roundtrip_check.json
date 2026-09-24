@@ -1,0 +1,22 @@
+{
+  "method": "For each box from the instrumented rerun (source camera known with certainty), reprojected with the devkit's own boxes_to_sensor()+box_in_image() into that SAME camera. A high valid fraction here means the calibration/box-coordinate conversion in truckscenes_fcos3d_infer.py is geometrically consistent with the devkit's own trusted geometry code -- independent confirmation, since this check never calls that script's own conversion math.",
+  "per_camera_total": {
+    "CAMERA_LEFT_FRONT": 62,
+    "CAMERA_RIGHT_FRONT": 46,
+    "CAMERA_LEFT_BACK": 61,
+    "CAMERA_RIGHT_BACK": 78
+  },
+  "per_camera_valid": {
+    "CAMERA_LEFT_FRONT": 62,
+    "CAMERA_RIGHT_FRONT": 46,
+    "CAMERA_LEFT_BACK": 61,
+    "CAMERA_RIGHT_BACK": 78
+  },
+  "per_camera_valid_fraction": {
+    "CAMERA_LEFT_FRONT": 1.0,
+    "CAMERA_RIGHT_FRONT": 1.0,
+    "CAMERA_LEFT_BACK": 1.0,
+    "CAMERA_RIGHT_BACK": 1.0
+  },
+  "invalid_examples": []
+}
