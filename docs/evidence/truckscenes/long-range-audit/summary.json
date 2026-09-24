@@ -1,0 +1,89 @@
+{
+  "definition": "At least 150 m planar object-centre range; same saved paired observations; no inference",
+  "summary": {
+    "observations": 2309,
+    "instances": 436,
+    "scenes": 9,
+    "lidar_supported": 2118,
+    "radar_supported": 350,
+    "both": 344,
+    "lidar_only": 1774,
+    "radar_only": 6,
+    "neither": 185,
+    "lidar_percent": 91.72802078822001,
+    "radar_percent": 15.158077089649199,
+    "difference_pp": 76.56994369857081,
+    "min_range_m": 150.00948473263907,
+    "max_range_m": 229.4177589511211
+  },
+  "first_observation_per_instance": {
+    "observations": 436,
+    "instances": 436,
+    "scenes": 9,
+    "lidar_supported": 381,
+    "radar_supported": 43,
+    "both": 43,
+    "lidar_only": 338,
+    "radar_only": 0,
+    "neither": 55,
+    "lidar_percent": 87.38532110091744,
+    "radar_percent": 9.862385321100918,
+    "difference_pp": 77.52293577981652,
+    "min_range_m": 150.00948473263907,
+    "max_range_m": 229.4177589511211
+  },
+  "equal_instance_weight": {
+    "instances": 436,
+    "lidar_percent": 90.49125013599406,
+    "radar_percent": 12.33087818686243
+  },
+  "leave_one_scene_out_difference_pp": [
+    75.6953642384106,
+    77.64350453172206
+  ],
+  "publisher_reconciliation": {
+    "all": {
+      "n": 25117,
+      "lidar_equal": 4164,
+      "radar_equal": 25117,
+      "lidar_publisher_positive_raw_zero": 501,
+      "lidar_raw_greater": 14770,
+      "lidar_raw_less": 6183
+    },
+    "long_range": {
+      "n": 2309,
+      "lidar_equal": 693,
+      "radar_equal": 2309,
+      "lidar_publisher_positive_raw_zero": 191,
+      "lidar_raw_greater": 449,
+      "lidar_raw_less": 1167
+    }
+  },
+  "scene_descriptions": {
+    "scene-0044384af3d8494e913fb8b14915239e-3": "weather.clear;area.terminal;daytime.noon;season.autumn;lighting.illuminated;structure.regular;construction.unchanged",
+    "scene-13f4b71b1bd04a9e88747ad8f58a3f67-4": "weather.clear;area.highway;daytime.evening;season.autumn;lighting.dark;structure.overpass;construction.unchanged",
+    "scene-23160c4bff134cdd86b96ee822b4aca9-14": "weather.overcast;area.city;daytime.noon;season.winter;lighting.illuminated;structure.bridge;construction.unchanged",
+    "scene-3195e3bfd1de4f9ba82f874790c7856c-15": "weather.overcast;area.highway;daytime.noon;season.summer;lighting.illuminated;structure.regular;construction.unchanged",
+    "scene-3f542f89ec5241b6a4e30ca743adcf34-29": "weather.overcast;area.highway;daytime.morning;season.summer;lighting.illuminated;structure.regular;construction.roadworks",
+    "scene-6be74229febb4aad9e7ae1a37217b231-4": "weather.rain;area.terminal;daytime.morning;season.summer;lighting.illuminated;structure.regular;construction.unchanged",
+    "scene-a6a87db5125846bda72ccfc9931ee153-11": "weather.clear;area.city;daytime.noon;season.winter;lighting.twilight;structure.regular;construction.unchanged",
+    "scene-b13542304b244af585a646082c57a079-1": "weather.snow;area.city;daytime.noon;season.autumn;lighting.illuminated;structure.regular;construction.unchanged",
+    "scene-b201f6e737e34c2d87830fc1e2911516-6": "weather.rain;area.highway;daytime.noon;season.autumn;lighting.illuminated;structure.regular;construction.unchanged",
+    "scene-fb64d203d417452f830ca73efed80c41-11": "weather.clear;area.city;daytime.noon;season.winter;lighting.other_lighting;structure.regular;construction.unchanged"
+  },
+  "absent_ranges": "No observations at >=250 m; 150-400 was a storage bin, not demonstrated coverage to 400 m",
+  "limitations": [
+    "Descriptive sensitivity, no population confidence interval or causal sensor claim",
+    "LiDAR-based annotations exclude unlabelled objects; resampling cannot remove that selection bias",
+    "First-per-track and equal-track weighting reduce duration bias but tracks in one scene remain correlated",
+    "Mini-val has only two scenes; no detector predictions are evaluated"
+  ],
+  "input_sha256_lf_normalized": {
+    "docs/evidence/truckscenes/paired-point-motion-support/object_counts.csv": "8bdc290998047cf55d7a4e707f7be3d6f7ac91c4df592dd82bee87d8824ee57d",
+    "docs/evidence/truckscenes/paired-point-motion-support/sensor_alignment.csv": "f143594a74adbffda2c54846fbefc4f0ded70610786bfe81dd8cf039b569f3a2",
+    "F:/RADAR/datasets/TruckScenes/man-truckscenes/v1.2-mini/sample.json": "cc94f484304aa37f746cb47113887e282518c12fd4fe4ceb375f470dba3baf42",
+    "F:/RADAR/datasets/TruckScenes/man-truckscenes/v1.2-mini/sample_annotation.json": "5d93f5b4d4ad3d696f14c9a82b35f275130220493a0b1b6a7e5ae3133f830ba5",
+    "F:/RADAR/datasets/TruckScenes/man-truckscenes/v1.2-mini/ego_pose.json": "9809591684088a7aae22bbc741d5331823c0727101940f2a0566a22be65dd02d",
+    "F:/RADAR/datasets/TruckScenes/man-truckscenes/v1.2-mini/attribute.json": "ccd5158886a566a6c8233128bff834d9f870988b00555e6285745c606c23b42b"
+  }
+}

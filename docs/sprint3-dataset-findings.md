@@ -1,5 +1,7 @@
 # Sprint 3 findings: TruckScenes, TruckDrive and GOOSE
 
+**TruckDrive status update, 22 September:** the [new paired long-range experiment](long-range-cross-dataset-review.md) has verified scene_28_1 downloads and completed static/acquisition-aligned recounts. TruckDrive saved-table and download-blocker statements below describe the earlier stage.
+
 Updated 22 September 2026. Analysis executed through Codex on the local CPU.
 
 **Follow-up:** the [client comparison briefing](client-comparison-brief.md) adds

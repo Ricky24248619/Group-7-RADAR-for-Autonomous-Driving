@@ -1,0 +1,14 @@
+# EXP-0015 — TruckDrive paired long-range comparison and independent dataset review
+
+- Date: 22 September 2026.
+- Project owner: Ricky Yuen; execution and analysis through Codex.
+- Download breakthrough: the official TruckDrive repository links a public mini portal. Downloaded scene_28_1 calibration, poses, annotations, radar and LiDAR (4,380,326,033 compressed bytes); verified all five ZIPs with CRC and SHA-256. This supersedes the historical Hugging Face browser-download blocker for this mini scene. Raw files and licence notices are retained outside Git at `F:\RADAR\datasets\TruckDrive`.
+- Static baseline: all 200 annotated frames paired across joint radar, joint Aeva and three Ouster streams, 8,113 valid non-ego boxes, maximum box-centre range 399.03 m. Excluded 5,220 invalid/2D-only annotations and 400 ego boxes.
+- Timing sensitivity: joint Aeva is approximately +28 ms relative to annotations, radar approximately -11 ms. Interpolated released ego poses to acquisition times, without target trajectories or extrapolation; 198 common frames and 8,043 boxes. Internal joint-cloud deskew is not reproduced or claimed resolved.
+- Result: for the same 198 frames at 150–200 m, static vehicle support is 73.58% LiDAR / 74.96% radar; acquisition-aligned support is 80.48% / 71.85%; expanding aligned boxes by 0.5 m gives 83.25% / 83.77%. A narrow winner is therefore sensitive to processing. Both variants favour LiDAR support beyond 200 m in this scene. The aligned 300–400 m vehicle cohort has only three tracks.
+- Deliverables: [cross-dataset report](../docs/long-range-cross-dataset-review.md), full range/class/cohort tables, timing/box-margin comparison, deterministic point-cloud example, refreshed portable client briefing, result record 0018.
+- External evidence: L-RadSet provides an independent labelled 220 m comparison with a signed-access requirement; Boreas-RT offers a different 300 m scanning-radar/FMCW-LiDAR setup. LRR-Sim tests radar aggregation to 300 m but lacks paired LiDAR. No emails or access agreements were sent or signed.
+- Verification: all five calibration transforms match pinned publisher helpers; 120 independently evaluated full-cloud oriented-box counts match stored static/aligned counts. Unit tests cover sentinel exclusion, sync identity, transform direction, interpolation/no-extrapolation, zero-count quantiles, equal-track weighting and matched timing cohorts. Result/log validators and the full CI suite are run before publication.
+- No detector inference, population confidence interval, weather superiority, acceptance signoff or timesheet hours are claimed. Existing ownership rules and protected-branch gates are unchanged.
+
+Reproduction commands and acquisition scope are in the report. Raw ZIP source URLs and SHA-256 hashes are in the download manifest; each run records all used input hashes, including interpolation endpoint annotations.
