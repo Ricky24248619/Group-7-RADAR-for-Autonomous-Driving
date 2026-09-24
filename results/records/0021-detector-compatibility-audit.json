@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "0021-detector-compatibility-audit",
+  "title": "Pretrained detector compatibility audit for long-range TruckDrive comparison",
+  "owner": "Ricky Yuen",
+  "date": "2026-09-24",
+  "status": "partial",
+  "dataset": "TruckDrive official mini scenes 28_1, 28_6, 28_12, 28_18, 28_24",
+  "sensor_configuration": "Released TruckDrive annotation coordinates compared with candidate model input grids; no inference",
+  "annotation_schema": "Released velodyne-frame oriented cuboids; invalid 3D and ego annotations excluded",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "split": "40 timestamp-spaced frames per scene; 190 frames in matched timing comparison",
+  "environment": {
+    "os": "Windows",
+    "hardware": "CPU audit; GTX 1660 6 GB available but no inference-memory benchmark",
+    "python": "3.11.9",
+    "packages": {}
+  },
+  "commands": [
+    "python scripts/audit_detector_compatibility.py --model-root <models>/L-RadSet --dataset-root <datasets>/TruckDrive --truckdrive-source <TruckDrive-checkout> --lradset-source <L-RadSet-checkout>"
+  ],
+  "measurements": [
+    {
+      "name": "Long-range vehicle observations checked",
+      "value": 504,
+      "scope": "Same matched 200-400 m cohort as result 0020"
+    },
+    {
+      "name": "Vehicle centers in TruckDrive full-range LiDAR input rectangle",
+      "value": 192,
+      "scope": "Input compatibility only; not detections or recall"
+    }
+  ],
+  "evidence": [
+    "docs/detector-compatibility-decision.md",
+    "docs/evidence/detector-compatibility/audit.json",
+    "docs/evidence/detector-compatibility/input_roi_coverage.csv",
+    "experiment-log/0018-detector-compatibility.md"
+  ],
+  "notes": "Compatibility audit completed; learned-detector comparison remains blocked. Downloaded L-RadSet checkpoint embedded input regions end at 70.2 m LiDAR and 70.4 m radar forward. No compatible pretrained pair was verified for the requested 200-400 m comparison; no model inference or detection metrics produced.",
+  "error": "Learned-model evaluation not started: inspected candidates do not form a verified compatible 200-400 m radar/LiDAR pair.",
+  "blocker": "Downloaded checkpoint input grids end near 70 m forward; longer-range examples are configs without matching verified weights, and radar feature adaptation remains unresolved.",
+  "recommendation": "Obtain matching trained weights and preprocessing definitions; verify common region and coordinates before measuring inference memory or scoring detections.",
+  "attempted_fixes": [
+    "Downloaded and CRC/hash-verified both published PointPillars checkpoints.",
+    "Inspected checkpoint-embedded configs without unpickling or executing them.",
+    "Inspected pinned L-RadSet long-range and TruckDrive full-range source configurations.",
+    "Checked configured input rectangles against hash-verified annotations for all 504 distant vehicle observations.",
+    "Verified local GPU and existing WSL CUDA runtime; did not modify the working GOOSE environment."
+  ]
+}

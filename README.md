@@ -17,6 +17,9 @@ that range? Reported by range band, never as one aggregate number.
 covers 190 matched sampled frames, with per-scene, timing, box-margin and track checks.
 LiDAR has stronger 200-400 m vehicle geometric support in these selected scenes; this is not detector accuracy.
 
+**Detector next step:** [checkpoint compatibility decision](docs/detector-compatibility-decision.md)
+records downloaded weights, verified input ranges and the requirements for a valid learned-model comparison.
+
 **New cross-dataset findings (22 September):** [long-range radar versus LiDAR, including TruckDrive](docs/long-range-cross-dataset-review.md)
 adds a verified 200-frame TruckDrive scene out to 399 m, vehicle/distance/point-density
 profiles and acquisition-time sensitivity. L-RadSet and Boreas-RT are assessed as
