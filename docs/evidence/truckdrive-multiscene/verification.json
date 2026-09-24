@@ -1,0 +1,61 @@
+{
+  "checks": [
+    {
+      "scene": "scene_28_1",
+      "variant": "static",
+      "independent_counts_matched": 52
+    },
+    {
+      "scene": "scene_28_1",
+      "variant": "aligned",
+      "independent_counts_matched": 52,
+      "source_files_rehashed": 401
+    },
+    {
+      "scene": "scene_28_6",
+      "variant": "static",
+      "independent_counts_matched": 48
+    },
+    {
+      "scene": "scene_28_6",
+      "variant": "aligned",
+      "independent_counts_matched": 48,
+      "source_files_rehashed": 401
+    },
+    {
+      "scene": "scene_28_12",
+      "variant": "static",
+      "independent_counts_matched": 60
+    },
+    {
+      "scene": "scene_28_12",
+      "variant": "aligned",
+      "independent_counts_matched": 60,
+      "source_files_rehashed": 401
+    },
+    {
+      "scene": "scene_28_18",
+      "variant": "static",
+      "independent_counts_matched": 48
+    },
+    {
+      "scene": "scene_28_18",
+      "variant": "aligned",
+      "independent_counts_matched": 48,
+      "source_files_rehashed": 401
+    },
+    {
+      "scene": "scene_28_24",
+      "variant": "static",
+      "independent_counts_matched": 36
+    },
+    {
+      "scene": "scene_28_24",
+      "variant": "aligned",
+      "independent_counts_matched": 36,
+      "source_files_rehashed": 401
+    }
+  ],
+  "total_independent_counts": 488,
+  "method": "Full clouds with explicit sine/cosine box rotation; no KD-tree or inside_box helper. Calibration matrices and ego-pose interpolation shared with producer; not an independent timing validation."
+}

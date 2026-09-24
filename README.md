@@ -13,6 +13,10 @@ a future team.
 current models fail beyond ~150 m, and does 4D radar degrade less than LiDAR at
 that range? Reported by range band, never as one aggregate number.
 
+**Five-scene follow-up (24 September):** [TruckDrive long-range vehicle result](docs/truckdrive-multiscene-result.md)
+covers 190 matched sampled frames, with per-scene, timing, box-margin and track checks.
+LiDAR has stronger 200-400 m vehicle geometric support in these selected scenes; this is not detector accuracy.
+
 **New cross-dataset findings (22 September):** [long-range radar versus LiDAR, including TruckDrive](docs/long-range-cross-dataset-review.md)
 adds a verified 200-frame TruckDrive scene out to 399 m, vehicle/distance/point-density
 profiles and acquisition-time sensitivity. L-RadSet and Boreas-RT are assessed as

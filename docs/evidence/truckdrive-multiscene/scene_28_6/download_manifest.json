@@ -1,0 +1,2664 @@
+{
+  "scene": "scene_28_6",
+  "selection": "40 evenly spaced annotated frames, sorted by timestamp, before outcome inspection; all annotation files retained for ego interpolation",
+  "archives": [
+    {
+      "key": "TruckDrive/scene_28_6/calibrations.zip",
+      "size": 7911,
+      "members": [
+        {
+          "member": "calib_camera_leopard_forward_center_medium.json",
+          "size": 790,
+          "crc32": 1851010124,
+          "sha256": "81d131d44fb58cd13193a2bdb733c4d2b15db5567fcbd34339a6aad7c63fb15d"
+        },
+        {
+          "member": "calib_camera_leopard_forward_left_narrow.json",
+          "size": 780,
+          "crc32": 1915795796,
+          "sha256": "fea8f2f776f7d7243a7ce59b0c082d18da14162246351e35856611c758c84976"
+        },
+        {
+          "member": "calib_camera_leopard_forward_left_wide.json",
+          "size": 788,
+          "crc32": 3966953,
+          "sha256": "0824c0b472573bdfb7f61bb60bb0a1034fe5b630b9bcd37dcf956f97e7dd7b4d"
+        },
+        {
+          "member": "calib_camera_leopard_forward_right_narrow.json",
+          "size": 785,
+          "crc32": 228744872,
+          "sha256": "3cf6e16a1b35b302af3de938f8602488508b0bb86d6332a0eff7b76e4f2552c1"
+        },
+        {
+          "member": "calib_camera_leopard_forward_right_wide.json",
+          "size": 787,
+          "crc32": 1947236264,
+          "sha256": "ebf2855d5579e7f0bda5a7ce06303867ac9e7260e408adb091c49eff3e814595"
+        },
+        {
+          "member": "calib_camera_leopard_rearward_left_bottom_medium.json",
+          "size": 788,
+          "crc32": 2164405505,
+          "sha256": "b1430d56bad47989b992672388f220445cce892b08147893e7b5daeba0e80b66"
+        },
+        {
+          "member": "calib_camera_leopard_rearward_right_bottom_medium.json",
+          "size": 797,
+          "crc32": 487440205,
+          "sha256": "6a6e6d0a377df9ca63f4fb97dff0946c22957ae197b83dbc7b0328af400ff10d"
+        },
+        {
+          "member": "calib_camera_leopard_sideward_left_back_wide.json",
+          "size": 794,
+          "crc32": 3155917164,
+          "sha256": "efb1dfa985ebf97e1c747292ca589d8684e666247be276a9b7300eabcc3d3f9c"
+        },
+        {
+          "member": "calib_camera_leopard_sideward_left_front_wide.json",
+          "size": 795,
+          "crc32": 2023163281,
+          "sha256": "4935f61797df65357a8cd1c0cfdb47b0627ea4f74ac60ee498b4e40fdd7314eb"
+        },
+        {
+          "member": "calib_camera_leopard_sideward_right_back_wide.json",
+          "size": 795,
+          "crc32": 1446590229,
+          "sha256": "d35e0fe2bfed6f7a7e52ddd52ade46aa2c2157a820ce733bc6316daae7cb3cbe"
+        },
+        {
+          "member": "calib_camera_leopard_sideward_right_front_wide.json",
+          "size": 792,
+          "crc32": 1686497166,
+          "sha256": "610cb950e24c941f231c47d2820e12b97729f2febef78d94fc7d0dd3a5402c6b"
+        },
+        {
+          "member": "calib_tf_tree_full.json",
+          "size": 16165,
+          "crc32": 3783085622,
+          "sha256": "8b2373e46a9428371674b26e3e7089a45a54c50246eeefcc2fbb52f7453e2430"
+        }
+      ]
+    },
+    {
+      "key": "TruckDrive/scene_28_6/annotations.zip",
+      "size": 2071201,
+      "members": [
+        {
+          "member": "bounding_boxes/0062_3172103218.json",
+          "size": 84410,
+          "crc32": 2653863356,
+          "sha256": "22867c1c3b1882bd31e1c0f2486c5ccba7feb9169869380ee888a96c226b7ad9"
+        },
+        {
+          "member": "bounding_boxes/0064_3272198018.json",
+          "size": 85608,
+          "crc32": 1482081375,
+          "sha256": "5e24e0fb16e9502a49ec4ce4f02b4df43c92e14560f5f091431d0e08af0d2847"
+        },
+        {
+          "member": "bounding_boxes/0066_3372125368.json",
+          "size": 89661,
+          "crc32": 3684599380,
+          "sha256": "a3cc9279208920ae4a2d6bc63403c0e9c64e129607cf26ec36b0b6c6ff06e19b"
+        },
+        {
+          "member": "bounding_boxes/0068_3472052868.json",
+          "size": 89129,
+          "crc32": 709274365,
+          "sha256": "68dbda9360485dd9903b64718aa3e7c0224aec27c83833514b16caffed6dfa98"
+        },
+        {
+          "member": "bounding_boxes/0070_3572147593.json",
+          "size": 89547,
+          "crc32": 4205063954,
+          "sha256": "7b923571706385d39a40e10795d97020451d54c5ad90f11f7b5af5872bb8f12b"
+        },
+        {
+          "member": "bounding_boxes/0072_3672075043.json",
+          "size": 91777,
+          "crc32": 1581980274,
+          "sha256": "24d02d55bf367914666697dbee973c985934e3318330d01a3fc71e40667bf453"
+        },
+        {
+          "member": "bounding_boxes/0074_3772169818.json",
+          "size": 96601,
+          "crc32": 3033081429,
+          "sha256": "52c17655bd1f7a1d1d23ad79c5bef6964ebe9fe690abb80f840d1a13f13ec578"
+        },
+        {
+          "member": "bounding_boxes/0076_3872097143.json",
+          "size": 91750,
+          "crc32": 2315897846,
+          "sha256": "19832bd0f323522b4fccb00056c7f4ef84d70794d57b2e704f7bb528f63200fd"
+        },
+        {
+          "member": "bounding_boxes/0078_3972191918.json",
+          "size": 89537,
+          "crc32": 102187710,
+          "sha256": "fa16873df36e2f4bf30edab4f795e5dfe83b7146797c48e876afcb1ac3e12ce8"
+        },
+        {
+          "member": "bounding_boxes/0080_4072119393.json",
+          "size": 93520,
+          "crc32": 3638408311,
+          "sha256": "310c3dfad5f57f5e119eaa58c33771efcae6c0ba5b4fdd143def715f45b0913e"
+        },
+        {
+          "member": "bounding_boxes/0082_4172056918.json",
+          "size": 87170,
+          "crc32": 1083182761,
+          "sha256": "ce16d165ed55001d5035eac5fc8ac2adf085518c8312fdb3c2742c04dfe90aa4"
+        },
+        {
+          "member": "bounding_boxes/0084_4272151718.json",
+          "size": 90646,
+          "crc32": 2651886837,
+          "sha256": "be28d18011ef71246caa93393f0a8e9bf932c701381a1d0234f41d56aee3dad9"
+        },
+        {
+          "member": "bounding_boxes/0086_4372078993.json",
+          "size": 87079,
+          "crc32": 3656931642,
+          "sha256": "3cc14c1617c1d80a4415d0fc71d7e223a2ee64834044f03114e2a32ac841d1bb"
+        },
+        {
+          "member": "bounding_boxes/0088_4472173768.json",
+          "size": 94745,
+          "crc32": 123142841,
+          "sha256": "e9e39dd04240a17a1eefd002e85e3b5223e16d26287daf4073eb93425146911e"
+        },
+        {
+          "member": "bounding_boxes/0090_4572101193.json",
+          "size": 92148,
+          "crc32": 3368548579,
+          "sha256": "83468ce0fadb7d52937478096de041555a40d39016af3746c07f6b66baeb16de"
+        },
+        {
+          "member": "bounding_boxes/0092_4672196043.json",
+          "size": 91291,
+          "crc32": 875740066,
+          "sha256": "e424dc4d650aef5bd1d52ff37ba7334236660a6bf863da17c42896e522045dc7"
+        },
+        {
+          "member": "bounding_boxes/0094_4772123493.json",
+          "size": 95636,
+          "crc32": 2476546517,
+          "sha256": "434e5089b0e6b737dce6a0989b8d0fb7c7c45ac6a9568484deeee131b46e7755"
+        },
+        {
+          "member": "bounding_boxes/0096_4872050868.json",
+          "size": 95039,
+          "crc32": 910425287,
+          "sha256": "44153b5726b487e06c3f3ee536181fee1720f6335c14f76cce20362d87c7f821"
+        },
+        {
+          "member": "bounding_boxes/0098_4972145768.json",
+          "size": 96956,
+          "crc32": 202054430,
+          "sha256": "466114701be5facce018c1bc2ed856e09786459797cf9f9938fd440b250ceeea"
+        },
+        {
+          "member": "bounding_boxes/0100_5072073318.json",
+          "size": 91209,
+          "crc32": 954237243,
+          "sha256": "eb10936a7ab04194d651b9688b9b3eedd38e1568bf537097a3e2c7d61badd7c1"
+        },
+        {
+          "member": "bounding_boxes/0102_5172178443.json",
+          "size": 90025,
+          "crc32": 3856179885,
+          "sha256": "aac58e89b04e2abb1f6ec33718450f56c1fad467c9b7b63d29515b5238f2471e"
+        },
+        {
+          "member": "bounding_boxes/0104_5272105893.json",
+          "size": 92258,
+          "crc32": 2073227599,
+          "sha256": "d838e4b7d946bb55f02666faabca6fd29c49f96d75b819a3508fc80af8d498cc"
+        },
+        {
+          "member": "bounding_boxes/0106_5372200693.json",
+          "size": 91866,
+          "crc32": 2231562730,
+          "sha256": "48f8d48c46326f84e33626d9b176c55803676f5e7d84fbe0ac4637fcca996b8e"
+        },
+        {
+          "member": "bounding_boxes/0108_5472128043.json",
+          "size": 100811,
+          "crc32": 3892611153,
+          "sha256": "a41da478e8aafd28877478b6264372fafcd4c4ede740f2b1eb4eac8716e1ee92"
+        },
+        {
+          "member": "bounding_boxes/0110_5572055518.json",
+          "size": 93383,
+          "crc32": 743268386,
+          "sha256": "76125e3fd1dccff56ad4069b2d283129c6d0203a51f9ab8fd6829ee4f4947829"
+        },
+        {
+          "member": "bounding_boxes/0112_5672150393.json",
+          "size": 98204,
+          "crc32": 3241133879,
+          "sha256": "6091992d8da2c19fcbff159b52de2a019cfe7a3d43e095e9044fbdef6fd81752"
+        },
+        {
+          "member": "bounding_boxes/0114_5772077843.json",
+          "size": 98197,
+          "crc32": 995610844,
+          "sha256": "1a959884925835ce2c597d5982e2270c54d8ebc368ae91c94bab3f1a4cc63b16"
+        },
+        {
+          "member": "bounding_boxes/0116_5872172718.json",
+          "size": 96327,
+          "crc32": 110645416,
+          "sha256": "4860adf0480301086682f8f81cd0680bfa6b59092dfa681548e89f46d6a1a188"
+        },
+        {
+          "member": "bounding_boxes/0118_5972100043.json",
+          "size": 95658,
+          "crc32": 3541345507,
+          "sha256": "5910272af73cc448e55341aa77b1f5bed22074413f44bc637b957b7f34b3ab20"
+        },
+        {
+          "member": "bounding_boxes/0120_6072194918.json",
+          "size": 95159,
+          "crc32": 2083290619,
+          "sha256": "8de89d8dd272e86beaf12401b78dcb3b492ee9b6c3aedd25284415e5fc75b489"
+        },
+        {
+          "member": "bounding_boxes/0122_6172132593.json",
+          "size": 91443,
+          "crc32": 1990878458,
+          "sha256": "8bf6a4ab1006b0cf4d1e696fa8b0717b6030854846c837d61239140afb96f8f6"
+        },
+        {
+          "member": "bounding_boxes/0124_6272060043.json",
+          "size": 101199,
+          "crc32": 3500061562,
+          "sha256": "3910ea1d8d45eccdd9228f933bef72fbc018b3dbe849579f2186bcf732a101bc"
+        },
+        {
+          "member": "bounding_boxes/0126_6372154818.json",
+          "size": 99182,
+          "crc32": 693225866,
+          "sha256": "899cb28bbbe535a1ccd0f56e0bbb64844ec5075e2ff02a112b6fd4def16f882e"
+        },
+        {
+          "member": "bounding_boxes/0128_6472082243.json",
+          "size": 98104,
+          "crc32": 1616636753,
+          "sha256": "aff68d225e2408969e78268a66ff7a7fb987b88fffa3ff62a0d104a84ec6f3d2"
+        },
+        {
+          "member": "bounding_boxes/0130_6572177043.json",
+          "size": 96416,
+          "crc32": 1046462260,
+          "sha256": "924d8dcfb9b651028763b2f14cf9fe629c284c9e3a01cae5f115b6a4ace9f8e4"
+        },
+        {
+          "member": "bounding_boxes/0132_6672104568.json",
+          "size": 99771,
+          "crc32": 985536153,
+          "sha256": "0892bb2a6669d60f4ee95ae28c8cfdf0d23108cbcc099a92861f013d9aecea30"
+        },
+        {
+          "member": "bounding_boxes/0134_6772199418.json",
+          "size": 96079,
+          "crc32": 2199704804,
+          "sha256": "0eb50340ca0676fffeeff90f07f2974d0a35411ef5d371fdeda02ab31dfcfc09"
+        },
+        {
+          "member": "bounding_boxes/0136_6872126868.json",
+          "size": 95675,
+          "crc32": 2952348974,
+          "sha256": "ef196fec5367b87ff0a948b87f9d82b4988cc747a5786d816086f337cd03db48"
+        },
+        {
+          "member": "bounding_boxes/0138_6972054218.json",
+          "size": 97157,
+          "crc32": 4272951470,
+          "sha256": "ed90ea9736e376f186002ea50ce14da527ccb93e908fa0bdf5ba191e4a400191"
+        },
+        {
+          "member": "bounding_boxes/0140_7072149068.json",
+          "size": 100500,
+          "crc32": 2346245402,
+          "sha256": "b0b8127e134602264ba90a3a8163e766899e23186b5098be427907e1fe7db3d5"
+        },
+        {
+          "member": "bounding_boxes/0142_7172086743.json",
+          "size": 98137,
+          "crc32": 3521479009,
+          "sha256": "498ef7739bea6c540534891930a0aaf653eb5c737f9f63f36e20753a9c7d846c"
+        },
+        {
+          "member": "bounding_boxes/0144_7272181543.json",
+          "size": 107163,
+          "crc32": 3339407979,
+          "sha256": "ba6a172c267515be57f62b3e3a9b6e8d6b9a878ab7276f1fce5bb354bf157fdb"
+        },
+        {
+          "member": "bounding_boxes/0146_7372108968.json",
+          "size": 101183,
+          "crc32": 727869674,
+          "sha256": "ba1e6e58e804278f413115fd8d345727a9352c2feeea22c4f7448d9aac973acc"
+        },
+        {
+          "member": "bounding_boxes/0148_7472203768.json",
+          "size": 101936,
+          "crc32": 3825198241,
+          "sha256": "da16715bd9e4fa56b74ca3d0cd347370d9826e652943f99338b326c249c5d6c7"
+        },
+        {
+          "member": "bounding_boxes/0150_7572131093.json",
+          "size": 102389,
+          "crc32": 3683480890,
+          "sha256": "8fb2541c4e1d4fc0c5304f062b22d00a9841bf5e7d25bfaa9fe23a03651390bd"
+        },
+        {
+          "member": "bounding_boxes/0152_7672058593.json",
+          "size": 102920,
+          "crc32": 2982664348,
+          "sha256": "c8dc38953df561124228f4cef33934400bea0b463605778de06df78ec657a823"
+        },
+        {
+          "member": "bounding_boxes/0154_7772153343.json",
+          "size": 103239,
+          "crc32": 2859087858,
+          "sha256": "2a4c2a6e5bfc2ced6cbbaccff229a23773c7a9e15205f5e8f384f524464d4b1b"
+        },
+        {
+          "member": "bounding_boxes/0156_7872080818.json",
+          "size": 99691,
+          "crc32": 2404948238,
+          "sha256": "bab1dd80603012c8654e4601ea34105ea40ab9947de45155c429ae4cae23a62f"
+        },
+        {
+          "member": "bounding_boxes/0158_7972175593.json",
+          "size": 102434,
+          "crc32": 1482924725,
+          "sha256": "7fe82cfad1aa83e84149b8cd832ba91df4e45ff8bae346d44025b6567ab86ee1"
+        },
+        {
+          "member": "bounding_boxes/0160_8072102943.json",
+          "size": 101963,
+          "crc32": 2498088400,
+          "sha256": "afd36031b729ac5013d29fc052b28a842adaa2cea9aef32c811bb3d64851c563"
+        },
+        {
+          "member": "bounding_boxes/0162_8172207943.json",
+          "size": 108745,
+          "crc32": 360852776,
+          "sha256": "b2f14f207e63a235168ccaf486b7e5eeb5e321ce7544c877fbe4623461e30833"
+        },
+        {
+          "member": "bounding_boxes/0164_8272135443.json",
+          "size": 110008,
+          "crc32": 3829894956,
+          "sha256": "1dba0941d34ba0f74e7c176cacb7ba0b67014454ac2aed4e31ccb12832cff7b8"
+        },
+        {
+          "member": "bounding_boxes/0166_8372062868.json",
+          "size": 114438,
+          "crc32": 1783278049,
+          "sha256": "fc4206445bb490c5b06b36f8650f267c1ce933e78ee49ba034aa0d55d85de3f9"
+        },
+        {
+          "member": "bounding_boxes/0168_8472157668.json",
+          "size": 114972,
+          "crc32": 2314939528,
+          "sha256": "bdfcd47f515823fe4b387cf729d6306503d7b6e55bc9b239cf527e7264159378"
+        },
+        {
+          "member": "bounding_boxes/0170_8572084993.json",
+          "size": 114086,
+          "crc32": 4292012641,
+          "sha256": "df49aaf875da3134c23bf3391cfc4cd47ada08bda32792324ecec0853f301f3f"
+        },
+        {
+          "member": "bounding_boxes/0172_8672179818.json",
+          "size": 110997,
+          "crc32": 1344476452,
+          "sha256": "f50e893d61e622920103fce3f2c8c16d6b9d993c974e83ffae920cbbaff6466a"
+        },
+        {
+          "member": "bounding_boxes/0174_8772107268.json",
+          "size": 117420,
+          "crc32": 4007841154,
+          "sha256": "ce29cebf51b175459b91159c3174da57b5afa08989389dec9b9f5f89702f55c8"
+        },
+        {
+          "member": "bounding_boxes/0176_8872202118.json",
+          "size": 113471,
+          "crc32": 196474558,
+          "sha256": "0bc3a6623fd02610deeaa13a9d359815a4a6d3e087e262f69960142056ee4ce2"
+        },
+        {
+          "member": "bounding_boxes/0178_8972129543.json",
+          "size": 114823,
+          "crc32": 3956722215,
+          "sha256": "34a2ff260d96ce91a849beb92057d75086d2bc13beebcfdccddaeedaf5f7c7c6"
+        },
+        {
+          "member": "bounding_boxes/0180_9072056893.json",
+          "size": 114135,
+          "crc32": 3371069939,
+          "sha256": "195d114e6738189ec6cdf3de57cd9dc730c9ce2e8eab81994c987b80ab5011d7"
+        },
+        {
+          "member": "bounding_boxes/0182_9172161893.json",
+          "size": 112457,
+          "crc32": 719160406,
+          "sha256": "80949743d7f530aecec0da05eeb24e3826e3a811b4303da1fd45dfcaead3dea8"
+        },
+        {
+          "member": "bounding_boxes/0184_9272089418.json",
+          "size": 114628,
+          "crc32": 1580785519,
+          "sha256": "e191504eb26b6252bcc57584ff68a8f1ad48d1bac33eabe770eb78638cd3ab70"
+        },
+        {
+          "member": "bounding_boxes/0186_9372184218.json",
+          "size": 113238,
+          "crc32": 3648497045,
+          "sha256": "5096c477c0efddb68fc6343dc096215667ad3677d58667e11dc6856609af6201"
+        },
+        {
+          "member": "bounding_boxes/0188_9472111693.json",
+          "size": 120200,
+          "crc32": 4238582795,
+          "sha256": "91d836a724da2fbebf59eb8880bce66b78f575babf054b760f91e387d75e1832"
+        },
+        {
+          "member": "bounding_boxes/0190_9572039018.json",
+          "size": 118167,
+          "crc32": 2850022771,
+          "sha256": "a4680cc924b72d9b90fd3bd5a203a08062cb96960fbf6cff8ca3f552aa71f7ce"
+        },
+        {
+          "member": "bounding_boxes/0192_9672133868.json",
+          "size": 112878,
+          "crc32": 3671642235,
+          "sha256": "74f7f57d24621a1cc0fcd3f78ff942aa9fb876dc400f6a585d18de5347bd6afe"
+        },
+        {
+          "member": "bounding_boxes/0194_9772061343.json",
+          "size": 117284,
+          "crc32": 2447726187,
+          "sha256": "abc04ba67553d4fac17f4fd27370fe2b841b2d66cb7b5cc8e0cee3a905bfff67"
+        },
+        {
+          "member": "bounding_boxes/0196_9872156168.json",
+          "size": 114121,
+          "crc32": 3450791356,
+          "sha256": "376eb60d392f5b3f26894d47ffaea84300c20428e254dee3391fa30ce45d63bf"
+        },
+        {
+          "member": "bounding_boxes/0198_9972083618.json",
+          "size": 113985,
+          "crc32": 2525055717,
+          "sha256": "011e2e81b8e951b18dd758849629803927330174a38e237b3614aacb5211cc07"
+        },
+        {
+          "member": "bounding_boxes/0200_10072178468.json",
+          "size": 113547,
+          "crc32": 746207262,
+          "sha256": "cc644485bf66220f1377ab79193aa319ccff0dae420161bea5f7094ccbbf9721"
+        },
+        {
+          "member": "bounding_boxes/0202_10172116043.json",
+          "size": 114267,
+          "crc32": 2169375859,
+          "sha256": "f53d1150704b496d801ffc30bac1407ee82195039771fec73325dbc6bebef53b"
+        },
+        {
+          "member": "bounding_boxes/0204_10272043543.json",
+          "size": 112568,
+          "crc32": 2114567424,
+          "sha256": "c3d4d5172041ad1eeca1c095ede8ed3c08630ea9708ee1a4f435d7b360b3b834"
+        },
+        {
+          "member": "bounding_boxes/0206_10372138368.json",
+          "size": 110650,
+          "crc32": 3232426673,
+          "sha256": "33f84da322cf519ca9b36032cd3ef315f366be64a9085ea29f7bfc5e03f2423e"
+        },
+        {
+          "member": "bounding_boxes/0208_10472065843.json",
+          "size": 109445,
+          "crc32": 3795810688,
+          "sha256": "2618304ae992c348319e8cd4a29cdc06a9bc22cde2236f4e810e93ce63bd910f"
+        },
+        {
+          "member": "bounding_boxes/0210_10572160643.json",
+          "size": 113580,
+          "crc32": 1765164307,
+          "sha256": "a82a41a0ba00f02112e404668215244c4c40eaf45d3a323ed28ce10afcbd452b"
+        },
+        {
+          "member": "bounding_boxes/0212_10672088018.json",
+          "size": 114201,
+          "crc32": 1089807368,
+          "sha256": "ed256a295600b3589161ca538388366231e747451dd2e3290aa5891679def059"
+        },
+        {
+          "member": "bounding_boxes/0214_10772182843.json",
+          "size": 108679,
+          "crc32": 1529658177,
+          "sha256": "cc1752454b4bebd6810a5c199abc8e92137414183c5731c8c734eab823a5cafb"
+        },
+        {
+          "member": "bounding_boxes/0216_10872110368.json",
+          "size": 112078,
+          "crc32": 3217493477,
+          "sha256": "5202024d0cf0f2d86044656b8402050433191a52f71c5012f5cfb1022d22590c"
+        },
+        {
+          "member": "bounding_boxes/0218_10972037818.json",
+          "size": 107146,
+          "crc32": 3645484567,
+          "sha256": "60b1b1583b8f0f15e846b7bef362974380459a579309b5bd0f78e22ff6660aae"
+        },
+        {
+          "member": "bounding_boxes/0220_11072132643.json",
+          "size": 107862,
+          "crc32": 3472124631,
+          "sha256": "21cac5b9bf2b2691354696d8570682e66a0cf4e9d04aae51493fc3d423e975aa"
+        },
+        {
+          "member": "bounding_boxes/0222_11172070218.json",
+          "size": 107421,
+          "crc32": 3353487125,
+          "sha256": "a722b5da989b266acf8bc19435ea82df15895a607c107257da76233461c947a6"
+        },
+        {
+          "member": "bounding_boxes/0224_11272165068.json",
+          "size": 105860,
+          "crc32": 3175215893,
+          "sha256": "48c22c329d172064002594f77a83efcc696a507c6e46e4c3ab169c4ad0550b1d"
+        },
+        {
+          "member": "bounding_boxes/0226_11372092543.json",
+          "size": 107726,
+          "crc32": 76012312,
+          "sha256": "9d91e4eb3ab464deda95f80681577f6de6cb6db8067a43da3a858a9fa2a4385f"
+        },
+        {
+          "member": "bounding_boxes/0228_11472187393.json",
+          "size": 104455,
+          "crc32": 532571648,
+          "sha256": "d7f2b22b5a284da090584b7195dbada73ebf8d25cdfe1436566d81493529d5c8"
+        },
+        {
+          "member": "bounding_boxes/0230_11572114843.json",
+          "size": 104685,
+          "crc32": 2920870278,
+          "sha256": "723f4ab4934caccdaeb415cfe0a168b777fe90b16f1b82498063357b99701351"
+        },
+        {
+          "member": "bounding_boxes/0232_11672042243.json",
+          "size": 104371,
+          "crc32": 4159758769,
+          "sha256": "80570a83ae0e749bd868f0d55544d902fc8da2af9d4ebdaa73186f0f08f6c8ec"
+        },
+        {
+          "member": "bounding_boxes/0234_11772137043.json",
+          "size": 105122,
+          "crc32": 1834224325,
+          "sha256": "f8ec4ec0ae9f7fe1e675a553679008c2cbce739f466d561aacdae0b27fc3c55a"
+        },
+        {
+          "member": "bounding_boxes/0236_11872064593.json",
+          "size": 109457,
+          "crc32": 1773030250,
+          "sha256": "7ff981bb50125455267bde3e61fd43d5cf12872f4c636ae4b57a726e201e9bf8"
+        },
+        {
+          "member": "bounding_boxes/0238_11972159418.json",
+          "size": 109225,
+          "crc32": 1960613246,
+          "sha256": "05687bb04beb794a41601ea87164239316889996a4d078b1229708413a9829d4"
+        },
+        {
+          "member": "bounding_boxes/0240_12072086893.json",
+          "size": 106167,
+          "crc32": 1114089523,
+          "sha256": "6a0b840c2446f2c84b3b232225e280a9e81c5fc22c8e4d60715112b7b2afdecd"
+        },
+        {
+          "member": "bounding_boxes/0242_12172191893.json",
+          "size": 109864,
+          "crc32": 1819641542,
+          "sha256": "4c306a1364d3d73ef0292dd7a5da75d9a6d955d024b353ca5103a3b56ec6f72f"
+        },
+        {
+          "member": "bounding_boxes/0244_12272119268.json",
+          "size": 105669,
+          "crc32": 1671340497,
+          "sha256": "78b841f54c404f9cceefb5adc7fc8177295396f4f447fb5b0db800a3549be7bb"
+        },
+        {
+          "member": "bounding_boxes/0246_12372046768.json",
+          "size": 103881,
+          "crc32": 3664610205,
+          "sha256": "91133e583ab60ffee5845424f93c8c2aa6726352ac074a31b84bd61a04cad340"
+        },
+        {
+          "member": "bounding_boxes/0248_12472141618.json",
+          "size": 104837,
+          "crc32": 3753448171,
+          "sha256": "10eb9e86b42cb8f6cc13c7787599dc3d837b9007091f3898e88bae699eac58b2"
+        },
+        {
+          "member": "bounding_boxes/0250_12572069068.json",
+          "size": 102097,
+          "crc32": 68719449,
+          "sha256": "764613ac1db934330246e9d81600a541b0d2f6d90e611c58eb3b0163e0029858"
+        },
+        {
+          "member": "bounding_boxes/0252_12672163918.json",
+          "size": 104874,
+          "crc32": 2884234234,
+          "sha256": "b64de7b56ec3256cd41a9863fefb835926525b4fa80057c0753cfccee3c21467"
+        },
+        {
+          "member": "bounding_boxes/0254_12772091268.json",
+          "size": 106422,
+          "crc32": 150485645,
+          "sha256": "db2ba8db58f357f964dd5c203e2a26c799ced6dd24cfc4f094cca73cdbad7ab1"
+        },
+        {
+          "member": "bounding_boxes/0256_12872186118.json",
+          "size": 105413,
+          "crc32": 2174273589,
+          "sha256": "a9d4a3c819c1107ff8664ffebd62d8713ab2d0a4a7501e7601d47f15b92fcdff"
+        },
+        {
+          "member": "bounding_boxes/0258_12972113618.json",
+          "size": 111911,
+          "crc32": 1729607640,
+          "sha256": "083fc42142784c75eb41a134e74f33740fc6f01dfe1df09ce2c2048064c63fab"
+        },
+        {
+          "member": "bounding_boxes/0260_13072041093.json",
+          "size": 108329,
+          "crc32": 191845312,
+          "sha256": "86accd5f2b130d9db248853f3713b1532fd2766d6dc2ac821b456f08e13e6edc"
+        },
+        {
+          "member": "bounding_boxes/0262_13172146143.json",
+          "size": 109343,
+          "crc32": 2327412279,
+          "sha256": "3aff611b1059b6c918d2669b521acd31c84983325750b8b6ed4e82049e0942f4"
+        },
+        {
+          "member": "bounding_boxes/0264_13272073518.json",
+          "size": 108685,
+          "crc32": 545306211,
+          "sha256": "d90bd3c8488fd6a6e9439f8c86d52d0d31f22b9596e176dedd255c5670866ad3"
+        },
+        {
+          "member": "bounding_boxes/0266_13372168368.json",
+          "size": 113794,
+          "crc32": 3949235366,
+          "sha256": "0b3e3ed4c0b25fc4f864c440afb5f0899a44136156e928fedc9680a9b82285a0"
+        },
+        {
+          "member": "bounding_boxes/0268_13472095893.json",
+          "size": 111935,
+          "crc32": 1489900853,
+          "sha256": "ba73c3a7b36d6661369fae31c2ae2f647b83d69d3c1bd31d75a42f7d3e6f71db"
+        },
+        {
+          "member": "bounding_boxes/0270_13572190693.json",
+          "size": 114625,
+          "crc32": 3006073082,
+          "sha256": "1975b6a1d263143946dbc02936fb7274afaf4dfe400c32dca4a6ed483087a585"
+        },
+        {
+          "member": "bounding_boxes/0272_13672118193.json",
+          "size": 113675,
+          "crc32": 1354421621,
+          "sha256": "8dfdf0fbb4026655db39e8cca6b38e5b38dc51e188c9208d0024058e514b9ade"
+        },
+        {
+          "member": "bounding_boxes/0274_13772045568.json",
+          "size": 114595,
+          "crc32": 1126516681,
+          "sha256": "3dc86dff6ec8f1626d6d23080aeb6760ee81b0fd4d4f0ea49e82bd90ce84b2e2"
+        },
+        {
+          "member": "bounding_boxes/0276_13872140443.json",
+          "size": 113659,
+          "crc32": 486505934,
+          "sha256": "fcd3706aa954d593f94472b596ea9047a8acdbf4e622440a806e80a6a2a08041"
+        },
+        {
+          "member": "bounding_boxes/0278_13972067968.json",
+          "size": 119748,
+          "crc32": 290697812,
+          "sha256": "fdbaff6ce10900b23d225a4c78b9cdccf25897c3b1360a70a50046fe315b9d05"
+        },
+        {
+          "member": "bounding_boxes/0280_14072162843.json",
+          "size": 125243,
+          "crc32": 2737033264,
+          "sha256": "c01ac1359c42639d4adb2601a44324a23a49a141fe194ded7fe1f4bbdaa268a2"
+        },
+        {
+          "member": "bounding_boxes/0282_14172100493.json",
+          "size": 130018,
+          "crc32": 752978958,
+          "sha256": "1d8a3a67f090b52d3ae725fc0880c231c5d313aba6fdb8bd4492ff3a5427c3b3"
+        },
+        {
+          "member": "bounding_boxes/0284_14272195393.json",
+          "size": 130679,
+          "crc32": 795614068,
+          "sha256": "87bbdb727e656c5600f7d6bd673c061b3d08097fe8e7fa1ebee334a78ff6b0df"
+        },
+        {
+          "member": "bounding_boxes/0286_14372122768.json",
+          "size": 120842,
+          "crc32": 3640669732,
+          "sha256": "fe16d3c9c508c6bea2cbc58b96e34de2c35d0d7473bdfde17bff6032de684f3b"
+        },
+        {
+          "member": "bounding_boxes/0288_14472050318.json",
+          "size": 126623,
+          "crc32": 4045441643,
+          "sha256": "506857b0f5032905ff08dce0ac82d663309104efe4097ec4333dbc62d8b017c7"
+        },
+        {
+          "member": "bounding_boxes/0290_14572145168.json",
+          "size": 126566,
+          "crc32": 3262499061,
+          "sha256": "09417c6d615407ff18b19f2ca51912ca0e4cf3ee5ba3e3b84cc544149235f4c4"
+        },
+        {
+          "member": "bounding_boxes/0292_14672072693.json",
+          "size": 121854,
+          "crc32": 342451733,
+          "sha256": "34a32216467700f82342ae1aaef3df7fe7e7c25e31cf0746d38c1dcd61804b07"
+        },
+        {
+          "member": "bounding_boxes/0294_14772167543.json",
+          "size": 123359,
+          "crc32": 587420719,
+          "sha256": "b9139cfc0cfd28c53ae9c397c9488e784d9e36f800b230631556c58dbac3eb93"
+        },
+        {
+          "member": "bounding_boxes/0296_14872094968.json",
+          "size": 126110,
+          "crc32": 3960761460,
+          "sha256": "cb6c1637442abd0eb5a33931d23beb10621923f10d574dcd9cf75aab6fa60913"
+        },
+        {
+          "member": "bounding_boxes/0298_14972189818.json",
+          "size": 121088,
+          "crc32": 4067008741,
+          "sha256": "6f96e3540a574cd6879fbe8e837063b9520ac9e464b1a0965b8ae30af68833ad"
+        },
+        {
+          "member": "bounding_boxes/0300_15072117368.json",
+          "size": 123155,
+          "crc32": 1328765265,
+          "sha256": "75c6df5ac5a5429a9e46e2fc1bdf99b4e7bcbed54359191a89bed915076ac26a"
+        },
+        {
+          "member": "bounding_boxes/0302_15172055168.json",
+          "size": 121698,
+          "crc32": 976471644,
+          "sha256": "a1ed0d9d91307dfa30526a9fb64c2c575be6a3a407eb7a9f572571d605e003c0"
+        },
+        {
+          "member": "bounding_boxes/0304_15272150068.json",
+          "size": 129686,
+          "crc32": 2504175011,
+          "sha256": "28bddd5a4bd39ad42b14dd28361d29ab52bceb1e2813e32a74db4656cb6d446c"
+        },
+        {
+          "member": "bounding_boxes/0306_15372077468.json",
+          "size": 123362,
+          "crc32": 1091101756,
+          "sha256": "7035b6982f28c414043f547110d57d54ab5c3bc9c9b0acc2b68b68a158397dde"
+        },
+        {
+          "member": "bounding_boxes/0308_15472172343.json",
+          "size": 131462,
+          "crc32": 1192173619,
+          "sha256": "be2fcfb0ac3c53c9f96d3bff709c504fea08ed3e3dfa70caff2559c59ae83d65"
+        },
+        {
+          "member": "bounding_boxes/0310_15572099893.json",
+          "size": 129637,
+          "crc32": 77008835,
+          "sha256": "2f1588ab805f36d08d9f3304d022666f41251a093898bd1d9591e99fbf45f2eb"
+        },
+        {
+          "member": "bounding_boxes/0312_15672194668.json",
+          "size": 123906,
+          "crc32": 3950355980,
+          "sha256": "08c0bbf8fc233b226ed8c88b8099b8294b546c5708e6d03fc10d6cb6b01e1ed5"
+        },
+        {
+          "member": "bounding_boxes/0314_15772122018.json",
+          "size": 123828,
+          "crc32": 989178529,
+          "sha256": "588a66382f6717093a4c8b590ab460f5e895a850d34a57d8d1bd9af56e630117"
+        },
+        {
+          "member": "bounding_boxes/0316_15872049268.json",
+          "size": 129098,
+          "crc32": 1910369266,
+          "sha256": "262e061971ee861e60992a5e5e30ff1a7031cbe61ba4f655c1dcd0ed2815258b"
+        },
+        {
+          "member": "bounding_boxes/0318_15972144018.json",
+          "size": 121114,
+          "crc32": 1141103148,
+          "sha256": "8b4f35f11d6d42e0c4f979931263db59ca0662359c021e00a433b498bec7ad5e"
+        },
+        {
+          "member": "bounding_boxes/0320_16072071543.json",
+          "size": 128054,
+          "crc32": 1182791833,
+          "sha256": "1785428fde4d8f207aac329f0d029fd25af4ee4dea6ed4c98fd9cff9a8b91a16"
+        },
+        {
+          "member": "bounding_boxes/0322_16172176568.json",
+          "size": 130516,
+          "crc32": 1189261962,
+          "sha256": "8cf1b0349fc2096c9dc3682ebd13faa49a1a6f51bcfd1ff1247af65693b89b21"
+        },
+        {
+          "member": "bounding_boxes/0324_16272104068.json",
+          "size": 126315,
+          "crc32": 337375702,
+          "sha256": "4cda8f7465ec90983c4d5e0b336feb819f7a15408fba9e89dd51e3cba9137f63"
+        },
+        {
+          "member": "bounding_boxes/0326_16372198893.json",
+          "size": 131085,
+          "crc32": 682880067,
+          "sha256": "14274612f975e8794b8c98a8c210bf5ff39cccb37b7ca5a1249e36480ace9af4"
+        },
+        {
+          "member": "bounding_boxes/0328_16472126243.json",
+          "size": 117725,
+          "crc32": 1275352042,
+          "sha256": "d8f69035bfb3385678a9e2ca11e8d5a152948ef78f50d0dcbe87fb5145139fdc"
+        },
+        {
+          "member": "bounding_boxes/0330_16572053643.json",
+          "size": 125422,
+          "crc32": 2021265937,
+          "sha256": "5060410cc836cbbd8dc27b26cc3fbdef989d405c7a211e1ac4985806d8d93e0e"
+        },
+        {
+          "member": "bounding_boxes/0332_16672148443.json",
+          "size": 119016,
+          "crc32": 2907435596,
+          "sha256": "72905b28616023ea67de7a3e147af25cf49d674c923d08fb12477b9fb6405057"
+        },
+        {
+          "member": "bounding_boxes/0334_16772075918.json",
+          "size": 120417,
+          "crc32": 3765901514,
+          "sha256": "d31fbbb62be9b7894a3dd4a707e296ea7e3ab1763c1c2b65c958c73af1de92c4"
+        },
+        {
+          "member": "bounding_boxes/0336_16872170743.json",
+          "size": 120058,
+          "crc32": 1273658075,
+          "sha256": "41e1e674ff48ffc03298995225f3845d4e1e19a23ea8f032d54554882c87d851"
+        },
+        {
+          "member": "bounding_boxes/0338_16972098093.json",
+          "size": 118826,
+          "crc32": 4111816241,
+          "sha256": "74a082335c2340696714238450b51fee8b18dc6a9a8f3293ea7efb16bb514fe2"
+        },
+        {
+          "member": "bounding_boxes/0340_17072192943.json",
+          "size": 124432,
+          "crc32": 3464090455,
+          "sha256": "a755ed6356d9de0621f7ea71fbcff5158bf1fd2328deb7fbf97c1fa022b5d7e3"
+        },
+        {
+          "member": "bounding_boxes/0342_17172130643.json",
+          "size": 122249,
+          "crc32": 3459056851,
+          "sha256": "c661514cded217cdbfaff0f3ffecc979850f3f4744068fe95a6d1fd9fa21552f"
+        },
+        {
+          "member": "bounding_boxes/0344_17272058143.json",
+          "size": 127499,
+          "crc32": 703075825,
+          "sha256": "d849758229efab7756a0e7333bb905744478db742f45cb9bf373f21b5e0282b9"
+        },
+        {
+          "member": "bounding_boxes/0346_17372152993.json",
+          "size": 126132,
+          "crc32": 38814662,
+          "sha256": "b6f701628f43fdf5d880db03c59400355f2bb86dbcd6780b8a5bf6f0aa69b692"
+        },
+        {
+          "member": "bounding_boxes/0348_17472080443.json",
+          "size": 128146,
+          "crc32": 2915843032,
+          "sha256": "3b1fcf1760f4afba2147851336b8ef569c53fb6c1963213d8887fb6c6faa1d1c"
+        },
+        {
+          "member": "bounding_boxes/0350_17572175293.json",
+          "size": 117106,
+          "crc32": 900305320,
+          "sha256": "2c9931e875f7e38619496e831733ee2448b7de5e2314ec0114414946036be05f"
+        },
+        {
+          "member": "bounding_boxes/0352_17672102893.json",
+          "size": 119890,
+          "crc32": 1620931533,
+          "sha256": "623b28403e4256cae772383b96f3a87348d847280ef5775bb3c15cbcf23b3591"
+        },
+        {
+          "member": "bounding_boxes/0354_17772197768.json",
+          "size": 122665,
+          "crc32": 4081711159,
+          "sha256": "5152b0f3707ef7115608649937d1c94eea22be83feda8669b9f19c209d4321ef"
+        },
+        {
+          "member": "bounding_boxes/0356_17872125268.json",
+          "size": 118537,
+          "crc32": 993796910,
+          "sha256": "d32d92f0dcd51bba2f6d69a8c63a34366903bc07c5ca2f96bac82b671eecd3bc"
+        },
+        {
+          "member": "bounding_boxes/0358_17972052618.json",
+          "size": 118181,
+          "crc32": 1920892413,
+          "sha256": "8424cd4187b7958897c6842961f1bc5bef5712a6d443329fe6a5ae1d6765da91"
+        },
+        {
+          "member": "bounding_boxes/0360_18072147518.json",
+          "size": 117684,
+          "crc32": 1655611513,
+          "sha256": "723b1ad2c91d275a3b4cf14b94828fcda52e94ec16eb38d974dd3aa53d09a0f4"
+        },
+        {
+          "member": "bounding_boxes/0362_18172085243.json",
+          "size": 116477,
+          "crc32": 502279553,
+          "sha256": "34dfed76a71efa44bbbecef4794c7bc595007057fafa457037f7132739649b37"
+        },
+        {
+          "member": "bounding_boxes/0364_18272180143.json",
+          "size": 118999,
+          "crc32": 1759959046,
+          "sha256": "7e4a8b7bf5161d45ec8812aad0b9bc9bd426936fdcd494dc51fda7d7ef14da45"
+        },
+        {
+          "member": "bounding_boxes/0366_18372107643.json",
+          "size": 110105,
+          "crc32": 2813169024,
+          "sha256": "c939c5bc0db04749c44e100a6c906b37ca7eb56bf6eaeb5dd5300b95b4df24cb"
+        },
+        {
+          "member": "bounding_boxes/0368_18472202568.json",
+          "size": 115735,
+          "crc32": 2934421584,
+          "sha256": "209fca1d47324e99ebe295496e3231e3bafa76fd1776056601c2eed6170410de"
+        },
+        {
+          "member": "bounding_boxes/0370_18572129968.json",
+          "size": 110212,
+          "crc32": 36772173,
+          "sha256": "05894aec628e9667a51dd994c9c608457edba51df29fba52fb85d9302f3532a3"
+        },
+        {
+          "member": "bounding_boxes/0372_18672057468.json",
+          "size": 111288,
+          "crc32": 1603673415,
+          "sha256": "df17e2ff278a535678367db2d7dd7fed69db84bb95a332071a7fd1aa9f686dd4"
+        },
+        {
+          "member": "bounding_boxes/0374_18772152243.json",
+          "size": 112945,
+          "crc32": 1677821443,
+          "sha256": "45678dc9dae016e47801755fdbede2a5df266a326314f3d5b0a2482ed4c119a7"
+        },
+        {
+          "member": "bounding_boxes/0376_18872079718.json",
+          "size": 115365,
+          "crc32": 1933870149,
+          "sha256": "aeba36afe72cb22416bae237d70b150bff78ae7e4c4443342f3a2e73452794c3"
+        },
+        {
+          "member": "bounding_boxes/0378_18972174518.json",
+          "size": 115086,
+          "crc32": 2838671014,
+          "sha256": "f9f81faa648c4f9462beaf6517b0ad282f107fc0f7001cb67b9021792acf8f72"
+        },
+        {
+          "member": "bounding_boxes/0380_19072101968.json",
+          "size": 115675,
+          "crc32": 2080937644,
+          "sha256": "1c0f410c6cbeff2bb776ea16dd80e0e11875951baf9b9ab4afd8f1b503a3df39"
+        },
+        {
+          "member": "bounding_boxes/0382_19172207093.json",
+          "size": 118460,
+          "crc32": 4170148672,
+          "sha256": "6f5b6c4093ded1ee8f6603c97519d5ed24d328979830d9947e3a3c09238c154a"
+        },
+        {
+          "member": "bounding_boxes/0384_19272134568.json",
+          "size": 112827,
+          "crc32": 670835364,
+          "sha256": "3db236de7944a63c2bd109dc62997f8bd8470c2e9c30d96eef9966762cb1d034"
+        },
+        {
+          "member": "bounding_boxes/0386_19372061918.json",
+          "size": 105489,
+          "crc32": 1407191932,
+          "sha256": "755b0e61099c07d2a7f9682abf2afd730fec3344771d3be8983f7315927603fe"
+        },
+        {
+          "member": "bounding_boxes/0388_19472156693.json",
+          "size": 108936,
+          "crc32": 3783451273,
+          "sha256": "5121bbb509e4dfad75e229a956c103341869e0e2c6f0500f4377dd8b3a347304"
+        },
+        {
+          "member": "bounding_boxes/0390_19572083943.json",
+          "size": 106161,
+          "crc32": 3867291752,
+          "sha256": "9c41efe94ba5a8ba09652e48c7234751d43fd85beb1f23d6d837d4a48f1c016a"
+        },
+        {
+          "member": "bounding_boxes/0392_19672178768.json",
+          "size": 106044,
+          "crc32": 1404055056,
+          "sha256": "42b73a010f3b4d4ea5d20a260c67e966d02c6cea6fbafc356c1424cc5422003e"
+        },
+        {
+          "member": "bounding_boxes/0394_19772106318.json",
+          "size": 102166,
+          "crc32": 3628603944,
+          "sha256": "a792863afd02c6bda8ae8ac7075d93fce7053e3098f6a81132887a45194f7c8c"
+        },
+        {
+          "member": "bounding_boxes/0396_19872201193.json",
+          "size": 103939,
+          "crc32": 1069974279,
+          "sha256": "52c7028b20efaa4afd425e1176b7ea1b9cd21e55df3aa62c4d90debd58b14416"
+        },
+        {
+          "member": "bounding_boxes/0398_19972128618.json",
+          "size": 105171,
+          "crc32": 4128871557,
+          "sha256": "0f28c7a4e1142d0d68a9486d4642ec8f8b3cdd143f77def0ce4f38f7d437a21a"
+        },
+        {
+          "member": "bounding_boxes/0400_20072055943.json",
+          "size": 101427,
+          "crc32": 3611960116,
+          "sha256": "87ec8f7edd7390ee2c43428906dec38c7e41bc85b517e14a9b30ec8ba7dc3aca"
+        },
+        {
+          "member": "bounding_boxes/0402_20172160918.json",
+          "size": 105455,
+          "crc32": 266884916,
+          "sha256": "d664f08972ce5d1606a26f903dc9c3e2d6096aced121d07280320d434be53a3f"
+        },
+        {
+          "member": "bounding_boxes/0404_20272088368.json",
+          "size": 102704,
+          "crc32": 2357306656,
+          "sha256": "e251cf9b913325cd669c34dc6a4e4d1c5edb229b82ed1b0b3bba057da61cf1e6"
+        },
+        {
+          "member": "bounding_boxes/0406_20372183118.json",
+          "size": 103293,
+          "crc32": 2586177324,
+          "sha256": "b59f5907cee4de7523f9a4ae6cc11044776a47a0a822bc2d47ca675dbd6d9846"
+        },
+        {
+          "member": "bounding_boxes/0408_20472110618.json",
+          "size": 106789,
+          "crc32": 1969835239,
+          "sha256": "897ecd0189bcc054b760ebc171cf2e9b2ee4dee3c1f869049165ab430e6fb230"
+        },
+        {
+          "member": "bounding_boxes/0410_20572205393.json",
+          "size": 104136,
+          "crc32": 2398219444,
+          "sha256": "faf621fad58995356365a1c4a1bf06f128f098d3ebff013ffcc61151e548819c"
+        },
+        {
+          "member": "bounding_boxes/0412_20672132718.json",
+          "size": 99983,
+          "crc32": 410863677,
+          "sha256": "32308b851cc8d009effce73b6f0234578a6ce09d5fa281b71ee4c2a6b910d175"
+        },
+        {
+          "member": "bounding_boxes/0414_20772060118.json",
+          "size": 105096,
+          "crc32": 1639276547,
+          "sha256": "53b43d2f6665f5248564dd7a9f01d447eafd4d36ddfa56f66ae71d5e17a50513"
+        },
+        {
+          "member": "bounding_boxes/0416_20872154943.json",
+          "size": 103765,
+          "crc32": 2977628454,
+          "sha256": "e67edeb37d1c02ef24440a007f80ac15932efc4b47a85bd944945f45cfc21a49"
+        },
+        {
+          "member": "bounding_boxes/0418_20972082318.json",
+          "size": 105073,
+          "crc32": 3253372523,
+          "sha256": "f1fabe93cb30d5046724cda2ab397d19318b27a7e3daf707622cf7c24ac9477e"
+        },
+        {
+          "member": "bounding_boxes/0420_21072177118.json",
+          "size": 103686,
+          "crc32": 2897675480,
+          "sha256": "e2ffb2ce0189e3f64e90bbdd8df8f9865da0c14493de597da4809a2bdcbf7e5e"
+        },
+        {
+          "member": "bounding_boxes/0422_21172114693.json",
+          "size": 104341,
+          "crc32": 1135121282,
+          "sha256": "3535090d7dc0f73ac55e12e6485236c89c3f75c3c95bb947f693da2e558a4710"
+        },
+        {
+          "member": "bounding_boxes/0424_21272042168.json",
+          "size": 106833,
+          "crc32": 3782427805,
+          "sha256": "834ff3bad19d41fa461836c7513b8cc800837b443cf8f01806da5c526b67e19b"
+        },
+        {
+          "member": "bounding_boxes/0426_21372136918.json",
+          "size": 103738,
+          "crc32": 3432754827,
+          "sha256": "75f51dbddda7392cc57e3078c8072475a825a66fd37a5d3eb802918da4c25354"
+        },
+        {
+          "member": "bounding_boxes/0428_21472064393.json",
+          "size": 101435,
+          "crc32": 2468657155,
+          "sha256": "812c932800905739f73e3e55cde5b430ffc1f4d43d5b1c61bc2c7f6f9fa516d6"
+        },
+        {
+          "member": "bounding_boxes/0430_21572159268.json",
+          "size": 108857,
+          "crc32": 690575744,
+          "sha256": "e6cc82ef88f6ef88060c22d739f0932ffd127677e702f2511c10f9b69b85d7ee"
+        },
+        {
+          "member": "bounding_boxes/0432_21672086693.json",
+          "size": 108161,
+          "crc32": 2672229642,
+          "sha256": "a99358f96512197a7e102f14912c0baa1b8c04b2b6e4454297b078215a02cf50"
+        },
+        {
+          "member": "bounding_boxes/0434_21772181468.json",
+          "size": 109056,
+          "crc32": 2027994654,
+          "sha256": "e595e544fc62b2afe4c9e88eba53d05db07fded7050449577c3fadc6633169e1"
+        },
+        {
+          "member": "bounding_boxes/0436_21872108918.json",
+          "size": 104230,
+          "crc32": 3298157466,
+          "sha256": "45b51c07c79b5ea8d4580b4c9475bcb75b5431b3ab9912525d7bd3a40d48c00f"
+        },
+        {
+          "member": "bounding_boxes/0438_21972036393.json",
+          "size": 103773,
+          "crc32": 2432153645,
+          "sha256": "aa61bf02da721aae34346b05e1db71dcad1bb809d5c447541b07b93c9110f695"
+        },
+        {
+          "member": "bounding_boxes/0440_22072131268.json",
+          "size": 108343,
+          "crc32": 1854613818,
+          "sha256": "ddcd2e42fd043526e8ef67f962b8b38a389474ba050deeea8e760d6a26a4a217"
+        },
+        {
+          "member": "bounding_boxes/0442_22172068768.json",
+          "size": 107803,
+          "crc32": 2018126799,
+          "sha256": "b0372db94698f11da11d5417cff033d4ce976ff8da5b5b6f3fe78e5496d38044"
+        },
+        {
+          "member": "bounding_boxes/0444_22272163593.json",
+          "size": 107321,
+          "crc32": 990382702,
+          "sha256": "19db380892f6468fe1025ba8e6d891e9eaab0d2a1ccf76e3accea1fcee05bd5f"
+        },
+        {
+          "member": "bounding_boxes/0446_22372091118.json",
+          "size": 103792,
+          "crc32": 2357433125,
+          "sha256": "ae3c2b0456a61101857f738b60919e9cdb9a61f98c57d00eff99152bdf277c48"
+        },
+        {
+          "member": "bounding_boxes/0448_22472185918.json",
+          "size": 105429,
+          "crc32": 2648402037,
+          "sha256": "0e01dcbf1fde85dd7ba478225339af2663650787490d71771a7adea19987c0cb"
+        },
+        {
+          "member": "bounding_boxes/0450_22572113318.json",
+          "size": 108627,
+          "crc32": 1928516810,
+          "sha256": "3830177bbcba71558a253de550afaf6b85383dc0aeb3fb69d2a5f35aa263cd50"
+        },
+        {
+          "member": "bounding_boxes/0452_22672040668.json",
+          "size": 105827,
+          "crc32": 949158473,
+          "sha256": "c2d03cda7abf18510457675d6e8241cf1ba1e69c165ea9a509d48849a580fc32"
+        },
+        {
+          "member": "bounding_boxes/0454_22772135468.json",
+          "size": 105155,
+          "crc32": 2369219487,
+          "sha256": "7778374054dd7569a4a8eddb8c572b66aa66ab85f9a65f12832eea65d36a7c02"
+        },
+        {
+          "member": "bounding_boxes/0456_22872062943.json",
+          "size": 104414,
+          "crc32": 665223109,
+          "sha256": "fd7538d9056922c84f5556ea724a3b5a26f9b0bc38e4cb0db79ae73ef884b4da"
+        },
+        {
+          "member": "bounding_boxes/0458_22972157693.json",
+          "size": 103412,
+          "crc32": 3636654138,
+          "sha256": "2eb8e9d5b1acb35658a96d6341368e364d31a06a4f09f972b731620844918bad"
+        },
+        {
+          "member": "bounding_boxes/0460_23072085143.json",
+          "size": 108556,
+          "crc32": 3043464150,
+          "sha256": "5487d10b12b6154894bc9a68d037a3dd4b013f9f733f32dc7768f67effa35d9f"
+        },
+        {
+          "member": "lane_lines/0062_3172103218.json",
+          "size": 14121,
+          "crc32": 1451585267,
+          "sha256": "9761955eaa5ffef4e66002396a537c8931f7ef127355acbe6849fb3d1c0f2f2d"
+        },
+        {
+          "member": "lane_lines/0082_4172056918.json",
+          "size": 12900,
+          "crc32": 2768587754,
+          "sha256": "0294345db8e125d15ec31f07ac01a9a34d900aa47cf1077b7611d0b861330c85"
+        },
+        {
+          "member": "lane_lines/0102_5172178443.json",
+          "size": 14420,
+          "crc32": 3625366407,
+          "sha256": "59907cbe05974fd640b5090453789104784d95433b2a77160524175e6730cc1d"
+        },
+        {
+          "member": "lane_lines/0122_6172132593.json",
+          "size": 14424,
+          "crc32": 1766348536,
+          "sha256": "35c73c59ab6b0fc535dc0d99beeb73eee703c4cdb970312f8d841c1876f52a19"
+        },
+        {
+          "member": "lane_lines/0142_7172086743.json",
+          "size": 15415,
+          "crc32": 865855274,
+          "sha256": "800cd1cb4e5d485078b9ae45ed4e006197527157d597bb118e9e4131aa18e2e1"
+        },
+        {
+          "member": "lane_lines/0162_8172207943.json",
+          "size": 14441,
+          "crc32": 1363122208,
+          "sha256": "6df083a06609e8832474e6d08ede24167f7898b5ffef2748d604c3aaa1b77e5f"
+        },
+        {
+          "member": "lane_lines/0182_9172161893.json",
+          "size": 10420,
+          "crc32": 1450531,
+          "sha256": "eb05c3e6116510c97466405ac2975fc8aebb4f2b1d52aaaf48a70eea4543203a"
+        },
+        {
+          "member": "lane_lines/0202_10172116043.json",
+          "size": 11598,
+          "crc32": 1493608906,
+          "sha256": "62eb29a2538c76e36ff1a3017de394051a17cd225582e8e007e5af4940ab30df"
+        },
+        {
+          "member": "lane_lines/0222_11172070218.json",
+          "size": 10822,
+          "crc32": 3365965419,
+          "sha256": "6dece12b858157e195413403df57917980e0f00a473d7cd3809dd17c583cbfd6"
+        },
+        {
+          "member": "lane_lines/0242_12172191893.json",
+          "size": 10803,
+          "crc32": 2980959798,
+          "sha256": "e2ddfc8c7a1be4aa904d500295276340a1cf7b943fdfd088975766255e17d95c"
+        },
+        {
+          "member": "lane_lines/0262_13172146143.json",
+          "size": 12331,
+          "crc32": 3138592022,
+          "sha256": "64b6010e277bbd79a675838fc3769be13b7b2b6e2c92a08c453ab620931216bb"
+        },
+        {
+          "member": "lane_lines/0282_14172100493.json",
+          "size": 10762,
+          "crc32": 2389437821,
+          "sha256": "cb5097693898479d64ebe4b73ed2df4834565e8ba2c6c0cbb091c23dab740972"
+        },
+        {
+          "member": "lane_lines/0302_15172055168.json",
+          "size": 13976,
+          "crc32": 2223882362,
+          "sha256": "8ebe8e8dc26af4ac6b3f8cc2e33acaeb49376fc7cfb8f0ce94112ecbaa91cc6d"
+        },
+        {
+          "member": "lane_lines/0322_16172176568.json",
+          "size": 10360,
+          "crc32": 1944260331,
+          "sha256": "141704db20f9d302c0085d3ec7481320d66574caafe54d0b674be96b0778e46d"
+        },
+        {
+          "member": "lane_lines/0342_17172130643.json",
+          "size": 13469,
+          "crc32": 654143486,
+          "sha256": "b9f39465972edd880bdcd85f3fc9b7b0f1c7d9fcfca5c68956acbe93f94b4c95"
+        },
+        {
+          "member": "lane_lines/0362_18172085243.json",
+          "size": 12567,
+          "crc32": 4199251219,
+          "sha256": "c31addb2d7098ee11021ea7336152f392f7f86e7882471640ee495f00177ff76"
+        },
+        {
+          "member": "lane_lines/0382_19172207093.json",
+          "size": 11980,
+          "crc32": 885179094,
+          "sha256": "9eaa585cce4346bcf34be144d07e0d0fc90d47795fa8c24f9e19f6143da8a3ff"
+        },
+        {
+          "member": "lane_lines/0402_20172160918.json",
+          "size": 13487,
+          "crc32": 1818391954,
+          "sha256": "bbef5e10cca53616e456ea55a57c633d335c6ae4c68c4ecfdda3299e465b40df"
+        },
+        {
+          "member": "lane_lines/0422_21172114693.json",
+          "size": 10650,
+          "crc32": 3755378096,
+          "sha256": "e6cab8c08c322d7ba8c4fffbbb679d2f0c3a28c771181683c33e511cebfc18f9"
+        },
+        {
+          "member": "lane_lines/0442_22172068768.json",
+          "size": 7930,
+          "crc32": 2196288483,
+          "sha256": "4210b47e95b99e2b0f4ad8a06c0fa5ba27c100d01d15ad2873659a77a49cd0f4"
+        }
+      ]
+    },
+    {
+      "key": "TruckDrive/scene_28_6/radar.zip",
+      "size": 135909690,
+      "members": [
+        {
+          "member": "conti542/joint_radars/detections/0062_3161954816.bin",
+          "size": 547008,
+          "crc32": 211439983,
+          "sha256": "35e34d4ebad26abf044dbd2cc9bc9390183d9bce81a58e6b14fab6c1cad4c385"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0072_3661838592.bin",
+          "size": 542520,
+          "crc32": 2135553111,
+          "sha256": "37024f7362f5912f775c966d3419605a7912bd50733148c974d4a878a07e5179"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0082_4161461504.bin",
+          "size": 619080,
+          "crc32": 1130111043,
+          "sha256": "424195ee5db1d6083d87518451873d7beaff227b6d4b5f14e456bc471b0d7adf"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0092_4662031104.bin",
+          "size": 587136,
+          "crc32": 1374153776,
+          "sha256": "fc059b06c1a793259e1ce80a226517ae35514b4592f79b45792023be89322fb3"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0102_5161612288.bin",
+          "size": 698544,
+          "crc32": 1223031502,
+          "sha256": "eaf85de56849f38f5376a890abb53884ca5b3ef9f90829085a80bbd963d8bcb8"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0114_5761587712.bin",
+          "size": 673464,
+          "crc32": 452117027,
+          "sha256": "e85f8fba04707d10a54d42c0b98c865f0d0c110b0da0811efb3586ec621b5412"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0124_6261438464.bin",
+          "size": 624096,
+          "crc32": 2025249197,
+          "sha256": "878341ec5cb7d7a7bde885102b806748f604eb29dac3db2cd4b5c9315790c0e7"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0134_6762041088.bin",
+          "size": 730752,
+          "crc32": 3926819807,
+          "sha256": "13746813ab6715d6007b5c4fa3a0ee16576d5e234a4dcb16bb1d582311bf076e"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0144_7261630464.bin",
+          "size": 689040,
+          "crc32": 1182635859,
+          "sha256": "d776fd728e3fd775ac978a330c33fe966f5a1ecb1adfc7fd6e37acb034bf9553"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0154_7761372160.bin",
+          "size": 652344,
+          "crc32": 2968991420,
+          "sha256": "f74930d0b3c2d9870e5075d0561ce946f2d8ebc303e639f305d0065950b8b122"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0164_8261992192.bin",
+          "size": 674520,
+          "crc32": 211461791,
+          "sha256": "960b673cf6526c7a32d79d4f9a648f467a26877009522f6102084c486f53ce63"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0174_8761432832.bin",
+          "size": 607992,
+          "crc32": 1475599260,
+          "sha256": "8b92124c9f8ed17e7f888bd36c780dc564cd1d4b45104a76300ed4c1435487f9"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0184_9261313280.bin",
+          "size": 608784,
+          "crc32": 2328624926,
+          "sha256": "e868cda4995efa5a5df18183c1899a602002bc9dfca6ee110f8e43890ae26ab5"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0194_9761822464.bin",
+          "size": 618288,
+          "crc32": 134561216,
+          "sha256": "92da49614dfb85698dd53b2dfac44ff3077acfc2c7878698e7e9a633569c5686"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0204_10261583872.bin",
+          "size": 577632,
+          "crc32": 2156943378,
+          "sha256": "e251c93037970fc2ff4ea5a163c3c94773707c1afbd1a28720ba52c4b417979a"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0216_10861436672.bin",
+          "size": 702768,
+          "crc32": 3053312979,
+          "sha256": "d7b7fe9888685fcedde955ef80ef45c56974cd0b97fd3db15fef89392c81585c"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0226_11361323008.bin",
+          "size": 691416,
+          "crc32": 3329760717,
+          "sha256": "8b3c0529e455a62a1e95c83556eb4a2c53bb704ae17fcb055c346d46f5d7dc1d"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0236_11861792512.bin",
+          "size": 731016,
+          "crc32": 1505345374,
+          "sha256": "72670f752e206c06e54389fa4e5ad390b8e586b80ecb4e3c971e2de9942cbc17"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0246_12361568512.bin",
+          "size": 660528,
+          "crc32": 1730457161,
+          "sha256": "3b4604d5dd24a4950ac222439ca3558d75801f34595d16570e9bca6276498d9e"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0256_12861276672.bin",
+          "size": 724944,
+          "crc32": 4098810542,
+          "sha256": "349984ed5b96bf9aa301bb8d8254ad6060e008b18de7989cfdddf12680b69b21"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0266_13361894912.bin",
+          "size": 703560,
+          "crc32": 726381228,
+          "sha256": "cc387313c62e4c9d1bc8ea93f99a30175a7cf3c1213d84443c2df71efb48af7d"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0276_13861516544.bin",
+          "size": 717816,
+          "crc32": 134594574,
+          "sha256": "f5f7632fdcdaf75fff7d6cd34867c4ffba741ca470f9f0a0d0d5542bcc8bb55c"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0286_14361397760.bin",
+          "size": 763488,
+          "crc32": 3715964287,
+          "sha256": "2299d62dd5415a68d56e74af72d457848e52b62bef6e0ca55bf00a688d3f2e9a"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0296_14861879552.bin",
+          "size": 710952,
+          "crc32": 710504362,
+          "sha256": "292027a089f5d80a04cc07bf52c32a9542a617084c891a963fd18ae66c45c3cc"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0306_15361519104.bin",
+          "size": 797808,
+          "crc32": 2993755948,
+          "sha256": "c3259be97516fdf89deaed0ee4671b2d960507dfccae612645b3a4b823f78b7b"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0318_15961467904.bin",
+          "size": 749496,
+          "crc32": 1999416749,
+          "sha256": "51faf4376d27957485c3bbeede5d4abb874a4276fac502b3e562e87dc33bd478"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0328_16461378048.bin",
+          "size": 765072,
+          "crc32": 1093096069,
+          "sha256": "c87e1670ffdbffacc36ee1898fb73fc9a459582d69487c9e2f24a2d0fdfd1a33"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0338_16961909248.bin",
+          "size": 710952,
+          "crc32": 1375852493,
+          "sha256": "91f66ce87132c21c0c91cf19290386cf40328a40215987d5c448b5066cb1704b"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0348_17461388288.bin",
+          "size": 607728,
+          "crc32": 2383625936,
+          "sha256": "14a84b525f480473bc1e6c22e6d7afceff60dbabeed544264b4ec0529e30d82c"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0358_17961390336.bin",
+          "size": 701712,
+          "crc32": 2915815496,
+          "sha256": "328dd66f6e68abcbb57ddfd9f05697e2689f441b69732def45f366cc9ecf403d"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0368_18461950208.bin",
+          "size": 674520,
+          "crc32": 3216356281,
+          "sha256": "b0a71e3664e44a85dd95131b54939f6000c7e8c6cc1195e15aee05e281794c04"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0378_18961336320.bin",
+          "size": 744216,
+          "crc32": 4035391169,
+          "sha256": "5077d717c2ee84bf1edf6729acee0e2e0313b52360e335c413f2d7d1623518cf"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0388_19461496576.bin",
+          "size": 774840,
+          "crc32": 1027738389,
+          "sha256": "62e8128b1e23fa2fa1972a4ec5b70fe3ee978c8ba17ca44b3150d6287ad49600"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0398_19962051328.bin",
+          "size": 705936,
+          "crc32": 3352353280,
+          "sha256": "3189c4271e80a260694ff55b8067406b8711b05e022c2abaac90cf5469076ef7"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0408_20461429760.bin",
+          "size": 702240,
+          "crc32": 2932197961,
+          "sha256": "e182809d32778c1d58ac94e09230128bce23a2c740f7ff27342aaa06592efd79"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0420_21061308160.bin",
+          "size": 729432,
+          "crc32": 3675801747,
+          "sha256": "343e962f37d3d37ef1f2c9e9df8567ed88a1169928f8fe113816343ec41d8724"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0430_21561445120.bin",
+          "size": 729432,
+          "crc32": 3288532398,
+          "sha256": "e5ff6ffa95cb0d3530933f0021a6c6bf01fe0506a910fd66362ca116df45ae85"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0440_22062066432.bin",
+          "size": 749760,
+          "crc32": 2314988604,
+          "sha256": "de3322fd444141dbb43544d2ed3140131aa797879247262ef1353524eceda4aa"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0450_22561456896.bin",
+          "size": 746328,
+          "crc32": 212726433,
+          "sha256": "0766599386feae5d681973d6dcd63eec34defde40f3ec06a9debf89f387f637c"
+        },
+        {
+          "member": "conti542/joint_radars/detections/0460_23061475328.bin",
+          "size": 753984,
+          "crc32": 154653473,
+          "sha256": "62149b335c2e5b10d4387a8fcf9937299fc05c65229ffce05ab516166557f883"
+        }
+      ]
+    },
+    {
+      "key": "TruckDrive/scene_28_6/lidar.zip",
+      "size": 4386130296,
+      "members": [
+        {
+          "member": "aeva/joint_lidars/points/0062_3200034560.bin",
+          "size": 27847864,
+          "crc32": 1881094978,
+          "sha256": "8595545897f6f8023ee0cb57fb68cf8e8a0f9b18a4b9b04e20a89fdf3ca5408c"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0072_3700069120.bin",
+          "size": 28179712,
+          "crc32": 3640952314,
+          "sha256": "e89a6730b85d8b2d8cd11af0d87b6d97243404665e827b578c2fad1b5a7cf2c8"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0082_4200110080.bin",
+          "size": 28238936,
+          "crc32": 294481563,
+          "sha256": "a96db18d9aa3c6e89e433d503445a999ddaa38545b1c6c44c563c46c2942c512"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0092_4700134144.bin",
+          "size": 28339696,
+          "crc32": 4219596502,
+          "sha256": "95e6eb55722d3480f52ed3e2875e36a2c1b998f016af629b45ef0c410d585fdc"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0102_5200133888.bin",
+          "size": 28081064,
+          "crc32": 432380098,
+          "sha256": "6027307c33c0b9cee14c39303a365ad852958cff01835f70368835127f3b3421"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0114_5800138752.bin",
+          "size": 28292528,
+          "crc32": 1855540249,
+          "sha256": "e59d027d5aae6bd27410a69d6c4623099e734aaca28c3c2aca3f8170a9890612"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0124_6300136704.bin",
+          "size": 28568408,
+          "crc32": 2323054002,
+          "sha256": "997e1bdd9b3bac041729776e3879802161ea7b4820292484e2f10e44a9a2e64d"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0134_6800132352.bin",
+          "size": 28724872,
+          "crc32": 2862778507,
+          "sha256": "c0acfaab25021f9837907301f9fc4d4599aa62b9febe5e68827b86c7ccb6381f"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0144_7300137728.bin",
+          "size": 28949448,
+          "crc32": 2394979513,
+          "sha256": "ec31b838a7b5af462133fceffa289d7412cc411ff4620558bc1bd083265e5b2e"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0154_7800142080.bin",
+          "size": 29066048,
+          "crc32": 80841453,
+          "sha256": "1ae872a63e185b87e5c46710d425b923e15af7fffd9611bdc2512507746886ac"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0164_8300137216.bin",
+          "size": 29581376,
+          "crc32": 293768253,
+          "sha256": "4dc729f569d7a1b12c1ffc8a640fb09a74762c9606613627125b478cf5403f03"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0174_8800135424.bin",
+          "size": 30541896,
+          "crc32": 406280092,
+          "sha256": "0755035dcb6b8302f0f3caa4114a933aeb7c923736138a5104a5edd244c0e97b"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0184_9300125696.bin",
+          "size": 30507752,
+          "crc32": 3736292758,
+          "sha256": "e7c16dace0d86d70ded79cdc2412c31206568b2c2a5f17e4e711c18ef2e46ca2"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0194_9800127744.bin",
+          "size": 30373992,
+          "crc32": 719418815,
+          "sha256": "8410500bed189d35d12c290b99c2511a141675de3a60be4added0e2c40b91ae0"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0204_10300121856.bin",
+          "size": 31097440,
+          "crc32": 2707301109,
+          "sha256": "15acf77dc17271089b2c196efa56d62805aae5571163736d4e7e0225c39363bc"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0216_10900118016.bin",
+          "size": 31247832,
+          "crc32": 651516476,
+          "sha256": "d548cf991f1a27b916f794a44303e6fcf317581d8fd5a5d97854b023717197ad"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0226_11400112896.bin",
+          "size": 31319200,
+          "crc32": 1332133167,
+          "sha256": "f259a7376ab45bc79ba3214a818ad6a308afe0efc80bc6cd5872a6de9c7609bd"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0236_11900099072.bin",
+          "size": 31313744,
+          "crc32": 3837749600,
+          "sha256": "6c9bc2d10cfab14f15497dca0d29d9525310b55656b1d8e14a7c130c6855c8bc"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0246_12400090112.bin",
+          "size": 31012168,
+          "crc32": 2680909670,
+          "sha256": "cd473407610a18be04d2cc25991d833d74c587e0240236211f13a77a0384988b"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0256_12900061440.bin",
+          "size": 30812760,
+          "crc32": 4115499573,
+          "sha256": "c8f3ccbf2172244661f5a48aa1577e1b7d7a55a218f6f8779ddd4739933cae15"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0266_13400048384.bin",
+          "size": 30245600,
+          "crc32": 531107851,
+          "sha256": "2c40fc30a237b194dcd3f94a56ef269032fbb0b7dcc27da9210263ab1c0ecf94"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0276_13900025600.bin",
+          "size": 30104272,
+          "crc32": 3578109696,
+          "sha256": "19ecbd4186b1b31a93d475c9b6212671d5d0e9fa7abc01d837d54708db6faf2f"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0286_14400010496.bin",
+          "size": 30258800,
+          "crc32": 2439296871,
+          "sha256": "7fd4fe4ba6f9f5d38e7f806194c8f9a940dfac7c44199f5ca67af2c236ca9e8d"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0296_14899989760.bin",
+          "size": 31117680,
+          "crc32": 426898779,
+          "sha256": "032e228361e8a904f24795ccb8231d3bf2893936d3f722b9103fda42e0a253cd"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0306_15399970304.bin",
+          "size": 31370328,
+          "crc32": 3944755920,
+          "sha256": "87130495ca704c362f2b9485363ee07a5de503a2608559f1ac501558e758c08b"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0318_15999949056.bin",
+          "size": 31343840,
+          "crc32": 2326234791,
+          "sha256": "f503d359472b5667406129375e8abc00990956e3569d35b6970947defaa6a985"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0328_16499936512.bin",
+          "size": 31021056,
+          "crc32": 1697621797,
+          "sha256": "6cd65bb4e42eec050044dff84a112220d121806b1973ad5c92fa7331530cb77c"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0338_16999936512.bin",
+          "size": 30713672,
+          "crc32": 1471818433,
+          "sha256": "d01c4db85d606d4cce5b341b371b7c3dd261ff5855c4f86e053c1d83d1507dfb"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0348_17499938560.bin",
+          "size": 30712528,
+          "crc32": 3287666014,
+          "sha256": "877d60f349059f9329a241eb5b239c471b7b2d0212aa07f61130387f98b2e274"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0358_17999938048.bin",
+          "size": 30611592,
+          "crc32": 3028314634,
+          "sha256": "f5cd2d55018ec438199e9342a9ccda9e4b1de814b8f8bbe554ca8d3a85a19c4d"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0368_18499957248.bin",
+          "size": 29956168,
+          "crc32": 2897573665,
+          "sha256": "f5b12dbde80ccc7a1b86f4ea557a66e31ed805958376f2810f0636e5812db866"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0378_18999975168.bin",
+          "size": 29482552,
+          "crc32": 3141999260,
+          "sha256": "5d3517b424193bc04bf98187da51c6b3c30af2b8cef39f69e946d2ee77418075"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0388_19499994112.bin",
+          "size": 29930120,
+          "crc32": 3145058016,
+          "sha256": "7dd742b8569b1010b2ae18c41097f647b4f3fc2b13cc8ef11ead9d5e57cb9f59"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0398_20000005376.bin",
+          "size": 30193856,
+          "crc32": 3815512288,
+          "sha256": "ce0415f55ad3df8814b56f66e479ec9f39061f9ac987bc515fb59db44b988035"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0408_20500032512.bin",
+          "size": 29723320,
+          "crc32": 60881432,
+          "sha256": "e71b027c37f4ca39165cbd07a6d877ef74a86b2e27fa605cf9593d4ad27df345"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0420_21100044544.bin",
+          "size": 29531040,
+          "crc32": 3470242342,
+          "sha256": "5416cecf3fc2e2a9eadf5ff61c066f201e28b819db7689015f08b7af1294b977"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0430_21600050944.bin",
+          "size": 30230992,
+          "crc32": 1248651934,
+          "sha256": "37e5d3dd47c581a7ff0280da4a608abaf59fddbae1910fb22ce7bfaad5b92cfd"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0440_22100044544.bin",
+          "size": 30317056,
+          "crc32": 2355874395,
+          "sha256": "a9f966982b5fd91475b7a396bea8d5ef3cbcddd2c30539b481a157dc8842141d"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0450_22600055808.bin",
+          "size": 30325944,
+          "crc32": 4107132534,
+          "sha256": "dc41e6b4dc019389463856fb48992d8e57af5f4e19f05da31a6a433baa13b4f6"
+        },
+        {
+          "member": "aeva/joint_lidars/points/0460_23100066816.bin",
+          "size": 30122576,
+          "crc32": 165980366,
+          "sha256": "c54cfd93f75afa859a5352d6bda5c2e801318d93589061fe03d67e0280cd5171"
+        },
+        {
+          "member": "ouster/forward_center/points/0062_3174882304.bin",
+          "size": 1044064,
+          "crc32": 2939410023,
+          "sha256": "ce7c3697b12a40948c862d38f9361852146840565fa9900b6502d8b3065a86d9"
+        },
+        {
+          "member": "ouster/forward_center/points/0072_3674638592.bin",
+          "size": 1046444,
+          "crc32": 3081406239,
+          "sha256": "92931a9fdaa39d8872d6b78c4e9c3d9140e6d2b37d6607920ca16335c549f3b3"
+        },
+        {
+          "member": "ouster/forward_center/points/0082_4174599680.bin",
+          "size": 1049132,
+          "crc32": 1829564334,
+          "sha256": "d8618135c5f42411b101d91521580c6dea9418128f0085c1d19e20428aa47abe"
+        },
+        {
+          "member": "ouster/forward_center/points/0092_4674583296.bin",
+          "size": 1045240,
+          "crc32": 850804326,
+          "sha256": "53beb8236638e0e633aa1f94dade57891c4c1f6a0dbd4b6fe4b884841c5d8e42"
+        },
+        {
+          "member": "ouster/forward_center/points/0102_5174643200.bin",
+          "size": 1042104,
+          "crc32": 4262639972,
+          "sha256": "3950992c5283b0513f3de6fe4db690d9d9d146d44336518a7b87b73e1647a99c"
+        },
+        {
+          "member": "ouster/forward_center/points/0114_5775107328.bin",
+          "size": 1044288,
+          "crc32": 425265346,
+          "sha256": "5fc6519b39dadfc46900c659b7c69bbfdcf78c810d5273494dfa967392a7a9d8"
+        },
+        {
+          "member": "ouster/forward_center/points/0124_6275096832.bin",
+          "size": 1047228,
+          "crc32": 1847271156,
+          "sha256": "7f3f4603c92878d572fd49da642f388b764afea19a936228f4b4de4cef6f4e49"
+        },
+        {
+          "member": "ouster/forward_center/points/0134_6774925312.bin",
+          "size": 1052464,
+          "crc32": 1482321999,
+          "sha256": "479b82224609d511cd6e1594ee4278cd235118fb9ca274343239f8e52084f468"
+        },
+        {
+          "member": "ouster/forward_center/points/0144_7274598144.bin",
+          "size": 1051988,
+          "crc32": 2510135826,
+          "sha256": "8c09f978edce1441f3cad79bda276a7467ec6c7e2523c8e678c856c56e6c40c0"
+        },
+        {
+          "member": "ouster/forward_center/points/0154_7774631680.bin",
+          "size": 1055460,
+          "crc32": 2992931632,
+          "sha256": "ce8b9650b1635e0e3ea883404b29dd4cbed78b8b57342592c65b5bc114f25061"
+        },
+        {
+          "member": "ouster/forward_center/points/0164_8274820864.bin",
+          "size": 1170260,
+          "crc32": 2374868698,
+          "sha256": "8570a6f6b86665bebde02f2bc163124f00a99ab3d341a6cc37ba5b22bc1a8986"
+        },
+        {
+          "member": "ouster/forward_center/points/0174_8774903808.bin",
+          "size": 1126216,
+          "crc32": 3256704051,
+          "sha256": "618800cfdd73f518bee97f890ff65527dcea87a279472c041ac44908185336a8"
+        },
+        {
+          "member": "ouster/forward_center/points/0184_9275027712.bin",
+          "size": 1103424,
+          "crc32": 4290021528,
+          "sha256": "118af3cd69590d77a374c49cfd6a3f4e7f25837a44f8b09104b19c000ca010f9"
+        },
+        {
+          "member": "ouster/forward_center/points/0194_9775141632.bin",
+          "size": 1107372,
+          "crc32": 3480464103,
+          "sha256": "8e00b9bc536314f9ec0870a8e790f9f4ef1254f7288e2a16f8c39dbb25be9409"
+        },
+        {
+          "member": "ouster/forward_center/points/0204_10275150336.bin",
+          "size": 1122800,
+          "crc32": 1797641417,
+          "sha256": "aff65746df2cc89e748f414355580cc20ffeb5999c575fe011aed071af0412af"
+        },
+        {
+          "member": "ouster/forward_center/points/0216_10874684160.bin",
+          "size": 1128092,
+          "crc32": 804514150,
+          "sha256": "798020865845bd4082de015c6cd4bb4cdf4657d4333120977a4b36c38bfdaf6d"
+        },
+        {
+          "member": "ouster/forward_center/points/0226_11374632704.bin",
+          "size": 1103424,
+          "crc32": 1430033217,
+          "sha256": "e1fc52e3c5c0aa98f73131af19088d53b6236d80c1b07f70c0f0b9832b9d2598"
+        },
+        {
+          "member": "ouster/forward_center/points/0236_11874563584.bin",
+          "size": 1093008,
+          "crc32": 1052935586,
+          "sha256": "f6690aa2c089fc4b326a677df14d339f15aac2d01071e645150dee63d210ea4f"
+        },
+        {
+          "member": "ouster/forward_center/points/0246_12374706688.bin",
+          "size": 1069768,
+          "crc32": 1170152334,
+          "sha256": "2d19a0bc812589a1b8f01e5823657d6f323d3c21338dacc6bb09fb2bd646f5ce"
+        },
+        {
+          "member": "ouster/forward_center/points/0256_12874849792.bin",
+          "size": 1094772,
+          "crc32": 2003103752,
+          "sha256": "3b7d27f1297d2a951f523ad590f38a4e7cabfdc810188224ab6c95f88c7330ae"
+        },
+        {
+          "member": "ouster/forward_center/points/0266_13375048960.bin",
+          "size": 1065484,
+          "crc32": 1340088845,
+          "sha256": "1c5560cc52676f298f35b0add668577e04b0a8e217e85208143247d4a63ca0ba"
+        },
+        {
+          "member": "ouster/forward_center/points/0276_13874898688.bin",
+          "size": 1056356,
+          "crc32": 502037639,
+          "sha256": "352c419692ff527e924a1f27cf60d42793003fdb4a50cebbb706a4508527de68"
+        },
+        {
+          "member": "ouster/forward_center/points/0286_14375001344.bin",
+          "size": 1056104,
+          "crc32": 3668354164,
+          "sha256": "a667bab98772c06de1684c88d93057131bbb4badbf847624dd1c2de26996e1d6"
+        },
+        {
+          "member": "ouster/forward_center/points/0296_14875080704.bin",
+          "size": 1054088,
+          "crc32": 119050920,
+          "sha256": "ebb03743af1fee356cf79b09345b955835a1f26daa87150fab05bfae8646552e"
+        },
+        {
+          "member": "ouster/forward_center/points/0306_15375131904.bin",
+          "size": 1056692,
+          "crc32": 3081880796,
+          "sha256": "63c8d8f2b5248b4aa75ead673598729c7e11bf562830d35a985f81d7be57fa4b"
+        },
+        {
+          "member": "ouster/forward_center/points/0318_15974752768.bin",
+          "size": 1060472,
+          "crc32": 982273093,
+          "sha256": "773863abbd3280c23798b9c2d51b3f44495ec89a1543eea08423a37ab7283b36"
+        },
+        {
+          "member": "ouster/forward_center/points/0328_16474595584.bin",
+          "size": 1065540,
+          "crc32": 1542996761,
+          "sha256": "28411d208335383d3a6b2bbe76bc9f002ba99fd1674c368e9af097b1dd6961f7"
+        },
+        {
+          "member": "ouster/forward_center/points/0338_16974642432.bin",
+          "size": 1079204,
+          "crc32": 799656593,
+          "sha256": "882a87b7b4db19dc5cf89f90e172cb4b703eb58feaf0f80a727f2738cd74dceb"
+        },
+        {
+          "member": "ouster/forward_center/points/0348_17474792960.bin",
+          "size": 1075032,
+          "crc32": 1793083449,
+          "sha256": "56626c1e86f009de22171a292165bab9ae68386ad713c726269139b220d22b40"
+        },
+        {
+          "member": "ouster/forward_center/points/0358_17974971136.bin",
+          "size": 1061088,
+          "crc32": 2251049614,
+          "sha256": "7a7b98632e20900c86837c747e72dd734f01621172311d1e7e2a169f9a3c1b52"
+        },
+        {
+          "member": "ouster/forward_center/points/0368_18475144704.bin",
+          "size": 1057896,
+          "crc32": 934125033,
+          "sha256": "8c88573a24648bd56000c36503203ae1925e787d97c3fa2454115efe94dafcc9"
+        },
+        {
+          "member": "ouster/forward_center/points/0378_18975173376.bin",
+          "size": 1056048,
+          "crc32": 1984878886,
+          "sha256": "f605bce291a390202ea9cfced809702a02a6dd240c1a8b75a062fc0e0ebaff63"
+        },
+        {
+          "member": "ouster/forward_center/points/0388_19475137792.bin",
+          "size": 1060444,
+          "crc32": 2295082115,
+          "sha256": "d16eef0e93e56e2823b9244c0168728974f9e5712727af271bdaea769a523141"
+        },
+        {
+          "member": "ouster/forward_center/points/0398_19974948608.bin",
+          "size": 1097852,
+          "crc32": 2997692649,
+          "sha256": "05c90cb01be34b7485abf106517a9e0e66296d1181cae581e13df3de0cc8f0aa"
+        },
+        {
+          "member": "ouster/forward_center/points/0408_20474728960.bin",
+          "size": 1065400,
+          "crc32": 1588400077,
+          "sha256": "2462748d4ac9b1a6949c6b7cafb628ec29822ec0105ea7a7b4d7ac185b59c58b"
+        },
+        {
+          "member": "ouster/forward_center/points/0420_21074855424.bin",
+          "size": 1059212,
+          "crc32": 449613292,
+          "sha256": "0b90a86c00512c1cdb5e5da3300d251b3f6ccec095b75d3a88a066c3e9ff1d94"
+        },
+        {
+          "member": "ouster/forward_center/points/0430_21574918144.bin",
+          "size": 1059856,
+          "crc32": 2316047939,
+          "sha256": "892f0038a613f204191f6e01df185d015eb75a23be1aad8b800fb0c2496dd96b"
+        },
+        {
+          "member": "ouster/forward_center/points/0440_22074899200.bin",
+          "size": 1063832,
+          "crc32": 2085176020,
+          "sha256": "188c53ec4d9083a0dbe86487492c43b05643666232fa6b860adb9f0f178ad668"
+        },
+        {
+          "member": "ouster/forward_center/points/0450_22575075840.bin",
+          "size": 1061732,
+          "crc32": 1901253897,
+          "sha256": "a366492d8ae36aadf35f4e7c5067471b4e65f1f56b710c3ed541e5ad48719a31"
+        },
+        {
+          "member": "ouster/forward_center/points/0460_23075134720.bin",
+          "size": 1060808,
+          "crc32": 231601795,
+          "sha256": "b41b8c580e9e436f7993635042fbe33f3b3f7804b0d74e702834f2fd84df31a1"
+        },
+        {
+          "member": "ouster/sideward_left/points/0062_3170892288.bin",
+          "size": 1285984,
+          "crc32": 161199247,
+          "sha256": "30a50517033bbfe0899469022809487a88d5b1656702098e7fe47e29afb8ed85"
+        },
+        {
+          "member": "ouster/sideward_left/points/0072_3670814720.bin",
+          "size": 1286964,
+          "crc32": 3492935231,
+          "sha256": "fb20cbf30e07c9f7ce3150f69dcc3cabba082acd82f0277d1e74ae5c95f92609"
+        },
+        {
+          "member": "ouster/sideward_left/points/0082_4170766080.bin",
+          "size": 1276408,
+          "crc32": 521663590,
+          "sha256": "35ad178367ba175dba914581f00666e99e1ebfb3ee4c6fd9d678d8606ff9ef60"
+        },
+        {
+          "member": "ouster/sideward_left/points/0092_4670680064.bin",
+          "size": 1280888,
+          "crc32": 2998447372,
+          "sha256": "ae9aa6d23de699e0b330836b9b215c511f4106bcc0ae571e187371120e6b5a0f"
+        },
+        {
+          "member": "ouster/sideward_left/points/0102_5170663680.bin",
+          "size": 1272768,
+          "crc32": 1907103210,
+          "sha256": "68dcab830ddd8d5b2375fef5555351d7e5695c9bbe498fc5aa70997d60383cf7"
+        },
+        {
+          "member": "ouster/sideward_left/points/0114_5770923520.bin",
+          "size": 1264424,
+          "crc32": 1978578313,
+          "sha256": "3f3209835de37a3aa11a74858fe9b8352c1adabfbbe9493fffd70b44ecb7e148"
+        },
+        {
+          "member": "ouster/sideward_left/points/0124_6271063296.bin",
+          "size": 1254848,
+          "crc32": 618240572,
+          "sha256": "ec6593ec6141ed89a540ff79f60b390e85d229a15611bc4552dd7b3e84d7e093"
+        },
+        {
+          "member": "ouster/sideward_left/points/0134_6770896896.bin",
+          "size": 1231132,
+          "crc32": 118508477,
+          "sha256": "b00c76ac7b783ee378c0131db6bc6cdc7790f8a559c7805574e292d149bb53b1"
+        },
+        {
+          "member": "ouster/sideward_left/points/0144_7270760960.bin",
+          "size": 1194340,
+          "crc32": 3407354788,
+          "sha256": "e2f67106e4eaf3b912d9f886c07cb0c89f997d6b130a191485276f064ab8a4fb"
+        },
+        {
+          "member": "ouster/sideward_left/points/0154_7770735616.bin",
+          "size": 1200080,
+          "crc32": 2117698481,
+          "sha256": "087b80317138a6f51416fdfbdd19b70fb2b566b0c14bfba80ed71c6dce7d60cf"
+        },
+        {
+          "member": "ouster/sideward_left/points/0164_8270685184.bin",
+          "size": 1217496,
+          "crc32": 191340639,
+          "sha256": "7734919a92b95e453bfab480b5a39da42d69e35a7a5f9f841e5b453dfa97a37b"
+        },
+        {
+          "member": "ouster/sideward_left/points/0174_8770661376.bin",
+          "size": 1268456,
+          "crc32": 1489106131,
+          "sha256": "4ea3627fccc9f8d318f1a66ae213950d4fbb6fe36cb216e4f5f3491fbd386f31"
+        },
+        {
+          "member": "ouster/sideward_left/points/0184_9270707712.bin",
+          "size": 1297716,
+          "crc32": 3650471743,
+          "sha256": "327c2d8faa0884b0789ea7ee79ed63b70b7111682f03ecf2cbd850869eb09b43"
+        },
+        {
+          "member": "ouster/sideward_left/points/0194_9770851584.bin",
+          "size": 1302392,
+          "crc32": 2505240236,
+          "sha256": "71903fd919f6208f1fe178a39283974f8adec6fe6ed3d24556b4c041c496531a"
+        },
+        {
+          "member": "ouster/sideward_left/points/0204_10270962688.bin",
+          "size": 1289400,
+          "crc32": 1424810505,
+          "sha256": "43017b7d1d93a0c92619c82e56728e6430a54e1a89d440623ad45852c524b8ee"
+        },
+        {
+          "member": "ouster/sideward_left/points/0216_10870730240.bin",
+          "size": 1285172,
+          "crc32": 3702138354,
+          "sha256": "a824365c77494ca4c622a0cb97905ba66c6e963f97d6445235aa568c828f7595"
+        },
+        {
+          "member": "ouster/sideward_left/points/0226_11370662656.bin",
+          "size": 1279712,
+          "crc32": 3872350243,
+          "sha256": "a13d25953c2e0c63ff0d9a0390972a6a8fdf2cbc0ff413dada8785c0c9cb0fd7"
+        },
+        {
+          "member": "ouster/sideward_left/points/0236_11870708480.bin",
+          "size": 1299368,
+          "crc32": 2485601805,
+          "sha256": "bbc1e2013058fdbeb660c2eda2f08e13739994a1d0e579e6f54390d09391126c"
+        },
+        {
+          "member": "ouster/sideward_left/points/0246_12370902016.bin",
+          "size": 1311296,
+          "crc32": 1092429642,
+          "sha256": "33b8e4aab2c9f8f88b9eef903a53dbb4e256e492c8685852baa17831e7f2ffc5"
+        },
+        {
+          "member": "ouster/sideward_left/points/0256_12870990336.bin",
+          "size": 1310316,
+          "crc32": 2966021504,
+          "sha256": "65559f82e2fe550106a771b79f1fddb0423a64abca1ef310df47a39eede37131"
+        },
+        {
+          "member": "ouster/sideward_left/points/0266_13370978048.bin",
+          "size": 1332380,
+          "crc32": 669120430,
+          "sha256": "726217f6c3b87dc51702929645c6854f8fbf85017e4197dcde8a8b81903cbfef"
+        },
+        {
+          "member": "ouster/sideward_left/points/0276_13870815488.bin",
+          "size": 1319696,
+          "crc32": 3723204562,
+          "sha256": "bf9f210c2f52f1007ce0ad408e8e6a03aa5bb7fb584b21222817bf8cbba1a0e5"
+        },
+        {
+          "member": "ouster/sideward_left/points/0286_14370711040.bin",
+          "size": 1322328,
+          "crc32": 635177124,
+          "sha256": "98e186bcaa384b7c19e2bb2bb0402e7315d87a4f5c1dafadc0deb23ca5a5839b"
+        },
+        {
+          "member": "ouster/sideward_left/points/0296_14870719488.bin",
+          "size": 1329496,
+          "crc32": 3759979197,
+          "sha256": "dcae0b67e83581ae1626c7e4dfbb91c23c10da9fc4ce2d2c2eba2e67b688079d"
+        },
+        {
+          "member": "ouster/sideward_left/points/0306_15370670080.bin",
+          "size": 1331568,
+          "crc32": 1596724215,
+          "sha256": "35f0fdcd8226a64e88a9a06a26fcac25c8febe2d3968da6cecea2d375860d893"
+        },
+        {
+          "member": "ouster/sideward_left/points/0318_15970978816.bin",
+          "size": 1330532,
+          "crc32": 1289835377,
+          "sha256": "71b62e49e82d35b763109d8b4c6fd8c8e77d597a1abeac6a2053a2399141d8a5"
+        },
+        {
+          "member": "ouster/sideward_left/points/0328_16470855680.bin",
+          "size": 1330952,
+          "crc32": 1465777197,
+          "sha256": "37968dc5570ba8dbbfbf00300e36eb389ae5410b058360372083659976663b8b"
+        },
+        {
+          "member": "ouster/sideward_left/points/0338_16970757888.bin",
+          "size": 1323084,
+          "crc32": 3515927496,
+          "sha256": "186cada5b46205d2f4c7da335952939018c20c2a9c4dc16f56f431e71afbad04"
+        },
+        {
+          "member": "ouster/sideward_left/points/0348_17470680576.bin",
+          "size": 1338372,
+          "crc32": 3228927756,
+          "sha256": "f0f4fada75ccc958d72a97767a263f05707eb4beaa20feef884105d705d6cbaa"
+        },
+        {
+          "member": "ouster/sideward_left/points/0358_17970674688.bin",
+          "size": 1329720,
+          "crc32": 1867142882,
+          "sha256": "81a9305f32398858f1346b502c7919e1ba789997d78a802dd2d9751aa50b7f34"
+        },
+        {
+          "member": "ouster/sideward_left/points/0368_18470867968.bin",
+          "size": 1326192,
+          "crc32": 3905777586,
+          "sha256": "9aa0fcbb7f2490da003d6ee33804f7a492cb85244584ccd54a801e1834ac8dba"
+        },
+        {
+          "member": "ouster/sideward_left/points/0378_18970879232.bin",
+          "size": 1301888,
+          "crc32": 1467113570,
+          "sha256": "b49ef8e43ec1cca6e876d717c7cf4e6079765f39800a69db1dc5d0286e0b4483"
+        },
+        {
+          "member": "ouster/sideward_left/points/0388_19470993664.bin",
+          "size": 1308412,
+          "crc32": 1438193697,
+          "sha256": "9d0c12655a70e27cba567756668fc947ed81d044df64001ac38857e66ffe6707"
+        },
+        {
+          "member": "ouster/sideward_left/points/0398_19971024896.bin",
+          "size": 1321012,
+          "crc32": 1788598580,
+          "sha256": "7bef5267dbba9ba794705182e4c03212246634bb4d847a05430e8de17c22a38b"
+        },
+        {
+          "member": "ouster/sideward_left/points/0408_20470873600.bin",
+          "size": 1341116,
+          "crc32": 1324651813,
+          "sha256": "347317dc0b028b4801ce2504dfcb7bb62cee5b597c92fbf568a0e6af1309e92b"
+        },
+        {
+          "member": "ouster/sideward_left/points/0420_21070656000.bin",
+          "size": 1319332,
+          "crc32": 2481773924,
+          "sha256": "c97bf6a95be997063e5fba55b29970a42a68406f2db2de08044e63ac92daf483"
+        },
+        {
+          "member": "ouster/sideward_left/points/0430_21570666752.bin",
+          "size": 1321236,
+          "crc32": 2725180083,
+          "sha256": "376f6f579c5289cdbfbfc4f8c5cfb0aff66be85e4c85cac2568600f124393e3d"
+        },
+        {
+          "member": "ouster/sideward_left/points/0440_22070704640.bin",
+          "size": 1322832,
+          "crc32": 4002611365,
+          "sha256": "7d053785e19145de462d70789f3c51922c63958cbfc97f3b0c89192b1e384a20"
+        },
+        {
+          "member": "ouster/sideward_left/points/0450_22570944000.bin",
+          "size": 1323588,
+          "crc32": 1593396201,
+          "sha256": "d03acfb5e3907e3cbe01aa216e6058c9405af69ad90e42a2e46f1ea42eb7245c"
+        },
+        {
+          "member": "ouster/sideward_left/points/0460_23070987008.bin",
+          "size": 1321796,
+          "crc32": 2815182707,
+          "sha256": "1e1607b2af4baeff31337a68af252506a778feeff0706ebbda5c8a5f3015890f"
+        },
+        {
+          "member": "ouster/sideward_right/points/0062_3169542656.bin",
+          "size": 1276604,
+          "crc32": 2255793116,
+          "sha256": "230075ccd11f913d35636b95cbc71eb35c5a05cd54af97051f923d07ae08bc5b"
+        },
+        {
+          "member": "ouster/sideward_right/points/0072_3669516544.bin",
+          "size": 1278200,
+          "crc32": 1038591995,
+          "sha256": "ee2764135c25e23ec5db36273c1c411eb20338f46955b0a74f79e46f6b5292cd"
+        },
+        {
+          "member": "ouster/sideward_right/points/0082_4169941248.bin",
+          "size": 1279684,
+          "crc32": 953991349,
+          "sha256": "0e5f2c8802b0274b68113e1930c15aaca6efec5a852f332b468bee79748fc204"
+        },
+        {
+          "member": "ouster/sideward_right/points/0092_4669999360.bin",
+          "size": 1275764,
+          "crc32": 3695230123,
+          "sha256": "a058a8f076c679b27948276dda86d8394b5207e9afea1fc1f3333bb8cc49aa21"
+        },
+        {
+          "member": "ouster/sideward_right/points/0102_5169874944.bin",
+          "size": 1270304,
+          "crc32": 4167448220,
+          "sha256": "9c4e3607571168c5e539fa49417aecebaec3bc16c06d67a1176e170440552ea4"
+        },
+        {
+          "member": "ouster/sideward_right/points/0114_5769523456.bin",
+          "size": 1262912,
+          "crc32": 1878696977,
+          "sha256": "61a4b1d9fd75ed9139307df8672c6a3c6c5de9666a2ed2e9b51a9ca7a38b99e3"
+        },
+        {
+          "member": "ouster/sideward_right/points/0124_6269771776.bin",
+          "size": 1263808,
+          "crc32": 3845976004,
+          "sha256": "277da18e6f4900013e4fb3e68c378e08d3cce31943c01865c3d863d4031c94e9"
+        },
+        {
+          "member": "ouster/sideward_right/points/0134_6769924608.bin",
+          "size": 1264032,
+          "crc32": 701870496,
+          "sha256": "d63198deb36799247138c5c9a14380ae1e195b015c7fbbc30e09d2a5a9fd4b3c"
+        },
+        {
+          "member": "ouster/sideward_right/points/0144_7269938176.bin",
+          "size": 1262688,
+          "crc32": 2882940091,
+          "sha256": "bffedf29e45dc9b796bb090d5ac5674b24d1e436a4e1604daf3b0b69855fe2dd"
+        },
+        {
+          "member": "ouster/sideward_right/points/0154_7769634560.bin",
+          "size": 1260560,
+          "crc32": 3668521362,
+          "sha256": "9e5da042384f4e354b561f868334d1f2d4813e3d33f51b99b29cfb12be3472c3"
+        },
+        {
+          "member": "ouster/sideward_right/points/0164_8269553664.bin",
+          "size": 1262072,
+          "crc32": 1424760041,
+          "sha256": "487399dee6fa456fdee6e95f8107b9f71e273641bc4827eedc0ccd0c36f004db"
+        },
+        {
+          "member": "ouster/sideward_right/points/0174_8769739520.bin",
+          "size": 1266832,
+          "crc32": 3269335354,
+          "sha256": "5b7c3b8bd16d3ed37a3826461c049f00e4f433fbd7ec9b07147f3fd03140f056"
+        },
+        {
+          "member": "ouster/sideward_right/points/0184_9270021888.bin",
+          "size": 1265516,
+          "crc32": 4186925804,
+          "sha256": "f93b63d0bf3ce26c0e1787038708173c7c2327ac180c59f2ca526bd9b852db07"
+        },
+        {
+          "member": "ouster/sideward_right/points/0194_9769968128.bin",
+          "size": 1262156,
+          "crc32": 1282920842,
+          "sha256": "f3eaf44c3c49a45c74176afd172d9ebde88d5921adb266b2703cde41b52670e3"
+        },
+        {
+          "member": "ouster/sideward_right/points/0204_10269818112.bin",
+          "size": 1262912,
+          "crc32": 896617193,
+          "sha256": "f537564263e9f4fd92fc898711dbb70ddc9baea0c50908c57931faaf0f69aae9"
+        },
+        {
+          "member": "ouster/sideward_right/points/0216_10869569536.bin",
+          "size": 1262128,
+          "crc32": 3781859352,
+          "sha256": "e182c913457e8c62995170b812c8ffdd15d4d4ce0ba22011dac1712a03775d59"
+        },
+        {
+          "member": "ouster/sideward_right/points/0226_11369966080.bin",
+          "size": 1268120,
+          "crc32": 205453959,
+          "sha256": "a6eae33b2bbde1d020fd469bcc3b91f4a2c3ea7aea0e2e28dcb9f60a96631a97"
+        },
+        {
+          "member": "ouster/sideward_right/points/0236_11870018816.bin",
+          "size": 1264312,
+          "crc32": 3196569412,
+          "sha256": "a545a44c30a186775333467445b42dba293a43d739a4bc063888334c61e5bcfb"
+        },
+        {
+          "member": "ouster/sideward_right/points/0246_12369955840.bin",
+          "size": 1266832,
+          "crc32": 1950001199,
+          "sha256": "79ae2fbb7c62b45d6c24e12e368f0d5e1a4a345811e607b693cd783b8ceb370f"
+        },
+        {
+          "member": "ouster/sideward_right/points/0256_12869892096.bin",
+          "size": 1261512,
+          "crc32": 4268353125,
+          "sha256": "4a5baa6400ca1e22d3340270028f41fffc85db7810e31e948a1eef87b9cc789f"
+        },
+        {
+          "member": "ouster/sideward_right/points/0266_13369709312.bin",
+          "size": 1253084,
+          "crc32": 1152739693,
+          "sha256": "b1c53f5de40386dd773e267fbf8f1e223ffd158167a12fe75f64da09ae64aebb"
+        },
+        {
+          "member": "ouster/sideward_right/points/0276_13869599488.bin",
+          "size": 1246784,
+          "crc32": 2717946274,
+          "sha256": "9135e721292c97de97ccd3710c0db71beb9d51ab48b9365d56e8eac23fb7681e"
+        },
+        {
+          "member": "ouster/sideward_right/points/0286_14369560064.bin",
+          "size": 1240400,
+          "crc32": 2296843458,
+          "sha256": "eda91c5e8c6c6336f39343178513cf8bffb3b54a135c81de0b5fc336134ae504"
+        },
+        {
+          "member": "ouster/sideward_right/points/0296_14869822720.bin",
+          "size": 1246896,
+          "crc32": 4004250838,
+          "sha256": "c9db6f0b0d7e6b3478394a91124f1001a92e236105f6e05bf9f16e892b01cd41"
+        },
+        {
+          "member": "ouster/sideward_right/points/0306_15369958912.bin",
+          "size": 1247400,
+          "crc32": 429372772,
+          "sha256": "3a20c9f3910ec719f6445e5abdcca6e5128376b8f68c7c34b554295652ebe244"
+        },
+        {
+          "member": "ouster/sideward_right/points/0318_15969662976.bin",
+          "size": 1253196,
+          "crc32": 3006953985,
+          "sha256": "ae83afadc9eade48ccdc327919ea61af0716f3929e62021e5b8af9b9c4762fcf"
+        },
+        {
+          "member": "ouster/sideward_right/points/0328_16469539072.bin",
+          "size": 1254596,
+          "crc32": 3672804490,
+          "sha256": "d38e141bd24d174d4cebf823efc72fd921d080eb90781791d2767ecc14a6a95c"
+        },
+        {
+          "member": "ouster/sideward_right/points/0338_16969696768.bin",
+          "size": 1257536,
+          "crc32": 1768225043,
+          "sha256": "e4cc883b1a52ee0b13c16c5a51255a55ebbbfc5ea09c19cfadbc05bfc7767402"
+        },
+        {
+          "member": "ouster/sideward_right/points/0348_17469821696.bin",
+          "size": 1264116,
+          "crc32": 2235468175,
+          "sha256": "e61dfede4b4909fce4f25d099fa71100c501f162f635df71bbc70fcc11d055a6"
+        },
+        {
+          "member": "ouster/sideward_right/points/0358_17969891584.bin",
+          "size": 1265908,
+          "crc32": 959515330,
+          "sha256": "43e0440a00390d315b3ee37ace0e70d283c96535cbb0b5f9634ea76362f70fc5"
+        },
+        {
+          "member": "ouster/sideward_right/points/0368_18470041856.bin",
+          "size": 1260112,
+          "crc32": 3485754660,
+          "sha256": "c86fb810f338986c2eec3bcdbe5616b2a3fd80eedae58692626a54769dd6f8a9"
+        },
+        {
+          "member": "ouster/sideward_right/points/0378_18969738496.bin",
+          "size": 1267672,
+          "crc32": 2217670626,
+          "sha256": "01616badd2b465c19d8ec86882457662a26de6204673fe2a5df671a192067594"
+        },
+        {
+          "member": "ouster/sideward_right/points/0388_19469635072.bin",
+          "size": 1278816,
+          "crc32": 3804254925,
+          "sha256": "6ac188f6c6b20e8de1f16ed9f0bc869e1d76747d94db04a845b2b75fc2aecc99"
+        },
+        {
+          "member": "ouster/sideward_right/points/0398_19969547520.bin",
+          "size": 1274924,
+          "crc32": 3327933069,
+          "sha256": "6b6c6ad8e2980034db10242b40e06774a58e6c196ca1a19b6d036bf3bb22eb1c"
+        },
+        {
+          "member": "ouster/sideward_right/points/0408_20469733376.bin",
+          "size": 1268848,
+          "crc32": 1928234984,
+          "sha256": "d9431d15ac05794ef579d4931acd4e199adebbaa4c1b2f2179cea63707282d0c"
+        },
+        {
+          "member": "ouster/sideward_right/points/0420_21069779712.bin",
+          "size": 1261512,
+          "crc32": 2945314637,
+          "sha256": "26c7e4c3d35e00fa4288b722a6a2d1581e94e951ed57503aae88629540023a2b"
+        },
+        {
+          "member": "ouster/sideward_right/points/0430_21569555200.bin",
+          "size": 1265068,
+          "crc32": 2462263135,
+          "sha256": "20e503423a1e194725218313a4c7f6110daf7fb92c68cf03d03a625de78e0bcf"
+        },
+        {
+          "member": "ouster/sideward_right/points/0440_22069501952.bin",
+          "size": 1268036,
+          "crc32": 542499510,
+          "sha256": "33bda7a50782d8119fcd1883fe68af8a17bd4829e46ed875ff341ceec417c213"
+        },
+        {
+          "member": "ouster/sideward_right/points/0450_22569824000.bin",
+          "size": 1270808,
+          "crc32": 173861579,
+          "sha256": "2981a8167b58bd6da1faf6b6c1ade1bca3027039efaa604f5ccb067044309820"
+        },
+        {
+          "member": "ouster/sideward_right/points/0460_23069937408.bin",
+          "size": 1273356,
+          "crc32": 4100792201,
+          "sha256": "c6719cff1c4ef36cc84bc51edf89bb34e1c5aa43c1907b48a693c6ce26b3e453"
+        }
+      ]
+    }
+  ],
+  "selected_syncs": [
+    62,
+    72,
+    82,
+    92,
+    102,
+    114,
+    124,
+    134,
+    144,
+    154,
+    164,
+    174,
+    184,
+    194,
+    204,
+    216,
+    226,
+    236,
+    246,
+    256,
+    266,
+    276,
+    286,
+    296,
+    306,
+    318,
+    328,
+    338,
+    348,
+    358,
+    368,
+    378,
+    388,
+    398,
+    408,
+    420,
+    430,
+    440,
+    450,
+    460
+  ]
+}

@@ -14,3 +14,6 @@
 *.docx binary
 *.bin  binary
 *.label binary
+
+# Evidence hashes must survive Windows checkouts.
+docs/evidence/truckdrive-multiscene/**/*.csv text eol=lf
