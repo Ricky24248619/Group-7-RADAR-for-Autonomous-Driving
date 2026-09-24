@@ -70,6 +70,7 @@ and Fariya/Kelsey (TruckDrive), per D-08. Confirm the next allocation at the cat
 | `templates/comparison-record.md` | One record per benchmark result, mandatory D-01 identification fields |
 | `client-notes/` | Short findings notes written for Adrian and Fabian (RY-4 format) |
 | `scripts/` | Utility scripts, each logged in an experiment-log entry |
+| `docs/HANDOVER-TOOLING.md` | How the shared tooling works, where it is weak, and what is deliberately unfinished |
 
 ## Datasets
 
