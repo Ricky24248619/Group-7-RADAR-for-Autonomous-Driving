@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "0023-truckscenes-radar-detector-feasibility",
+  "title": "TruckScenes radar detector feasibility: no-go for both candidates checked, with specific documented blockers",
+  "owner": "Aiden Blampain",
+  "date": "2026-09-25",
+  "status": "failure",
+
+  "dataset": "MAN TruckScenes v1.2-mini (no run performed -- blocked before execution)",
+  "sensor_configuration": "Radar, feasibility investigation only",
+  "annotation_schema": "TruckScenes 12-class detection taxonomy (the schema that would apply if a run were reached; no data was processed)",
+
+  "task_type": "3d-object-detection",
+  "modality": "radar",
+  "split": "no data processed -- blocked before execution",
+  "model": "L-RadSet PointPillars-Radar and K-Radar/RTNH investigated; neither reached execution",
+
+  "environment": {
+    "os": "Windows 11 Home 10.0.26200",
+    "hardware": "AMD Ryzen 7 5700U with Radeon Graphics -- no NVIDIA GPU",
+    "python": "3.11.9, truckscenes-devkit/detection-env (unused -- blocked before this step)"
+  },
+
+  "commands": [
+    "curl https://drive.google.com/uc?export=download&id=1RNWtkgWlBwpsqYPpECd0xins4k-tDLnL -- BLOCKED by sandbox permission policy, not completed",
+    "GitHub API/raw-content checks against crrasjtu/L-RadSet (pinned commit 9eda9266... and current main) and kaist-avelab/K-Radar"
+  ],
+
+  "hours_spent": 0.3,
+  "evidence": [
+    "experiment-log/0020-truckscenes-radar-detector-feasibility.md",
+    "docs/truckscenes-radar-detector-decision.md",
+    "docs/detector-compatibility-decision.md"
+  ],
+  "notes": "hours_spent is actual elapsed tool/session time (~15-20 min), not the story's stated <=2 hour ceiling -- see EXP-0019's correction for why these must not be conflated.",
+
+  "error": "No single reproducible error -- two independent access/verification blockers across two candidates. L-RadSet: (1) the checkpoint is hosted on Google Drive, and an automated download attempt was blocked by this session's own sandbox permission policy, not by the checkpoint being unavailable; (2) the dataset-specific pipeline config (_base_/datasets/radset.py) that would define how TruckScenes' 7 raw radar fields (x,y,z,vrel_x,vrel_y,vrel_z,rcs) map onto the model's declared 6 input channels no longer exists in the repository at its current main -- only present, if at all, at the exact commit EXP-0018 pinned. K-Radar/RTNH: no pretrained checkpoint found at all in a full-text search of the repository's readme.md.",
+  "attempted_fixes": [
+    "Checked L-RadSet at both the current main branch and the exact commit EXP-0018 pinned (9eda9266db3109e4f153eeeb43fef3125d213674), since the repo had visibly changed (missing dataset config) between the two",
+    "Attempted the Google Drive checkpoint download directly via curl -- blocked by the environment's own permission classifier before any network response was received",
+    "Checked K-Radar/RTNH as a second candidate, specifically because it targets 4D imaging radar (closer to TruckScenes' Continental ARS 548 RDI than L-RadSet's radar), in case it offered a more accessible checkpoint -- readme search found no evidence one is published"
+  ],
+  "blocker": "No radar detector checkpoint was both accessible in this environment and verifiably compatible with TruckScenes' radar point format within this feasibility check's scope.",
+  "recommendation": "Stop for this feasibility check; do not retry the same candidates without a change in constraints. A human downloading the L-RadSet checkpoint manually (outside this sandbox's restrictions) and either locating the historical radset.py config or reverse-engineering the 6-channel mapping from the checkpoint's stored tensor shapes is the most direct unblock, per docs/truckscenes-radar-detector-decision.md. This reinforces G-11 in docs/dataset-suitability.md (no compatible published detector found in the inspected releases) on a TruckScenes-specific, non-long-range basis."
+}
