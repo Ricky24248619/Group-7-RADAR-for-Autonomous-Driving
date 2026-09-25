@@ -119,9 +119,15 @@ is itself informative, provided it's diagnosed rather than just reported,
 following the same round-trip/visibility auditing lesson from EXP-0016
 (don't claim more than a check actually establishes).
 
-**Time spent:** approximately 2 hours (spconv investigation and CenterPoint
-ruling-out, PointPillars config/checkpoint verification, two debugging
-iterations to a working minimal execution).
+**Time spent:** actual elapsed tool/session time was approximately 15
+minutes, well under the story's ≤2 hour ceiling for this bullet — not a
+measured 2 hours. Worth being precise about: this was fast specifically
+because `pip install spconv` failed immediately (no long build attempt to
+wait through, since no matching wheel exists at all) and the working
+candidate's minimal execution is one point-cloud sample, nothing like
+EXP-0010's 80-sample × 4-camera scale. An earlier version of this log wrote
+"approximately 2 hours", conflating the story's stated time-box ceiling with
+actual elapsed time — corrected here rather than left standing.
 
 ## Next action
 
