@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "0022-truckscenes-lidar-detector-feasibility",
+  "title": "TruckScenes LiDAR detector feasibility: CenterPoint no-go (spconv has no Windows wheel), PointPillars verified runnable zero-shot on CPU",
+  "owner": "Aiden Blampain",
+  "date": "2026-09-25",
+  "status": "success",
+
+  "dataset": "MAN TruckScenes v1.2-mini (one LIDAR_TOP_FRONT sample, scene index 0)",
+  "sensor_configuration": "LiDAR only, single channel, single sample -- feasibility check, not a scored run",
+  "annotation_schema": "n/a -- no ground-truth comparison performed",
+
+  "task_type": "3d-object-detection",
+  "modality": "lidar",
+  "split": "one sample, mini_val scene 0 (feasibility only)",
+  "model": "PointPillars (mmdetection3d 1.4.0), pointpillars_hv_secfpn_sbn-all_8xb4-2x_nus-3d, official nuScenes-pretrained checkpoint, zero-shot",
+
+  "environment": {
+    "os": "Windows 11 Home 10.0.26200",
+    "hardware": "AMD Ryzen 7 5700U with Radeon Graphics -- no NVIDIA GPU, CPU-only",
+    "python": "3.11.9, truckscenes-devkit/detection-env (same venv as EXP-0006/0010/0016, reused as-is)",
+    "packages": {
+      "mmdet3d": "1.4.0",
+      "torch": "2.1.0+cpu",
+      "truckscenes-devkit": "1.2.0"
+    }
+  },
+
+  "commands": [
+    "pip install spconv   # FAILED on this machine -- see notes",
+    "curl -o checkpoints/pointpillars_nus_20210826_225857-f19d00a3.pth https://download.openmmlab.com/mmdetection3d/v1.0.0_models/pointpillars/hv_pointpillars_secfpn_sbn-all_4x8_2x_nus-3d/hv_pointpillars_secfpn_sbn-all_4x8_2x_nus-3d_20210826_225857-f19d00a3.pth",
+    "python pointpillars_minimal_test.py  # loads model, loads one real TruckScenes LIDAR_TOP_FRONT sample, pads to 5 point-features, runs inference_detector, unpacks tuple result"
+  ],
+
+  "measurements": [
+    {"name": "centerpoint_spconv_install_result", "value": 0,
+     "scope": "pip install spconv (CPU package) on this Windows machine: fails, 0 compatible wheels found. PyPI metadata for spconv==2.3.8 lists only manylinux2014_x86_64 wheels for Python 3.9-3.13 -- no Windows wheel exists for the CPU package"},
+    {"name": "pointpillars_checkpoint_size_bytes", "value": 19778089,
+     "scope": "downloaded nuScenes-pretrained PointPillars checkpoint file size"},
+    {"name": "pointpillars_minimal_execution_raw_boxes", "value": 41,
+     "scope": "raw predicted boxes (before score threshold) from one real TruckScenes LIDAR_TOP_FRONT sample, 17,180 points, zero-shot CPU inference"},
+    {"name": "pointpillars_minimal_execution_boxes_above_threshold", "value": 11,
+     "scope": "same single-sample run, boxes with score >= 0.10 (same threshold used throughout EXP-0006/0010/0016)"}
+  ],
+
+  "hours_spent": 0.25,
+  "evidence": [
+    "experiment-log/0019-truckscenes-lidar-detector-feasibility.md",
+    "docs/truckscenes-lidar-detector-decision.md"
+  ],
+  "notes": "hours_spent is actual elapsed tool/session time (approx. 15 min: spconv install attempt + PyPI metadata checks, one checkpoint download, three inference iterations to a working minimal execution, write-up), not the story's stated <=2 hour time-box ceiling -- those are two different things and should not be conflated. This was fast specifically because the checkpoint-install failure (spconv) was immediate rather than a long build attempt, and the working candidate's minimal execution is one point-cloud sample, not the 80-sample x 4-camera scale of EXP-0010's camera run. AD-S3-1 bullet 2, LiDAR half. CenterPoint (the candidate informally flagged since EXP-0006) is a documented no-go on this machine: its SparseEncoder middle layer needs spconv, and spconv's CPU-labelled PyPI package ships no Windows wheel at all (verified against PyPI release metadata, not assumed) -- distinct from and more specific than the earlier 'no NVIDIA GPU' framing, since even the non-CUDA build can't be installed here. PointPillars (same nuScenes pretrained-checkpoint family, no spconv dependency -- confirmed by grepping every PointPillars base config for SparseEncoder/spconv, zero matches) was checked instead: code, checkpoint (SHA-256 verified), and licence (Apache-2.0, same as mmdet3d itself) all check out; class mapping reuses the existing NUSC_TO_TRUCKSCENES table from the FCOS3D work unchanged. Two small preprocessing fixes were needed and verified empirically, not assumed: (1) TruckScenes' own devkit returns 4-feature points (x,y,z,intensity) but the nuScenes loading pipeline needs a 5th zeroed sweep-time column, caught via a real IndexError on first attempt; (2) inference_detector returns a (result, data) tuple, not a bare result. With both fixes applied, a real minimal execution on one true TruckScenes LiDAR sample completed in seconds on CPU: 41 raw boxes, 11 above the 0.10 score threshold. This is deliberately not a scored result (one sample, no ground truth compared) -- it establishes only that the candidate is runnable end-to-end on this hardware. Per docs/dataset-suitability.md, this does not reopen D-04 (already answered on TruckDrive) or the recorded-radar-range limitation on TruckScenes; it is scoped to whether a second modality is runnable on TruckScenes at all, for a defensible camera-vs-LiDAR comparison on one dataset."
+}
