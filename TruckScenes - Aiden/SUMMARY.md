@@ -21,6 +21,11 @@
 - Audited metadata channel coverage and image-frustum visibility (EXP-0016,
   AD-S3-1). Added ground-truth overlays and recorded per-camera outcomes for
   a four-sample rerun. These checks do not establish metric box accuracy.
+- Checked LiDAR detector feasibility on TruckScenes (EXP-0019, AD-S3-1).
+  CenterPoint is a no-go on this machine (`spconv` has no Windows wheel,
+  CPU or CUDA). PointPillars is a verified go: real minimal execution on
+  one TruckScenes LiDAR sample, zero-shot, CPU, after two documented
+  preprocessing fixes. Not scored -- see the decision note for scope.
 
 ## Outcome
 
@@ -81,8 +86,12 @@ with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
 
 ## Next stage
 
-- AD-S3-1's remaining bullets: time-boxed (≤2 hr each) feasibility checks
-  for one radar and one LiDAR detector candidate, then a go/no-go note.
+- AD-S3-1's remaining work: a radar detector feasibility check (LiDAR side
+  done — EXP-0019, `docs/truckscenes-lidar-detector-decision.md`), then a
+  combined go/no-go note covering both modalities.
+- If the team wants the full LiDAR result: extend EXP-0019's minimal
+  execution to all 80 `mini_val` samples, scored with the devkit's
+  evaluator, mirroring EXP-0010's camera methodology.
 - Optionally re-run EXP-0006's nearest-match distance diagnostic on
   EXP-0010's predictions, broken down by class, to check whether the
   `traffic_cone` AP is a genuine near-range effect or noise.
