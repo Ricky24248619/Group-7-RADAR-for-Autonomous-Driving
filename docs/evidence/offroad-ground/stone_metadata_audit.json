@@ -1,0 +1,116 @@
+{
+  "date": "2026-09-26",
+  "source_repository": "https://github.com/konyul/STONE",
+  "sequence_folder": "https://drive.google.com/drive/folders/1_FgTDdkWUN4paQMv2hrmGxEr2dQb1fDe",
+  "metadata_url": "https://drive.google.com/uc?export=download&id=1BNEDR2MK7J-zA9hlaU2Fe-5-K1hDF4k9",
+  "metadata_bytes": 4607,
+  "metadata_sha256": "9f6d9c86815decd8b2ea097ecb68ea83abefcb3ff34d900b70ea8b5c9ee00fd5",
+  "storage": "sqlite3",
+  "duration_ns": 177881764644,
+  "database_file_id": "1QImchBEanl1K1mkDW7i25hpOe8YpkZ6q",
+  "database_listed_size": "78.74 GB",
+  "database_probe": "HTTP 200 HTML interstitial, not SQLite bytes; full file not downloaded",
+  "topics": [
+    {
+      "name": "/tf",
+      "type": "tf2_msgs/msg/TFMessage",
+      "messages": 1
+    },
+    {
+      "name": "/imu/data",
+      "type": "sensor_msgs/msg/Imu",
+      "messages": 44461
+    },
+    {
+      "name": "/PointCloudDetectionradar3",
+      "type": "sensor_msgs/msg/PointCloud2",
+      "messages": 1781
+    },
+    {
+      "name": "/PointCloudDetectionradar2",
+      "type": "sensor_msgs/msg/PointCloud2",
+      "messages": 1781
+    },
+    {
+      "name": "/PointCloudDetectionradar1",
+      "type": "sensor_msgs/msg/PointCloud2",
+      "messages": 1781
+    },
+    {
+      "name": "/my_camera_1/pylon_ros2_camera_node_1/image_raw",
+      "type": "sensor_msgs/msg/Image",
+      "messages": 1781
+    },
+    {
+      "name": "/my_camera_1/pylon_ros2_camera_node_1/camera_info",
+      "type": "sensor_msgs/msg/CameraInfo",
+      "messages": 1781
+    },
+    {
+      "name": "/my_camera_2/pylon_ros2_camera_node_2/image_raw",
+      "type": "sensor_msgs/msg/Image",
+      "messages": 1781
+    },
+    {
+      "name": "/my_camera_6/pylon_ros2_camera_node_6/image_raw",
+      "type": "sensor_msgs/msg/Image",
+      "messages": 1781
+    },
+    {
+      "name": "/my_camera_3/pylon_ros2_camera_node_3/image_raw",
+      "type": "sensor_msgs/msg/Image",
+      "messages": 1781
+    },
+    {
+      "name": "/my_camera_3/pylon_ros2_camera_node_3/camera_info",
+      "type": "sensor_msgs/msg/CameraInfo",
+      "messages": 1781
+    },
+    {
+      "name": "/my_camera_4/pylon_ros2_camera_node_4/camera_info",
+      "type": "sensor_msgs/msg/CameraInfo",
+      "messages": 1781
+    },
+    {
+      "name": "/my_camera_4/pylon_ros2_camera_node_4/image_raw",
+      "type": "sensor_msgs/msg/Image",
+      "messages": 1781
+    },
+    {
+      "name": "/my_camera_5/pylon_ros2_camera_node_5/image_raw",
+      "type": "sensor_msgs/msg/Image",
+      "messages": 1781
+    },
+    {
+      "name": "/pva/odom",
+      "type": "nav_msgs/msg/Odometry",
+      "messages": 1781
+    },
+    {
+      "name": "/my_camera_2/pylon_ros2_camera_node_2/camera_info",
+      "type": "sensor_msgs/msg/CameraInfo",
+      "messages": 1781
+    },
+    {
+      "name": "/lidar_points",
+      "type": "sensor_msgs/msg/PointCloud2",
+      "messages": 1781
+    },
+    {
+      "name": "/my_camera_5/pylon_ros2_camera_node_5/camera_info",
+      "type": "sensor_msgs/msg/CameraInfo",
+      "messages": 1781
+    },
+    {
+      "name": "/tf_static",
+      "type": "tf2_msgs/msg/TFMessage",
+      "messages": 6
+    },
+    {
+      "name": "/my_camera_6/pylon_ros2_camera_node_6/camera_info",
+      "type": "sensor_msgs/msg/CameraInfo",
+      "messages": 1781
+    }
+  ],
+  "limitations": "Metadata only. Point fields, transforms, synchronization, actual labels and grid bounds not verified."
+}

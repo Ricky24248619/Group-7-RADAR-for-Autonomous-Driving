@@ -22,6 +22,10 @@ breaks paired sensor support down by native object class, tests the same tracks 
 and identifies timing-sensitive thin objects and an exception to the pooled LiDAR advantage.
 A separate diagnostic of ten saved GOOSE prediction frames examines terrain-label errors.
 
+**Off-road follow-up (26 September):** [ground surfaces versus obstacle candidates](docs/offroad-ground-and-obstacles.md)
+separates ground-category errors from surface-material errors, inventories distant GOOSE points,
+and verifies STONE radar/LiDAR bag metadata. Paired terrain support and hole detection remain open.
+
 **Detector next step:** [checkpoint compatibility decision](docs/detector-compatibility-decision.md)
 records downloaded weights, verified input ranges and the requirements for a valid learned-model comparison.
 
