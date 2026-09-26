@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "owner": "Ricky Yuen",
+  "date": "2026-09-26",
+  "status": "partial",
+  "task_type": "dataset-characterisation",
+  "environment": {
+    "os": "Windows",
+    "hardware": "CPU-only extraction and nearest-neighbour analysis; isolated F: environment",
+    "python": "3.11.9",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "matplotlib": "3.11.2",
+      "rosbags": "0.11.5",
+      "apsw": "3.53.4.0"
+    }
+  },
+  "evidence": [
+    "docs/stone-paired-terrain-pilot.md",
+    "docs/evidence/stone-pilot/manifest.json",
+    "docs/evidence/stone-pilot/support_by_frame.csv",
+    "docs/evidence/stone-pilot/support_summary.csv",
+    "experiment-log/0023-stone-paired-terrain.md"
+  ],
+  "id": "0028-stone-paired-terrain-pilot",
+  "title": "STONE ground and raised-geometry paired support with unresolved radar calibration",
+  "dataset": "STONE pinned README 4ba5f700ddeb709a0e645bdd5fda082b0561d282; first farmland ROS recording",
+  "sensor_configuration": "Hesai LiDAR and three ARS548 radar detection-point streams; physical radar translations unresolved",
+  "annotation_schema": "LiDAR-derived 0.4 m traversability voxels; near-ground and raised groups use fitted local traversable planes",
+  "split": "20 uniformly spaced interior frames from one approximately 178-second farmland recording",
+  "modality": "fusion",
+  "commands": [
+    "python scripts/prepare_stone_pilot.py --root <STONE-root>",
+    "python scripts/acquire_stone_pilot.py --root <STONE-root>",
+    "python scripts/compare_stone_terrain.py --root <STONE-root>"
+  ],
+  "notes": "Conditional geometric support, not detection accuracy. Calibration-origin sensitivity reverses the radar ground/raised ordering. LiDAR-derived labels, no occlusion mask, repeated voxel observations, one recording, few far height-resolved voxels. No hole or safe-driving claim.",
+  "measurements": [
+    {
+      "name": "Paired frames",
+      "value": 20,
+      "scope": "One farmland recording; correlated frames"
+    },
+    {
+      "name": "Valid recorded LiDAR returns",
+      "value": 3503081,
+      "scope": "20 frames, before ROI filtering"
+    },
+    {
+      "name": "Valid recorded radar returns",
+      "value": 3229,
+      "scope": "Three combined radar streams, 20 frames, before ROI filtering"
+    }
+  ],
+  "error": "A validated physical radar-to-ego calibration is unavailable; support values remain conditional.",
+  "blocker": "Released radar TF translations are zero and exported LiDAR calibration uses a different origin. No occlusion mask or independently labelled obstacle instances.",
+  "attempted_fixes": [
+    "Decoded all released static transforms and checked exported ego poses against 1781 bag odometry messages.",
+    "Compared bridged and ROS-origin coordinates, header-time compensation, two angular ROIs and three spatial tolerances."
+  ],
+  "recommendation": "Resolve radar mounting calibration and shared visibility before a stronger ground-versus-raised claim; then repeat across independent recordings."
+}

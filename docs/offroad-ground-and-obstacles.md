@@ -2,6 +2,11 @@
 
 26 September 2026 · EXP-0022 · result 0027
 
+**Subsequent paired experiment:** [STONE ground and raised-obstacle pilot](stone-paired-terrain-pilot.md)
+has now processed 20 real radar/LiDAR/label frames (EXP-0023). The metadata-only
+access account below records the earlier stage. Download and decoding are solved;
+physical radar calibration and a fair visibility reference remain unresolved.
+
 ## Question and scope
 
 Can the system separate the supporting ground surface from objects protruding above it, and how does this change with distance? Keep holes, ditches and drop-offs as a separate negative-obstacle task. An empty patch in a scan is not a hole label: it can also be unobserved or occluded. Ground is not automatically safe to drive on; slope, roughness, water depth, softness and clearance are separate concerns.
@@ -65,7 +70,7 @@ The ten consecutive frames all come from `2022-07-22_flight`. Points are correla
 | Resource | Evidence | Remaining gap |
 |---|---|---|
 | Local GOOSE | Labelled LiDAR and saved predictions; no local radar bag | No radar terrain scores from this local split |
-| STONE | Official bag metadata lists LiDAR and three radar PointCloud2 streams, 1,781 messages each | Raw points, transforms, label joins, visibility and grid version unverified |
+| STONE | Subsequent EXP-0023 decodes paired points, joins labels and confirms 0.4 m grid in 20 frames | Radar translations unresolved; sensitivity changes the ground/raised ranking; no visibility mask |
 | Great Outdoors | Official site lists LiDAR, 2D Navtech radar, raw topics and image/thermal segmentation packages | No verified ground-height benchmark in hand; 2D radar is less directly suited to vertical separation |
 
 STONE's current [official README](https://github.com/konyul/STONE) describes 0.4 m voxels spanning x/y **−40 to +40 m**, with separate bag downloads. Its [paper](https://arxiv.org/html/2603.09175v1) evaluates 0.2 m voxels over **−25.6 to +25.6 m** using LiDAR-derived traversability labels. Inspect actual labels before selecting either documented configuration. Neither provides a 150–400 m annotated terrain test; traversability classes are also not direct floor/protrusion labels.
@@ -83,7 +88,9 @@ Use a synchronized STONE sample and **0–10, 10–20, 20–40 m** bands if its 
 3. Report missed obstacle regions, obstacles called ground, ground called obstacles and unresolved regions. Keep return counts, occupied cells and model errors distinct.
 4. Test holes/drop-offs only with explicit depth/edge reference labels or multi-view ground geometry. Neither absent points nor STONE's free-space class directly labels a hole.
 
-The immediate dependency is a manageable verified radar/LiDAR/label sample. The LiDAR diagnostic above is complete; paired-sensor and negative-obstacle evaluation remain open.
+The LiDAR diagnostic above is complete. The sample dependency was subsequently
+resolved in [EXP-0023](stone-paired-terrain-pilot.md); calibration validation,
+detector evaluation and negative-obstacle evaluation remain open.
 
 ## Reproduction
 

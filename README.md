@@ -23,8 +23,9 @@ and identifies timing-sensitive thin objects and an exception to the pooled LiDA
 A separate diagnostic of ten saved GOOSE prediction frames examines terrain-label errors.
 
 **Off-road follow-up (26 September):** [ground surfaces versus obstacle candidates](docs/offroad-ground-and-obstacles.md)
-separates ground-category errors from surface-material errors, inventories distant GOOSE points,
-and verifies STONE radar/LiDAR bag metadata. Paired terrain support and hole detection remain open.
+separates ground-category errors from surface-material errors and inventories distant GOOSE points. The [STONE paired terrain pilot](docs/stone-paired-terrain-pilot.md)
+now processes 20 frames of actual radar, LiDAR and terrain labels. Radar calibration
+sensitivity limits the floor-versus-protrusion conclusion; hole detection remains open.
 
 **Detector next step:** [checkpoint compatibility decision](docs/detector-compatibility-decision.md)
 records downloaded weights, verified input ranges and the requirements for a valid learned-model comparison.
@@ -95,7 +96,7 @@ and Fariya/Kelsey (TruckDrive), per D-08. Confirm the next allocation at the cat
 | MAN **TruckScenes** (NeurIPS 2024) | Primary | Largest annotated 360° 4D-radar dataset; detection + tracking |
 | TORC **TruckDrive** (CVPR 2026) | Primary | Long-range (1000 m / 2D, 400 m / 3D); the D-04 dataset |
 | **GOOSE** (ICRA 2024) | Characterised; PTv3 partial at 10/961 frames; closeout proposed | Off-road terrain segmentation. Released assets used here do not support a paired labelled radar/LiDAR experiment |
-| **STONE** (ICRA 2026) | Dropped from current plan, per D-06 | Off-road annotated radar candidate; revisit only if the recorded access/tooling blockers change |
+| **STONE** (ICRA 2026) | Reopened as a bounded research pilot, 26 Sep; historical D-06 retained | 20 paired frames processed on CPU; physical radar calibration remains unresolved |
 
 Surveys live in `docs/dataset-surveys/` — status, sensors, licence and fit
 assessment for each. Raw datasets are never committed (see `.gitignore`).

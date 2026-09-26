@@ -1,0 +1,31 @@
+[
+  {
+    "file": "nuscenes_infos_val.pkl",
+    "sha256": "d1b4d60089fcc0dcacd856bf37b7b375194e4e8c21a5ddfe491daec0efac9125",
+    "calibration_related_strings": [
+      "lidar2cam",
+      "lidar2ego",
+      "lidar_path",
+      "lidar_points",
+      "num_lidar_pts",
+      "num_radar_pts"
+    ]
+  },
+  {
+    "file": "bevdetv2-nuscenes_infos_val.pkl",
+    "sha256": "d2f67f151bb4c020eaa1c623531a5cc170b2f360486203dd0657fa9d29de0249",
+    "calibration_related_strings": [
+      "ego2global_rotation",
+      "ego2global_translation",
+      "lidar2ego_rotation",
+      "lidar2ego_translation",
+      "lidar_path",
+      "num_lidar_pts",
+      "num_radar_pts",
+      "sensor2ego_rotation",
+      "sensor2ego_translation",
+      "sensor2lidar_rotation",
+      "sensor2lidar_translation"
+    ]
+  }
+]
