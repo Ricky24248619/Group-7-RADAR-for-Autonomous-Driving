@@ -1,0 +1,12 @@
+{
+  "full_validation_points": 174891807,
+  "full_validation_scenario_aggregation": "pass",
+  "saved_prediction_points": 1785024,
+  "group_fine_and_frame_totals": "pass",
+  "prediction_category_partition": "pass",
+  "unit_tests": {
+    "run": 207,
+    "passed": 202,
+    "skipped": 5
+  }
+}

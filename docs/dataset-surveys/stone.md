@@ -1,5 +1,12 @@
 # Survey: STONE
 
+> **26 September access update:** the official README now links separate ROS bag
+> directories. Downloaded metadata confirms a ROS 2 sqlite3 sequence with LiDAR
+> and three radar PointCloud2 streams. The sampled bag is listed as 78.74 GB;
+> points, calibration and label alignment remain unverified. Current README grid
+> bounds differ from the paper. See the [fresh audit](../offroad-ground-and-obstacles.md).
+> The August investigation below is historical, including its single-download and range assumptions.
+
 **A Scalable Multi-Modal Surround-View 3D Traversability Dataset for Off-Road Robot Navigation** · ICRA 2026
 
 > **Status: blocked — no devkit exists.** Investigated 21 Aug 2026. The repository

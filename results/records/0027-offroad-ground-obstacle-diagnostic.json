@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "owner": "Ricky Yuen",
+  "date": "2026-09-26",
+  "status": "success",
+  "task_type": "dataset-characterisation",
+  "environment": {
+    "os": "Windows",
+    "hardware": "CPU reanalysis; no new model inference",
+    "python": "3.11.9",
+    "packages": {
+      "numpy": "2.4.6",
+      "matplotlib": "3.11.2",
+      "PyYAML": "6.0.3"
+    }
+  },
+  "evidence": [
+    "docs/offroad-ground-and-obstacles.md",
+    "docs/evidence/offroad-ground/manifest.json",
+    "docs/evidence/offroad-ground/saved_group_confusion.csv",
+    "docs/evidence/offroad-ground/returned_point_inventory.csv",
+    "experiment-log/0022-offroad-ground-obstacles.md"
+  ],
+  "id": "0027-offroad-ground-obstacle-diagnostic",
+  "title": "GOOSE ground-surface and obstacle-candidate diagnostic; STONE metadata feasibility",
+  "dataset": "GOOSE 3D validation (961 frames, eight scenarios); ten saved PTv3 frames scored separately",
+  "sensor_configuration": "Existing labelled VLS128 LiDAR returns; no paired radar evaluation",
+  "annotation_schema": "Explicit 64-label semantic partition; ground surfaces, cover, obstacle candidates, vegetation, ambiguous geometry, water, excluded",
+  "split": "Full validation point inventory; saved predictions from ten consecutive 2022-07-22_flight frames",
+  "modality": "lidar",
+  "model": "PTv3 existing August run predictions; original record 0006",
+  "commands": [
+    "python scripts/analyse_offroad_ground.py --root <GOOSE-validation-root> --predictions <saved-run>/result --mapping <GOOSE-archives>/challenge_label_mapping.csv"
+  ],
+  "notes": "Completed bounded LiDAR diagnostic. Counts do not measure unseen-ground coverage. Ground-versus-obstacle grouping is semantic, not ground-relative height. Vegetation and other predicted groups remain unresolved. No radar comparison, hole detection or general performance claim. STONE metadata audit is feasibility only; data and label alignment are unverified.",
+  "measurements": [
+    {
+      "name": "Ground-surface points predicted as ground categories",
+      "value": 98.38380780224576,
+      "unit": "percent",
+      "scope": "0-25 m; 112301 existing points in ten saved frames; semantic proxy only"
+    },
+    {
+      "name": "Ground-surface points predicted as ground categories",
+      "value": 65.19721577726219,
+      "unit": "percent",
+      "scope": "100-150 m; 431 existing points in ten saved frames; not measured driveability"
+    }
+  ]
+}

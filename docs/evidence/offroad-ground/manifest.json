@@ -1,0 +1,179 @@
+{
+  "groups": {
+    "ground_surface": [
+      "cobble",
+      "bikeway",
+      "pedestrian_crossing",
+      "road_marking",
+      "sidewalk",
+      "asphalt",
+      "gravel",
+      "soil"
+    ],
+    "ground_cover": [
+      "snow",
+      "leaves",
+      "moss",
+      "low_grass"
+    ],
+    "obstacle_candidate": [
+      "traffic_cone",
+      "obstacle",
+      "street_light",
+      "road_block",
+      "car",
+      "bicycle",
+      "person",
+      "traffic_light",
+      "motorcycle",
+      "boom_barrier",
+      "tree_trunk",
+      "rider",
+      "animal",
+      "truck",
+      "bus",
+      "on_rails",
+      "caravan",
+      "trailer",
+      "building",
+      "wall",
+      "rock",
+      "fence",
+      "guard_rail",
+      "pole",
+      "traffic_sign",
+      "misc_sign",
+      "barrier_tape",
+      "kick_scooter",
+      "wire",
+      "heavy_machinery",
+      "container",
+      "barrel",
+      "pipe",
+      "military_vehicle"
+    ],
+    "vegetation": [
+      "forest",
+      "bush",
+      "crops",
+      "tree_crown",
+      "high_grass",
+      "scenery_vegetation",
+      "hedge"
+    ],
+    "geometry_ambiguous": [
+      "curb",
+      "rail_track",
+      "debris",
+      "bridge",
+      "tunnel",
+      "tree_root"
+    ],
+    "water": [
+      "water"
+    ],
+    "excluded": [
+      "undefined",
+      "ego_vehicle",
+      "sky",
+      "outlier"
+    ]
+  },
+  "prediction_grouping": [
+    "other",
+    "obstacle_category",
+    "ground_category",
+    "ground_category",
+    "obstacle_category",
+    "obstacle_category",
+    "vegetation",
+    "obstacle_category"
+  ],
+  "frames": 10,
+  "points": 1785024,
+  "inventory_sha256_lf": "f0559fa538a54409001ebad53622f389018c9eee1014c7b08f998aa2c93858dd",
+  "mapping_sha256": "a4c3e8be1752cdc3d2a4cff0fffb192935ef186cff8d1d9a43dfd7687afb0951",
+  "inputs": [
+    {
+      "frame": "2022-07-22_flight__0071_1658494234334310308_vls128.bin",
+      "sha256": {
+        "scan": "95be16aec8496260ec25ff716c79d343a3fd9e3f4957df99bb8007c6b21c9f59",
+        "label": "326fc4d01e3c63d2c37a8eec05c53f3105a95c56c998cc4da4cda0f0fb63eeae",
+        "prediction": "e53a82ea54cd36d20c16a3021378d4433885f1b882ceb012e2c5675c786e32cd"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0072_1658494235988100385_vls128.bin",
+      "sha256": {
+        "scan": "42b791594d1613f5cc38080d50380626072715f79d01c554649bc44c0c90f611",
+        "label": "48b751b3f3f9fec50c7caf9f4dc3e84e1da495ffc6f73328d2b16222cd208736",
+        "prediction": "b0aa2e56e2a91cd4da8ff1babd0ce46052bece2d0a3cd55bf33ffee195282fbd"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0073_1658494238675704025_vls128.bin",
+      "sha256": {
+        "scan": "4f7853fe2c3e0c1b29a7afb02804002b59f72f49252559b1814a2588962dfab3",
+        "label": "8293881b78c4b03572b03b78a00952a488566e5562e124c09aab32c8a6a12a4f",
+        "prediction": "b02ad2485e7568b0c81be6d2d4869a7b8acc86b6b954c257498d0a2d256077c1"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0075_1658494242083534022_vls128.bin",
+      "sha256": {
+        "scan": "1f1624d970920f76661ac7698a997a03ee770e183eaecc6b10712d06c2325fbb",
+        "label": "2aedb305c6e8a081f02f6a5c2f2f74a504676493cc32d393fb70d6245df71dfc",
+        "prediction": "8161da2a55a7b58abea377bb11ad46db5648ef306339a8055ddd26f35228bd45"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0077_1658494244047191404_vls128.bin",
+      "sha256": {
+        "scan": "81eaa5b48c08d6187d1b1a86ca4394174757deb3e39d5b5f60764e290cffd876",
+        "label": "535a634c8476318578c40494b6b3eaed68128290091a800432078ab79fdcca80",
+        "prediction": "bc065b0afab3df84963732791fd29beb30238faa9385477054a7ef5886421ab9"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0078_1658494246011438339_vls128.bin",
+      "sha256": {
+        "scan": "c38f11c615856a5677186fc8d317a98fae2d028861b9f6a22bef28f4c1118b9f",
+        "label": "d5ae8b12f4e77064ea7906734de172764174b841b6c29d9bc8c0e1c798e98794",
+        "prediction": "7780504c4ff9406ddf66da4cb90a1b503a68e596133ed6c93d6dc97bb5e337d4"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0080_1658494248904312093_vls128.bin",
+      "sha256": {
+        "scan": "e15caf14c9f46d4ada39be71e48c029b653f0fba67f84cc0f2fd4b19d3491ec2",
+        "label": "40f4d64b243411255f2507ae0b41104ff25f2daddeef012a991be2b124736a02",
+        "prediction": "b4fe68051ad4d674bbb6efd3f97a0d64ff64639e86b92c541f33bfe3786e2d1a"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0082_1658494251900354294_vls128.bin",
+      "sha256": {
+        "scan": "3f9ee1219ceb88b5e87bd8ca7e1b3307d491cc2cff87baaeea158637af6d20bd",
+        "label": "9fd5713fd361ff1b29eaebec065509b1771aefb1d128a06d52908950b532385e",
+        "prediction": "133c3b19e23aa3623142bdc34a9f9e30096b5015d381dbfb02972f931199a9a9"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0084_1658494255002048279_vls128.bin",
+      "sha256": {
+        "scan": "560790660a05cfe589cee03210b5b6b2b54eabbc4d72599c3ff8482484745efb",
+        "label": "5449e5e212a500f6a0b056486ecb65de37fc014a44a9834fa48220a5ca47bb04",
+        "prediction": "0c64389c6223fe009cf285dd2e4a01c5a972e688b5f3a420c35004831b23ba37"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0086_1658494257998064715_vls128.bin",
+      "sha256": {
+        "scan": "f4fb2f828efde296a590a609bebd7abcc2e052cb9c7b7fe7ced2ff324e8d3399",
+        "label": "9ecf5e8a3f19724d2dd4ad690f9822a4681d86f5c8d6ba28c743117b97c2d28c",
+        "prediction": "8d6e4c6526a61d376031f1014c369137138d200120466c28aa1ede02b654ea6a"
+      }
+    }
+  ],
+  "limitations": "LiDAR-only semantic proxies; no ground-relative height, safe-driveability, radar, hole labels or independent surface-coverage denominator. Model vegetation/other remains unresolved in the binary question."
+}
