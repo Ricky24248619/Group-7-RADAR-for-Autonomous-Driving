@@ -96,9 +96,8 @@ def plot(summary,rows,output):
         values=[selected[b]['correct_coarse_percent'] if b in selected else np.nan for b in bands]
         line,=ax.plot(bands,values,marker='o',label=category.replace('_',' '))
         for i,b in enumerate(bands):
-            if b in selected:
-                offset=9 if category=='low_grass' else -16
-                ax.annotate(f"n={selected[b]['points']:,}",(i,values[i]),xytext=(0,offset),textcoords='offset points',ha='center',fontsize=7,color=line.get_color())
+            if b in selected and i>=4:
+                ax.annotate(f"n={selected[b]['points']:,}",(i,values[i]),xytext=(0,-16),textcoords='offset points',ha='center',fontsize=7,color=line.get_color())
     ax.set(ylim=(0,105),xlabel='Planar point distance (m)',ylabel='Correct coarse label (%)',title='GOOSE saved PTv3 predictions: aggregate accuracy hides class errors')
     ax.legend(loc='lower left');ax.grid(axis='y',alpha=.2)
     fig.text(.02,.015,'10 consecutive saved frames from one scene; correlated points. Only existing LiDAR returns.\nEight-class predictions: low grass should map to natural ground; high grass to vegetation. No radar comparison.',fontsize=9)
