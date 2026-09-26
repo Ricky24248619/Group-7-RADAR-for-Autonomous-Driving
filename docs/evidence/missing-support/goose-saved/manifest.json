@@ -1,0 +1,111 @@
+{
+  "frames": 10,
+  "points": 1785024,
+  "scenarios": [
+    "2022-07-22_flight"
+  ],
+  "classes": [
+    "other",
+    "artificial_structures",
+    "artificial_ground",
+    "natural_ground",
+    "obstacle",
+    "vehicle",
+    "vegetation",
+    "human"
+  ],
+  "mapping_sha256": "a4c3e8be1752cdc3d2a4cff0fffb192935ef186cff8d1d9a43dfd7687afb0951",
+  "inputs": [
+    {
+      "frame": "2022-07-22_flight__0071_1658494234334310308_vls128.bin",
+      "sha256": {
+        "scan": "95be16aec8496260ec25ff716c79d343a3fd9e3f4957df99bb8007c6b21c9f59",
+        "label": "326fc4d01e3c63d2c37a8eec05c53f3105a95c56c998cc4da4cda0f0fb63eeae",
+        "challenge_label": "692f7bf3274387f541430fa32f8ae4664f03393bc441961f91a8c70e6ad8d103",
+        "prediction": "e53a82ea54cd36d20c16a3021378d4433885f1b882ceb012e2c5675c786e32cd"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0072_1658494235988100385_vls128.bin",
+      "sha256": {
+        "scan": "42b791594d1613f5cc38080d50380626072715f79d01c554649bc44c0c90f611",
+        "label": "48b751b3f3f9fec50c7caf9f4dc3e84e1da495ffc6f73328d2b16222cd208736",
+        "challenge_label": "6b08926edad9bdaf4b35dcc10f4d52d31b89177833236d9c93dd8e64db52fc0c",
+        "prediction": "b0aa2e56e2a91cd4da8ff1babd0ce46052bece2d0a3cd55bf33ffee195282fbd"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0073_1658494238675704025_vls128.bin",
+      "sha256": {
+        "scan": "4f7853fe2c3e0c1b29a7afb02804002b59f72f49252559b1814a2588962dfab3",
+        "label": "8293881b78c4b03572b03b78a00952a488566e5562e124c09aab32c8a6a12a4f",
+        "challenge_label": "2c799f379b7f5b7e9aad31fe02ddef1967581bf54212266b321e5e57441f6068",
+        "prediction": "b02ad2485e7568b0c81be6d2d4869a7b8acc86b6b954c257498d0a2d256077c1"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0075_1658494242083534022_vls128.bin",
+      "sha256": {
+        "scan": "1f1624d970920f76661ac7698a997a03ee770e183eaecc6b10712d06c2325fbb",
+        "label": "2aedb305c6e8a081f02f6a5c2f2f74a504676493cc32d393fb70d6245df71dfc",
+        "challenge_label": "9e4950023d297e6e6c1fe8333ed1e4638d6f24ede101a11cd68c788185ae7331",
+        "prediction": "8161da2a55a7b58abea377bb11ad46db5648ef306339a8055ddd26f35228bd45"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0077_1658494244047191404_vls128.bin",
+      "sha256": {
+        "scan": "81eaa5b48c08d6187d1b1a86ca4394174757deb3e39d5b5f60764e290cffd876",
+        "label": "535a634c8476318578c40494b6b3eaed68128290091a800432078ab79fdcca80",
+        "challenge_label": "7d2d7e11dc5c4627209d62d436b463a6c4266a7159cf7f49c9b0fa4aba6012ab",
+        "prediction": "bc065b0afab3df84963732791fd29beb30238faa9385477054a7ef5886421ab9"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0078_1658494246011438339_vls128.bin",
+      "sha256": {
+        "scan": "c38f11c615856a5677186fc8d317a98fae2d028861b9f6a22bef28f4c1118b9f",
+        "label": "d5ae8b12f4e77064ea7906734de172764174b841b6c29d9bc8c0e1c798e98794",
+        "challenge_label": "ff78f34febbe6e03a9333959aa0950aa61ae709fe02a25eb7a594225a77a1210",
+        "prediction": "7780504c4ff9406ddf66da4cb90a1b503a68e596133ed6c93d6dc97bb5e337d4"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0080_1658494248904312093_vls128.bin",
+      "sha256": {
+        "scan": "e15caf14c9f46d4ada39be71e48c029b653f0fba67f84cc0f2fd4b19d3491ec2",
+        "label": "40f4d64b243411255f2507ae0b41104ff25f2daddeef012a991be2b124736a02",
+        "challenge_label": "f67957cba3f1e800df56e316395dcc3ccd0c307791442f5f8624016b2f73bec3",
+        "prediction": "b4fe68051ad4d674bbb6efd3f97a0d64ff64639e86b92c541f33bfe3786e2d1a"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0082_1658494251900354294_vls128.bin",
+      "sha256": {
+        "scan": "3f9ee1219ceb88b5e87bd8ca7e1b3307d491cc2cff87baaeea158637af6d20bd",
+        "label": "9fd5713fd361ff1b29eaebec065509b1771aefb1d128a06d52908950b532385e",
+        "challenge_label": "cda0b961d9410692a86acac6c18ddbdd9bc44e259c4d25e887cf6def255574e5",
+        "prediction": "133c3b19e23aa3623142bdc34a9f9e30096b5015d381dbfb02972f931199a9a9"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0084_1658494255002048279_vls128.bin",
+      "sha256": {
+        "scan": "560790660a05cfe589cee03210b5b6b2b54eabbc4d72599c3ff8482484745efb",
+        "label": "5449e5e212a500f6a0b056486ecb65de37fc014a44a9834fa48220a5ca47bb04",
+        "challenge_label": "cbb2a10082a2da6d46e728ac6558692b3c031faa156f1ba0416de41a73f54567",
+        "prediction": "0c64389c6223fe009cf285dd2e4a01c5a972e688b5f3a420c35004831b23ba37"
+      }
+    },
+    {
+      "frame": "2022-07-22_flight__0086_1658494257998064715_vls128.bin",
+      "sha256": {
+        "scan": "f4fb2f828efde296a590a609bebd7abcc2e052cb9c7b7fe7ced2ff324e8d3399",
+        "label": "9ecf5e8a3f19724d2dd4ad690f9822a4681d86f5c8d6ba28c743117b97c2d28c",
+        "challenge_label": "d3512d168708d25b82d7596cb9bbfceffca440c6ae8b482a734b958f30bd6232",
+        "prediction": "8d6e4c6526a61d376031f1014c369137138d200120466c28aa1ede02b654ea6a"
+      }
+    }
+  ],
+  "scope": "Previously saved consecutive partial-run frames, not a representative validation benchmark. Eight coarse model classes, sky mapped to other. No new inference or radar comparison."
+}

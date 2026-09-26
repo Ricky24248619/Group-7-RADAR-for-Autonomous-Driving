@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "owner": "Ricky Yuen",
+  "date": "2026-09-26",
+  "status": "success",
+  "task_type": "semantic-segmentation-3d",
+  "environment": {
+    "os": "Windows",
+    "hardware": "CPU reanalysis; no new model inference",
+    "python": "3.11.9",
+    "packages": {
+      "numpy": "2.4.6",
+      "matplotlib": "3.11.2",
+      "PyYAML": "6.0.3"
+    }
+  },
+  "evidence": [
+    "docs/what-sensors-miss-by-range.md",
+    "docs/evidence/missing-support/verification.json",
+    "experiment-log/0021-what-sensors-miss-by-range.md",
+    "docs/evidence/missing-support/goose-saved/manifest.json",
+    "docs/evidence/missing-support/goose-saved/confusion.csv",
+    "docs/evidence/missing-support/goose-saved/raw_class_errors.csv"
+  ],
+  "id": "0026-goose-saved-range-errors",
+  "title": "GOOSE saved PTv3 predictions: class and range error diagnostic",
+  "dataset": "GOOSE 3D validation, saved subset from 2022-07-22_flight",
+  "sensor_configuration": "Existing VLS128 LiDAR points only; no radar or new inference",
+  "annotation_schema": "Fine semantic labels remapped to eight challenge classes; sky 8 mapped to other 0 as original loader",
+  "split": "10 consecutive saved prediction frames from interrupted 961-frame validation run",
+  "modality": "lidar",
+  "model": "PTv3 existing August run predictions; original record 0006",
+  "commands": [
+    "python scripts/analyse_goose_saved_errors.py --root <GOOSE-validation-root> --predictions <saved-run>/result --mapping <GOOSE-archives>/challenge_label_mapping.csv"
+  ],
+  "metrics": [
+    {
+      "name": "Overall accuracy",
+      "value": 0.8340221188970242,
+      "scope": "Eight-class point accuracy including other; 0-25 m planar range; ten saved frames only",
+      "unit": "ratio"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.8898674188667279,
+      "scope": "Eight-class point accuracy including other; 25-50 m planar range; ten saved frames only",
+      "unit": "ratio"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.9332104681164762,
+      "scope": "Eight-class point accuracy including other; 50-75 m planar range; ten saved frames only",
+      "unit": "ratio"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.9159712481079068,
+      "scope": "Eight-class point accuracy including other; 75-100 m planar range; ten saved frames only",
+      "unit": "ratio"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.9270617769786614,
+      "scope": "Eight-class point accuracy including other; 100-150 m planar range; ten saved frames only",
+      "unit": "ratio"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.9689865767542465,
+      "scope": "Eight-class point accuracy including other; 150+ m planar range; ten saved frames only",
+      "unit": "ratio"
+    }
+  ],
+  "measurements": [
+    {
+      "name": "Existing points evaluated",
+      "value": 1785024,
+      "scope": "10 saved frames, single scenario; not independent samples"
+    }
+  ],
+  "notes": "Success refers only to completing this bounded diagnostic. Original validation remains partial at 10/961 frames. Fine-label rows score correct coarse labels, not 64-class predictions. Accuracy is conditional on returned points; no unseen-surface coverage, full benchmark, or radar comparison. Class composition changes markedly with distance."
+}
