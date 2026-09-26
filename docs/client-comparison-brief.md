@@ -1,5 +1,11 @@
 # Radar and LiDAR: what our TruckScenes experiment shows
 
+**26 September off-road extension:** [STONE paired terrain pilot](stone-paired-terrain-pilot.md)
+adds measured ground/raised-geometry support from 20 radar/LiDAR frames. It exposes
+a radar-calibration ambiguity that must be resolved before a firm terrain ranking.
+The [new dataset shortlist](offroad-dataset-next-steps.md) separates independent
+off-road and adverse-weather follow-ups.
+
 **24 September follow-up:** [five-scene TruckDrive result](truckdrive-multiscene-result.md) extends the pilot with four additional scenes and reports the qualified 200-400 m vehicle-support conclusion.
 
 **New follow-up:** [TruckDrive paired results to 399 m and the cross-dataset review](long-range-cross-dataset-review.md) supersede the earlier TruckDrive download blocker. This document retains the TruckScenes-specific results.

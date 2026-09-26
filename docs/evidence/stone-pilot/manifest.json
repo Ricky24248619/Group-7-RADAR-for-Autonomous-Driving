@@ -1,0 +1,418 @@
+{
+  "frames": 20,
+  "source_ids": {
+    "zip": "1LdzE-BqZeEr2Vc9_z1CfiY5IjdqvX_CN",
+    "bag": "1QImchBEanl1K1mkDW7i25hpOe8YpkZ6q"
+  },
+  "inputs": [
+    {
+      "file": "51f7f23a-e7a9-54e2-b5a1-b32b1efe3e93_lidar.bin",
+      "sha256": "741f4b1ed26745bbc350d3757470900e2504b7bfaa6ad44f81c3fbcee4ee9a4f"
+    },
+    {
+      "file": "51f7f23a-e7a9-54e2-b5a1-b32b1efe3e93_labels.npz",
+      "sha256": "addbb97627b523e895df855c53f55c93d401f3e09763ed00002b5f7b43b8486b"
+    },
+    {
+      "file": "51f7f23a-e7a9-54e2-b5a1-b32b1efe3e93_radar.npz",
+      "sha256": "2f97e0bf704acfb447d5d647224debeea4246053e7bac2fb1facf4e0c1e16535"
+    },
+    {
+      "file": "ff10ede7-1508-5527-9365-4d51bd0a7e42_lidar.bin",
+      "sha256": "9bdbc7dfaafca9549385c51711ed291b4673a403f77611d6ed8e14bc1dc2a1db"
+    },
+    {
+      "file": "ff10ede7-1508-5527-9365-4d51bd0a7e42_labels.npz",
+      "sha256": "640ade012e4ceb4a39ce0f010a313d6e19db6d3a89d05c1ca74ab2140328be26"
+    },
+    {
+      "file": "ff10ede7-1508-5527-9365-4d51bd0a7e42_radar.npz",
+      "sha256": "7bad62b65988d383a2117f9650407a5ec89101593d5338c07d7ff93c0df36074"
+    },
+    {
+      "file": "b51f9db7-6243-5c86-a751-43db7925dac9_lidar.bin",
+      "sha256": "f8a06ddd38c7d6108f4fc64ec66ee89315bb916ddb0e4b2b0cddd3784440615c"
+    },
+    {
+      "file": "b51f9db7-6243-5c86-a751-43db7925dac9_labels.npz",
+      "sha256": "c5f96ddb002c5ac8eff8a3b2a3ede65e4ec5c7716ae592d709b13efae86fa2a1"
+    },
+    {
+      "file": "b51f9db7-6243-5c86-a751-43db7925dac9_radar.npz",
+      "sha256": "8660415d88e0f6ced66326f2efe496e69a9465c4fa225827ecc5e8f4859f1b5d"
+    },
+    {
+      "file": "fe7fed8c-bd18-5bfd-aabe-8e8be835cfb5_lidar.bin",
+      "sha256": "57b542413b8360e9bba6e57ca382869249cb8b8d1259e7e1af48097c55ab3546"
+    },
+    {
+      "file": "fe7fed8c-bd18-5bfd-aabe-8e8be835cfb5_labels.npz",
+      "sha256": "8dd3cf50e3724d3e9d0bcf312331f266c9b101ddb14ed9fcd7838bd1fa7ef1a5"
+    },
+    {
+      "file": "fe7fed8c-bd18-5bfd-aabe-8e8be835cfb5_radar.npz",
+      "sha256": "2aaf0effdcec3fa8d5bdd7da29b6bb3a3a46c7cc50e78e574ecdfa86ef5eaa6f"
+    },
+    {
+      "file": "afdcd9f7-1d24-5302-8328-2dcd9734c8d6_lidar.bin",
+      "sha256": "b686abf13f5570cb23834cd58071d18f8b78270715fd82017aa84d786629d497"
+    },
+    {
+      "file": "afdcd9f7-1d24-5302-8328-2dcd9734c8d6_labels.npz",
+      "sha256": "d47f3e3847a57911270af35b54f7f1a5c68632c3b546f3d139a828858ac26232"
+    },
+    {
+      "file": "afdcd9f7-1d24-5302-8328-2dcd9734c8d6_radar.npz",
+      "sha256": "8a32e7243270c1183da965981c1178b2e4c1883e336ee45bb45f41325706657a"
+    },
+    {
+      "file": "9f484ce3-0210-5876-8616-120d3e25dfe7_lidar.bin",
+      "sha256": "7c15d3f67463923ab66f4e80a12880751757012ab15437e751ea190ff83b7db0"
+    },
+    {
+      "file": "9f484ce3-0210-5876-8616-120d3e25dfe7_labels.npz",
+      "sha256": "e848cec5b3aff2c1540927bc4989a803391643ce042ab020a9da864a5600e29d"
+    },
+    {
+      "file": "9f484ce3-0210-5876-8616-120d3e25dfe7_radar.npz",
+      "sha256": "ad412102de57373528c84d0a5864eab6f8f24fc29a690b39dbeeb16af6280ef7"
+    },
+    {
+      "file": "cf82b9f4-c348-5830-8bde-8195d2eecfb1_lidar.bin",
+      "sha256": "d5c5da741ac05d87ebdc12d166d5577ebc71c79179e5b71abdb1184e502cab41"
+    },
+    {
+      "file": "cf82b9f4-c348-5830-8bde-8195d2eecfb1_labels.npz",
+      "sha256": "cdba0638c418cf672530db46671a408ec1f9fcf5796d68ed0feaa9f7d9eb47f2"
+    },
+    {
+      "file": "cf82b9f4-c348-5830-8bde-8195d2eecfb1_radar.npz",
+      "sha256": "bdd66a2c57deee0e4a1fca43a858818047e70466bd0976fe0fb50c12a4e8686d"
+    },
+    {
+      "file": "9efa0c8d-58ed-56d1-bc09-23f833065154_lidar.bin",
+      "sha256": "c23c7c157468491b30995c7ce83718d684297c5237a3868467a99b12da5acd17"
+    },
+    {
+      "file": "9efa0c8d-58ed-56d1-bc09-23f833065154_labels.npz",
+      "sha256": "0f70b94cfc6666adc8fe3d56a571e448035ca47838bfe851d3cb67da512d9c72"
+    },
+    {
+      "file": "9efa0c8d-58ed-56d1-bc09-23f833065154_radar.npz",
+      "sha256": "72a0bf3281df7b2c2b7dc8d83a5bf55d8eb27936ff27c6bae7efbc784b38f116"
+    },
+    {
+      "file": "a3e76b32-565b-5271-b581-f7dc5534bee6_lidar.bin",
+      "sha256": "649087bae400b94c3ad16d579e12ce86197f4504e5676641ec7d23cb70b8fb95"
+    },
+    {
+      "file": "a3e76b32-565b-5271-b581-f7dc5534bee6_labels.npz",
+      "sha256": "b628356f45976169ae15be30d6ca11f35e32bfd5c2f6e87037f1c367784a9a4f"
+    },
+    {
+      "file": "a3e76b32-565b-5271-b581-f7dc5534bee6_radar.npz",
+      "sha256": "3a1dbaf718d97fc15f4b3e19471a6ff9a4219142093b8ba2572bbfc237546689"
+    },
+    {
+      "file": "11695720-5d5c-5088-aae5-298b3b6ed216_lidar.bin",
+      "sha256": "0e66c66c75b716012f9efecd076c97311ae80c660fc051a5b01e38773c312b80"
+    },
+    {
+      "file": "11695720-5d5c-5088-aae5-298b3b6ed216_labels.npz",
+      "sha256": "6887ca0517c593c8da422d796af211adb83b033e790339483620edca4c493e19"
+    },
+    {
+      "file": "11695720-5d5c-5088-aae5-298b3b6ed216_radar.npz",
+      "sha256": "66323602b75077b34ab6edb3507074f9df5aaf4b994ffdaf2759743c95912c00"
+    },
+    {
+      "file": "6c431217-c36c-5297-9828-b71b78177e66_lidar.bin",
+      "sha256": "80573341db445b8398b8d669d4695b6a5c4cead384d1f3b50defedc9cc4781b3"
+    },
+    {
+      "file": "6c431217-c36c-5297-9828-b71b78177e66_labels.npz",
+      "sha256": "2af9fc8ad02059d281f67a7cd1c19160eba6ad4acfaead904c92f52a40e4a4e7"
+    },
+    {
+      "file": "6c431217-c36c-5297-9828-b71b78177e66_radar.npz",
+      "sha256": "28694f256585b23a76fe2196b56cf29f0ae9ce11b0eb37d831909910df50bc35"
+    },
+    {
+      "file": "0396ea55-3254-5eb2-9b18-cc310ba7e63e_lidar.bin",
+      "sha256": "fc09979c970c28782f2d95eab628c2ffe8209beafb78b715210b063096fbb7ff"
+    },
+    {
+      "file": "0396ea55-3254-5eb2-9b18-cc310ba7e63e_labels.npz",
+      "sha256": "7a869fa21fcd3b4403ff3434295cdefaf3c87d2b1ca5e599b2e438b4990bd2bd"
+    },
+    {
+      "file": "0396ea55-3254-5eb2-9b18-cc310ba7e63e_radar.npz",
+      "sha256": "e7098518a147b5e7db4472abd2d87abbec08afe199a73ef45b03a434939271e0"
+    },
+    {
+      "file": "e639310d-4816-5d64-b550-d312125fa7df_lidar.bin",
+      "sha256": "8364d87b45441164c8681f41a4c5da294ff122b991bdc9293ad3875f1e413abd"
+    },
+    {
+      "file": "e639310d-4816-5d64-b550-d312125fa7df_labels.npz",
+      "sha256": "39fe0d0b4a59c6328732821515feecefd9993908d3c1e8a0e0aa7764a37957b5"
+    },
+    {
+      "file": "e639310d-4816-5d64-b550-d312125fa7df_radar.npz",
+      "sha256": "61f02ada2ef9c85bb74ece2728da0bc59d635967c2e2c67a46f7cec1bd675ad0"
+    },
+    {
+      "file": "6a27eb1f-ba58-5382-87b2-b0381fda6cf2_lidar.bin",
+      "sha256": "79a65695a99c13b23bb4914e870ce750c736a49b567fb7c6e24380ab4bc7e0ad"
+    },
+    {
+      "file": "6a27eb1f-ba58-5382-87b2-b0381fda6cf2_labels.npz",
+      "sha256": "02685012b9c6f4ad3771e2bfd97f83f192bf3bc617b967605b7fb547d0563705"
+    },
+    {
+      "file": "6a27eb1f-ba58-5382-87b2-b0381fda6cf2_radar.npz",
+      "sha256": "cdce444bf0b66d5f8e6529ba11a551e5a7357c288cc2319b5455dc96249fa88a"
+    },
+    {
+      "file": "b47ac70d-ba4e-588b-ba74-c302548de0be_lidar.bin",
+      "sha256": "ccdae4e3f2d6ef4807cbb2b411e5592f94822e103dd78b590d78409884566bdc"
+    },
+    {
+      "file": "b47ac70d-ba4e-588b-ba74-c302548de0be_labels.npz",
+      "sha256": "555605302c7c3535161c2f1e4d734cadf7741280ed44e99429f9fc057a1705f2"
+    },
+    {
+      "file": "b47ac70d-ba4e-588b-ba74-c302548de0be_radar.npz",
+      "sha256": "14911d216f860d15a6efb4f99139e8b3dbe5328aa0cdb1f50bad91c4794df313"
+    },
+    {
+      "file": "481edc38-db1f-52a4-90f9-3432d829e547_lidar.bin",
+      "sha256": "3b4512d361bcb59bfe304c3e3b8228b557a2be76d5383fe677cb6c5d31625ee9"
+    },
+    {
+      "file": "481edc38-db1f-52a4-90f9-3432d829e547_labels.npz",
+      "sha256": "a06c009e23c98892a1d4408baecc567561c34fd1c00fbbe08a929da9eb91a13c"
+    },
+    {
+      "file": "481edc38-db1f-52a4-90f9-3432d829e547_radar.npz",
+      "sha256": "bced8f92bd2c8160439a819f6e0e0086295c4a6c13dbb55bb54d212a21c1a575"
+    },
+    {
+      "file": "dac0c541-1c0f-5cb6-9388-d5619ebc4d01_lidar.bin",
+      "sha256": "28e83426d23aefdf2a847c8483ce900a3ab20fc83d1fd1143247ad987d0424fd"
+    },
+    {
+      "file": "dac0c541-1c0f-5cb6-9388-d5619ebc4d01_labels.npz",
+      "sha256": "2e177086be05622fac673017cbac5404e3d3f4cd525fc5ee02d76a3c54d1c8f6"
+    },
+    {
+      "file": "dac0c541-1c0f-5cb6-9388-d5619ebc4d01_radar.npz",
+      "sha256": "6024d40a686784b73dfcaa0657318b54264444069c77483917610f54439f1b72"
+    },
+    {
+      "file": "f4e1debb-7be1-5b9f-ab00-3104b2a87aca_lidar.bin",
+      "sha256": "e0a4f001674897b53898892c4e7d926d4678fea4183e3f3c7b8edb3a4560c877"
+    },
+    {
+      "file": "f4e1debb-7be1-5b9f-ab00-3104b2a87aca_labels.npz",
+      "sha256": "e2d5ad48d93206c6478a94452ffefb770ec2d3ad99799a5d82c6fc2b04a13b6b"
+    },
+    {
+      "file": "f4e1debb-7be1-5b9f-ab00-3104b2a87aca_radar.npz",
+      "sha256": "233cbdf99bbeafc28f9f78a0f012fc1f8cf98a21716af307178893f66b004888"
+    },
+    {
+      "file": "80c085f1-0fa4-56e4-acce-f4ea15317905_lidar.bin",
+      "sha256": "016fd68726513eaf25f4bdabaa10c62c69c7072b2a4f59ef49f5fb132f810fe6"
+    },
+    {
+      "file": "80c085f1-0fa4-56e4-acce-f4ea15317905_labels.npz",
+      "sha256": "707be2bd8af80f1445919892de479daf5f051a1252419592bb2ad0fe2f960d8e"
+    },
+    {
+      "file": "80c085f1-0fa4-56e4-acce-f4ea15317905_radar.npz",
+      "sha256": "c7eb7f02a984532f1d63443186d54d09d33fab2c238b1d3257bbb7c1ed031315"
+    },
+    {
+      "file": "f610210d-7991-57ed-90da-17352e326ffb_lidar.bin",
+      "sha256": "bab301dd924b998850d7de66e68a378d6f2340281038cd1ed726ae8381b660fa"
+    },
+    {
+      "file": "f610210d-7991-57ed-90da-17352e326ffb_labels.npz",
+      "sha256": "28b009f51bd35eff78b61dfc18cf24a1c357751c2ce7a3b35bb98fe37cdfc908"
+    },
+    {
+      "file": "f610210d-7991-57ed-90da-17352e326ffb_radar.npz",
+      "sha256": "caefd9c89270291c5011dce7c667b76612cfe5d449cb1301f0ba4b56d346fea0"
+    },
+    {
+      "file": "paired-pilot/selection.json",
+      "sha256": "1584ebda7e6f11dbc5ad587b227a54c54d554c0e05089eb80119df729f255683"
+    },
+    {
+      "file": "paired-pilot/manifest.json",
+      "sha256": "8ee3c1f9e6844ebcbaa1cff0233b3d3b34cee159952543d413a570beaba003df"
+    },
+    {
+      "file": "paired-pilot/transforms.json",
+      "sha256": "286d565ac47ed1e36a80dd6ef5aa48667b75f0f905c3880b3cc951a21620cd8d"
+    },
+    {
+      "file": "paired-pilot/odometry.json",
+      "sha256": "0b6948f2c78fb971ae85cf18a3b22cfdd3116aec62f712ea2e6a7b02be8c7902"
+    },
+    {
+      "file": "extracted/calibrated_sensor.json",
+      "sha256": "42f1d2b53772912805d573d2204a6391eb956b482d249555d4a83baa09a7baf8"
+    }
+  ],
+  "grid": {
+    "shape": [
+      200,
+      200,
+      16
+    ],
+    "voxel_m": 0.4,
+    "minimum_m": [
+      -40,
+      -40,
+      -1
+    ]
+  },
+  "source_readme_revision": "4ba5f700ddeb709a0e645bdd5fda082b0561d282",
+  "source_readme_sha256": "9ad1bb0953775c7c18d7611da9d92ce23a607ce3de8806debedd4458d70a768c",
+  "lidar_transform": [
+    [
+      2.220446049250313e-16,
+      1.0,
+      0.0,
+      0.16
+    ],
+    [
+      -1.0,
+      2.220446049250313e-16,
+      -0.0,
+      0.12
+    ],
+    [
+      -0.0,
+      0.0,
+      1.0,
+      0.54
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "ros_to_export_bridge": [
+    [
+      0.9999996829318345,
+      0.0007963267107330972,
+      0.0,
+      0.16
+    ],
+    [
+      -0.0007963267107330971,
+      0.9999996829318346,
+      0.0,
+      0.12
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.54
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "radar_transforms": [
+    [
+      [
+        0.9999996829318345,
+        0.0007963267107330972,
+        0.0,
+        0.16
+      ],
+      [
+        -0.0007963267107330971,
+        0.9999996829318346,
+        0.0,
+        0.12
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.54
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    [
+      [
+        -0.49931444569933503,
+        -0.8664208471152837,
+        0.0,
+        0.16
+      ],
+      [
+        0.8664208471152838,
+        -0.49931444569933503,
+        0.0,
+        0.12
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.54
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    [
+      [
+        -0.5006937201216373,
+        0.8656245136493972,
+        0.0,
+        0.16
+      ],
+      [
+        -0.8656245136493973,
+        -0.5006937201216374,
+        0.0,
+        0.12
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.54
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  ],
+  "methods": "Reference voxel centers; Euclidean nearest return within tolerance. Native traversability classes plus local traversable-plane height proxies. Band is planar ego range, lower inclusive.",
+  "limitations": "One recording; repeated correlated voxels; LiDAR-derived reference; no occlusion mask or detector. Radar physical translations unverified: ROS TF rotations, zero translations, bridged to exported ego frame. Static/aligned/ROS-origin and angular-ROI sensitivities, not calibration validation. No holes or safe driving claim."
+}

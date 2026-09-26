@@ -1,0 +1,7 @@
+# Optional CPU-only STONE extraction and analysis, Python 3.11.
+# Install in a separate environment; no ROS installation or GPU stack required.
+apsw==3.53.4.0
+rosbags==0.11.5
+numpy==2.4.6
+scipy==1.17.1
+matplotlib==3.11.2
