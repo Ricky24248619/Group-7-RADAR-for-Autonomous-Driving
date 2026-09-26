@@ -17,6 +17,11 @@ that range? Reported by range band, never as one aggregate number.
 covers 190 matched sampled frames, with per-scene, timing, box-margin and track checks.
 LiDAR has stronger 200-400 m vehicle geometric support in these selected scenes; this is not detector accuracy.
 
+**Class and distance study (26 September):** [what is missing at short and long range?](docs/what-sensors-miss-by-range.md)
+breaks paired sensor support down by native object class, tests the same tracks near/far,
+and identifies timing-sensitive thin objects and an exception to the pooled LiDAR advantage.
+A separate diagnostic of ten saved GOOSE prediction frames examines terrain-label errors.
+
 **Detector next step:** [checkpoint compatibility decision](docs/detector-compatibility-decision.md)
 records downloaded weights, verified input ranges and the requirements for a valid learned-model comparison.
 

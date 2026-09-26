@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "owner": "Ricky Yuen",
+  "date": "2026-09-26",
+  "status": "success",
+  "task_type": "dataset-characterisation",
+  "environment": {
+    "os": "Windows",
+    "hardware": "CPU reanalysis; no new model inference",
+    "python": "3.11.9",
+    "packages": {
+      "numpy": "2.4.6",
+      "matplotlib": "3.11.2",
+      "PyYAML": "6.0.3"
+    }
+  },
+  "evidence": [
+    "docs/what-sensors-miss-by-range.md",
+    "docs/evidence/missing-support/verification.json",
+    "experiment-log/0021-what-sensors-miss-by-range.md",
+    "docs/evidence/missing-support/manifest.json",
+    "docs/evidence/missing-support/class_support.csv",
+    "docs/evidence/missing-support/matched_track_summary.csv"
+  ],
+  "id": "0024-truckscenes-class-range-support",
+  "title": "TruckScenes v1.2-mini missing support by native class and distance",
+  "dataset": "TruckScenes v1.2-mini",
+  "sensor_configuration": "Prior paired radar and combined LiDAR counts with per-point ego correction",
+  "annotation_schema": "Native oriented object boxes including native ego_trailer category; exact and +0.5 m face expansion",
+  "split": "389 paired frames, 25,117 object observations",
+  "modality": "fusion",
+  "commands": [
+    "python scripts/analyse_missing_support.py"
+  ],
+  "measurements": [
+    {
+      "name": "Object observations",
+      "value": 25117,
+      "scope": "389 paired frames, 25,117 object observations; repeated tracks, not independent trials"
+    }
+  ],
+  "notes": "Completed descriptive reanalysis, not detector accuracy. >=1 in-box return defines support. Native classes and datasets remain separate. Per-scene and equal-track paired-band results, timing and box-margin sensitivity are retained. Recorded radar boundary near 190 m limits interpretation of farther bands."
+}

@@ -1,0 +1,9 @@
+{
+  "class_cohorts": 590,
+  "support_partitions_and_class_aggregation": "pass",
+  "goose_frames": 10,
+  "goose_points": 1785024,
+  "goose_band_and_frame_totals": "pass",
+  "goose_original_log_accuracy_matches": "10/10 within original four decimal rounding",
+  "original_log_sha256": "f673363c8a7b6f8b7f33607b99586b9b427a31cfb4fef41deedf97553002acd9"
+}

@@ -2,6 +2,11 @@
 
 24 September 2026 · Group 7 · EXP-0017 · result 0020
 
+**26 September follow-up:** [class and distance analysis](what-sensors-miss-by-range.md)
+extends this study to short range and non-vehicle classes. It finds large thin-object
+timing sensitivity and a seven-passenger-track exception to the pooled advantage.
+The result below remains specific to its stated pooled vehicle cohort.
+
 ## Result to present
 
 **Of five selected TruckDrive mini scenes, four contained sampled vehicle annotations at 200-400 m. LiDAR provided in-box returns for a greater fraction of those vehicle observations than radar in every eligible scene under both timing variants.**
