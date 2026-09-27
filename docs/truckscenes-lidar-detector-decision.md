@@ -2,6 +2,13 @@
 
 25 September 2026 · EXP-0019 · result 0022
 
+**Update, 27 September 2026:** the full 80-sample scored run this doc's
+"Next action" called for is done — see
+[EXP-0024](../experiment-log/0024-truckscenes-lidar-full-split.md), result
+0029. mAP is 0.0000 across all 12 classes, diagnosed (not just reported) via
+a nearest-match distance check. This does not change the go decision below;
+it answers the "Fallback if a full run underperforms" section's scenario.
+
 **Go — with a different candidate than originally planned.** CenterPoint,
 informally flagged as the next step since EXP-0006, is a no-go on this
 machine. PointPillars, checked as a direct substitute, is verified runnable:
@@ -78,11 +85,14 @@ projection check) rather than just report the number.
 
 ## Next action
 
-1. Radar candidate feasibility check (AD-S3-1's other half of this bullet).
-2. If the team wants the full result: extend this minimal execution to all
-   80 `mini_val` samples and score with the devkit's evaluator, mirroring
-   EXP-0010's camera methodology exactly, so the two modalities are
-   comparable on the same split and metric.
+1. ~~Radar candidate feasibility check (AD-S3-1's other half of this
+   bullet).~~ Done — EXP-0020, result 0023, no-go (both candidates blocked).
+2. ~~If the team wants the full result: extend this minimal execution to
+   all 80 `mini_val` samples and score with the devkit's evaluator,
+   mirroring EXP-0010's camera methodology exactly.~~ Done — EXP-0024,
+   result 0029, mAP 0.0000, diagnosed. Remaining open thread: a per-class
+   match check (does a close spatial match also have the correct predicted
+   class?), flagged in EXP-0024 as not yet done.
 
 ## Reproduction
 

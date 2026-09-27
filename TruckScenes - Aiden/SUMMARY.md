@@ -27,6 +27,10 @@
   no-go for both candidates checked, each with a specific documented
   blocker, not a shrug. See `docs/ad-s3-1-detector-feasibility-summary.md`
   for the combined go/no-go note.
+- Extended PointPillars to the full 80-sample `mini_val` split, scored with
+  the devkit's evaluator (EXP-0024): mAP 0.0000 across all classes, real and
+  diagnosed via nearest-match distance, not a coordinate bug — see
+  `docs/truckscenes-lidar-detector-decision.md`'s 27 September update.
 
 ## Outcome
 
@@ -70,11 +74,13 @@ with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
 
 ## Current limits
 
-- No LiDAR or radar detection model has been run at full scale yet.
-  PointPillars is a verified-feasible LiDAR candidate (EXP-0019) but only a
-  one-sample minimal execution has been run, not the full 80-sample scored
-  benchmark. Radar remains blocked (EXP-0020) — no candidate cleared
-  checkpoint access + preprocessing verification within this check's scope.
+- LiDAR (PointPillars) has now been run and scored at full scale (EXP-0024,
+  all 80 `mini_val` samples, one LiDAR channel): mAP 0.0000 across all 12
+  classes, diagnosed via nearest-match distance rather than just reported.
+  Not yet done: a per-class match check (does a close spatial match also
+  have the correct predicted class?). Radar remains blocked (EXP-0020) — no
+  candidate cleared checkpoint access + preprocessing verification within
+  that check's scope.
 - The `traffic_cone` AP signal from EXP-0010 hasn't been diagnosed with the
   same rigor as the single-camera zero (no per-class distance analysis yet)
   — worth a quick follow-up before reading anything into it.
@@ -94,9 +100,9 @@ with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
   experiment on TruckScenes is camera + LiDAR, not three modalities —
   radar stays open pending a human unblocking the L-RadSet checkpoint
   outside this sandbox.
-- If the team wants the full LiDAR result: extend EXP-0019's minimal
-  execution to all 80 `mini_val` samples, scored with the devkit's
-  evaluator, mirroring EXP-0010's camera methodology.
+- A per-class match check on EXP-0024's LiDAR predictions: does a
+  close spatial match (as near as 0.41m in the pooled diagnostic) also
+  carry the correct predicted class? Not yet done.
 - Optionally re-run EXP-0006's nearest-match distance diagnostic on
   EXP-0010's predictions, broken down by class, to check whether the
   `traffic_cone` AP is a genuine near-range effect or noise.
