@@ -21,6 +21,12 @@
 - Audited metadata channel coverage and image-frustum visibility (EXP-0016,
   AD-S3-1). Added ground-truth overlays and recorded per-camera outcomes for
   a four-sample rerun. These checks do not establish metric box accuracy.
+- Checked LiDAR and radar detector feasibility on TruckScenes (EXP-0019,
+  EXP-0020, AD-S3-1). LiDAR: go (PointPillars, verified minimal execution,
+  after CenterPoint was ruled out — `spconv` has no Windows wheel). Radar:
+  no-go for both candidates checked, each with a specific documented
+  blocker, not a shrug. See `docs/ad-s3-1-detector-feasibility-summary.md`
+  for the combined go/no-go note.
 
 ## Outcome
 
@@ -64,9 +70,11 @@ with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
 
 ## Current limits
 
-- No LiDAR or radar detection model has been run. This machine has no
-  NVIDIA GPU, and the strongest published baseline (LiDAR CenterPoint) needs
-  `spconv`, which has no practical CPU path.
+- No LiDAR or radar detection model has been run at full scale yet.
+  PointPillars is a verified-feasible LiDAR candidate (EXP-0019) but only a
+  one-sample minimal execution has been run, not the full 80-sample scored
+  benchmark. Radar remains blocked (EXP-0020) — no candidate cleared
+  checkpoint access + preprocessing verification within this check's scope.
 - The `traffic_cone` AP signal from EXP-0010 hasn't been diagnosed with the
   same rigor as the single-camera zero (no per-class distance analysis yet)
   — worth a quick follow-up before reading anything into it.
@@ -81,15 +89,18 @@ with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
 
 ## Next stage
 
-- AD-S3-1's remaining bullets: time-boxed (≤2 hr each) feasibility checks
-  for one radar and one LiDAR detector candidate, then a go/no-go note.
+- AD-S3-1 is complete (all three bullets — see
+  `docs/ad-s3-1-detector-feasibility-summary.md`). The defensible final
+  experiment on TruckScenes is camera + LiDAR, not three modalities —
+  radar stays open pending a human unblocking the L-RadSet checkpoint
+  outside this sandbox.
+- If the team wants the full LiDAR result: extend EXP-0019's minimal
+  execution to all 80 `mini_val` samples, scored with the devkit's
+  evaluator, mirroring EXP-0010's camera methodology.
 - Optionally re-run EXP-0006's nearest-match distance diagnostic on
   EXP-0010's predictions, broken down by class, to check whether the
   `traffic_cone` AP is a genuine near-range effect or noise.
 - A controlled check to separate camera-height from scene-domain as the
   cause of the low score (EXP-0016 could not, and deliberately did not
   claim to).
-- Try the LiDAR path (CenterPoint, also nuScenes-pretrained) on a machine
-  with an NVIDIA GPU — it doesn't share FCOS3D's depth-estimation failure
-  mode and was the paper's strongest baseline.
 - Keep the shared TruckScenes survey aligned with verified results.
