@@ -1,0 +1,28 @@
+{
+  "prediction_sha256": "4bb681c0846fbb597d119b35ffecfdce0abbe7dc75a7abb7e53502dd17101918",
+  "samples": 80,
+  "boxes": 596,
+  "predicted_world_up_tilt_deg": {
+    "min": 54.60112364813243,
+    "median": 56.803800396794934,
+    "max": 58.204141162362426
+  },
+  "annotated_world_up_tilt_deg": {
+    "min": 0.0,
+    "median": 0.0,
+    "max": 1.2074182697257333e-06
+  },
+  "lidar_calibrations": [
+    {
+      "token": "f994daad50a14ac49f1468d66eb8db62",
+      "rotation_wxyz": [
+        0.8819862253948842,
+        0.003842179948389126,
+        0.4712567637354048,
+        0.0016119865264838775
+      ],
+      "tilt_deg": 56.233848433582246
+    }
+  ],
+  "conclusion": "Tilted native LiDAR is fed directly to an upright-box checkpoint. Saved boxes inherit roughly 56 degree world-up tilt. Rectification and rerun required; nearest-centre matches do not validate input frame or quantify causal score impact."
+}

@@ -1,5 +1,10 @@
 # Survey: STONE
 
+> **28 September:** [the environment follow-up](../stone-environments-followup.md)
+> now includes 60 sampled paired frames from farmland, lake and land recordings.
+> Extraction and CPU analysis work; the same unresolved physical radar translations
+> occur in all three bags. Conditional support is available, detector accuracy is not.
+
 > **26 September measured update:** a custom CPU extractor now reads selected ZIP
 > and ROS SQLite byte ranges. Twenty paired frames with LiDAR, all three radars
 > and actual 0.4 m terrain labels have been processed in [EXP-0023](../stone-paired-terrain-pilot.md).

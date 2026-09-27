@@ -9,6 +9,12 @@ autonomous trucking — running existing open-source models on public datasets,
 recording everything reproducibly, and handing over a documented body of work to
 a future team.
 
+**28 September:** [STONE across three recordings](docs/stone-environments-followup.md)
+now covers 60 frames, with calibration-sensitive ground/raised support retained.
+The [RADIATE fog pilot](docs/radiate-fog-pilot.md) adds a contrasting case where
+annotated vehicle regions have radar image contrast but few LiDAR returns.
+Neither result is detector accuracy or a universal sensor ranking.
+
 **Headline research question (D-04, pending confirmation with Fabian):** do
 current models fail beyond ~150 m, and does 4D radar degrade less than LiDAR at
 that range? Reported by range band, never as one aggregate number.
@@ -96,7 +102,7 @@ and Fariya/Kelsey (TruckDrive), per D-08. Confirm the next allocation at the cat
 | MAN **TruckScenes** (NeurIPS 2024) | Primary | Largest annotated 360° 4D-radar dataset; detection + tracking |
 | TORC **TruckDrive** (CVPR 2026) | Primary | Long-range (1000 m / 2D, 400 m / 3D); the D-04 dataset |
 | **GOOSE** (ICRA 2024) | Characterised; PTv3 partial at 10/961 frames; closeout proposed | Off-road terrain segmentation. Released assets used here do not support a paired labelled radar/LiDAR experiment |
-| **STONE** (ICRA 2026) | Reopened as a bounded research pilot, 26 Sep; historical D-06 retained | 20 paired frames processed on CPU; physical radar calibration remains unresolved |
+| **STONE** (ICRA 2026) | Reopened as a bounded research pilot; historical D-06 retained | 60 paired frames across three recordings; physical radar calibration remains unresolved |
 
 Surveys live in `docs/dataset-surveys/` — status, sensors, licence and fit
 assessment for each. Raw datasets are never committed (see `.gitignore`).

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "owner": "Ricky Yuen",
+  "date": "2026-09-28",
+  "status": "partial",
+  "task_type": "dataset-characterisation",
+  "environment": {
+    "os": "Windows",
+    "hardware": "CPU-only extraction and nearest-neighbour analysis; isolated F: environment",
+    "python": "3.11.9",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "matplotlib": "3.11.2",
+      "rosbags": "0.11.5",
+      "apsw": "3.53.4.0"
+    }
+  },
+  "evidence": [
+    "docs/stone-environments-followup.md",
+    "docs/evidence/stone-environments/comparison.csv",
+    "docs/evidence/stone-environments/lake/manifest.json",
+    "docs/evidence/stone-environments/land/manifest.json",
+    "experiment-log/0025-stone-other-recordings.md"
+  ],
+  "id": "0030-stone-three-recording-support",
+  "title": "STONE terrain support across farmland, lake and land; unresolved physical radar calibration",
+  "dataset": "STONE official ZIP and three ROS bags; 0.4 m released label grid",
+  "sensor_configuration": "Hesai LiDAR and three ARS548 radar detection-point streams; physical radar translations unresolved",
+  "annotation_schema": "LiDAR-derived 0.4 m traversability voxels; near-ground and raised groups use fitted local traversable planes",
+  "split": "60 uniformly sampled frames: 20 in each of three separately recorded sequences",
+  "modality": "fusion",
+  "commands": [
+    "python scripts/prepare_stone_pilot.py --root <STONE-root> --recording lake",
+    "python scripts/acquire_stone_pilot.py --root <STONE-root> --recording lake",
+    "python scripts/compare_stone_terrain.py --root <STONE-root> --recording lake",
+    "Repeat with --recording land",
+    "python scripts/summarise_stone_environments.py"
+  ],
+  "notes": "Adds two recordings to preserved farmland pilot. Lake and land show lower radar support near ground than raised under both origin conventions; farmland ordering remains origin-sensitive. LiDAR-derived reference, selective local-height eligibility, no occlusion mask or detector accuracy. Land is a source folder label, not verified construction-site semantics.",
+  "measurements": [
+    {
+      "name": "Paired frames",
+      "value": 60,
+      "scope": "20 per recording; correlated observations"
+    },
+    {
+      "name": "Valid LiDAR returns",
+      "value": 12257897,
+      "scope": "60 frames, before ROI"
+    },
+    {
+      "name": "Valid radar returns",
+      "value": 21095,
+      "scope": "All three radars, 60 frames, before ROI"
+    }
+  ],
+  "error": "A validated physical radar-to-ego calibration is unavailable; support values remain conditional.",
+  "blocker": "Released radar TF translations are zero and exported LiDAR calibration uses a different origin. No occlusion mask or independently labelled obstacle instances.",
+  "attempted_fixes": [
+    "Decoded all transforms in two additional bags and compared them to farmland; same zero translations.",
+    "Repeated angular, temporal, tolerance and origin sensitivities independently for each recording.",
+    "Refreshed official repository; no new physical radar calibration file found."
+  ],
+  "recommendation": "Resolve radar mounting calibration and shared visibility before a stronger ground-versus-raised claim; then repeat across independent recordings."
+}

@@ -12,6 +12,7 @@ import numpy as np
 from scipy.spatial import cKDTree
 from scipy.spatial.transform import Rotation, Slerp
 from compare_truckscenes_raw import write_csv
+from prepare_stone_pilot import RECORDINGS,recording_root
 
 BANDS=((2,10),(10,20),(20,30),(30,40))
 TOLERANCES=(.4,.8,1.2)
@@ -62,8 +63,11 @@ def angular_roi(points,sensors,elevation=10):
 
 
 def main():
-    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--root',type=Path,required=True);ap.add_argument('--output-dir',type=Path,default=Path('docs/evidence/stone-pilot'));args=ap.parse_args()
-    root=args.root;p=root/'paired-pilot';out=args.output_dir;out.mkdir(parents=True,exist_ok=True)
+    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--root',type=Path,required=True);ap.add_argument('--output-dir',type=Path)
+    ap.add_argument('--recording',choices=RECORDINGS,default='farmland');args=ap.parse_args()
+    root=args.root;p=recording_root(root,args.recording)/'paired-pilot'
+    out=args.output_dir or (Path('docs/evidence/stone-pilot') if args.recording=='farmland' else Path('docs/evidence/stone-environments')/args.recording)
+    out.mkdir(parents=True,exist_ok=True)
     selection=json.loads((p/'selection.json').read_text());acq=json.loads((p/'manifest.json').read_text())
     if len(selection)!=acq['frames'] or len({s['token'] for s in selection})!=len(selection):raise ValueError('Invalid selection')
     for f in acq['files']:
@@ -132,7 +136,7 @@ def main():
     plot_summary(summaries,out,len(selection))
     for path in [p/'selection.json',p/'manifest.json',p/'transforms.json',p/'odometry.json',root/'extracted/calibrated_sensor.json']:
         inputs.append(dict(file=path.relative_to(root).as_posix(),sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
-    manifest=dict(frames=len(selection),source_ids=acq['source_ids'],inputs=inputs,grid=dict(shape=[200,200,16],voxel_m=.4,minimum_m=[-40,-40,-1]),
+    manifest=dict(frames=len(selection),recording=args.recording,source_ids=acq['source_ids'],inputs=inputs,grid=dict(shape=[200,200,16],voxel_m=.4,minimum_m=[-40,-40,-1]),
         source_readme_revision='4ba5f700ddeb709a0e645bdd5fda082b0561d282',source_readme_sha256=hashlib.sha256((root/'acquisition/README-pinned.md').read_bytes()).hexdigest(),
         lidar_transform=lidar_t.tolist(),ros_to_export_bridge=bridge.tolist(),radar_transforms=[t.tolist() for t in radar_t],
         methods='Reference voxel centers; Euclidean nearest return within tolerance. Native traversability classes plus local traversable-plane height proxies. Band is planar ego range, lower inclusive.',

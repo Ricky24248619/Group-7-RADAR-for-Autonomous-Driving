@@ -1,0 +1,419 @@
+{
+  "frames": 20,
+  "recording": "land",
+  "source_ids": {
+    "zip": "1LdzE-BqZeEr2Vc9_z1CfiY5IjdqvX_CN",
+    "bag": "1mI_zW9H6W0qlXBN9ROKGH_DerLmplgoL"
+  },
+  "inputs": [
+    {
+      "file": "29ec7b00-f07b-5ac5-b295-42115708e936_lidar.bin",
+      "sha256": "225d2d2db54fac2e3b744e7db0fe2718b34d2363b414363dbb5c25874a7c78de"
+    },
+    {
+      "file": "29ec7b00-f07b-5ac5-b295-42115708e936_labels.npz",
+      "sha256": "18a2b2e6c94887facb83edc8967fdae24a0dd0cfbbd06b8cd42a65a66382b47c"
+    },
+    {
+      "file": "29ec7b00-f07b-5ac5-b295-42115708e936_radar.npz",
+      "sha256": "ed1c6e145b69dcbd0cf4250b46859ca377e50ed273f4220c22a6c66f1dc674bc"
+    },
+    {
+      "file": "51994dd3-6e72-510d-925a-1d475d998f95_lidar.bin",
+      "sha256": "61e51e3ab5d765b808370e8de8af4fdfaeb7f7ea43e68da47950762a01344e63"
+    },
+    {
+      "file": "51994dd3-6e72-510d-925a-1d475d998f95_labels.npz",
+      "sha256": "6558a86de42f71d12e41990927efa6dd9fcabfe6bd8fc99cf724f1be4c7af0e6"
+    },
+    {
+      "file": "51994dd3-6e72-510d-925a-1d475d998f95_radar.npz",
+      "sha256": "59ae2856b38db1598b206f4cc3a8a9f8d3242ed0f1b5c3c1d0e1682ab7ec2e40"
+    },
+    {
+      "file": "79e43b11-f541-5839-bef9-4058534850b5_lidar.bin",
+      "sha256": "18b1375b75d9afa60e06c114f233b0dcd5e83f95294d02e5fb7e5490819bdccd"
+    },
+    {
+      "file": "79e43b11-f541-5839-bef9-4058534850b5_labels.npz",
+      "sha256": "fd0d14462c69304fd4bd6c23030fc6c2b8a97f64606182e74a2da224a81dce61"
+    },
+    {
+      "file": "79e43b11-f541-5839-bef9-4058534850b5_radar.npz",
+      "sha256": "c3a4af4c655bf4386ce7f5e2b8baef6552c9f8751340a47dc67eea52d60d5d64"
+    },
+    {
+      "file": "95066f88-31ed-5f3f-b7a2-c4b00bdd5e40_lidar.bin",
+      "sha256": "86da63b79f19626b044ed766933d147e45e9cb34aa4b433a80e732a177380ffc"
+    },
+    {
+      "file": "95066f88-31ed-5f3f-b7a2-c4b00bdd5e40_labels.npz",
+      "sha256": "e3f1552fa5420b5ead845967920170b5aa9fd8f62d66b3df0bc7fa567efb6aed"
+    },
+    {
+      "file": "95066f88-31ed-5f3f-b7a2-c4b00bdd5e40_radar.npz",
+      "sha256": "30a4328f5de65e205249d4c34a05e68f16a02c081172858c233fa35e6f297a9b"
+    },
+    {
+      "file": "1c23250b-8d99-5698-9831-85d8367d1bde_lidar.bin",
+      "sha256": "1224c8962b3621ecaf060887d717c167f66703cba3b3b94e7862adfaf567ca8e"
+    },
+    {
+      "file": "1c23250b-8d99-5698-9831-85d8367d1bde_labels.npz",
+      "sha256": "d617bd15cafdab3b6e80398487e3aec80a95cf2b93aab72afa1381f9f481755e"
+    },
+    {
+      "file": "1c23250b-8d99-5698-9831-85d8367d1bde_radar.npz",
+      "sha256": "de8b749c5f720029d01040819c71c4932cf4435aed8139afa0b01e17cf3b80de"
+    },
+    {
+      "file": "61475eca-2e0d-5ab9-9733-665aa35a358a_lidar.bin",
+      "sha256": "3045d9d0e5ad4d449836a275a52cb62632a3292396c26de13a5c86b37f0df676"
+    },
+    {
+      "file": "61475eca-2e0d-5ab9-9733-665aa35a358a_labels.npz",
+      "sha256": "dc86cd17bd9c76150718027d2f36d57783a63250632599a83a09f45aedd3541f"
+    },
+    {
+      "file": "61475eca-2e0d-5ab9-9733-665aa35a358a_radar.npz",
+      "sha256": "bb36975435330e1f3cf7600a52261e8a00be6cc14160c233acfdd363c2bda571"
+    },
+    {
+      "file": "54411744-ed31-52aa-a7f5-4d2f6de5baf1_lidar.bin",
+      "sha256": "a89f8fb0c55bb47142568681b981a4605645458fb1beff02a6fc362430d7aa98"
+    },
+    {
+      "file": "54411744-ed31-52aa-a7f5-4d2f6de5baf1_labels.npz",
+      "sha256": "dc545b612fcc9d4059932eab6f67ccc223cd03714721269f369bde210fcfd07b"
+    },
+    {
+      "file": "54411744-ed31-52aa-a7f5-4d2f6de5baf1_radar.npz",
+      "sha256": "4379abca2af123c4c0dd578cc701449b6af5b1bfc5ba2940ec34946a1674ba47"
+    },
+    {
+      "file": "c60fa7ac-9f29-554b-9926-fb3ced0f720f_lidar.bin",
+      "sha256": "b887f3b8473515baee072df3ee5145375b5e2efef55241b1375db76ee83f6127"
+    },
+    {
+      "file": "c60fa7ac-9f29-554b-9926-fb3ced0f720f_labels.npz",
+      "sha256": "0cd47d9af7dccee03a6e469c2bf9e44dfd1c080f5c9a3a8268706693691c1c15"
+    },
+    {
+      "file": "c60fa7ac-9f29-554b-9926-fb3ced0f720f_radar.npz",
+      "sha256": "49bd2c13406eb1978727790d8478656d403990d96da9bc99b9b8960d2256b4d4"
+    },
+    {
+      "file": "921a3fb4-7181-55ab-b7c8-f9386b43415b_lidar.bin",
+      "sha256": "3f68f212de13cf6757ccc0d0cb12010b2acc52359bb9272a3e5648c46baf64ef"
+    },
+    {
+      "file": "921a3fb4-7181-55ab-b7c8-f9386b43415b_labels.npz",
+      "sha256": "a568be1894d6bba31474ed18d898327dbd743d66522f91f680d6c04dbddeca64"
+    },
+    {
+      "file": "921a3fb4-7181-55ab-b7c8-f9386b43415b_radar.npz",
+      "sha256": "d052fec761588d7af411c6ae66137a97ec5fb82172fdc11afe9bb50753e02ea0"
+    },
+    {
+      "file": "1f79acb0-3e91-5ed5-afd9-d5654cf45089_lidar.bin",
+      "sha256": "b2ba38a4e02dad987efa6551dffd1b633e31f163dcf49d3ce47498815039889c"
+    },
+    {
+      "file": "1f79acb0-3e91-5ed5-afd9-d5654cf45089_labels.npz",
+      "sha256": "e8f0aaa70afb394c3405a4abef009eb33c368509170564475c970ccfdc0cefeb"
+    },
+    {
+      "file": "1f79acb0-3e91-5ed5-afd9-d5654cf45089_radar.npz",
+      "sha256": "e9ef21005ef5f619cad500c2fbdd67d56c9abb2e2d725847dd442b63d3122054"
+    },
+    {
+      "file": "91de5c20-5c47-523a-ae79-4e8329451b30_lidar.bin",
+      "sha256": "3298026e39e468ebbd01b6c4ae072aecfe1b4f4a859f446228fd17ef84d926ee"
+    },
+    {
+      "file": "91de5c20-5c47-523a-ae79-4e8329451b30_labels.npz",
+      "sha256": "7120506a3d748e8c77cb4da808a00c254f7b28f80371d9ce33ba71765e5ec6f1"
+    },
+    {
+      "file": "91de5c20-5c47-523a-ae79-4e8329451b30_radar.npz",
+      "sha256": "9989001c9674ed00e7ea2172a9615d92cf65c9cf782aa9a3ad54cd25f0d5dd99"
+    },
+    {
+      "file": "c44b6b3e-aeab-5a8f-9bb6-b8b9cb41b65d_lidar.bin",
+      "sha256": "5e4852fefa0320d551c2892f16b2726d7460abcb8f0a90b89aa18a8cd9add0e3"
+    },
+    {
+      "file": "c44b6b3e-aeab-5a8f-9bb6-b8b9cb41b65d_labels.npz",
+      "sha256": "70536bc780781ad09bcc3b53e897443a769021a67b74150f8926f8332d283188"
+    },
+    {
+      "file": "c44b6b3e-aeab-5a8f-9bb6-b8b9cb41b65d_radar.npz",
+      "sha256": "f60bfa78a4a0b3a15e48d76f0c5cfccdab1ffb9599f3e1f6c0e4d8914a045f75"
+    },
+    {
+      "file": "7d1bb91a-a999-5260-a601-a4504c271edf_lidar.bin",
+      "sha256": "4ca8d8d10c5edb8ac159c05e5a3323240fb72049974615da29f89876d0862b9d"
+    },
+    {
+      "file": "7d1bb91a-a999-5260-a601-a4504c271edf_labels.npz",
+      "sha256": "da668f9f57d3575a4102b5735558fd467a1cb525646d85c9a669d315e3efe366"
+    },
+    {
+      "file": "7d1bb91a-a999-5260-a601-a4504c271edf_radar.npz",
+      "sha256": "b182b3f6af929669a82989630313cd5183e55264b91f42c5f44535773eb585a6"
+    },
+    {
+      "file": "8e3bfc30-11ec-5437-b2e4-56b598a0f09d_lidar.bin",
+      "sha256": "42615e4614b8923ca262b7322f282b155e43ccb388d9813f5c171208467ceca2"
+    },
+    {
+      "file": "8e3bfc30-11ec-5437-b2e4-56b598a0f09d_labels.npz",
+      "sha256": "929851ae1e7c3a2aa55900e4970a48eef73acec10158b86f5b9e4249a531cacf"
+    },
+    {
+      "file": "8e3bfc30-11ec-5437-b2e4-56b598a0f09d_radar.npz",
+      "sha256": "5b9f44dd9849c217e1e5b96d237df0491e7deba09b3a4e7fcb36fdfa6313cc46"
+    },
+    {
+      "file": "a963154b-efda-5817-a7b1-a7c2db53885b_lidar.bin",
+      "sha256": "54dfe003e3140da421e4ed4e1b07f8b7de1bda3b30f83899094e2e3e1651048a"
+    },
+    {
+      "file": "a963154b-efda-5817-a7b1-a7c2db53885b_labels.npz",
+      "sha256": "75f47d0b4b0ae913e80ea6098128481231d9552a767376fcb861ce6ea3af031c"
+    },
+    {
+      "file": "a963154b-efda-5817-a7b1-a7c2db53885b_radar.npz",
+      "sha256": "908c695e46ce2e227b94b0fa785275d6f71c02ecff17f1b2fd9952cd7e4cfa58"
+    },
+    {
+      "file": "4bee8254-4de1-5800-b929-588ef0e0c4f0_lidar.bin",
+      "sha256": "c3518393b7b29c7d58c0a415610504d6e23f2c6985ee8f92582ec330cbe11b77"
+    },
+    {
+      "file": "4bee8254-4de1-5800-b929-588ef0e0c4f0_labels.npz",
+      "sha256": "debf04f8c4b6d41a5ab0594c96d033f6285c3bcdbdc123c7197cd957f71160e9"
+    },
+    {
+      "file": "4bee8254-4de1-5800-b929-588ef0e0c4f0_radar.npz",
+      "sha256": "0479ef51071610dfa33895a402a2d59ccc89eaf4a6d22c53e3232da3bd3e7c1f"
+    },
+    {
+      "file": "182a5517-c4b9-5eaa-aa3a-ec584d63a1be_lidar.bin",
+      "sha256": "191a412e127017df9594736ef62359c15b2445962db4061d534198d05f919749"
+    },
+    {
+      "file": "182a5517-c4b9-5eaa-aa3a-ec584d63a1be_labels.npz",
+      "sha256": "47bba12b758c832c4fa138dffaaf63a79d95fd9300287aac27fd9ee8846b725c"
+    },
+    {
+      "file": "182a5517-c4b9-5eaa-aa3a-ec584d63a1be_radar.npz",
+      "sha256": "30ca729f1dabe158a18241de739fd7417852aa845c8184790d24aa693bbbeca1"
+    },
+    {
+      "file": "30c868e3-7494-56b7-95d4-cfa11fc599fe_lidar.bin",
+      "sha256": "240caeba6640daeb2b7f130c17beb7aa905028736b919a4177e1c031720c2a22"
+    },
+    {
+      "file": "30c868e3-7494-56b7-95d4-cfa11fc599fe_labels.npz",
+      "sha256": "cc63d0f617e3a7d79addbaab402b7d26011603c5f18ee445264e48c56672d27a"
+    },
+    {
+      "file": "30c868e3-7494-56b7-95d4-cfa11fc599fe_radar.npz",
+      "sha256": "aa03983d4b09e6dd6ba70b4184a800c0dff43df0550142ec29c06859669e6f73"
+    },
+    {
+      "file": "ee588422-6066-516a-b730-cf9d7242a14b_lidar.bin",
+      "sha256": "b1558dc7f7b597817cf9ebddd7fdb84fc4a243fdaad2ca0b063a2f7e2e64e270"
+    },
+    {
+      "file": "ee588422-6066-516a-b730-cf9d7242a14b_labels.npz",
+      "sha256": "cfa98e396f223b438b6a33bbaef6e5401dce6915749d70f1800ed4cd9d821ece"
+    },
+    {
+      "file": "ee588422-6066-516a-b730-cf9d7242a14b_radar.npz",
+      "sha256": "b18253f15461b10ac83bf141110107d7e4c80cb27dd5d96cc5327ecc7b4c32f8"
+    },
+    {
+      "file": "816fc129-76c3-5662-b6b7-ed59ca304d81_lidar.bin",
+      "sha256": "c1a38c93088bcdd5a435572558910c6f0163e882ace36755ce8d9ee577b49e88"
+    },
+    {
+      "file": "816fc129-76c3-5662-b6b7-ed59ca304d81_labels.npz",
+      "sha256": "eaf35a1eef99810e2ba5e83f3a9315521867f93ec3d807f66ba378f977f3cb99"
+    },
+    {
+      "file": "816fc129-76c3-5662-b6b7-ed59ca304d81_radar.npz",
+      "sha256": "cd7af7ec596bf221415de4794ac09840294b4a13d141c052e6a872842ab421d1"
+    },
+    {
+      "file": "recordings/land/paired-pilot/selection.json",
+      "sha256": "f3506e5989b283debed4953e8bcaa973d3d0f3d5b67bdf9957b20428900fe550"
+    },
+    {
+      "file": "recordings/land/paired-pilot/manifest.json",
+      "sha256": "9e728f3f2e1287d900267096df755e46cd3e2f2690b6b83f53afb4fbeee23c9d"
+    },
+    {
+      "file": "recordings/land/paired-pilot/transforms.json",
+      "sha256": "582a524afd50852448af9452061598768e0a34b1b008a962aba34839b75f5677"
+    },
+    {
+      "file": "recordings/land/paired-pilot/odometry.json",
+      "sha256": "f4f3869eb88bf6d4f197f9bb00894c2f394b3a557709021522e5b5b18bc58ae1"
+    },
+    {
+      "file": "extracted/calibrated_sensor.json",
+      "sha256": "42f1d2b53772912805d573d2204a6391eb956b482d249555d4a83baa09a7baf8"
+    }
+  ],
+  "grid": {
+    "shape": [
+      200,
+      200,
+      16
+    ],
+    "voxel_m": 0.4,
+    "minimum_m": [
+      -40,
+      -40,
+      -1
+    ]
+  },
+  "source_readme_revision": "4ba5f700ddeb709a0e645bdd5fda082b0561d282",
+  "source_readme_sha256": "9ad1bb0953775c7c18d7611da9d92ce23a607ce3de8806debedd4458d70a768c",
+  "lidar_transform": [
+    [
+      2.220446049250313e-16,
+      1.0,
+      0.0,
+      0.16
+    ],
+    [
+      -1.0,
+      2.220446049250313e-16,
+      -0.0,
+      0.12
+    ],
+    [
+      -0.0,
+      0.0,
+      1.0,
+      0.54
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "ros_to_export_bridge": [
+    [
+      0.9999996829318345,
+      0.0007963267107330972,
+      0.0,
+      0.16
+    ],
+    [
+      -0.0007963267107330971,
+      0.9999996829318346,
+      0.0,
+      0.12
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.54
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "radar_transforms": [
+    [
+      [
+        0.9999996829318345,
+        0.0007963267107330972,
+        0.0,
+        0.16
+      ],
+      [
+        -0.0007963267107330971,
+        0.9999996829318346,
+        0.0,
+        0.12
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.54
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    [
+      [
+        -0.49931444569933503,
+        -0.8664208471152837,
+        0.0,
+        0.16
+      ],
+      [
+        0.8664208471152838,
+        -0.49931444569933503,
+        0.0,
+        0.12
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.54
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    [
+      [
+        -0.5006937201216373,
+        0.8656245136493972,
+        0.0,
+        0.16
+      ],
+      [
+        -0.8656245136493973,
+        -0.5006937201216374,
+        0.0,
+        0.12
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.54
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ]
+  ],
+  "methods": "Reference voxel centers; Euclidean nearest return within tolerance. Native traversability classes plus local traversable-plane height proxies. Band is planar ego range, lower inclusive.",
+  "limitations": "One recording; repeated correlated voxels; LiDAR-derived reference; no occlusion mask or detector. Radar physical translations unverified: ROS TF rotations, zero translations, bridged to exported ego frame. Static/aligned/ROS-origin and angular-ROI sensitivities, not calibration validation. No holes or safe driving claim."
+}
