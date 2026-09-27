@@ -2,6 +2,10 @@
 
 26 September 2026 · EXP-0023 · result 0028 · **conditional pilot, not a detector benchmark**
 
+**28 September follow-up:** [two additional recordings](stone-environments-followup.md)
+extend this preserved farmland result to 60 sampled frames. Calibration remains
+unresolved; the [RADIATE fog pilot](radiate-fog-pilot.md) adds a separate weather case.
+
 ## What we can tell the client
 
 We now have a working CPU pipeline for paired off-road radar and LiDAR, with

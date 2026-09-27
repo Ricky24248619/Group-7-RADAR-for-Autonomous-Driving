@@ -1,5 +1,11 @@
 # Additional datasets for useful radar/LiDAR comparisons
 
+**28 September progress:** STONE now has [60 sampled frames across three
+recordings](stone-environments-followup.md). RADIATE's public fog sample has been
+[downloaded and analysed](radiate-fog-pilot.md): 17 matched frames, 39 vehicle
+observations. The table below preserves the earlier 26 September shortlist;
+those two download/analysis statuses have advanced. CORD access remains unverified.
+
 Primary sources checked 26 September 2026. “Candidate” is not a downloaded or
 validated benchmark. We prioritize references that answer a distinct question,
 rather than adding large downloads with no matching labels.

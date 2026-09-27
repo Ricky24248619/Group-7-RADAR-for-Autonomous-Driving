@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "owner": "Ricky Yuen",
+  "date": "2026-09-28",
+  "status": "success",
+  "task_type": "dataset-characterisation",
+  "environment": {
+    "os": "Windows",
+    "hardware": "CPU-only extraction and nearest-neighbour analysis; isolated F: environment",
+    "python": "3.11.9",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "matplotlib": "3.11.2",
+      "rosbags": "0.11.5",
+      "apsw": "3.53.4.0"
+    }
+  },
+  "evidence": [
+    "docs/radiate-fog-pilot.md",
+    "docs/evidence/radiate-fog/manifest.json",
+    "docs/evidence/radiate-fog/summary.csv",
+    "docs/evidence/radiate-fog/observations.csv",
+    "docs/evidence/radiate-fog/unlabelled_controls.csv",
+    "experiment-log/0026-radiate-fog-pilot.md"
+  ],
+  "id": "0031-radiate-public-fog-diagnostic",
+  "title": "RADIATE fog vehicle-footprint LiDAR support and radar contrast diagnostic",
+  "dataset": "RADIATE public tiny_foggy.zip, fog_6_0 v1.0",
+  "sensor_configuration": "Navtech 2D radar Cartesian images and nearest Velodyne HDL-32e LiDAR; static published calibration, <=50 ms timing gate",
+  "annotation_schema": "Radar-annotated rotated BEV vehicle footprints; no terrain or 3D height labels",
+  "split": "17 paired frames of 18 available; 39 observations, four tracks, one approximately four-second fog recording",
+  "modality": "fusion",
+  "commands": [
+    "python scripts/analyse_radiate_fog.py --root <RADIATE-root>"
+  ],
+  "notes": "Descriptive evidence, not detection recall or sensor accuracy. Radar-derived labels favour radar-visible targets; no clear-weather control. Radar image contrast and LiDAR return counts are different measures. Includes 1 m footprint, neighbouring LiDAR scans, stricter contrast thresholds and unlabelled rotated controls; controls are not verified negatives.",
+  "measurements": [
+    {
+      "name": "Paired frames",
+      "value": 17,
+      "scope": "One public fog sequence; one timing exclusion"
+    },
+    {
+      "name": "50-75 m footprint observations",
+      "value": 19,
+      "scope": "Three repeated tracks"
+    },
+    {
+      "name": "50-75 m exact footprints with above-ground LiDAR",
+      "value": 0,
+      "scope": "Of 19; native z > -1.5 m proxy"
+    },
+    {
+      "name": "50-75 m footprints with strict radar contrast",
+      "value": 9,
+      "scope": "Of 19; target p99 > surrounding ring p99 +20 and >=5 bright pixels; not detector recall"
+    }
+  ]
+}

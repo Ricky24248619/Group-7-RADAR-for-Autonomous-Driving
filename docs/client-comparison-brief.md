@@ -1,5 +1,12 @@
 # Radar and LiDAR: what our TruckScenes experiment shows
 
+**28 September:** [STONE environment follow-up](stone-environments-followup.md)
+adds lake/land to farmland (60 sampled frames total). [RADIATE in fog](radiate-fog-pilot.md)
+provides a contrasting case: at 50–75 m, 9/19 annotated observations retain
+strict radar image contrast while their exact footprints have no above-ground
+LiDAR returns. This is a short radar-annotated case study, not detector accuracy
+or a controlled estimate of fog's effect.
+
 **26 September off-road extension:** [STONE paired terrain pilot](stone-paired-terrain-pilot.md)
 adds measured ground/raised-geometry support from 20 radar/LiDAR frames. It exposes
 a radar-calibration ambiguity that must be resolved before a firm terrain ranking.

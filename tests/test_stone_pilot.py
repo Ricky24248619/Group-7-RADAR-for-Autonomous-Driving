@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import sys
 import tempfile
+import sqlite3
 from types import SimpleNamespace as NS
 import unittest
 from unittest.mock import patch
@@ -13,7 +14,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 from stone_remote import RemoteFile
 from acquire_stone_pilot import stamp_ns, xyz_cloud
-from prepare_stone_pilot import DownloadForm
+from prepare_stone_pilot import DownloadForm,inspect_layout,recording_root
 try:
     from compare_stone_terrain import reference_groups, matrix, transform, angular_roi
     GEOMETRY = True
@@ -24,6 +25,19 @@ except ModuleNotFoundError as error:
 
 
 class RemoteTests(unittest.TestCase):
+    def test_recording_paths_do_not_overwrite_original_pilot(self):
+        root=Path('data')
+        self.assertEqual(recording_root(root,'farmland'),root)
+        self.assertEqual(recording_root(root,'lake'),root/'recordings/lake')
+
+    def test_release_layout_checks_topic_boundaries(self):
+        connection=sqlite3.connect(':memory:')
+        connection.executescript('CREATE TABLE topics(id INTEGER,name TEXT); CREATE TABLE messages(id INTEGER,topic_id INTEGER,timestamp INTEGER); INSERT INTO topics VALUES(1,"a"),(2,"b"); INSERT INTO messages VALUES(1,1,100),(2,1,200),(3,2,100);')
+        layout=inspect_layout(connection,{'a':2,'b':1})
+        self.assertEqual((layout[0]['start'],layout[0]['end']),(1,2))
+        connection.execute('UPDATE messages SET topic_id=2 WHERE id=2')
+        with self.assertRaisesRegex(ValueError,'layout'):inspect_layout(connection,{'a':2,'b':1})
+        connection.close()
     def test_ranges_cache_integrity_and_eof(self):
         payload = b'abcdefghij'
         def open_range(request, timeout):
@@ -84,7 +98,11 @@ class CloudTests(unittest.TestCase):
 
 class EvidenceTests(unittest.TestCase):
     def test_committed_counts_partition_and_reaggregate(self):
-        root=Path(__file__).resolve().parents[1]/'docs/evidence/stone-pilot'
+        evidence=Path(__file__).resolve().parents[1]/'docs/evidence'
+        for folder in ('stone-pilot','stone-environments/lake','stone-environments/land'):
+            with self.subTest(recording=folder):self.check_cohorts(evidence/folder)
+
+    def check_cohorts(self,root):
         with (root/'support_by_frame.csv').open(newline='') as file:
             rows=list(csv.DictReader(file))
         aggregated=defaultdict(lambda: [0,0,0,0])
@@ -110,6 +128,11 @@ class EvidenceTests(unittest.TestCase):
 
 @unittest.skipUnless(GEOMETRY, 'Optional STONE scipy dependency')
 class GeometryTests(unittest.TestCase):
+    def test_upright_box_audit_detects_mounting_pitch(self):
+        from audit_pointpillars_tilt import tilt
+        self.assertAlmostEqual(tilt([1,0,0,0]),0)
+        self.assertAlmostEqual(tilt([np.cos(np.pi/6),0,np.sin(np.pi/6),0]),60)
+
     def test_collinear_ground_cannot_determine_a_plane(self):
         labels=np.full((200,200,16),255,np.uint8)
         labels[94:107,100,8]=1

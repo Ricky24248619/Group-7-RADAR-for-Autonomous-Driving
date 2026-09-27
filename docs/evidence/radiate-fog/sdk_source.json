@@ -1,0 +1,13 @@
+{
+  "revision": "b1d5de559784b3aa57bea99b00c13d495d79e846",
+  "files": {
+    "radiate.py": "64d1e96adc08d21c88c513e537e4d377e6dbc4730b44349284a8f3115ff9f753",
+    "config/config.yaml": "a4010e969da2a86e840e1fcd4466bc2edc5cc69a9dac07ac94997297a49dc272",
+    "config/default-calib.yaml": "7eea01b54a7cc0543a04c1d10937bdf2b2218de5b639c678b5f82730bfce1533",
+    "utils/calibration.py": "038276812d18356805b472a0f6af3ee172b125836be774bcb66ce0e1abf80d4c"
+  },
+  "sources": [
+    "https://github.com/marcelsheeny/radiate_sdk",
+    "https://pro.hw.ac.uk/radiate/doc/dataset/"
+  ]
+}
