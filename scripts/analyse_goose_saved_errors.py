@@ -25,12 +25,26 @@ def confusion(truth,prediction):
     return np.bincount(truth.astype(int)*8+prediction.astype(int),minlength=64).reshape(8,8)
 
 
+def verify_selection(selection, inputs, points):
+    """A planned subset is complete only when every selected input is scored."""
+    planned={r['frame']:r for r in selection['inputs']}
+    actual={r['frame']:r for r in inputs}
+    if (len(planned)!=len(selection['inputs']) or len(actual)!=len(inputs) or
+        planned.keys()!=actual.keys() or len(inputs)!=selection['frames'] or
+        points!=selection['points']):
+        raise ValueError('Prediction set does not match planned selection')
+    for name,entry in planned.items():
+        if any(actual[name]['sha256'][k]!=v for k,v in entry['sha256'].items()):
+            raise ValueError('Selected input hash changed')
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root',required=True,type=Path)
     parser.add_argument('--predictions',required=True,type=Path)
     parser.add_argument('--mapping',required=True,type=Path)
     parser.add_argument('--output-dir',type=Path,default=Path('docs/evidence/missing-support/goose-saved'))
+    parser.add_argument('--selection',type=Path,help='Pre-inference selection manifest; require all selected predictions')
     args=parser.parse_args()
     with args.mapping.open(encoding='utf-8-sig') as f: mapping={int(r['label_key']):r for r in csv.DictReader(f)}
     remap=np.full(max(mapping)+1,-1,dtype=int)
@@ -64,6 +78,9 @@ def main():
         frame_rows.append(dict(frame=name,scenario=scan.parent.name,points=len(points),correct=int(matrix.trace()),accuracy_percent=100*matrix.trace()/matrix.sum()))
         manifest.append(dict(frame=name,sha256={key:hashlib.sha256(p.read_bytes()).hexdigest() for key,p in [('scan',scan),('label',label),('challenge_label',challenge),('prediction',path)]}))
     if not manifest:raise ValueError('No saved predictions')
+    point_total=sum(r['points'] for r in frame_rows)
+    if args.selection:
+        verify_selection(json.loads(args.selection.read_text()),manifest,point_total)
     errors=[];summary=[];raw_rows=[]
     for band,m in matrices.items():
         if not m.sum():continue
@@ -78,9 +95,11 @@ def main():
             most_common_wrong_prediction=NAMES[int(wrong.argmax())] if wrong.sum() else '',most_common_wrong_points=int(wrong.max())))
     args.output_dir.mkdir(parents=True,exist_ok=True)
     for name,rows in [('range_accuracy',summary),('confusion',errors),('raw_class_errors',raw_rows),('frame_accuracy',frame_rows)]:write_csv(args.output_dir/(name+'.csv'),rows)
-    (args.output_dir/'manifest.json').write_text(json.dumps(dict(frames=len(manifest),points=sum(r['points'] for r in frame_rows),
+    (args.output_dir/'manifest.json').write_text(json.dumps(dict(frames=len(manifest),points=point_total,
         scenarios=sorted({r['scenario'] for r in frame_rows}),classes=NAMES,mapping_sha256=hashlib.sha256(args.mapping.read_bytes()).hexdigest(),
-        inputs=manifest,scope='Previously saved consecutive partial-run frames, not a representative validation benchmark. Eight coarse model classes, sky mapped to other. No new inference or radar comparison.'),indent=2)+'\n')
+        inputs=manifest,selection_sha256=hashlib.sha256(args.selection.read_bytes()).hexdigest() if args.selection else None,
+        scope=('Preselected scenario-stratified inference subset; not full validation or radar comparison.' if args.selection else
+               'Previously saved consecutive partial-run frames, not a representative validation benchmark. Eight coarse model classes, sky mapped to other. No new inference or radar comparison.')),indent=2)+'\n')
     plot(summary,raw_rows,args.output_dir)
     print(json.dumps(summary,indent=2))
 

@@ -9,6 +9,12 @@ autonomous trucking — running existing open-source models on public datasets,
 recording everything reproducibly, and handing over a documented body of work to
 a future team.
 
+**Latest terrain result:** [GOOSE across eight scenarios](docs/goose-multiscenario-terrain.md)
+adds 24 fresh inference frames (4.19 million points). Ground classification depends
+strongly on scenario and denominator; the earlier one-scenario ground decline
+does not generalise. Distant obstacle-to-ground confusion persists, mostly in
+building points. This is LiDAR-only point classification, not object detection.
+
 **28 September:** [STONE across three recordings](docs/stone-environments-followup.md)
 now covers 60 frames, with calibration-sensitive ground/raised support retained.
 The [RADIATE fog pilot](docs/radiate-fog-pilot.md) adds a contrasting case where

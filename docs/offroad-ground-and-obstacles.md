@@ -2,6 +2,13 @@
 
 26 September 2026 · EXP-0022 · result 0027
 
+**28 September update:** [Fresh inference across all eight GOOSE scenarios](goose-multiscenario-terrain.md)
+adds 24 preselected frames. The earlier ten-frame ground decline below is specific
+to that subset: new pooled ground correctness is 97.67% at 100–150 m, with major
+scenario/denominator imbalance. Obstacle-to-ground confusion persists. The
+[STONE extension](stone-environments-followup.md) now covers 60 paired frames
+across three recordings; physical radar calibration remains unresolved.
+
 **Subsequent paired experiment:** [STONE ground and raised-obstacle pilot](stone-paired-terrain-pilot.md)
 has now processed 20 real radar/LiDAR/label frames (EXP-0023). The metadata-only
 access account below records the earlier stage. Download and decoding are solved;

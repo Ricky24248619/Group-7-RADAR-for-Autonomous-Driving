@@ -1,5 +1,15 @@
 # Radar and LiDAR: what our TruckScenes experiment shows
 
+**Latest terrain result, 28 September:** [GOOSE across eight scenarios](goose-multiscenario-terrain.md)
+now includes 24 fresh PTv3 frames and 4.19 million labelled points. Pooled ground
+correctness is 98.63% at 0–25 m and 97.67% at 100–150 m, so the earlier single-
+scenario drop is not a general finding. The distant pooled score is dominated
+by one scenario; equal-scenario correctness is 89.34%. Obstacle-labelled points
+called ground rise from 2.99% to 14.17%, mostly buildings at distance. These are
+LiDAR point-classification errors, not percentages of complete objects missed.
+The [STONE calibration audit](stone-environments-followup.md#calibration-source-audit-28-september-follow-up)
+specifies the still-missing numerical radar extrinsics.
+
 **28 September:** [STONE environment follow-up](stone-environments-followup.md)
 adds lake/land to farmland (60 sampled frames total). [RADIATE in fog](radiate-fog-pilot.md)
 provides a contrasting case: at 50–75 m, 9/19 annotated observations retain

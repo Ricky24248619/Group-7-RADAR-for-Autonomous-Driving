@@ -41,6 +41,7 @@ def main():
     parser.add_argument('--predictions',type=Path,required=True)
     parser.add_argument('--mapping',type=Path,required=True)
     parser.add_argument('--output-dir',type=Path,default=Path('docs/evidence/offroad-ground'))
+    parser.add_argument('--verified-manifest',type=Path,default=Path('docs/evidence/missing-support/goose-saved/manifest.json'))
     args=parser.parse_args();out=args.output_dir;out.mkdir(parents=True,exist_ok=True)
     source=Path('docs/evidence/goose/range-support/class_ranges.csv')
     with source.open() as f:rows=list(csv.DictReader(f))
@@ -53,11 +54,11 @@ def main():
     if len(frames)!=len(pairs):raise ValueError('Duplicate scan basenames')
     remap=np.full(max(mapping)+1,-1,dtype=int)
     for k,r in mapping.items():remap[k]=int(r['challege_category_id']) if int(r['challege_category_id'])!=8 else 0
-    # Reuse exactly the saved subset already verified in the preceding study.
-    previous=json.loads(Path('docs/evidence/missing-support/goose-saved/manifest.json').read_text())
+    # Score only the exact subset verified by analyse_goose_saved_errors.py.
+    previous=json.loads(args.verified_manifest.read_text())
     if hashlib.sha256(args.mapping.read_bytes()).hexdigest()!=previous['mapping_sha256']:
         raise ValueError('Challenge taxonomy changed since saved-prediction verification')
-    totals=defaultdict(lambda:np.zeros(8,dtype=np.int64));perframe=defaultdict(lambda:np.zeros(8,dtype=np.int64));inputs=[]
+    totals=defaultdict(lambda:np.zeros(8,dtype=np.int64));perframe=defaultdict(lambda:np.zeros(8,dtype=np.int64));perscenario=defaultdict(lambda:np.zeros(8,dtype=np.int64));inputs=[]
     for entry in previous['inputs']:
         name=entry['frame'];scan,label=frames[name];pred_path=args.predictions/(name+'_pred.npy')
         hashes={key:hashlib.sha256(path.read_bytes()).hexdigest() for key,path in [('scan',scan),('label',label),('prediction',pred_path)]}
@@ -73,6 +74,7 @@ def main():
             for k in np.unique(raw[mask]):
                 category=mapping[int(k)]['class_name'];counts=np.bincount(pred[mask&(raw==k)].astype(int),minlength=8)
                 totals[band,category]+=counts;perframe[name,band,LOOKUP[category]]+=counts
+                perscenario[scan.parent.name,band,LOOKUP[category]]+=counts
         inputs.append(dict(frame=name,sha256=hashes))
         if len(inputs)==1:plot_frame(points,raw,mapping,out)
     fine=[];grouped=defaultdict(lambda:np.zeros(8,dtype=np.int64))
@@ -86,8 +88,10 @@ def main():
     write_csv(out/'saved_fine_confusion.csv',fine)
     write_csv(out/'saved_group_confusion.csv',[summary(dict(band_m=b,true_group=g),c) for (b,g),c in sorted(grouped.items())])
     write_csv(out/'saved_frame_group_confusion.csv',[summary(dict(frame=n,band_m=b,true_group=g),c) for (n,b,g),c in sorted(perframe.items())])
+    write_csv(out/'scenario_group_confusion.csv',[summary(dict(scenario=s,band_m=b,true_group=g),c) for (s,b,g),c in sorted(perscenario.items())])
     if sum(int(c.sum()) for c in totals.values())!=previous['points']:raise ValueError('Subset point total changed')
     meta=dict(groups=GROUPS,prediction_grouping=PRED_GROUP,frames=len(inputs),points=previous['points'],
+              verified_manifest_sha256=hashlib.sha256(args.verified_manifest.read_bytes()).hexdigest(),
               inventory_sha256_lf=hashlib.sha256(source.read_text().encode()).hexdigest(),
               mapping_sha256=hashlib.sha256(args.mapping.read_bytes()).hexdigest(),inputs=inputs,
               limitations='LiDAR-only semantic proxies; no ground-relative height, safe-driveability, radar, hole labels or independent surface-coverage denominator. Model vegetation/other remains unresolved in the binary question.')

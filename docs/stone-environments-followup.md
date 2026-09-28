@@ -75,6 +75,34 @@ height is available only where traversable anchor columns support a plane.
 There is no learned terrain classifier, instance recall, hole label, or driving
 safety evaluation here.
 
+### Calibration source audit, 28 September follow-up
+
+The [paper's sensor-calibration section](https://arxiv.org/html/2603.09175v1#S3.SS2)
+states that radar–LiDAR calibration was performed and extrinsics use the LiDAR
+reference frame. That is evidence calibration was performed, but it does not
+provide the numerical transforms needed to reproduce it. A fresh check of the
+official repository, project page and paper found no additional numerical file.
+
+We audited all **458,212 archive entry names** for radar/calibration/extrinsic/
+configuration candidates. The only match was `calibrated_sensor.json`; joining
+its seven entries to `sensor.json` identifies six cameras and one LiDAR, with no
+radar entry. All three inspected bags retain zero translations for the three
+ARS548 frames. The [machine-readable audit](evidence/stone-environments/calibration_audit.json)
+records file hashes, channel names, transforms and the search scope. A filename
+search cannot exclude an unnamed or external file, and this does not establish
+that the authors lack a valid calibration.
+
+The exact outstanding input is: **the calibrated rigid transform for each
+ARS548 to the LiDAR frame, its direction, axis/unit conventions, and whether
+released detection coordinates already include that transform**. A held-out
+calibration target could independently validate it. No author request has been
+sent. Fitting radar onto the same surfaces used for our scores would not resolve
+this evidence gap. Further bag downloads are unlikely to help unless they
+provide different calibration metadata.
+
+Reproduce the local audit with
+`python scripts/audit_stone_calibration.py --root <STONE-root>`.
+
 **STONE handover:** downloading, decoding, cross-recording joins, support metrics
 and sensitivity checks work. A validated radar calibration and independent
 visibility/obstacle reference remain prerequisites for a stronger claim. We have
