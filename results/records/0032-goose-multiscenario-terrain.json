@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "owner": "Ricky Yuen",
+  "date": "2026-09-28",
+  "status": "success",
+  "task_type": "semantic-segmentation-3d",
+  "environment": {
+    "os": "Ubuntu 22.04 under WSL; Windows CPU analysis",
+    "hardware": "GTX 1660 6 GiB; existing runtime",
+    "python": "3.10.12 inference / 3.11.9 analysis",
+    "packages": {
+      "torch": "2.0.1+cu117",
+      "torchvision": "0.15.2+cu117",
+      "spconv-cu117": "2.3.6",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "timm": "0.9.16",
+      "torch-scatter": "2.1.2+pt20cu117"
+    }
+  },
+  "evidence": [
+    "docs/goose-multiscenario-terrain.md",
+    "docs/evidence/goose-stratified/runtime.json",
+    "docs/evidence/goose-stratified/selection.json",
+    "docs/evidence/goose-stratified/semantic/manifest.json",
+    "docs/evidence/goose-stratified/ground/range_summary.csv",
+    "experiment-log/0027-goose-multiscenario-terrain.md"
+  ],
+  "id": "0032-goose-multiscenario-terrain",
+  "title": "GOOSE ground-category errors across eight scenarios: fresh 24-frame PTv3 subset",
+  "dataset": "GOOSE 3D base validation, challenge labels v1.1, eight scenarios",
+  "sensor_configuration": "VLS128 LiDAR; single-scan PTv3 predictions; no radar",
+  "annotation_schema": "Fine semantic labels remapped to eight challenge classes; sky 8 mapped to other 0 as original loader",
+  "split": "24 preselected frames, three interior-quantile frames from each of eight scenarios; not full validation",
+  "modality": "lidar",
+  "model": "Published challenge PTv3 epoch 33; Pointcept 92f91cc plus documented compatibility patch; FP32, patch64, flash-off, one augmentation",
+  "commands": [
+    "python scripts/prepare_goose_subset.py --root <GOOSE-root> --output <new-subset-root>",
+    "Run Pointcept tools/test.py with exact options in docs/goose-multiscenario-terrain.md",
+    "python scripts/analyse_goose_saved_errors.py --root <GOOSE-root> --predictions <run>/result --mapping <mapping.csv> --selection docs/evidence/goose-stratified/selection.json --output-dir docs/evidence/goose-stratified/semantic",
+    "python scripts/analyse_offroad_ground.py --root <GOOSE-root> --predictions <run>/result --mapping <mapping.csv> --verified-manifest docs/evidence/goose-stratified/semantic/manifest.json --output-dir docs/evidence/goose-stratified/ground",
+    "python scripts/summarise_goose_terrain.py"
+  ],
+  "metrics": [
+    {
+      "name": "Overall accuracy",
+      "value": 0.9066011296760768,
+      "scope": "Eight-class returned-point accuracy including other; 0-25 m planar range; preselected 24 frames only",
+      "unit": "ratio"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.8940613663780793,
+      "scope": "Eight-class returned-point accuracy including other; 25-50 m planar range; preselected 24 frames only",
+      "unit": "ratio"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.8942336292052161,
+      "scope": "Eight-class returned-point accuracy including other; 50-75 m planar range; preselected 24 frames only",
+      "unit": "ratio"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.8663300990845819,
+      "scope": "Eight-class returned-point accuracy including other; 75-100 m planar range; preselected 24 frames only",
+      "unit": "ratio"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.857618917191637,
+      "scope": "Eight-class returned-point accuracy including other; 100-150 m planar range; preselected 24 frames only",
+      "unit": "ratio"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.8645499299941285,
+      "scope": "Eight-class returned-point accuracy including other; 150+ m planar range; preselected 24 frames only",
+      "unit": "ratio"
+    }
+  ],
+  "measurements": [
+    {
+      "name": "Frames evaluated",
+      "value": 24,
+      "scope": "Three per scenario, all eight scenarios"
+    },
+    {
+      "name": "Labelled points evaluated",
+      "value": 4192081,
+      "scope": "Correlated returned points, not objects"
+    }
+  ],
+  "notes": "Success means this bounded inference/diagnostic completed. Pooled ground correctness stays high but is dominated by one distant-ground scenario; equal-scenario sensitivity differs. Obstacle-to-ground confusion is dominated by buildings at 100-150m. Points are correlated, not whole objects; no unseen-ground coverage, radar comparison, hole labels or driving safety claim."
+}

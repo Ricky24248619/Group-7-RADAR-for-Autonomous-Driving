@@ -1,0 +1,270 @@
+{
+  "archive_entries": 458212,
+  "candidate_calibration_names": [
+    "STONE_nus_dataset/v1.0-trainval/calibrated_sensor.json"
+  ],
+  "exported_calibrations": [
+    {
+      "channel": "CAM_FRONT",
+      "translation": [
+        0.42384106318330284,
+        0.11595078115176065,
+        0.41945442032893293
+      ],
+      "rotation": [
+        0.500389,
+        -0.509938,
+        0.50261,
+        -0.486782
+      ]
+    },
+    {
+      "channel": "CAM_FRONT_LEFT",
+      "translation": [
+        0.2758805808015492,
+        0.32010168604817424,
+        0.4167952363255283
+      ],
+      "rotation": [
+        0.679328,
+        -0.691088,
+        0.178116,
+        -0.170837
+      ]
+    },
+    {
+      "channel": "CAM_BACK_LEFT",
+      "translation": [
+        0.032298364443460376,
+        0.3416004142312246,
+        0.4147388265742955
+      ],
+      "rotation": [
+        0.669369,
+        -0.690374,
+        -0.189917,
+        0.198141
+      ]
+    },
+    {
+      "channel": "CAM_BACK",
+      "translation": [
+        -0.10293327207435057,
+        0.122276985441361,
+        0.4177614252420073
+      ],
+      "rotation": [
+        0.492613,
+        -0.508429,
+        -0.502049,
+        0.496769
+      ]
+    },
+    {
+      "channel": "CAM_BACK_RIGHT",
+      "translation": [
+        0.018455186040334415,
+        -0.09886448384768326,
+        0.41484606400895396
+      ],
+      "rotation": [
+        0.167718,
+        -0.177612,
+        -0.689643,
+        0.681701
+      ]
+    },
+    {
+      "channel": "CAM_FRONT_RIGHT",
+      "translation": [
+        0.28200674400332826,
+        -0.10630702907482845,
+        0.4184205782912623
+      ],
+      "rotation": [
+        0.186782,
+        -0.185816,
+        0.689208,
+        -0.674964
+      ]
+    },
+    {
+      "channel": "LIDAR_TOP",
+      "translation": [
+        0.16,
+        0.12,
+        0.54
+      ],
+      "rotation": [
+        0.7071067811865476,
+        0.0,
+        0.0,
+        -0.7071067811865475
+      ]
+    }
+  ],
+  "bag_radar_transforms": {
+    "farmland": [
+      {
+        "child_frame_id": "ARS_548_240",
+        "transform": {
+          "translation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          }
+        }
+      },
+      {
+        "child_frame_id": "ARS_548_120",
+        "transform": {
+          "translation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.8660266281835431,
+            "w": 0.4999978792725457
+          }
+        }
+      },
+      {
+        "child_frame_id": "ARS_548_0",
+        "transform": {
+          "translation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.8660266281835431,
+            "w": 0.4999978792725457
+          }
+        }
+      }
+    ],
+    "lake": [
+      {
+        "child_frame_id": "ARS_548_120",
+        "transform": {
+          "translation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.8660266281835431,
+            "w": 0.4999978792725457
+          }
+        }
+      },
+      {
+        "child_frame_id": "ARS_548_0",
+        "transform": {
+          "translation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.8660266281835431,
+            "w": 0.4999978792725457
+          }
+        }
+      },
+      {
+        "child_frame_id": "ARS_548_240",
+        "transform": {
+          "translation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          }
+        }
+      }
+    ],
+    "land": [
+      {
+        "child_frame_id": "ARS_548_120",
+        "transform": {
+          "translation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": -0.8660266281835431,
+            "w": 0.4999978792725457
+          }
+        }
+      },
+      {
+        "child_frame_id": "ARS_548_240",
+        "transform": {
+          "translation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0,
+            "w": 1.0
+          }
+        }
+      },
+      {
+        "child_frame_id": "ARS_548_0",
+        "transform": {
+          "translation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "rotation": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.8660266281835431,
+            "w": 0.4999978792725457
+          }
+        }
+      }
+    ]
+  },
+  "input_sha256": {
+    "acquisition/zip_index.json": "6c2e08cea904351f31c37aca0765cd71b1c0f411b0cc99505bfee7ba69b5dbff",
+    "extracted/sensor.json": "c9fdda0ac0b8e19a71d5fe049d88a75ce9fa0f4cdde00a2c343ff6c623ec4e07",
+    "extracted/calibrated_sensor.json": "42f1d2b53772912805d573d2204a6391eb956b482d249555d4a83baa09a7baf8",
+    "paired-pilot/transforms.json": "286d565ac47ed1e36a80dd6ef5aa48667b75f0f905c3880b3cc951a21620cd8d",
+    "recordings/lake/paired-pilot/transforms.json": "f58b199a6551870843ca774d0a20428983d00b60c7c78cd6c1b6ab01bd1a9f7d",
+    "recordings/land/paired-pilot/transforms.json": "582a524afd50852448af9452061598768e0a34b1b008a962aba34839b75f5677"
+  },
+  "conclusion": "No physical radar mounting translation found in these inspected sources. Zero ROS translations are not independently validated mounting measurements.",
+  "paper": "https://arxiv.org/html/2603.09175v1#S3.SS2",
+  "required": "Numerical calibrated radar-to-LiDAR rigid transforms for each ARS548, transform direction, axes, units, and whether published detections were already transformed.",
+  "limits": "Filename audit cannot exclude unnamed or external calibration files. This does not claim calibration was never performed."
+}
