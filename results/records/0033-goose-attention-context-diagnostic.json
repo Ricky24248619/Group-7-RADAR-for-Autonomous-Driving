@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "owner": "Ricky Yuen",
+  "date": "2026-09-28",
+  "status": "success",
+  "task_type": "semantic-segmentation-3d",
+  "environment": {
+    "os": "Ubuntu 22.04 under WSL; Windows CPU analysis",
+    "hardware": "GTX 1660 6 GiB; existing runtime",
+    "python": "3.10.12 inference / 3.11.9 analysis",
+    "packages": {
+      "torch": "2.0.1+cu117",
+      "torchvision": "0.15.2+cu117",
+      "spconv-cu117": "2.3.6",
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "timm": "0.9.16",
+      "torch-scatter": "2.1.2+pt20cu117"
+    }
+  },
+  "evidence": [
+    "docs/goose-failure-causes.md",
+    "docs/evidence/goose-failure-causes/context_manifest.json",
+    "docs/evidence/goose-failure-causes/context_comparison.csv",
+    "docs/evidence/goose-failure-causes/context_pooled.csv",
+    "docs/evidence/goose-failure-causes/geometry_manifest.json",
+    "docs/evidence/goose-failure-causes/camera_manifest.json",
+    "experiment-log/0028-goose-failure-causes.md"
+  ],
+  "id": "0033-goose-attention-context-diagnostic",
+  "title": "GOOSE failure causes: attention context intervention and low-rock geometry association",
+  "dataset": "GOOSE 3D base validation, challenge labels v1.1; January Aying Mangfall scene",
+  "sensor_configuration": "VLS128 LiDAR; single-scan PTv3 predictions; no radar",
+  "annotation_schema": "Fine semantic labels remapped to eight challenge classes; sky 8 mapped to other 0 as original loader",
+  "split": "Post-hoc frames 0496, 0497 and 0498; three adjacent frames, 644654 points; not an independent benchmark",
+  "modality": "lidar",
+  "model": "Published challenge PTv3 epoch 33; same checkpoint, FP32, flash-off, single augmentation; patch64/repeat/128/256",
+  "commands": [
+    "python scripts/prepare_goose_subset.py --root <GOOSE-root> --output <case-root> --center-frame 2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin",
+    "Run the four fresh Pointcept configurations documented in docs/goose-failure-causes.md",
+    "python scripts/compare_goose_context.py --root <GOOSE-root> --runs <run-root> --mapping <mapping.csv> --checkpoint <challenge_ptv3.pth> --include-p256",
+    "python scripts/diagnose_goose_geometry.py --root <GOOSE-root> --predictions <stratified24-run>/result --mapping <mapping.csv>",
+    "python scripts/acquire_goose_case_images.py --selection docs/evidence/goose-failure-causes/selection.json --output <camera-output>"
+  ],
+  "metrics": [
+    {
+      "name": "Overall accuracy",
+      "value": 0.9038104161302032,
+      "unit": "ratio",
+      "scope": "Eight coarse classes including other, all returned points in three selected adjacent frames; p64; no radar or unseen-surface score"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.9232720187883733,
+      "unit": "ratio",
+      "scope": "Eight coarse classes including other, all returned points in three selected adjacent frames; p128; no radar or unseen-surface score"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.9363069181297254,
+      "unit": "ratio",
+      "scope": "Eight coarse classes including other, all returned points in three selected adjacent frames; p256; no radar or unseen-surface score"
+    }
+  ],
+  "measurements": [
+    {
+      "name": "Unique frames evaluated",
+      "value": 3,
+      "scope": "One post-hoc scene, four inference executions including baseline repeat"
+    },
+    {
+      "name": "Labelled points per execution",
+      "value": 644654,
+      "scope": "Same correlated point set each run; not independent objects"
+    }
+  ],
+  "notes": "Bounded diagnosis completed. Fresh patch64 baseline repeat is prediction-identical. Only saved-config differences are output path and attention patch sizes. Larger context reduces pooled ground confusion but correct rock category remains poor and some individual frames worsen. Ground-height proxies and visible snow do not prove a causal geometry/weather effect. Original patch64 eight-scenario evidence is retained. No default runtime change, training, full-split or radar comparison."
+}

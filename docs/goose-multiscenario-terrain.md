@@ -2,6 +2,11 @@
 
 28 September 2026 · EXP-0027 · result 0032 · LiDAR-only model diagnostic
 
+**Configuration sensitivity:** the subsequent [controlled failure investigation](goose-failure-causes.md)
+shows that the hardware-compatible patch-64 setting contributes to the selected
+rock/building errors. The numbers below remain the original patch-64 results;
+they must not be generalised to the published default configuration or the sensor.
+
 **We completed fresh PTv3 inference on 24 frames (4,192,081 points), with three
 preselected frames from each of all eight base-validation scenarios.** This
 extends the earlier ten consecutive frames from one scenario. It is a separate

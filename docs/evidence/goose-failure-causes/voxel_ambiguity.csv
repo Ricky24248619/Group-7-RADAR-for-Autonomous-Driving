@@ -1,0 +1,9 @@
+true_class,reference,grid_m,points,ground_category_points,same_voxel_reference_points,wrong_same_voxel_reference_points
+rock,ground_surface,0.025,1442,788,0,0
+rock,ground_surface,0.05,1442,788,0,0
+rock,ground_surface_and_cover,0.025,1442,788,0,0
+rock,ground_surface_and_cover,0.05,1442,788,0,0
+building,ground_surface,0.025,42281,11439,0,0
+building,ground_surface,0.05,42281,11439,0,0
+building,ground_surface_and_cover,0.025,42281,11439,0,0
+building,ground_surface_and_cover,0.05,42281,11439,0,0
