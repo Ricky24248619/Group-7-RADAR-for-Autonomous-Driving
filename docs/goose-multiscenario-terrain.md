@@ -7,6 +7,12 @@ preselected frames from each of all eight base-validation scenarios.** This
 extends the earlier ten consecutive frames from one scenario. It is a separate
 subset, not a completed 961-frame benchmark or a radar comparison.
 
+**Case inspection completed:** [rock and building error concentration](goose-error-cases.md)
+finds 96.92% of nearby rock-to-ground errors in one frame, spanning three
+frame-local rock instances. Nearby building errors are concentrated in the same
+frame. This narrows the follow-up and prevents interpreting point percentages
+as numbers of independently missed obstacles.
+
 The broader sample changes our interpretation: **the earlier large pooled drop
 in distant ground recognition is not robust across these scenarios.** Ground
 classification varies by scene and the point-weighted average hides that variation.
@@ -128,9 +134,9 @@ python scripts/summarise_goose_terrain.py
 
 ## What to do next
 
-1. Inspect nearby rock and distant building confusions using raw labels and
-   prediction overlays; distinguish low geometry, ground-contact boundaries,
-   taxonomy effects and correlated instances before calling them missed obstacles.
+1. The [case-level inspection](goose-error-cases.md) now identifies the dominant
+   frame and rock instances. Next check its camera/local-ground context and nearby
+   frames to distinguish low geometry, ground-contact boundaries and model errors.
 2. Expand the sample if client decisions require stable scenario/class estimates.
    The present run measures model errors, but not individual-obstacle detection.
 3. For a paired radar result, obtain STONE's numerical radar extrinsics described

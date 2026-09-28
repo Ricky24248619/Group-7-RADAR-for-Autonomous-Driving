@@ -40,3 +40,19 @@ missing transforms/conventions without treating zero ROS translations as verifie
 [Report and complete reproduction commands](../docs/goose-multiscenario-terrain.md),
 [runtime manifest](../docs/evidence/goose-stratified/runtime.json),
 [STONE audit](../docs/evidence/stone-environments/calibration_audit.json).
+
+## Same-day case follow-up
+
+Reused the same verified 24 predictions for per-frame rock/building errors and
+frame-local rock instance counts; no new inference or downloads. Nearby rocks
+occur in three selected frames from two scenarios, only seven frame-local
+instance observations. One January frame supplies 96.92% of nearby rock and
+98.75% of nearby building ground-confusion errors. Rock instance 79 in that frame
+alone supplies 86.72% of the nearby rock errors. The distant rock result consists
+of six points on one instance in one frame and is not generalisable.
+
+The [case report](../docs/goose-error-cases.md) includes post-hoc error-count-
+selected point overlays and preserves selection bias and raw-z limitations.
+Added a regression check that unassigned instance zero is excluded and partial
+instance errors retain their point denominator. Final suite: 227 tests, 225 passed,
+two optional skips. Model outputs remain unchanged.

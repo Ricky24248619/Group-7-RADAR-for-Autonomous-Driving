@@ -10,6 +10,12 @@ LiDAR point-classification errors, not percentages of complete objects missed.
 The [STONE calibration audit](stone-environments-followup.md#calibration-source-audit-28-september-follow-up)
 specifies the still-missing numerical radar extrinsics.
 
+**Case-level follow-up:** [rock/building error examples](goose-error-cases.md)
+show that 96.92% of nearby rock-to-ground errors and 98.75% of nearby building-
+to-ground errors come from the same single frame. This is a concrete model
+failure case, not evidence that those percentages of independent obstacles are
+missed. Nearby rocks comprise only seven frame-local instance observations.
+
 **28 September:** [STONE environment follow-up](stone-environments-followup.md)
 adds lake/land to farmland (60 sampled frames total). [RADIATE in fog](radiate-fog-pilot.md)
 provides a contrasting case: at 50–75 m, 9/19 annotated observations retain
