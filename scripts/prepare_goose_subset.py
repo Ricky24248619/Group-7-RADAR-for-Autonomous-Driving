@@ -15,21 +15,35 @@ def interior_indices(length, count):
     return [(i + 1) * length // (count + 1) for i in range(count)]
 
 
+def neighbor_indices(scans, center):
+    matches=[i for i,p in enumerate(scans) if p.name==center]
+    if len(matches)!=1 or matches[0]==0 or matches[0]==len(scans)-1:
+        raise ValueError('Center must uniquely match an interior frame')
+    i=matches[0]
+    return [i-1,i,i+1]
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--per-scenario', type=int, default=3)
+    parser.add_argument('--center-frame',help='Diagnostic mode: this exact frame plus one validation neighbor on either side')
     args = parser.parse_args()
     if args.output.exists():
         raise ValueError('Use a new subset directory; preserve earlier evidence')
     selected = []
     scenarios = sorted((args.root / 'lidar' / 'val').iterdir())
+    if args.center_frame:
+        matches=[p for p in (args.root/'lidar'/'val').glob('*/*.bin') if p.name==args.center_frame]
+        if len(matches)!=1:raise ValueError('Center frame must uniquely identify a scan')
+        scenarios=[matches[0].parent]
     for scenario in scenarios:
         if not scenario.is_dir():
             continue
         scans = sorted(scenario.glob('*.bin'))
-        for index in interior_indices(len(scans), args.per_scenario):
+        indices=neighbor_indices(scans,args.center_frame) if args.center_frame else interior_indices(len(scans), args.per_scenario)
+        for index in indices:
             scan = scans[index]
             label_name = scan.name.replace('.bin', '.label').replace('vls128', 'goose').replace('_pcl.', '_goose.')
             paths = {'scan': scan,
@@ -53,7 +67,9 @@ def main():
             target.parent.mkdir(parents=True, exist_ok=True)
             target.symlink_to(source.resolve())
         del entry['paths']
-    manifest = dict(selection='Sorted scenario filenames; index floor(k*N/(n+1)), k=1..n; selected before inference',
+    policy=('Post-hoc diagnostic center plus immediately preceding/following validation scans in sorted filename order' if args.center_frame else
+            'Sorted scenario filenames; index floor(k*N/(n+1)), k=1..n; selected before inference')
+    manifest = dict(selection=policy,center_frame=args.center_frame,
                     per_scenario=args.per_scenario, frames=len(selected), points=sum(e['points'] for e in selected),
                     inputs=selected)
     (args.output/'selection.json').write_text(json.dumps(manifest,indent=2)+'\n')

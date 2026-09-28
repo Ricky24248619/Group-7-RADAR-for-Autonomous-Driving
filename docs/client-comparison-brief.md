@@ -1,5 +1,13 @@
 # Radar and LiDAR: what our TruckScenes experiment shows
 
+**Why some terrain errors occur:** [controlled GOOSE context test](goose-failure-causes.md)
+finds our reduced attention-patch setting contributes to the selected failures.
+On three adjacent frames, patches 64 → 256 reduce nearby rock-to-ground confusion
+49.52% → 22.56% and building-to-ground confusion 18.43% → 4.12%. The baseline repeat
+is identical. Correct rock-category predictions only rise 18.12% → 24.90%, so
+this is a partial improvement, not reliable obstacle detection. Low rock geometry
+is associated with confusion; visible snow is context, not a proven cause.
+
 **Latest terrain result, 28 September:** [GOOSE across eight scenarios](goose-multiscenario-terrain.md)
 now includes 24 fresh PTv3 frames and 4.19 million labelled points. Pooled ground
 correctness is 98.63% at 0–25 m and 97.67% at 100–150 m, so the earlier single-

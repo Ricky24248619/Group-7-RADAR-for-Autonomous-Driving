@@ -2,6 +2,12 @@
 
 28 September 2026 · follow-up to EXP-0027 / result 0032 · existing predictions
 
+**Cause investigation completed:** [controlled context and geometry study](goose-failure-causes.md)
+identifies the reduced attention-patch setting as a contributor. On the same
+three adjacent frames, larger context reduces ground confusion substantially,
+but many rocks still receive other wrong labels. Geometry associations and
+snow-visible camera context are recorded without claiming a proven weather cause.
+
 **Nearby rock confusion is concentrated in very few observations.** The 40.41%
 point-confusion figure from the [24-frame study](goose-multiscenario-terrain.md)
 must not be presented as 40% of rocks missed.

@@ -4,9 +4,15 @@ import unittest
 import numpy as np
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from analyse_goose_saved_errors import confusion, verify_selection
-from prepare_goose_subset import interior_indices
+from prepare_goose_subset import interior_indices,neighbor_indices
 
 class SavedErrorsTests(unittest.TestCase):
+    def test_neighbor_subset_requires_unique_interior_center(self):
+        scans=list(map(Path,['a.bin','b.bin','c.bin','d.bin']))
+        self.assertEqual(neighbor_indices(scans,'b.bin'),[0,1,2])
+        for center in ('a.bin','d.bin','missing.bin'):
+            with self.assertRaises(ValueError):neighbor_indices(scans,center)
+        with self.assertRaises(ValueError):neighbor_indices([Path('b.bin')]*3,'b.bin')
     def test_stratified_selection_is_spaced_and_unique(self):
         self.assertEqual(interior_indices(100,3),[25,50,75])
         self.assertEqual(interior_indices(3,3),[0,1,2])

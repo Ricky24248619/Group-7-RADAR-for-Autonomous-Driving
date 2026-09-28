@@ -9,6 +9,11 @@ autonomous trucking — running existing open-source models on public datasets,
 recording everything reproducibly, and handing over a documented body of work to
 a future team.
 
+**Failure-cause follow-up:** [controlled GOOSE attention-context test](docs/goose-failure-causes.md)
+shows reduced attention patches contribute to the selected rock/building ground
+confusions. Larger patches help in this diagnostic, but rock-category recognition
+remains poor; this is a model configuration finding, not a LiDAR sensor limit.
+
 **Latest terrain result:** [GOOSE across eight scenarios](docs/goose-multiscenario-terrain.md)
 adds 24 fresh inference frames (4.19 million points). Ground classification depends
 strongly on scenario and denominator; the earlier one-scenario ground decline
