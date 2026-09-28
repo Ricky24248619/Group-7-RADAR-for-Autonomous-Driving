@@ -24,7 +24,11 @@
     "docs/evidence/goose-stratified/selection.json",
     "docs/evidence/goose-stratified/semantic/manifest.json",
     "docs/evidence/goose-stratified/ground/range_summary.csv",
-    "experiment-log/0027-goose-multiscenario-terrain.md"
+    "experiment-log/0027-goose-multiscenario-terrain.md",
+    "docs/goose-error-cases.md",
+    "docs/evidence/goose-error-cases/manifest.json",
+    "docs/evidence/goose-error-cases/summary.csv",
+    "docs/evidence/goose-error-cases/rock_frame_instances.csv"
   ],
   "id": "0032-goose-multiscenario-terrain",
   "title": "GOOSE ground-category errors across eight scenarios: fresh 24-frame PTv3 subset",
@@ -39,7 +43,8 @@
     "Run Pointcept tools/test.py with exact options in docs/goose-multiscenario-terrain.md",
     "python scripts/analyse_goose_saved_errors.py --root <GOOSE-root> --predictions <run>/result --mapping <mapping.csv> --selection docs/evidence/goose-stratified/selection.json --output-dir docs/evidence/goose-stratified/semantic",
     "python scripts/analyse_offroad_ground.py --root <GOOSE-root> --predictions <run>/result --mapping <mapping.csv> --verified-manifest docs/evidence/goose-stratified/semantic/manifest.json --output-dir docs/evidence/goose-stratified/ground",
-    "python scripts/summarise_goose_terrain.py"
+    "python scripts/summarise_goose_terrain.py",
+    "python scripts/inspect_goose_error_cases.py --root <GOOSE-root> --predictions <run>/result --mapping <mapping.csv>"
   ],
   "metrics": [
     {
@@ -91,5 +96,5 @@
       "scope": "Correlated returned points, not objects"
     }
   ],
-  "notes": "Success means this bounded inference/diagnostic completed. Pooled ground correctness stays high but is dominated by one distant-ground scenario; equal-scenario sensitivity differs. Obstacle-to-ground confusion is dominated by buildings at 100-150m. Points are correlated, not whole objects; no unseen-ground coverage, radar comparison, hole labels or driving safety claim."
+  "notes": "Success means this bounded inference/diagnostic completed. Pooled ground correctness stays high but is dominated by one distant-ground scenario; equal-scenario sensitivity differs. Obstacle-to-ground confusion is dominated by buildings at 100-150m. Points are correlated, not whole objects; no unseen-ground coverage, radar comparison, hole labels or driving safety claim. Follow-up: 96.92% of nearby rock errors and 98.75% of nearby building errors come from the same frame; only seven frame-local near-rock instance observations. Post-hoc cases are not representative object recall."
 }
