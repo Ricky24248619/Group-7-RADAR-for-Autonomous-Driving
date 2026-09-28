@@ -54,7 +54,11 @@ At 100–150 m, 1,442 obstacle-candidate points receive ground predictions:
 six rock and eight other points. They are points, not counts of buildings/cars.
 Another **31.91%** of obstacle-candidate points receive vegetation predictions;
 only 53.92% receive an obstacle-category prediction. A ground-confusion rate
-alone is therefore not total obstacle error or recall.
+alone is therefore not total obstacle error or recall. **Some vegetation
+predictions are correct under the official challenge taxonomy:** tree trunks
+map to vegetation, although our physical-obstacle proxy includes them as
+obstacle candidates. The 31.91% must not be called a model error rate; this
+diagnostic intentionally asks a different question from eight-class correctness.
 
 | True fine label | Called ground at 0–25 m | Called ground at 100–150 m |
 |---|---:|---:|
