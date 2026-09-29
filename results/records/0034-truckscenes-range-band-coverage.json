@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "id": "0034-truckscenes-range-band-coverage",
+  "title": "TruckScenes matched radar and LiDAR return coverage by distance band",
+  "owner": "Fatima Sher",
+  "date": "2026-09-29",
+  "status": "success",
+  "dataset": "MAN TruckScenes v1.2-mini",
+  "sensor_configuration": "RADAR_LEFT_FRONT paired with LIDAR_TOP_FRONT; one radar of six and one LiDAR of six. Each cloud is read from its own .pcd in its own sensor frame; no ego or global transform is applied, so the two ranges are measured from two different positions on the truck",
+  "annotation_schema": "none - this record counts sensor returns only. No annotation, 3D box, class label or detection output is read",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "split": "First annotated sample of each of the 10 scenes in v1.2-mini (scene first_sample_token), 10 of 400 annotated samples. A declared development subset, not dataset coverage. No scene is filtered on weather, location or content",
+  "environment": {
+    "os": "macOS 26.3.1, Darwin arm64",
+    "hardware": "Apple Silicon MacBook Air; CPU execution; no CUDA used",
+    "python": "3.11.4 in isolated truckscenes-env",
+    "packages": {
+      "truckscenes-devkit": "1.2.0",
+      "numpy": "2.4.6",
+      "matplotlib": "3.11.1",
+      "pypcd4": "1.4.3",
+      "pyquaternion": "0.9.9"
+    }
+  },
+  "commands": [
+    "export TRUCKSCENES_ROOT=<data-root>",
+    "python scripts/truckscenes_sample_manifest.py",
+    "python scripts/truckscenes_range_bands.py",
+    "python scripts/plot_truckscenes_range_bands.py",
+    "python -m unittest discover -s tests"
+  ],
+  "measurements": [
+    {
+      "name": "radar returns",
+      "value": 4571,
+      "unit": "returns",
+      "scope": "RADAR_LEFT_FRONT, all 10 manifest samples, every band summed"
+    },
+    {
+      "name": "lidar returns",
+      "value": 165588,
+      "unit": "returns",
+      "scope": "LIDAR_TOP_FRONT, same 10 samples, every band summed"
+    },
+    {
+      "name": "radar returns at 150-400 m",
+      "value": 305,
+      "unit": "returns",
+      "scope": "RADAR_LEFT_FRONT, denominator 4571 returns in this subset"
+    },
+    {
+      "name": "lidar returns at 150-400 m",
+      "value": 0,
+      "unit": "returns",
+      "scope": "LIDAR_TOP_FRONT, denominator 165588 returns in this subset. A measured zero, not a missing measurement"
+    },
+    {
+      "name": "lidar returns below 50 m",
+      "value": 165520,
+      "unit": "returns",
+      "scope": "LIDAR_TOP_FRONT, denominator 165588 returns in this subset"
+    },
+    {
+      "name": "furthest radar return",
+      "value": 189.46,
+      "unit": "m",
+      "scope": "RADAR_LEFT_FRONT, largest sqrt(x^2 + y^2) over the 10 manifest samples, sensor frame"
+    },
+    {
+      "name": "furthest lidar return",
+      "value": 140.25,
+      "unit": "m",
+      "scope": "LIDAR_TOP_FRONT, largest sqrt(x^2 + y^2) over the same samples, sensor frame"
+    }
+  ],
+  "range_bands": [
+    {
+      "band": "0-50 m",
+      "lower_m": 0,
+      "upper_m": 50,
+      "radar_returns": 1655,
+      "radar_denominator": 4571,
+      "radar_share": 0.362065,
+      "lidar_returns": 165520,
+      "lidar_denominator": 165588,
+      "lidar_share": 0.999589
+    },
+    {
+      "band": "50-100 m",
+      "lower_m": 50,
+      "upper_m": 100,
+      "radar_returns": 1670,
+      "radar_denominator": 4571,
+      "radar_share": 0.365347,
+      "lidar_returns": 53,
+      "lidar_denominator": 165588,
+      "lidar_share": 0.000320
+    },
+    {
+      "band": "100-150 m",
+      "lower_m": 100,
+      "upper_m": 150,
+      "radar_returns": 941,
+      "radar_denominator": 4571,
+      "radar_share": 0.205863,
+      "lidar_returns": 15,
+      "lidar_denominator": 165588,
+      "lidar_share": 0.000091
+    },
+    {
+      "band": "150-400 m",
+      "lower_m": 150,
+      "upper_m": 400,
+      "radar_returns": 305,
+      "radar_denominator": 4571,
+      "radar_share": 0.066725,
+      "lidar_returns": 0,
+      "lidar_denominator": 165588,
+      "lidar_share": 0.0
+    },
+    {
+      "band": ">= 400 m",
+      "lower_m": 400,
+      "upper_m": null,
+      "radar_returns": 0,
+      "radar_denominator": 4571,
+      "radar_share": 0.0,
+      "lidar_returns": 0,
+      "lidar_denominator": 165588,
+      "lidar_share": 0.0
+    }
+  ],
+  "conditions": "All 10 mini scenes as released, unfiltered. Weather is deliberately not analysed: a handful of differently labelled scenes cannot support a weather claim",
+  "evidence": [
+    "TruckScenes - Fatima/RANGE-BANDS.md",
+    "TruckScenes - Fatima/RANGE-BANDS-OPEN-QUESTION.md",
+    "TruckScenes - Fatima/ACCEPTANCE-CHECK.md",
+    "TruckScenes - Fatima/range-bands.csv",
+    "TruckScenes - Fatima/sample-manifest.csv",
+    "TruckScenes - Fatima/sample-manifest.json",
+    "TruckScenes - Fatima/sensor-inventory.csv",
+    "docs/evidence/truckscenes/range_bands_share.png",
+    "docs/evidence/truckscenes/range_bands_counts.png",
+    "experiment-log/0029-truckscenes-range-band-coverage.md"
+  ],
+  "notes": "Coverage, not detection. These are counts of where sensor returns land. No detection model is run, no annotation is read, and a populated far band is not evidence that anything can be detected at that distance. The stock TruckScenes v1.2.0 evaluator produces no detection score beyond 150 m at all. Point density is not a quality measure: LiDAR produced roughly 36 times as many returns as radar here, which describes density and says nothing about detection performance for either modality. The LiDAR channel is the confound to read first. LIDAR_TOP_FRONT is a roof-mounted Ouster OS0 rated 35 m at 10% reflectivity, angled down for blind-spot coverage; the mounting heights in the dataset's own calibrated_sensor table (3.23-3.32 m on the roof, against 2.19 m for the corner modules) match the paper's placement and are recorded in sensor-inventory.csv. Its returns concentrating below 50 m is that sensor doing its job, not a finding about LiDAR range. The comparison here is channel-specific and must not be read as a modality-level result; the like-for-like channel against RADAR_LEFT_FRONT is LIDAR_LEFT, the corner-module Hesai Pandar64 rated 200 m, and repeating this measurement there is the next step. Fusion is the controlled vocabulary for a multi-modality characterisation, not point-cloud or detector fusion. Fields of view differ between channels and are not accounted for. Shares are of the returns in this 10-sample subset, never of the dataset. A band that was measured and held no returns is a real 0; a channel absent for a sample reads as no data in the CSV and that sample is excluded from the aggregate sample count. Agent-assisted analysis; not an independent human signoff. Acceptance criterion A-6, regeneration by someone outside the pair, has not yet been performed."
+}
