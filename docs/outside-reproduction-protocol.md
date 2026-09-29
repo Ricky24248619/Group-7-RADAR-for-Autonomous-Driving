@@ -7,6 +7,11 @@ result from a clean machine."* Ricky reproducing Damien's macOS workflow on Wind
 useful cross-platform evidence, but both are team members, so this stays **outstanding**
 until an outsider runs it.
 
+> **29 September:** B5 was closed without an outsider. A substitute run
+> ([record](evidence/p5-reproduction-2026-09-29.md)) passed and matched byte for byte, but
+> it was not by a person outside the team, so **P-5 is still open**. This protocol is
+> ready for whoever can find a reproducer.
+
 This page is the whole task. Hand it to someone who is not in CITS3200 Group 7, then
 record what happens.
 
@@ -54,7 +59,11 @@ python scripts/validate_experiment_logs.py
 python -m unittest discover -s tests
 ```
 
-Expected: all records valid, logs PASS, tests OK.
+Expected: all records valid, logs PASS, tests `OK (skipped=N)`. The skipped tests need
+optional extras you have not installed, and that is fine. **You will also see one red
+`ERROR … metrics-definitions.md not found or unreadable` line during the tests.** It
+comes from a test that checks that error message on purpose. It is not a failure as long
+as the last line says `OK`.
 
 **Step 2 — regenerate a published figure from committed data.**
 
