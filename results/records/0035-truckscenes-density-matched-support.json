@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "id": "0035-truckscenes-density-matched-support",
+  "title": "Density-matched LiDAR control on TruckScenes object support",
+  "owner": "Fatima Sher",
+  "date": "2026-09-29",
+  "status": "success",
+  "dataset": "MAN TruckScenes v1.2-mini",
+  "sensor_configuration": "All six radar and all six LiDAR channels as counted in record 0016, with per-point ego correction. No sensor stream is re-read here; this recounts the committed counts under an equal point budget",
+  "annotation_schema": "All original released 3D-box classes, unchanged from record 0016. No class mapping or detection taxonomy is applied",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "split": "389 of 400 mini samples after the symmetric timing exclusions recorded in record 0016; 25,117 box observations per margin, of which 2,309 fall in the 150-400 m band",
+  "environment": {
+    "os": "macOS 26.3.1, Darwin arm64",
+    "hardware": "Apple Silicon MacBook Air; CPU execution; no CUDA used",
+    "python": "3.11.4 in isolated truckscenes-env",
+    "packages": {
+      "numpy": "2.4.6"
+    }
+  },
+  "commands": [
+    "python scripts/truckscenes_density_matched_runner.py",
+    "python -m unittest discover -s tests"
+  ],
+  "measurements": [
+    {
+      "name": "paired frames",
+      "value": 389,
+      "scope": "Every frame was reduced by matching; none already sat at or below the radar count"
+    },
+    {
+      "name": "median lidar to radar point ratio",
+      "value": 77.9,
+      "scope": "Per frame, all six LiDAR channels against all six radar channels"
+    },
+    {
+      "name": "density-matched LiDAR-supported observations at 150-400 m",
+      "value": 290.04,
+      "scope": "Exact expectation, margin 0, threshold 1 return; denominator 2309 box observations"
+    },
+    {
+      "name": "full-cloud LiDAR-supported observations at 150-400 m",
+      "value": 2118,
+      "scope": "Margin 0, threshold 1; denominator 2309. Unchanged baseline from record 0016"
+    },
+    {
+      "name": "radar-supported observations at 150-400 m",
+      "value": 350,
+      "scope": "Margin 0, threshold 1; denominator 2309. Unchanged baseline from record 0016"
+    },
+    {
+      "name": "density-matched LiDAR-supported observations at 150-400 m, 0.5 m margin",
+      "value": 358.69,
+      "scope": "Exact expectation, margin 0.5, threshold 1; denominator 2309. Radar reaches 646 at the same margin"
+    }
+  ],
+  "range_bands": [
+    {
+      "band": "0-50 m",
+      "margin_m": 0.0,
+      "boxes": 10220,
+      "full_lidar_supported": 10199,
+      "full_lidar_share": 0.997945,
+      "matched_expected": 7901.54,
+      "matched_expected_share": 0.773145,
+      "matched_p5": 7851.9,
+      "matched_p95": 7948.1,
+      "radar_supported": 6753,
+      "radar_share": 0.660763
+    },
+    {
+      "band": "50-100 m",
+      "margin_m": 0.0,
+      "boxes": 8256,
+      "full_lidar_supported": 8152,
+      "full_lidar_share": 0.987403,
+      "matched_expected": 3054.38,
+      "matched_expected_share": 0.369959,
+      "matched_p5": 2996.0,
+      "matched_p95": 3106.2,
+      "radar_supported": 3460,
+      "radar_share": 0.419089
+    },
+    {
+      "band": "100-150 m",
+      "margin_m": 0.0,
+      "boxes": 4332,
+      "full_lidar_supported": 4147,
+      "full_lidar_share": 0.957295,
+      "matched_expected": 760.35,
+      "matched_expected_share": 0.175519,
+      "matched_p5": 727.0,
+      "matched_p95": 795.0,
+      "radar_supported": 1182,
+      "radar_share": 0.272853
+    },
+    {
+      "band": "150-400 m",
+      "margin_m": 0.0,
+      "boxes": 2309,
+      "full_lidar_supported": 2118,
+      "full_lidar_share": 0.917280,
+      "matched_expected": 290.04,
+      "matched_expected_share": 0.125613,
+      "matched_p5": 267.9,
+      "matched_p95": 312.0,
+      "radar_supported": 350,
+      "radar_share": 0.151581
+    },
+    {
+      "band": "0-50 m",
+      "margin_m": 0.5,
+      "boxes": 10220,
+      "full_lidar_supported": 10213,
+      "full_lidar_share": 0.999315,
+      "matched_expected": 8425.18,
+      "matched_expected_share": 0.824382,
+      "matched_p5": 8378.9,
+      "matched_p95": 8468.0,
+      "radar_supported": 8922,
+      "radar_share": 0.872994
+    },
+    {
+      "band": "50-100 m",
+      "margin_m": 0.5,
+      "boxes": 8256,
+      "full_lidar_supported": 8255,
+      "full_lidar_share": 0.999879,
+      "matched_expected": 3422.38,
+      "matched_expected_share": 0.414532,
+      "matched_p5": 3371.0,
+      "matched_p95": 3481.1,
+      "radar_supported": 5851,
+      "radar_share": 0.708697
+    },
+    {
+      "band": "100-150 m",
+      "margin_m": 0.5,
+      "boxes": 4332,
+      "full_lidar_supported": 4326,
+      "full_lidar_share": 0.998615,
+      "matched_expected": 909.45,
+      "matched_expected_share": 0.209938,
+      "matched_p5": 871.0,
+      "matched_p95": 955.0,
+      "radar_supported": 2106,
+      "radar_share": 0.486150
+    },
+    {
+      "band": "150-400 m",
+      "margin_m": 0.5,
+      "boxes": 2309,
+      "full_lidar_supported": 2283,
+      "full_lidar_share": 0.988740,
+      "matched_expected": 358.69,
+      "matched_expected_share": 0.155344,
+      "matched_p5": 333.0,
+      "matched_p95": 381.0,
+      "radar_supported": 646,
+      "radar_share": 0.279775
+    }
+  ],
+  "conditions": "All 389 paired frames as released. Weather is not analysed and cannot be inferred from a handful of differently labelled scenes",
+  "evidence": [
+    "docs/evidence/truckscenes/density-matched/band_summary.csv",
+    "docs/evidence/truckscenes/density-matched/frame_budgets.csv",
+    "docs/evidence/truckscenes/density-matched/manifest.json",
+    "scripts/truckscenes_density_matched_support.py",
+    "scripts/truckscenes_density_matched_runner.py",
+    "tests/test_truckscenes_density_matched_support.py",
+    "tests/test_truckscenes_density_matched_runner.py",
+    "experiment-log/0030-truckscenes-density-matched-support.md"
+  ],
+  "notes": "This is a control for records 0016 and 0017, not a new measurement of the dataset. It asks one narrow question: how much of the long-range LiDAR support advantage is explained by LiDAR simply producing more returns? Beyond 50 m the answer is most of it. At 150-400 m and margin 0, density-matched LiDAR support falls from 91.7% to 12.6%, below radar's 15.2%; at margin 0.5 it is 15.5% against radar's 28.0%. Both margins agree that the long-range advantage does not survive an equal point budget. The short-range reading is not robust and is reported as such: at margin 0 matched LiDAR still leads radar below 50 m (7,901.5 against 6,753), but at margin 0.5 it does not (8,425.2 against 8,922), so no close-range claim is made. What this does not show: that radar detects better than LiDAR. No model is run, no detector is scored, and geometric support is not detection recall. Uniform random thinning is one specific null model; a genuinely lower-resolution sensor would thin structurally rather than at random, so this bounds how much of the gap arithmetic explains rather than predicting how a cheaper sensor would behave. Fusion is the controlled vocabulary for a multi-modality characterisation, not point-cloud or detector fusion. The exact expectation comes from the hypergeometric distribution and is not estimated; 200 seeded draws give the percentile spread, and the exact value falls inside the 5th-95th band in all eight rows. Per-box draws treat boxes within a frame as independent, which affects the spread but not the expectation. Inherits every limitation of record 0016, including LiDAR-based annotation selection, residual motion and articulation, and repeated observations across scenes that are not independent trials. Recorded radar returns stop near 189.5 m, bounding any statement about bands beyond it. Outputs regenerate byte-identically on macOS and Linux, so no number here is machine-specific. Agent-assisted analysis; not an independent human signoff."
+}
