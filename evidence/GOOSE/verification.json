@@ -1,0 +1,436 @@
+{
+  "method": "SHA-256 of each copy compared with its source file on main at source_commit",
+  "source_commit": "31c62b9",
+  "files": [
+    {
+      "file": "01-dataset-characterisation/goose_contact_sheet.png",
+      "source": "docs/evidence/goose_contact_sheet.png",
+      "sha256": "f64655348584d0070ccd514e55e92572d53c8645b9306d815f9eb76919ac54e5",
+      "matches_source": true
+    },
+    {
+      "file": "01-dataset-characterisation/goose_frame_000.png",
+      "source": "docs/evidence/goose_frame_000.png",
+      "sha256": "89ff5300f9d6296aa4ed969163292efdb821a59843096248e75709ecf6782b6b",
+      "matches_source": true
+    },
+    {
+      "file": "01-dataset-characterisation/goose_frame_500.png",
+      "source": "docs/evidence/goose_frame_500.png",
+      "sha256": "c0fedb23ed469d5a101199ef26f2ef2f414c9c22781c32fd7041f2add27e8b36",
+      "matches_source": true
+    },
+    {
+      "file": "01-dataset-characterisation/goose_client_figure.png",
+      "source": "docs/evidence/goose_client_figure.png",
+      "sha256": "b68b8416fd34a0fedccacd4eef07d59d213e1e0eed19cc368252a425fa2f3a61",
+      "matches_source": true
+    },
+    {
+      "file": "01-dataset-characterisation/class_ranges.csv",
+      "source": "docs/evidence/goose/range-support/class_ranges.csv",
+      "sha256": "f0559fa538a54409001ebad53622f389018c9eee1014c7b08f998aa2c93858dd",
+      "matches_source": true
+    },
+    {
+      "file": "01-dataset-characterisation/frame_ranges.csv",
+      "source": "docs/evidence/goose/range-support/frame_ranges.csv",
+      "sha256": "a19791fe40fa79bf727db871f63dae26010e612b83e5b65fae9f80b3785402b0",
+      "matches_source": true
+    },
+    {
+      "file": "01-dataset-characterisation/manifest.json",
+      "source": "docs/evidence/goose/range-support/manifest.json",
+      "sha256": "55a6c937f53dd221f3532b4a9ac785c5aa12ea22bd56d7e156962bcb75d581e0",
+      "matches_source": true
+    },
+    {
+      "file": "01-dataset-characterisation/traversability_by_range.png",
+      "source": "docs/evidence/goose/range-support/traversability_by_range.png",
+      "sha256": "abcb882f90645f0faaf629c1d17bbfa7e624e9d47c1f26edbcc43ad239d5f77a",
+      "matches_source": true
+    },
+    {
+      "file": "01-dataset-characterisation/traversability_ranges.csv",
+      "source": "docs/evidence/goose/range-support/traversability_ranges.csv",
+      "sha256": "b3e56ea92fb2f7411e64baaa27692c977c193716445232acb385c61237414253",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/goose_traversability_2022-07-22_flight.png",
+      "source": "docs/evidence/goose_traversability_2022-07-22_flight.png",
+      "sha256": "de95589f05c0ab81865743c91fefe5d3de0fa4ab3dff774dd0ca65e0d58d7491",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/goose_traversability_2022-08-30_siegertsbrunn_feldwege.png",
+      "source": "docs/evidence/goose_traversability_2022-08-30_siegertsbrunn_feldwege.png",
+      "sha256": "41dc207d70233446615c97333e671b2230b3ce11ee56fef3b1a4ad67285e0184",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/goose_traversability_2022-09-21_garching_uebungsplatz_2.png",
+      "source": "docs/evidence/goose_traversability_2022-09-21_garching_uebungsplatz_2.png",
+      "sha256": "a2bef318067337170b7b3d9673d2dfb047e9699e36949a9f41b9df9abbf920d7",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/goose_traversability_2022-12-07_aying_hills.png",
+      "source": "docs/evidence/goose_traversability_2022-12-07_aying_hills.png",
+      "sha256": "7b7ee6dc3d31d210540344dc65ea4a2ebac87678c55ebe9ee264460e935eab04",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/goose_traversability_2023-01-20_aying_mangfall_2.png",
+      "source": "docs/evidence/goose_traversability_2023-01-20_aying_mangfall_2.png",
+      "sha256": "2940878acc816aee2da162ef80c505ff6ee5e421ae40afccb64795ba95ae36ab",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/goose_traversability_2023-03-03_garching_2.png",
+      "source": "docs/evidence/goose_traversability_2023-03-03_garching_2.png",
+      "sha256": "8a546a2be84186d0734d65bcb9550b1eb6aec879815da9b3734b907e6ae4bfa7",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/goose_traversability_2023-05-15_neubiberg_rain.png",
+      "source": "docs/evidence/goose_traversability_2023-05-15_neubiberg_rain.png",
+      "sha256": "0b5452939417ed7847859996db662ec6044180a11f5f89038814cfac7e42bc33",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/goose_traversability_2023-05-17_neubiberg_sunny.png",
+      "source": "docs/evidence/goose_traversability_2023-05-17_neubiberg_sunny.png",
+      "sha256": "52590305fd2b46b73c801a5ee13c6f7705aeb1929f8d4572fb29a7746295a7be",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/goose_traversability_compare_bush.png",
+      "source": "docs/evidence/goose_traversability_compare_bush.png",
+      "sha256": "66994e9dd66d5beef74968a9595a0caec2cbf2e44ef0afe95bfbb1580e3ab0c9",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/goose_traversability_sheet.png",
+      "source": "docs/evidence/goose_traversability_sheet.png",
+      "sha256": "03e492b363e1882d249c9b5e03252ae40ab42a59b7abdb85ca074e23ee06883c",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/goose_traversability_sheet_bush-as-potential.png",
+      "source": "docs/evidence/goose_traversability_sheet_bush-as-potential.png",
+      "sha256": "78952635fbb222155e80c765610bde5ada9d2dd6dfcfb37ee144a21a864e14e5",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/traversability_map.csv",
+      "source": "GOOSE - Ricky+Damien/traversability_map.csv",
+      "sha256": "ec023e86a95f0a1356582c40e2ec3a04296f2eaf31ab7a706dbe34459d3b3efd",
+      "matches_source": true
+    },
+    {
+      "file": "02-traversability/traversability-map-notes.md",
+      "source": "GOOSE - Ricky+Damien/traversability-map-notes.md",
+      "sha256": "3a224c34bcbd5d2a6b4eb08fe31a9ec80c13200c6370f70e173b8437552569e2",
+      "matches_source": true
+    },
+    {
+      "file": "03-ptv3-10frame-saved-predictions/class_errors_by_range.png",
+      "source": "docs/evidence/missing-support/goose-saved/class_errors_by_range.png",
+      "sha256": "9079695222395d0880038f6ff7df5ec30f0bf67ba34ed3630ddcbe89e2666b10",
+      "matches_source": true
+    },
+    {
+      "file": "03-ptv3-10frame-saved-predictions/confusion.csv",
+      "source": "docs/evidence/missing-support/goose-saved/confusion.csv",
+      "sha256": "04d820bb299f84313688d1fe935b245957c9d79db8c802773f5a719efa3b76be",
+      "matches_source": true
+    },
+    {
+      "file": "03-ptv3-10frame-saved-predictions/frame_accuracy.csv",
+      "source": "docs/evidence/missing-support/goose-saved/frame_accuracy.csv",
+      "sha256": "8de658b3ebf564da09d3a908d32f9401ac776be405fefe83233e173b4364581d",
+      "matches_source": true
+    },
+    {
+      "file": "03-ptv3-10frame-saved-predictions/manifest.json",
+      "source": "docs/evidence/missing-support/goose-saved/manifest.json",
+      "sha256": "46a13176b96c5d93724da323eda583be639ec53776467019d12bbe65f85ce133",
+      "matches_source": true
+    },
+    {
+      "file": "03-ptv3-10frame-saved-predictions/range_accuracy.csv",
+      "source": "docs/evidence/missing-support/goose-saved/range_accuracy.csv",
+      "sha256": "7d80eb50db1271cb5c0c0043ba1858a7e489d3d8f56e0f8830b6e3daf98af10d",
+      "matches_source": true
+    },
+    {
+      "file": "03-ptv3-10frame-saved-predictions/raw_class_errors.csv",
+      "source": "docs/evidence/missing-support/goose-saved/raw_class_errors.csv",
+      "sha256": "feaaa46a097263adce4e3cb8f8bb92dfa564c1183086b0f220c49629aa5dba5c",
+      "matches_source": true
+    },
+    {
+      "file": "04-ground-vs-obstacle/ground_obstacle_example.png",
+      "source": "docs/evidence/offroad-ground/ground_obstacle_example.png",
+      "sha256": "38b75ecb4042063b4ec7ef188abf21d928646b2b5ed0175dfa14270b87cc7fa9",
+      "matches_source": true
+    },
+    {
+      "file": "04-ground-vs-obstacle/manifest.json",
+      "source": "docs/evidence/offroad-ground/manifest.json",
+      "sha256": "ad4cb1b809ed7c8d1a65d63e7b311ab0392c954a07c00a33307e634f0e375d24",
+      "matches_source": true
+    },
+    {
+      "file": "04-ground-vs-obstacle/returned_point_inventory.csv",
+      "source": "docs/evidence/offroad-ground/returned_point_inventory.csv",
+      "sha256": "26874f1cf445d8b6d8f736dd7dee4c115a6e2ea015143b0bdc21778da6023928",
+      "matches_source": true
+    },
+    {
+      "file": "04-ground-vs-obstacle/saved_fine_confusion.csv",
+      "source": "docs/evidence/offroad-ground/saved_fine_confusion.csv",
+      "sha256": "97b57bcb2c81fe44a1d51a958c23f74ef772c2053e44bcdd1f95f532ff2a402a",
+      "matches_source": true
+    },
+    {
+      "file": "04-ground-vs-obstacle/saved_frame_group_confusion.csv",
+      "source": "docs/evidence/offroad-ground/saved_frame_group_confusion.csv",
+      "sha256": "04b3164d6f7a61d2a4e393a469a6da96e42d75936117fca46019e32fa6979158",
+      "matches_source": true
+    },
+    {
+      "file": "04-ground-vs-obstacle/saved_group_confusion.csv",
+      "source": "docs/evidence/offroad-ground/saved_group_confusion.csv",
+      "sha256": "a826b7594db7b7f8b2f0c6ae93ea922dae2e6863825f38dce98b5fe4bb7348f8",
+      "matches_source": true
+    },
+    {
+      "file": "04-ground-vs-obstacle/stone_metadata_audit.json",
+      "source": "docs/evidence/offroad-ground/stone_metadata_audit.json",
+      "sha256": "35f52ae467355b6c385a6f6f36b81e09586f3002480d6b01fa9930d4a6bcd412",
+      "matches_source": true
+    },
+    {
+      "file": "04-ground-vs-obstacle/verification.json",
+      "source": "docs/evidence/offroad-ground/verification.json",
+      "sha256": "8725b5db0e035d0cb0abe8c250a43ba80bfe1e4217b05478f880f32e8f8cac27",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/runtime.json",
+      "source": "docs/evidence/goose-stratified/runtime.json",
+      "sha256": "378f51c3dac7cc3e584bd5454f8a62fd25e8a3de85d04a93be15a5f9be37286f",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/selection.json",
+      "source": "docs/evidence/goose-stratified/selection.json",
+      "sha256": "19db44e7791cd317afd20c5208ccf17b76f266ecc06566f5142511e019620a76",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/class_ground_predictions.csv",
+      "source": "docs/evidence/goose-stratified/ground/class_ground_predictions.csv",
+      "sha256": "794212962ef8fa1633154ecb3e596316ee35b51214d584fd88ff78c65e412ce7",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/ground_category_mistakes.csv",
+      "source": "docs/evidence/goose-stratified/ground/ground_category_mistakes.csv",
+      "sha256": "b39470c36cd523d346445c750e045cdfe4cabdd1cb1e67feb45f193c610bc8c3",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/ground_obstacle_example.png",
+      "source": "docs/evidence/goose-stratified/ground/ground_obstacle_example.png",
+      "sha256": "e00bc4d03f4ef1597773a69d90e376025d92a9a7d9e0ccc2c14d1a195b32319d",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/manifest.json",
+      "source": "docs/evidence/goose-stratified/ground/manifest.json",
+      "sha256": "a74d892ab4e4f714cb8e059870bdd833b1b654384973a65aee1812e24982604f",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/range_summary.csv",
+      "source": "docs/evidence/goose-stratified/ground/range_summary.csv",
+      "sha256": "92d6263f8b9e20522b4ecdcb6e410978177cd7a50ff7cb2b6c4ba5e5e3959ca0",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/returned_point_inventory.csv",
+      "source": "docs/evidence/goose-stratified/ground/returned_point_inventory.csv",
+      "sha256": "26874f1cf445d8b6d8f736dd7dee4c115a6e2ea015143b0bdc21778da6023928",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/saved_fine_confusion.csv",
+      "source": "docs/evidence/goose-stratified/ground/saved_fine_confusion.csv",
+      "sha256": "3529b090b1d1c21833f81ddfa81ce983b7af86f2314122f35142911ca032f3ea",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/saved_frame_group_confusion.csv",
+      "source": "docs/evidence/goose-stratified/ground/saved_frame_group_confusion.csv",
+      "sha256": "f029ad3034a5528b8e5a930ee13af17cd288d794c83c1dd7424273b32301fdf5",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/saved_group_confusion.csv",
+      "source": "docs/evidence/goose-stratified/ground/saved_group_confusion.csv",
+      "sha256": "44255228811f6128b7155a2c41f690c206f6eec61ab083c5309a8847882770fe",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/scenario_errors.png",
+      "source": "docs/evidence/goose-stratified/ground/scenario_errors.png",
+      "sha256": "6e94de6064a83927cb6c35dbdc8be518239b26cd9e0f13c0d276f9549db9c5c3",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/scenario_group_confusion.csv",
+      "source": "docs/evidence/goose-stratified/ground/scenario_group_confusion.csv",
+      "sha256": "1b8fd4a13fed4c2d26d46d76f4b9e66e2c7e2e96d693c513f94ee554dd64569e",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/class_errors_by_range.png",
+      "source": "docs/evidence/goose-stratified/semantic/class_errors_by_range.png",
+      "sha256": "3d518a4c38ffb093a80f3704fd7c426cf159c12af3ce72d675bd4828ace304f6",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/confusion.csv",
+      "source": "docs/evidence/goose-stratified/semantic/confusion.csv",
+      "sha256": "45f2037d0590d8789471c996fbf9c28caa00378cbf8ab8c26e4fd37c03291907",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/frame_accuracy.csv",
+      "source": "docs/evidence/goose-stratified/semantic/frame_accuracy.csv",
+      "sha256": "b8b3d942b3b0bc4b5ccf6027f4f4e39ca2c4c570bd2d165f844bc1b808b9f071",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/manifest.json",
+      "source": "docs/evidence/goose-stratified/semantic/manifest.json",
+      "sha256": "0efd4d4b881ae35b844dd6954658f21941487aba87b351ea5b1bd3dfeaa89ea7",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/range_accuracy.csv",
+      "source": "docs/evidence/goose-stratified/semantic/range_accuracy.csv",
+      "sha256": "7fde9acbb09fedc4cbb104cdf08942e48c57fce35a8554d566941b9673e4f58e",
+      "matches_source": true
+    },
+    {
+      "file": "05-ptv3-24frame-eight-scenarios/raw_class_errors.csv",
+      "source": "docs/evidence/goose-stratified/semantic/raw_class_errors.csv",
+      "sha256": "809e5fcc20782ecba2b364b546945c06226e0cb96d5b03fb879ad287a9a38ca5",
+      "matches_source": true
+    },
+    {
+      "file": "06-error-cases/error_cases.png",
+      "source": "docs/evidence/goose-error-cases/error_cases.png",
+      "sha256": "321f59b0c4a5690f7247fa1c27af5de7a2abf6e0534d9b9092c8e36f3be88416",
+      "matches_source": true
+    },
+    {
+      "file": "06-error-cases/frame_class_errors.csv",
+      "source": "docs/evidence/goose-error-cases/frame_class_errors.csv",
+      "sha256": "6d7063789754f5fd7b6d707833752b111462b5c4a97042dc2b174cecbbb601f9",
+      "matches_source": true
+    },
+    {
+      "file": "06-error-cases/manifest.json",
+      "source": "docs/evidence/goose-error-cases/manifest.json",
+      "sha256": "4ac23f86b3b3be6aeba3bf3ca3d4b6d61a0615d6ef679b5d6686ca588da44ee7",
+      "matches_source": true
+    },
+    {
+      "file": "06-error-cases/rock_frame_instances.csv",
+      "source": "docs/evidence/goose-error-cases/rock_frame_instances.csv",
+      "sha256": "5fe4041e52747b9db8bbdd95fab63305a9a3293a7a580c059618833f3ce5343c",
+      "matches_source": true
+    },
+    {
+      "file": "06-error-cases/summary.csv",
+      "source": "docs/evidence/goose-error-cases/summary.csv",
+      "sha256": "2c216433832c50db5257188133861c7eff434c92c7d0bdefd7c7ed2bde8cc0e0",
+      "matches_source": true
+    },
+    {
+      "file": "07-failure-causes/camera_manifest.json",
+      "source": "docs/evidence/goose-failure-causes/camera_manifest.json",
+      "sha256": "2543ec9969338e738c9fd2f56a9d13e96193b215a08ea726c55e599b22a98837",
+      "matches_source": true
+    },
+    {
+      "file": "07-failure-causes/context_comparison.csv",
+      "source": "docs/evidence/goose-failure-causes/context_comparison.csv",
+      "sha256": "f7a4432e5bf98f480bbaac12686044a76953cd9d2325810857b1c7bb3cbf0673",
+      "matches_source": true
+    },
+    {
+      "file": "07-failure-causes/context_comparison.png",
+      "source": "docs/evidence/goose-failure-causes/context_comparison.png",
+      "sha256": "f75be5fc27581f288b2460cfaf60219ed8869e5f684cc4f84dfaddb26b29d5d9",
+      "matches_source": true
+    },
+    {
+      "file": "07-failure-causes/context_manifest.json",
+      "source": "docs/evidence/goose-failure-causes/context_manifest.json",
+      "sha256": "60d3c984246e6a63e5a86e37873d554b143d8b012616d24446c94b4c5c9ea2ea",
+      "matches_source": true
+    },
+    {
+      "file": "07-failure-causes/context_pooled.csv",
+      "source": "docs/evidence/goose-failure-causes/context_pooled.csv",
+      "sha256": "343fc774662f7f9dee7fb210e4fffa5eddddfed0168fbe45f08a060ebdd901b2",
+      "matches_source": true
+    },
+    {
+      "file": "07-failure-causes/geometry_manifest.json",
+      "source": "docs/evidence/goose-failure-causes/geometry_manifest.json",
+      "sha256": "90d7e75c838ad48839529d2156d0d39e004cf337fa8344f35aeaf563e097076d",
+      "matches_source": true
+    },
+    {
+      "file": "07-failure-causes/nearest_ground_diagnostic.csv",
+      "source": "docs/evidence/goose-failure-causes/nearest_ground_diagnostic.csv",
+      "sha256": "7d8d0dbdb47c04e38019c5e49496569803a7d38b26bfa16ab5f495790272ccfa",
+      "matches_source": true
+    },
+    {
+      "file": "07-failure-causes/normal_diagnostic.csv",
+      "source": "docs/evidence/goose-failure-causes/normal_diagnostic.csv",
+      "sha256": "76aae1a6f7febaaa0e12c74c30d845acd72e41256aa17e1c9489568041518989",
+      "matches_source": true
+    },
+    {
+      "file": "07-failure-causes/selection.json",
+      "source": "docs/evidence/goose-failure-causes/selection.json",
+      "sha256": "bd0d7a2f00cfab158d9ec11938adcc81f9aa5c9070a9075cce51da1ef36f3f1d",
+      "matches_source": true
+    },
+    {
+      "file": "07-failure-causes/voxel_ambiguity.csv",
+      "source": "docs/evidence/goose-failure-causes/voxel_ambiguity.csv",
+      "sha256": "0588aa297885553dde52569e994d513815a827ef2f47ed5baaf6f7381981a330",
+      "matches_source": true
+    },
+    {
+      "file": "08-reproduction/goose-smoke-fariya.png",
+      "source": "docs/evidence/goose-smoke-fariya.png",
+      "sha256": "7d119f1073054cd53df7fd9ba2a73fbb90a5413a282a39b594880502dca92df1",
+      "matches_source": true
+    }
+  ],
+  "checks": {
+    "all_copies_match_source": true,
+    "file_count": 71
+  }
+}

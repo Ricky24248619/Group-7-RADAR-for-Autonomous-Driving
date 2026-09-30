@@ -1,0 +1,11 @@
+{
+  "frame": "2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin",
+  "input_sha256": {
+    "scan": "fecb28504b296764d7fea0772d40543caf37c000208a830aa245c7b7910aa23f",
+    "label": "f2348eb33d15e5e88617caa0e5240484813cdd136932343a3487988e696b5103",
+    "challenge_label": "a8ecfd1c3e98acb71126b4e1067dcd20757229deb87060ba170315f2fb6b6773",
+    "prediction": "7a0baf0bdfbca28c7bcd42c74fa3de89301fa2dec66825b16e0efac1538c2ee0"
+  },
+  "method": "Nearest labelled ground in scan XY; raw delta z; 1m and 2m maximum horizontal gaps. Normals: all scan points, 16 neighbors within 0.5m, planar eigenvalue ratio <0.2; abs normal-z >=0.9 horizontal, <=0.3 vertical.",
+  "limits": "No fitted/validated local ground surface, visibility or calibration to image. Adjacent surfaces and slopes confound delta z. Ground cover includes snow/grass, which can conceal the actual supporting surface. Correlations do not establish cause."
+}

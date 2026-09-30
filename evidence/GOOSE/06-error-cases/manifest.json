@@ -1,0 +1,29 @@
+{
+  "verified_manifest_sha256": "e04293eef3bc7d9be03cbf3bd83558d848c6b39f433e2b61996dfa6114ffb4dd",
+  "selection": "All verified frames scored; illustrations select largest ground-error count for rock 0-25m and building 100-150m; ties retain first manifest frame.",
+  "selected": [
+    {
+      "frame": "2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin",
+      "scenario": "2023-01-20_aying_mangfall_2",
+      "true_class": "rock",
+      "band_m": "0-25",
+      "points": 1442,
+      "ground_category_points": 788,
+      "ground_category_percent": 54.64632454923717,
+      "frame_local_instances": 3,
+      "unassigned_instance_points": 0
+    },
+    {
+      "frame": "2023-05-15_neubiberg_rain__0677_1684158156457472801_vls128.bin",
+      "scenario": "2023-05-15_neubiberg_rain",
+      "true_class": "building",
+      "band_m": "100-150",
+      "points": 3265,
+      "ground_category_points": 642,
+      "ground_category_percent": 19.66309341500766,
+      "frame_local_instances": "",
+      "unassigned_instance_points": ""
+    }
+  ],
+  "limits": "No new inference. Instance IDs counted only within frames. Buildings have no instance labels. Points, instances and scenarios are correlated; raw scan z is not ground-relative height."
+}

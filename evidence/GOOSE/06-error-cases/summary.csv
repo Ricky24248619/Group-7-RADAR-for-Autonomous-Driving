@@ -1,0 +1,5 @@
+true_class,band_m,points,ground_category_points,frames,scenarios,most_error_frame,most_error_frame_points,most_error_frame_share_percent
+rock,0-25,2012,813,3,2,2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin,788,96.9249692496925
+rock,100-150,6,6,1,1,2023-05-17_neubiberg_sunny__0399_1684329809197908580_vls128.bin,6,100.0
+building,0-25,91660,11584,7,3,2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin,11439,98.74827348066299
+building,100-150,7067,1317,8,4,2023-05-15_neubiberg_rain__0677_1684158156457472801_vls128.bin,642,48.747152619589976
