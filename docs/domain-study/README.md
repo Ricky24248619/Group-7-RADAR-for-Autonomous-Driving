@@ -11,10 +11,10 @@ claimed which source, and the claims ledger.
 `docs/domain-study/<yourname>-<source>.md`, fill it, add your row to the matrix below
 and at least two rows to the claims ledger, then open a PR.
 
-> **Status: no entries yet.** The structure below is live and the sources are assigned,
-> but every row is empty because nobody has watched anything. That is the honest state
-> of WS1, and it is why **P-2 sits at "partly met"** — the per-dataset surveys and the
-> handbook exist, the cross-team sensor survey does not.
+> **Status: 1 of 6 entries (29 September).** Bonn perception is in, written from the
+> lecture transcripts. The other five sources are assigned but unclaimed. **P-2 stays at
+> "partly met"** until enough entries exist for the matrix to show coverage rather than
+> one source.
 
 ---
 
@@ -39,7 +39,7 @@ acceptance test is that **coverage gaps are visible without re-reading everythin
 
 | Source | Type | Who | Date | Radar | LiDAR | Camera | Fusion | Off-road | Depth |
 |---|---|---|---|---|---|---|---|---|---|
-| *(none yet)* | | | | | | | | | |
+| [Bonn SDC 2021 — Perception 1 & 2](damien-bonn-sdc2021.md) | Course | Damien | 2026-09-29 | ⚠️ | ✅ | ✅ | ❌ | ⚠️ | Medium (Shallow on radar) |
 
 **Key:** ✅ covered in useful detail · ⚠️ mentioned only · ❌ not covered ·
 Depth = Shallow / Medium / Deep
@@ -61,7 +61,7 @@ start watching**.
 | 2 | **Aurora** keynote | Trucking, sensor-first | Fariya | |
 | 3 | **Kodiak Robotics** keynote | Trucking, and the off-road/defence work Adrian and Fabian care about | Aiden | |
 | 4 | **Waabi** or **Plus** keynote | Deliberately contrasting approach | Fatima | |
-| 5 | [Bonn — Self-Driving Cars 2021](https://www.ipb.uni-bonn.de/sdc-2021/index.html) | Academic, sensor fundamentals | Damien | |
+| 5 | [Bonn — Self-Driving Cars 2021](https://www.ipb.uni-bonn.de/sdc-2021/index.html) | Academic, sensor fundamentals | Damien | Damien — [done](damien-bonn-sdc2021.md) |
 | 6 | [Coursera — Self-Driving Cars specialisation](https://www.coursera.org/specializations/self-driving-cars) | Structured, longest — skim the sensor modules only | Ricky | |
 
 Proposals, not assignments — swap freely, but update the table so the swap is visible.
@@ -88,7 +88,13 @@ be cited somewhere else.
 
 | # | Claim | Modality | Source | Timestamp / page | Confidence | Added by |
 |---|---|---|---|---|---|---|
-| | | | | | | |
+| 1 | Radar measures velocity as well as position, but its image is very low resolution, sparse and noisy compared with camera or LiDAR | Radar | Bonn SDC 2021, Perception 1 | 6:52–7:42 | Stated | Damien |
+| 2 | LiDAR point density falls with range until a distant pedestrian is not recognisable. The captioned distance ("15 m") needs checking | LiDAR | Bonn SDC 2021, Perception 2 | 24:26 | Stated (number unverified) | Damien |
+| 3 | LiDAR fails on dark (absorbing), highly reflective (range error) and glass (phantom reflection) surfaces | LiDAR | Bonn SDC 2021, Perception 2 | 25:20–28:01 | Stated | Damien |
+| 4 | A LiDAR segmentation model trained on a 64-beam sensor transfers badly to a 32-beam one, and changing the sensor mounting changes sampling and affects results | LiDAR | Bonn SDC 2021, Perception 2 | 52:21–54:14 | Evidenced (example shown) | Damien |
+| 5 | Sensor fusion is essential and "really hard". The course does not cover it | Fusion | Bonn SDC 2021, Perception 1 | 8:30–9:14 | Stated | Damien |
+| 6 | Datasets are mostly good weather; all-weather operation is an open problem for Level 5 | All | Bonn SDC 2021, Perception 1 | 71:41–72:32 | Stated | Damien |
+| 7 | **Silence:** no mention of 4D/imaging radar, no radar-first detector, and no range figure past ~150 m in 131 minutes of perception teaching | Radar | Bonn SDC 2021, Perception 1 & 2 | whole | Stated (by absence) | Damien |
 
 **Confidence:** *Stated* — the source asserts it directly · *Evidenced* — the source
 shows data · *Contested* — sources disagree, log both and flag it · *Inferred* — your
