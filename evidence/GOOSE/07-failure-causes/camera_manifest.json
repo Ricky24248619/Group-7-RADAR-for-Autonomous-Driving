@@ -1,0 +1,43 @@
+{
+  "source": {
+    "id": "goose-2d-val-20250318",
+    "size": 2857251081,
+    "url": "https://goose-dataset.de/storage/goose_2d_val.zip?diagnostic=20260928"
+  },
+  "selection_sha256": "bd0d7a2f00cfab158d9ec11938adcc81f9aa5c9070a9075cce51da1ef36f3f1d",
+  "images": [
+    {
+      "lidar_frame": "2023-01-20_aying_mangfall_2__0496_1674223774529854911_vls128.bin",
+      "archive_member": "images/val/2023-01-20_aying_mangfall_2/2023-01-20_aying_mangfall_2__0496_1674223774529854911_windshield_vis.png",
+      "filename": "2023-01-20_aying_mangfall_2__0496_1674223774529854911_windshield_vis.png",
+      "sha256": "21c3ce4a89351680f6b75d9e2ba3b6a4b09cf6e3234ad1bf1de87642d2bd4a5d",
+      "bytes": 3037059,
+      "dimensions": [
+        2048,
+        1000
+      ]
+    },
+    {
+      "lidar_frame": "2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin",
+      "archive_member": "images/val/2023-01-20_aying_mangfall_2/2023-01-20_aying_mangfall_2__0497_1674223778204567633_windshield_vis.png",
+      "filename": "2023-01-20_aying_mangfall_2__0497_1674223778204567633_windshield_vis.png",
+      "sha256": "1c82e7bab56c1dfad21259493b03e1f9ea6d4e88d8dcabbb58591c772588eee2",
+      "bytes": 2987439,
+      "dimensions": [
+        2048,
+        1000
+      ]
+    },
+    {
+      "lidar_frame": "2023-01-20_aying_mangfall_2__0498_1674223782614190613_vls128.bin",
+      "archive_member": "images/val/2023-01-20_aying_mangfall_2/2023-01-20_aying_mangfall_2__0498_1674223782614190613_windshield_vis.png",
+      "filename": "2023-01-20_aying_mangfall_2__0498_1674223782614190613_windshield_vis.png",
+      "sha256": "9109470dcc2ca2f3c7698570003f25d57e4afc13e05a3f762baf1f76bb3aa156",
+      "bytes": 3011949,
+      "dimensions": [
+        2048,
+        1000
+      ]
+    }
+  ]
+}
