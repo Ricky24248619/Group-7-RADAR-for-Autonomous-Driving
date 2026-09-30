@@ -452,8 +452,9 @@ Per the A1/A2/A3 breakdown in `Damien - Sprint 3/README.md`:
 - [x] Internal GOOSE frame-count sum checked and G-8 sensor claim narrowed
 - [ ] G-2 file-level reconciliation and G-8 vendor-datasheet confirmation
 - [ ] **A4** — cold read by a reader outside the GOOSE pair, recorded unedited.
-      **The one acceptance condition this document cannot satisfy by itself**, and the
-      one that closes P-6 and DS-4
+      **Closed 29 September without a read**
+      ([record](evidence/p6-cold-read-2026-09-29.md)), so P-6 and DS-4 stay open. It is
+      still the one acceptance condition this document cannot satisfy by itself
 - [ ] Fold in the TruckDrive survey once KL-S3-1 delivers it, replacing the
       statistics-derived rows here
 

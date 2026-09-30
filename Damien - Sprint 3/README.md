@@ -88,7 +88,17 @@ Every claim links to a survey, experiment log or saved record. Unresolved gaps g
 recorded as gaps rather than smoothed over. Run both validators after integrating any
 new records.
 
-### A4 · Cold read — 2.5 h · **protocol ready**
+### A4 · Cold read — **closed 29 September without a read; P-6 and DS-4 still open**
+
+**Closed, not performed.** The read was set up as PR #74, with the rules changed so that
+Aiden's AI model would be the reader. The PR merged before any answers came back, and the
+team closed A4 there. The recording form
+([`docs/evidence/p6-cold-read-2026-09-29.md`](../docs/evidence/p6-cold-read-2026-09-29.md))
+states this and has no answers in it. P-6 and DS-4 go to handover as open, with the
+protocol and prompts ready to run.
+
+*Original plan, kept for the record:*
+
 
 **Ready to run:** [`docs/cold-read-protocol.md`](../docs/cold-read-protocol.md) — ten
 questions in two parts, a recording form, and the rule that matters most (say nothing
@@ -307,8 +317,8 @@ mostly delegated.
 | Item | Effort | Realistically mine | Why |
 |---|---:|---:|---|
 | B1 remainder | 7.0 | 2.5 | My source is mine; five other people's viewing is not my time |
-| **A4 · cold read** | 2.5 | **2.5** | Entirely mine |
-| ~~B5 · outside-team reproduction~~ | ~~4.0~~ | ~~4.0~~ | **Closed 29 Sep** with a substitute run; P-5 stays open. No outsider available |
+| ~~A4 · cold read~~ | ~~2.5~~ | ~~2.5~~ | **Closed 29 Sep without a read**; P-6 and DS-4 stay open |
+| **B5 · outside-team reproduction** | 4.0 | **4.0** | Entirely mine |
 | B4 · box-level range analysis | 1.0 | 0.5 | **Re-scoped — blocked on metadata nobody holds.** Return coverage delivered by FA-S3-1. 5.0 / 2.0 if the inputs appear |
 | B6 · handover | 5.0 | 1.5 | Mostly delegated |
 | B7 · report corrections | 2.5 | 1.0 | Mostly delegated |
