@@ -227,7 +227,19 @@ gap register entry G-5 in `docs/dataset-suitability.md` says the same.
 
 **Effort released: the full 7.0 h original, or 1.0 h against the re-scope.**
 
-### B5 · P-5 outside-team reproduction — 4.0 h · **protocol ready**
+### B5 · P-5 outside-team reproduction — **closed 29 September, P-5 still open**
+
+**Closed without an outsider.** The team judged that nobody outside the unit can be found
+before 12 October. The protocol was instead run cold in a fresh clone by an AI assistant
+on my behalf: [`docs/evidence/p5-reproduction-2026-09-29.md`](../docs/evidence/p5-reproduction-2026-09-29.md).
+Checks passed and both figures were **byte-identical**. The run also found one snag a real
+outsider would hit: a harmless red `ERROR` line in the test output that the protocol did
+not warn about. That is now documented. **This does not meet P-5**, which needs a person
+outside the team. P-5 goes to handover as *partly met*, with the protocol ready for
+whoever inherits it.
+
+*Original plan, kept for the record:*
+
 
 **Ready to run:** [`docs/outside-reproduction-protocol.md`](../docs/outside-reproduction-protocol.md)
 — self-contained instructions and a recording form. The target needs **no dataset**:
