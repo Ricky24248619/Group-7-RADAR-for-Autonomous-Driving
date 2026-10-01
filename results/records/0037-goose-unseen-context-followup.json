@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "id": "0037-goose-unseen-context-followup",
+  "title": "Controlled GOOSE attention-context comparison on seven unseen frames",
+  "owner": "Ricky Yuen",
+  "date": "2026-10-01",
+  "status": "success",
+  "dataset": "GOOSE base 3D validation release, seven existing recordings excluding January tuning recording",
+  "sensor_configuration": "Released VLS-128 XYZI; LiDAR-only PTv3; FP32, FlashAttention off, one augmentation, seed 20260831",
+  "annotation_schema": "Released 64-class point labels mapped to eight challenge categories, checked against challenge labels",
+  "task_type": "semantic-segmentation-3d",
+  "modality": "lidar",
+  "split": "Seven previously unevaluated interior-third frames, one per recording, 1186454 points; tuning recording excluded",
+  "model": "Published GOOSE challenge PTv3 checkpoint epoch 33; Pointcept 92f91cc; patches 64, repeated64,128",
+  "environment": {
+    "os": "WSL Ubuntu 22.04",
+    "hardware": "GTX 1660 6144 MiB; three bounded runs; existing patched runtime",
+    "python": "3.10",
+    "packages": {
+      "torch": "2.0.1+cu117",
+      "numpy": "1.26.4"
+    }
+  },
+  "commands": [
+    "python scripts/prepare_goose_followup.py --root <GOOSE-root> --subset <fresh-subset> --output results/evidence/sprint-followup-oct01/terrain",
+    "Run three exact Pointcept commands in results/evidence/sprint-followup-oct01/terrain/execution.json using fresh save paths",
+    "python scripts/analyse_sprint_followup.py terrain --goose-root <GOOSE-root> --runs <new-runs-root> --mapping <challenge-mapping.csv> --checkpoint <challenge_ptv3.pth> --execution <execution.json>",
+    "python scripts/plot_sprint_followup.py",
+    "python scripts/render_client_conclusions.py"
+  ],
+  "measurements": [
+    {
+      "name": "Evaluated unseen frames",
+      "value": 7,
+      "scope": "One per existing recording, excluding January tuning recording; previously evaluated IDs excluded"
+    },
+    {
+      "name": "Evaluated returned labelled points",
+      "value": 1186454,
+      "scope": "Same complete selected cohort in all three variants"
+    },
+    {
+      "name": "Frames with higher point correctness at patch 128",
+      "value": 6,
+      "scope": "Seven matched frames, same checkpoint and remaining configuration"
+    }
+  ],
+  "evidence": [
+    "docs/client-level-conclusions-oct01.md",
+    "results/evidence/sprint-followup-oct01/terrain/selection.json",
+    "results/evidence/sprint-followup-oct01/terrain/manifest.json",
+    "results/evidence/sprint-followup-oct01/terrain/execution.json",
+    "results/evidence/sprint-followup-oct01/terrain/frame_comparison.csv",
+    "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv",
+    "experiment-log/0030-client-level-conclusions-followup.md"
+  ],
+  "notes": "Completed bounded controlled diagnostic, not full validation, external generalisation, individual-obstacle recall or traversability. Baseline repeat prediction-identical. Context improves six frames and worsens one; no default changed. No rock points in new cohort, so rock generalisation untested. Sampled total GPU peak 5953 MiB includes desktop workloads; temperature sampled maximum75C.",
+  "metrics": [
+    {
+      "name": "Overall accuracy",
+      "value": 0.8954093458322026,
+      "unit": "ratio",
+      "scope": "Eight coarse classes including other; 1186454 returned points in seven unseen selected frames; p64; no radar, unseen-surface or object-recall score"
+    },
+    {
+      "name": "Overall accuracy",
+      "value": 0.9080975747900888,
+      "unit": "ratio",
+      "scope": "Eight coarse classes including other; 1186454 returned points in seven unseen selected frames; p128; no radar, unseen-surface or object-recall score"
+    }
+  ]
+}

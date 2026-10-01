@@ -1,0 +1,100 @@
+{
+  "selection": "Sorted filenames: floor(N/3), advance only past previously evaluated IDs; no outcome-based selection",
+  "excluded_tuning_recording": "2023-01-20_aying_mangfall_2",
+  "excluded_previously_evaluated_frames": 36,
+  "frames": 7,
+  "points": 1186454,
+  "inputs": [
+    {
+      "frame": "2022-07-22_flight__0155_1658494454445888345_vls128.bin",
+      "scenario": "2022-07-22_flight",
+      "index": 50,
+      "scenario_frames": 151,
+      "points": 128041,
+      "sha256": {
+        "scan": "6dc30bd37379952c165cfb44b4c38442e17233ff90a475b667451a0a93fce132",
+        "label": "c3952d1605b2b3cb467d3dc97c7a3967fd7f23ca0d3f8609dc59f8c5e678eefb",
+        "challenge_label": "00be68598e38e836f977ae2f7a869822c570cb021055799956e2699ae01c73bd"
+      }
+    },
+    {
+      "frame": "2022-08-30_siegertsbrunn_feldwege__0562_1661860753399118949_vls128.bin",
+      "scenario": "2022-08-30_siegertsbrunn_feldwege",
+      "index": 34,
+      "scenario_frames": 103,
+      "points": 151828,
+      "sha256": {
+        "scan": "0ba1023ea4133432c07a75122ce5344f48d6a7b036fd4dc7b1150d9579db74be",
+        "label": "11a9f7b6f55c65f0245aa73d6e4721a1fdf76fd6f697d119f69a085fab7f4b3c",
+        "challenge_label": "26ef91cd080f6bf0cf8076c61616948f2fa7cfd1745c08fdd4a5d6ae88083507"
+      }
+    },
+    {
+      "frame": "2022-09-21_garching_uebungsplatz_2__0041_1663755381571228577_vls128.bin",
+      "scenario": "2022-09-21_garching_uebungsplatz_2",
+      "index": 41,
+      "scenario_frames": 123,
+      "points": 211253,
+      "sha256": {
+        "scan": "ebd5cb72c1f6557cbb12d86eae432f70543ea8c96da7bb9b750318d9976c47ae",
+        "label": "ace15fb99a8984f569e88f528f1fe0df2dfc64b01916b082a0d60f4886585ee8",
+        "challenge_label": "f002e87eb0f6f243ccbd9b78b1b17f891f9b465d227a983ed31526f496846137"
+      }
+    },
+    {
+      "frame": "2022-12-07_aying_hills__0045_1670421354439414871_vls128.bin",
+      "scenario": "2022-12-07_aying_hills",
+      "index": 44,
+      "scenario_frames": 133,
+      "points": 214787,
+      "sha256": {
+        "scan": "c8deea6ae1cdf443ff198255893b8209a6ecea453836cad9c68f23433c8bc0aa",
+        "label": "c4a0269e6fed3b10fcf30a2bc88bb35bf210d37da06d43fcf3cb1139f849cdb0",
+        "challenge_label": "296ab77bc2dfd727ff77911f41577430469cde357bbf475f099e85251d9188e9"
+      }
+    },
+    {
+      "frame": "2023-03-03_garching_2__0149_1677850634360288620_vls128.bin",
+      "scenario": "2023-03-03_garching_2",
+      "index": 35,
+      "scenario_frames": 106,
+      "points": 209040,
+      "sha256": {
+        "scan": "18c98f432ea98e127c0c27a377550c3b6004b9d748eff4b7a992313d6d94b3a5",
+        "label": "a2344c45a5d69417166aa5200e2b96ab6ffe2df05198d789708bb169ce812934",
+        "challenge_label": "66d84061284a908b6b9a39e0be4b0f57479e9e3ba6cd09851ef8fe98b1bdc260"
+      }
+    },
+    {
+      "frame": "2023-05-15_neubiberg_rain__0647_1684157923512800092_vls128.bin",
+      "scenario": "2023-05-15_neubiberg_rain",
+      "index": 24,
+      "scenario_frames": 73,
+      "points": 202104,
+      "sha256": {
+        "scan": "d7fa4c15ecd2ca5d3c30b5740e53896e59dd2ad4b6fd30d2388b827a99c62545",
+        "label": "b6c7322a8cf606b22f796d0174c4c1e69ba2d639bb5768d2e1c2ae87e0b66169",
+        "challenge_label": "a70d90bb4b304a942b27d3db63e3ea3d6c90cf65a75218660b475fe14c4e4ca4"
+      }
+    },
+    {
+      "frame": "2023-05-17_neubiberg_sunny__0406_1684329843302899662_vls128.bin",
+      "scenario": "2023-05-17_neubiberg_sunny",
+      "index": 27,
+      "scenario_frames": 81,
+      "points": 69401,
+      "sha256": {
+        "scan": "2cd521ab05ceecd42bac69e636bf5f55f5a5ff28289e3d16539890760a1318d9",
+        "label": "ad51616da810790cdf47b595e5ae9e386f69b431146b2c65169c258c7d078a25",
+        "challenge_label": "854595188fa3f758f46cc88f69d54794d359184af438b53099dd790446eca386"
+      }
+    }
+  ],
+  "earlier_manifest_sha256": {
+    "docs/evidence/goose-stratified/selection.json": "19db44e7791cd317afd20c5208ccf17b76f266ecc06566f5142511e019620a76",
+    "docs/evidence/goose-failure-causes/selection.json": "bd0d7a2f00cfab158d9ec11938adcc81f9aa5c9070a9075cce51da1ef36f3f1d",
+    "docs/evidence/missing-support/goose-saved/manifest.json": "46a13176b96c5d93724da323eda583be639ec53776467019d12bbe65f85ce133"
+  },
+  "scope": "Unseen frames in seven existing validation recordings; recordings are not independent of earlier characterization. Not full validation.",
+  "earlier_manifest_hash_definition": "Repository UTF-8 text with LF endings"
+}
