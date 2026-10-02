@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-01",
+  "inputs_sha256": {
+    "docs/evidence/truckscenes/paired-point-motion-support/object_counts.csv": "bab947b1c7acd63f20fcae60848a0cf5b57d6c1ecf8f3fa0773bfa4d0b979d2b",
+    "docs/evidence/truckscenes/paired-all-sensor-support/object_counts.csv": "f4f347600f9271ee5d911317af17c7be64865dd4540c0f96ba559d1f8d2b7b65",
+    "docs/evidence/truckdrive-multiscene/scene_28_1/static/object_counts.csv": "b32e6edb3056464760fa712c8ff2c702ece61f7a7f26abe1a4315b9ff1a0cd56",
+    "docs/evidence/truckdrive-multiscene/scene_28_1/aligned/object_counts.csv": "1e5be292296a8f3da06be44669307ff0b29e942a30c3a2a15982c9c7788d6bce",
+    "docs/evidence/truckdrive-multiscene/scene_28_6/static/object_counts.csv": "be8979a5c8613d403c0f9378e4e001023194ef6bcf561512f42c2fb8a1cc8206",
+    "docs/evidence/truckdrive-multiscene/scene_28_6/aligned/object_counts.csv": "ca5677f69e57f513d7d9edca06b44948c6c4f187e3f0582308d9133fd9b001b2",
+    "docs/evidence/truckdrive-multiscene/scene_28_12/static/object_counts.csv": "b3532875f6dd2cd21626c06caf808cd4d2169dae19dd9d29bad6326a134b1b99",
+    "docs/evidence/truckdrive-multiscene/scene_28_12/aligned/object_counts.csv": "ebfe70feb12d2892807759d72b472ac57f1e742ab9d6348737c4600682774418",
+    "docs/evidence/truckdrive-multiscene/scene_28_18/static/object_counts.csv": "ce326d01573db7d957aec4652f553451a5150b2837e61895e36900c47971fccf",
+    "docs/evidence/truckdrive-multiscene/scene_28_18/aligned/object_counts.csv": "8d13b2c74be2cbdaac5c128115205cd4017acb32c13a21ef1958c9f80dc7f1a4",
+    "docs/evidence/truckdrive-multiscene/scene_28_24/static/object_counts.csv": "1c7d393dc9ccfd21dad5efa11693b3e776438394ac72a5268ff85eb21ab18dea",
+    "docs/evidence/truckdrive-multiscene/scene_28_24/aligned/object_counts.csv": "c7116689e800771326f9c2b519f3541f333d56efc0f2f99604868192906dc359",
+    "docs/evidence/missing-support/matched_track_summary.csv": "fa3e8f6b93526ab58b4a298f33f161a02917f8c4e39e56a5675f663cf52c631d",
+    "docs/evidence/goose-stratified/ground/scenario_group_confusion.csv": "eda4fd5c0988a291222b2299aecb40ecae479882f8a2101d535bdbd14d7c9ad0",
+    "docs/evidence/goose-stratified/ground/saved_fine_confusion.csv": "de98ddca2525cbe5bdcf34df44ec7191894e164cd0b911cd5f54d865b1fe2c2f",
+    "docs/evidence/goose-failure-causes/context_pooled.csv": "fc1b95dddab895cc3d3d79b1e6f09594149bec3fc022d6364dc3de476b536ba5",
+    "docs/evidence/goose-error-cases/summary.csv": "496b8cc8d4716b73b801bc2ea31a4f61f27e102c8bda41a8ea3d3b4782559143",
+    "docs/evidence/goose-failure-causes/voxel_ambiguity.csv": "d120ea7f338ab1c43133b6376e37066c30168d271949a4f3fdd82fef2bfad572",
+    "docs/evidence/goose-failure-causes/nearest_ground_diagnostic.csv": "715c5463e7b845d95ac2545163081a5269dc730a4aef43d9d810fd517f2bdeae",
+    "docs/evidence/missing-support/goose-saved/raw_class_errors.csv": "87cdfae72f27b6ced309187917edb5948c5a7126f547494067f5aed431c33cae",
+    "docs/evidence/missing-support/goose-saved/range_accuracy.csv": "862750ed46b0e36bbb85aa92b21063c41f3688f692727c82b14feb93b826c4af",
+    "docs/evidence/stone-environments/comparison.csv": "45cbc06245c8fe53b8c1c0c141b2d01df7c479bd01e31ce045148bbdc814c082",
+    "docs/evidence/radiate-fog/observations.csv": "da79b6f68cdbacd5a06fd71cfe6efd4ac8ed193240900a8ded3e0b171b7cd9b2",
+    "docs/evidence/radiate-fog/unlabelled_controls.csv": "8a3056041d9463e6b17a143a82a14a92a9a7dfa2593f04bc062a965788feedfc",
+    "docs/evidence/radiate-fog/summary.csv": "da33564321be2d8a7e1524ec7a25b5e618776fac13e7bb5dd79d3e9c496b5c8d"
+  },
+  "method": "Reanalysis of committed count/confusion evidence. Scene-qualified identities, paired timing subsets, exact denominators; empty rates are null.",
+  "limits": "No new raw recount or model inference. This verifies arithmetic and provenance, not independent physical calibration or annotation correctness."
+}

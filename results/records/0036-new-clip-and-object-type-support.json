@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "id": "0036-new-clip-and-object-type-support",
+  "title": "New TruckDrive clips and expanded TruckScenes class/weather coverage",
+  "owner": "Ricky Yuen",
+  "date": "2026-10-01",
+  "status": "success",
+  "dataset": "TruckDrive official mini clips 28_3 and 28_15; MAN TruckScenes v1.2-mini verified eligible recount",
+  "sensor_configuration": "TruckDrive released joint radar/Aeva and three Ouster streams; TruckScenes six radar plus six LiDAR with pointwise ego correction",
+  "annotation_schema": "Same released oriented cuboids per dataset; scene-qualified tracks; TruckScenes camera visibility/weather metadata",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "split": "Two previously unexamined TruckDrive clips, eight timestamp-spaced frames each, twelve timing-eligible matched frames; existing TruckScenes 25,117 observations",
+  "environment": {"os": "Windows", "hardware": "Local CPU; raw datasets outside Git", "python": "3.11", "packages": {"numpy": "2.4.6", "scipy": "1.17.1", "matplotlib": "3.11.2"}},
+  "commands": [
+    "python scripts/acquire_truckdrive_followup.py --root <TruckDrive-root> --output results/evidence/sprint-followup-oct01/truckdrive",
+    "python scripts/truckdrive_paired_support.py --scene-root <TruckDrive-root>/<scene> --frame-count 8 --output-dir <evidence>/<scene>/static",
+    "python scripts/truckdrive_paired_support.py --scene-root <TruckDrive-root>/<scene> --frame-count 8 --align-ego --output-dir <evidence>/<scene>/aligned",
+    "python scripts/analyse_sprint_followup.py sensors --truckscenes-root <TruckScenes-root>"
+  ],
+  "measurements": [
+    {"name": "New distant vehicle observations", "value": 36, "scope": "200-400 m, two previously unexamined clips, 18 tracks, exact boxes"},
+    {"name": "New distant LiDAR geometric support", "value": 86.11111111111111, "unit": "percent", "scope": "Acquisition-aligned hypothesis, exact boxes, >=1 return, 36 matched vehicle observations"},
+    {"name": "New distant radar geometric support", "value": 33.333333333333336, "unit": "percent", "scope": "Same observations and exact boxes as LiDAR"}
+  ],
+  "evidence": ["docs/client-level-conclusions-oct01.md", "results/evidence/sprint-followup-oct01/sensor_manifest.json", "results/evidence/sprint-followup-oct01/truckdrive/acquisition.json", "results/evidence/sprint-followup-oct01/truckdrive_holdout_support.csv", "results/evidence/sprint-followup-oct01/class_range_support.csv", "results/evidence/sprint-followup-oct01/weather_support.csv", "experiment-log/0030-client-level-conclusions-followup.md"],
+  "notes": "Completed bounded geometric coverage study, not detector recall/AP. Acquisition-pose alignment remains a hypothesis. LiDAR-conditioned annotations and repeated tracks. Weather associations are not causal effects; camera visibility is not radar visibility. Raw download 298289104 compressed member bytes, CRC/hash verified."
+}

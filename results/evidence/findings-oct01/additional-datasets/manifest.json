@@ -1,0 +1,186 @@
+{
+  "date": "2026-10-01",
+  "boreas_sequence": "boreas-2021-09-02-11-42",
+  "radar_scans": 3,
+  "lidar_scans": 3,
+  "selection": "First three chronological radar scans, nearest LiDAR from first twelve; preselection before scoring",
+  "source_revisions": {
+    "boreas": [
+      "utiasASRL/pyboreas",
+      "8e100ff82ecd4992511da61b016398dbd230f205"
+    ],
+    "wildscenes": [
+      "csiro-robotics/WildScenes",
+      "9eb4e10b4483a634159e2b371be0437e465fe218"
+    ],
+    "radial": [
+      "valeoai/RADIal",
+      "02f52fc13ee41feacec82fd8e05f5b1f0bf4ce26"
+    ],
+    "dualradar": [
+      "adept-thu/Dual-Radar",
+      "9a972df36af319d3953b4a6e672e6a814ec05eb9"
+    ],
+    "vod": [
+      "tudelft-iv/view-of-delft-dataset",
+      "d39b519018701b221787668b182c159bbc8a848f"
+    ]
+  },
+  "inputs": [
+    {
+      "dataset": "boreas",
+      "path": "README.md",
+      "bytes": 6414,
+      "sha256": "3b75572c0b3b3b81e6387ecbd4ed55b0bf79a898b218925c9df2bfa9580e5f78",
+      "revision": "8e100ff82ecd4992511da61b016398dbd230f205",
+      "url": "https://raw.githubusercontent.com/utiasASRL/pyboreas/8e100ff82ecd4992511da61b016398dbd230f205/README.md"
+    },
+    {
+      "dataset": "boreas",
+      "path": "DATA_REFERENCE.md",
+      "bytes": 14218,
+      "sha256": "4aa6a29b58fecec43479f311510fa7f0cf83a34ef1693ec8bbff5db54fe618e9",
+      "revision": "8e100ff82ecd4992511da61b016398dbd230f205",
+      "url": "https://raw.githubusercontent.com/utiasASRL/pyboreas/8e100ff82ecd4992511da61b016398dbd230f205/DATA_REFERENCE.md"
+    },
+    {
+      "dataset": "boreas",
+      "path": "DATA_LICENSE.md",
+      "bytes": 315,
+      "sha256": "92368d96fe04291eaa6e56c22faabd9860d34f1d4ce1ecad0f0b3ba9e953a52d",
+      "revision": "8e100ff82ecd4992511da61b016398dbd230f205",
+      "url": "https://raw.githubusercontent.com/utiasASRL/pyboreas/8e100ff82ecd4992511da61b016398dbd230f205/DATA_LICENSE.md"
+    },
+    {
+      "dataset": "boreas",
+      "path": "DATA_RT_REFERENCE.md",
+      "bytes": 19286,
+      "sha256": "9a805670c2fef7525f9660b45110a62770a8551bf902f274ad58c4ed7b2af774",
+      "revision": "8e100ff82ecd4992511da61b016398dbd230f205",
+      "url": "https://raw.githubusercontent.com/utiasASRL/pyboreas/8e100ff82ecd4992511da61b016398dbd230f205/DATA_RT_REFERENCE.md"
+    },
+    {
+      "dataset": "wildscenes",
+      "path": "README.md",
+      "bytes": 11132,
+      "sha256": "1e27d78a0f7a7419390f05d9126a0575f0a9934f960e41a50cf6bfd71508b16d",
+      "revision": "9eb4e10b4483a634159e2b371be0437e465fe218",
+      "url": "https://raw.githubusercontent.com/csiro-robotics/WildScenes/9eb4e10b4483a634159e2b371be0437e465fe218/README.md"
+    },
+    {
+      "dataset": "wildscenes",
+      "path": "data/splits/opt2d/train.csv",
+      "bytes": 750346,
+      "sha256": "4b5514d5f741d15f56f0853de13608b01f65de32360bfd8b03a3f1834291258b",
+      "revision": "9eb4e10b4483a634159e2b371be0437e465fe218",
+      "url": "https://raw.githubusercontent.com/csiro-robotics/WildScenes/9eb4e10b4483a634159e2b371be0437e465fe218/data/splits/opt2d/train.csv"
+    },
+    {
+      "dataset": "wildscenes",
+      "path": "data/splits/opt2d/val.csv",
+      "bytes": 35114,
+      "sha256": "196a67270856ccf52f14f86f0120003206175b1fe19a482d931d5865715e23dc",
+      "revision": "9eb4e10b4483a634159e2b371be0437e465fe218",
+      "url": "https://raw.githubusercontent.com/csiro-robotics/WildScenes/9eb4e10b4483a634159e2b371be0437e465fe218/data/splits/opt2d/val.csv"
+    },
+    {
+      "dataset": "wildscenes",
+      "path": "data/splits/opt2d/test.csv",
+      "bytes": 264514,
+      "sha256": "a74316c2fe894cf9bb0d794e49a6e680b828f320cdd01a919918b61e5a27af5c",
+      "revision": "9eb4e10b4483a634159e2b371be0437e465fe218",
+      "url": "https://raw.githubusercontent.com/csiro-robotics/WildScenes/9eb4e10b4483a634159e2b371be0437e465fe218/data/splits/opt2d/test.csv"
+    },
+    {
+      "dataset": "wildscenes",
+      "path": "data/splits/opt3d/train.csv",
+      "bytes": 1292959,
+      "sha256": "98ea0e3e3e2209db08abb0b0a77da20614993bc7aeb81934a936ad4969fefa5c",
+      "revision": "9eb4e10b4483a634159e2b371be0437e465fe218",
+      "url": "https://raw.githubusercontent.com/csiro-robotics/WildScenes/9eb4e10b4483a634159e2b371be0437e465fe218/data/splits/opt3d/train.csv"
+    },
+    {
+      "dataset": "wildscenes",
+      "path": "data/splits/opt3d/val.csv",
+      "bytes": 61267,
+      "sha256": "6938931c128e2e95e034761b2e8e46e9b14069024e8b81d3624078d1c381e368",
+      "revision": "9eb4e10b4483a634159e2b371be0437e465fe218",
+      "url": "https://raw.githubusercontent.com/csiro-robotics/WildScenes/9eb4e10b4483a634159e2b371be0437e465fe218/data/splits/opt3d/val.csv"
+    },
+    {
+      "dataset": "wildscenes",
+      "path": "data/splits/opt3d/test.csv",
+      "bytes": 465295,
+      "sha256": "6eb1fc5580f9d39bb7f7254806505fbab6842101e5658d2ee1a843e183a0eeda",
+      "revision": "9eb4e10b4483a634159e2b371be0437e465fe218",
+      "url": "https://raw.githubusercontent.com/csiro-robotics/WildScenes/9eb4e10b4483a634159e2b371be0437e465fe218/data/splits/opt3d/test.csv"
+    },
+    {
+      "dataset": "radial",
+      "path": "README.md",
+      "bytes": 6895,
+      "sha256": "03d4dfa65620d69187ef5e2b49cc0e46d448da7b29443ce770a612e0c2bdfe3c",
+      "revision": "02f52fc13ee41feacec82fd8e05f5b1f0bf4ce26",
+      "url": "https://raw.githubusercontent.com/valeoai/RADIal/02f52fc13ee41feacec82fd8e05f5b1f0bf4ce26/README.md"
+    },
+    {
+      "dataset": "dualradar",
+      "path": "README.md",
+      "bytes": 45867,
+      "sha256": "852945b05c600c9994584cb00663d6a8b44b4c9c7d2e474398e88236089b606b",
+      "revision": "9a972df36af319d3953b4a6e672e6a814ec05eb9",
+      "url": "https://raw.githubusercontent.com/adept-thu/Dual-Radar/9a972df36af319d3953b4a6e672e6a814ec05eb9/README.md"
+    },
+    {
+      "dataset": "vod",
+      "path": "README.md",
+      "bytes": 7032,
+      "sha256": "6a1ae61c81eb535a8dd5a4620143be591081cb3125d0ff0591306994e98974f2",
+      "revision": "d39b519018701b221787668b182c159bbc8a848f",
+      "url": "https://raw.githubusercontent.com/tudelft-iv/view-of-delft-dataset/d39b519018701b221787668b182c159bbc8a848f/README.md"
+    },
+    {
+      "dataset": "boreas",
+      "path": "boreas-2021-09-02-11-42/lidar/1630597331058472.bin",
+      "bytes": 5055552,
+      "sha256": "a7210b37ec63325de27b7f34cf514627bdb6d82eac286f7f438ec1924e93cfaa",
+      "url": "https://boreas.s3.amazonaws.com/boreas-2021-09-02-11-42/lidar/1630597331058472.bin"
+    },
+    {
+      "dataset": "boreas",
+      "path": "boreas-2021-09-02-11-42/lidar/1630597331265869.bin",
+      "bytes": 5053872,
+      "sha256": "094255e37e128e60fb1f7f9eabad7384686f18ac7218942dd523ae4c9613be23",
+      "url": "https://boreas.s3.amazonaws.com/boreas-2021-09-02-11-42/lidar/1630597331265869.bin"
+    },
+    {
+      "dataset": "boreas",
+      "path": "boreas-2021-09-02-11-42/lidar/1630597331577026.bin",
+      "bytes": 5048712,
+      "sha256": "6fa2feabb0a7383376b6ff1d4fa98630b8ea296c535a34323124ebc903399be3",
+      "url": "https://boreas.s3.amazonaws.com/boreas-2021-09-02-11-42/lidar/1630597331577026.bin"
+    },
+    {
+      "dataset": "boreas",
+      "path": "boreas-2021-09-02-11-42/radar/1630597331060160.png",
+      "bytes": 428063,
+      "sha256": "5e1435a90b94d30566fb2fca300349cb0e7c3f25c7123d9bfffb4839e3ab7972",
+      "url": "https://boreas.s3.amazonaws.com/boreas-2021-09-02-11-42/radar/1630597331060160.png"
+    },
+    {
+      "dataset": "boreas",
+      "path": "boreas-2021-09-02-11-42/radar/1630597331310779.png",
+      "bytes": 427576,
+      "sha256": "beabace195cc5a8f81c80a2d23c2458dda978c44ab8459cef384c9b3122d2baa",
+      "url": "https://boreas.s3.amazonaws.com/boreas-2021-09-02-11-42/radar/1630597331310779.png"
+    },
+    {
+      "dataset": "boreas",
+      "path": "boreas-2021-09-02-11-42/radar/1630597331560759.png",
+      "bytes": 427293,
+      "sha256": "19e9284dc4cf8e542a035e5f5a606ca86e2b7dc25ea9ea332d95c6c942f1c22f",
+      "url": "https://boreas.s3.amazonaws.com/boreas-2021-09-02-11-42/radar/1630597331560759.png"
+    }
+  ],
+  "limits": "CPU decoding and metadata audit. No boxes, detector, weather effect, sensor accuracy or full-dataset results."
+}
