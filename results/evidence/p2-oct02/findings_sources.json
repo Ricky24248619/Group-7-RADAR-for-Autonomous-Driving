@@ -1,0 +1,369 @@
+{
+  "date": "2026-10-02",
+  "basis_commit": "52de250a00992cdb9f8703f61f15d57ed1c498bd",
+  "purpose": "Traceability for the consolidated findings; no new experiment or accuracy score",
+  "hash_definition": "SHA-256 of UTF-8 text with BOM removed and CRLF normalised to LF",
+  "sources_sha256": {
+    "docs/client-comparison-brief.md": "86a947190b7971d0b00fbc4e8f44dad2e1ccd30306efabaf0841c96a4463b885",
+    "docs/detector-compatibility-decision.md": "34912caaf08cb8a9bb983813d7a9bf8ff95fda2d8f21578729f8ef95bc0113b5",
+    "docs/evidence/goose-failure-causes/nearest_ground_diagnostic.csv": "7d8d0dbdb47c04e38019c5e49496569803a7d38b26bfa16ab5f495790272ccfa",
+    "docs/evidence/missing-support/matched_track_summary.csv": "4a39e6c3c938324d5956af479ad46bb315c588ccfb9654d902eca3a1e05f5d8a",
+    "docs/evidence/radiate-fog/observations.csv": "5137b5d4ee3aa2d185411cd2e5eb93853da558540ee7be9f22192bd95fbf34db",
+    "docs/evidence/truckscenes/paired-support-verification.json": "7d5e13d5023e93bd89923e26843647e17d53941a5931b980afb890d48a8ba8e3",
+    "docs/goose-failure-causes.md": "0b91635d40a548db46d4229a421dcb171433f876cc426b6ac6fdf2a8365ae89a",
+    "docs/radiate-fog-pilot.md": "a09423cbed8ad0f91984513055729b0a8f77b45ea907162d011045cbfe755558",
+    "docs/truckdrive-multiscene-result.md": "2e9ebf3577ab24ab8028df8714254f4a94f3f1f1abc3c90118d91f55880321b1",
+    "results/evidence/sprint-followup-oct01/class_range_support.csv": "14b7a8386b4954497c1c2f885fc0584bf0ae8c5408d067e1a850260d59c0073c",
+    "results/evidence/sprint-followup-oct01/models/release-documents.json": "14334177d26c5681f95631354eb0cee38e2d15447e0d890c998bebc80b5a7b29",
+    "results/evidence/sprint-followup-oct01/terrain/fine_class_comparison.csv": "07bc0ec8e8558ceb0988fd7aa3a0784dbd6125882ac6cae07f4ea25e2d4de45f",
+    "results/evidence/sprint-followup-oct01/terrain/frame_comparison.csv": "e96144add22e98ddef40aea7b441c0088e16c9595996efefea20698c7d1fe320",
+    "results/evidence/sprint-followup-oct01/terrain/manifest.json": "edefbb072da2b955fcc8c5c3feb778119e9636271c85312bd7bb7da3e64067f9",
+    "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv": "f571cf2e6fe1d222051e4d4a5b6a698e21d6fe5ea1f6dcfb01a7ac19b8a4c4a0",
+    "results/evidence/sprint-followup-oct01/truckdrive_holdout_support.csv": "ad3894c9be86e95403eb5a6653b6902255bcc8e60b4f5644653da0acf7c12fe5",
+    "results/evidence/sprint-followup-oct01/weather_support.csv": "a582274e3fdff362c1b7b9dd2ef480c6a5d79d7fbef6228571f9f2a00a3475dc"
+  },
+  "original_mapping": {
+    "D01": [
+      "C01",
+      "C07"
+    ],
+    "D02": [
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06"
+    ],
+    "D03": [
+      "C08"
+    ],
+    "D04": [
+      "C09",
+      "C10"
+    ],
+    "D05": [
+      "C11",
+      "C12",
+      "C15",
+      "C16",
+      "C18"
+    ],
+    "D06": [
+      "C14"
+    ],
+    "D07": [
+      "C13",
+      "C17"
+    ],
+    "D08": [
+      "C19"
+    ],
+    "D09": [],
+    "D10": [
+      "C20"
+    ]
+  },
+  "numeric_checks": [
+    {
+      "source": "results/evidence/sprint-followup-oct01/truckdrive_holdout_support.csv",
+      "selector": {
+        "variant": "aligned",
+        "margin_m": "0",
+        "cohort": "vehicles",
+        "band_m": "200-400"
+      },
+      "unit": "labelled object-time observation",
+      "counts": {
+        "both": 11,
+        "lidar_only": 20,
+        "radar_only": 1,
+        "neither": 4,
+        "observations": 36
+      },
+      "recomputed": {
+        "lidar_percent": 86.11111111111111,
+        "radar_percent": 33.333333333333336,
+        "union_percent": 88.88888888888889
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/class_range_support.csv",
+      "selector": {
+        "category": "vehicle.truck",
+        "band_m": "0-25"
+      },
+      "unit": "labelled object-time observation",
+      "counts": {
+        "both": 336,
+        "lidar_only": 3,
+        "radar_only": 0,
+        "neither": 0,
+        "observations": 339
+      },
+      "recomputed": {
+        "lidar_percent": 100.0,
+        "radar_percent": 99.11504424778761,
+        "union_percent": 100.0
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/class_range_support.csv",
+      "selector": {
+        "category": "human.pedestrian.adult",
+        "band_m": "0-25"
+      },
+      "unit": "labelled object-time observation",
+      "counts": {
+        "both": 136,
+        "lidar_only": 63,
+        "radar_only": 0,
+        "neither": 2,
+        "observations": 201
+      },
+      "recomputed": {
+        "lidar_percent": 99.0049751243781,
+        "radar_percent": 67.66169154228855,
+        "union_percent": 99.0049751243781
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/class_range_support.csv",
+      "selector": {
+        "category": "vehicle.bicycle",
+        "band_m": "0-25"
+      },
+      "unit": "labelled object-time observation",
+      "counts": {
+        "both": 35,
+        "lidar_only": 15,
+        "radar_only": 0,
+        "neither": 0,
+        "observations": 50
+      },
+      "recomputed": {
+        "lidar_percent": 100.0,
+        "radar_percent": 70.0,
+        "union_percent": 100.0
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/class_range_support.csv",
+      "selector": {
+        "category": "movable_object.trafficcone",
+        "band_m": "0-25"
+      },
+      "unit": "labelled object-time observation",
+      "counts": {
+        "both": 39,
+        "lidar_only": 61,
+        "radar_only": 0,
+        "neither": 0,
+        "observations": 100
+      },
+      "recomputed": {
+        "lidar_percent": 100.0,
+        "radar_percent": 39.0,
+        "union_percent": 100.0
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/class_range_support.csv",
+      "selector": {
+        "category": "static_object.traffic_sign",
+        "band_m": "0-25"
+      },
+      "unit": "labelled object-time observation",
+      "counts": {
+        "both": 507,
+        "lidar_only": 572,
+        "radar_only": 0,
+        "neither": 1,
+        "observations": 1080
+      },
+      "recomputed": {
+        "lidar_percent": 99.9074074074074,
+        "radar_percent": 46.94444444444444,
+        "union_percent": 99.9074074074074
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/weather_support.csv",
+      "selector": {
+        "weather": "rain",
+        "category": "vehicle.car",
+        "band_m": "50-100"
+      },
+      "unit": "labelled object-time observation",
+      "counts": {
+        "both": 326,
+        "lidar_only": 416,
+        "radar_only": 3,
+        "neither": 31,
+        "observations": 776
+      },
+      "recomputed": {
+        "lidar_percent": 95.61855670103093,
+        "radar_percent": 42.396907216494846,
+        "union_percent": 96.00515463917526
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/weather_support.csv",
+      "selector": {
+        "weather": "snow",
+        "category": "vehicle.car",
+        "band_m": "50-100"
+      },
+      "unit": "labelled object-time observation",
+      "counts": {
+        "both": 302,
+        "lidar_only": 193,
+        "radar_only": 1,
+        "neither": 2,
+        "observations": 498
+      },
+      "recomputed": {
+        "lidar_percent": 99.39759036144578,
+        "radar_percent": 60.8433734939759,
+        "union_percent": 99.59839357429719
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv",
+      "selector": {
+        "variant": "p128",
+        "band_m": "0+",
+        "category": "high_grass"
+      },
+      "unit": "returned labelled point",
+      "points": 97447,
+      "recomputed": {
+        "correct_percent": 49.8937884183197,
+        "called_ground_percent": 48.9363448849118
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv",
+      "selector": {
+        "variant": "p128",
+        "band_m": "0+",
+        "category": "gravel"
+      },
+      "unit": "returned labelled point",
+      "points": 16200,
+      "recomputed": {
+        "correct_percent": 80.07407407407408,
+        "called_ground_percent": 99.82098765432099
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv",
+      "selector": {
+        "variant": "p128",
+        "band_m": "0+",
+        "category": "asphalt"
+      },
+      "unit": "returned labelled point",
+      "points": 26593,
+      "recomputed": {
+        "correct_percent": 89.77550483209868,
+        "called_ground_percent": 99.4171398488324
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv",
+      "selector": {
+        "variant": "p128",
+        "band_m": "0+",
+        "category": "wall"
+      },
+      "unit": "returned labelled point",
+      "points": 2420,
+      "recomputed": {
+        "correct_percent": 5.4958677685950414,
+        "called_ground_percent": 7.43801652892562
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv",
+      "selector": {
+        "variant": "p128",
+        "band_m": "0+",
+        "category": "bicycle"
+      },
+      "unit": "returned labelled point",
+      "points": 256,
+      "recomputed": {
+        "correct_percent": 51.953125,
+        "called_ground_percent": 3.125
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv",
+      "selector": {
+        "variant": "p128",
+        "band_m": "0+",
+        "category": "obstacle"
+      },
+      "unit": "returned labelled point",
+      "points": 4320,
+      "recomputed": {
+        "correct_percent": 33.148148148148145,
+        "called_ground_percent": 3.240740740740741
+      }
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv",
+      "selector": {
+        "variant": "p128",
+        "band_m": "0+",
+        "category": "soil"
+      },
+      "unit": "returned labelled point",
+      "points": 51020,
+      "recomputed": {
+        "correct_percent": 99.52959623676989,
+        "called_ground_percent": 99.9313994511956
+      }
+    },
+    {
+      "source": "docs/evidence/radiate-fog/observations.csv",
+      "selector": {
+        "band_m": "50-75",
+        "margin_m": "0"
+      },
+      "unit": "vehicle footprint observation",
+      "observations": 19,
+      "strict_radar_contrast": 9,
+      "lidar_above_ground_support": 0
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/terrain/frame_comparison.csv",
+      "unit": "selected frame",
+      "frames": 7,
+      "improved": 6,
+      "regressed": 1,
+      "repeat_hash_source": "results/evidence/sprint-followup-oct01/terrain/manifest.json",
+      "baseline_repeat_hashes_equal": true
+    },
+    {
+      "source": "results/evidence/sprint-followup-oct01/terrain/fine_class_comparison.csv",
+      "selector": {
+        "variant": "p128",
+        "band_m": "0+",
+        "category": "soil",
+        "scenario": "2023-05-15_neubiberg_rain"
+      },
+      "unit": "returned labelled point",
+      "correct": 19,
+      "points": 240
+    },
+    {
+      "source": "docs/evidence/truckscenes/paired-support-verification.json",
+      "unit": "same matched object-time observation",
+      "observations": 25117,
+      "apparent_radar_only_before": 185,
+      "apparent_radar_only_after": 39
+    }
+  ]
+}
