@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-03",
+  "checks": [
+    "All derived output hashes",
+    "Raw RADIATE recount agrees with all four saved tables",
+    "Every temporal summary/track/episode reconciles",
+    "Independent direct sensor-table recount for every setting",
+    "All 38 frame-variant fine-label/directional totals reconcile",
+    "Independent scalar XY-column recount on a raw GOOSE frame",
+    "All independent terrain class/range/ignore totals reconcile"
+  ],
+  "status": "passed",
+  "new_gpu_runs": 0,
+  "raw_bytes_acquired": 8497120,
+  "limitations": "No detector/fusion/transfer inference, physical traversal or vehicle latency measured",
+  "reproduced_output_files": [
+    "fog_persistence.csv",
+    "radar_only_sensitivity.csv",
+    "road_episodes.csv.gz",
+    "road_manifest.json",
+    "road_summary.csv",
+    "road_tracks.csv.gz",
+    "saved_model_cost.csv",
+    "terrain_cells.csv",
+    "terrain_directional_frames.csv",
+    "terrain_fine_predictions.csv",
+    "terrain_manifest.json",
+    "weather_matched_strata.csv",
+    "weather_strata.csv",
+    "wildscenes_class_range.csv",
+    "wildscenes_frames.csv",
+    "wildscenes_taxonomy.csv"
+  ],
+  "reproduction": "All road/terrain derived CSV/JSON/gzip outputs match in a separate run",
+  "result_records_valid": 37,
+  "unit_tests_run": 252,
+  "optional_tests_skipped": 11,
+  "meaningful_new_tests": 6,
+  "local_document_links_resolved": 20,
+  "candidate_consolidated_messages": 17,
+  "required_distinct_messages": 20,
+  "human_review": "Pending P5; seventeen candidates are not twenty accepted conclusions"
+}

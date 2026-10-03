@@ -9,6 +9,8 @@ autonomous trucking — running existing open-source models on public datasets,
 recording everything reproducibly, and handing over a documented body of work to
 a future team.
 
+**3 October findings:** [temporal LiDAR/radar support, off-road terrain errors and independent data](docs/temporal-terrain-findings-oct03.md) adds seven candidate messages and retains the earlier ten. Support, recognition, semantic labels and physical traversal remain separate.
+
 **Failure-cause follow-up:** [controlled GOOSE attention-context test](docs/goose-failure-causes.md)
 shows reduced attention patches contribute to the selected rock/building ground
 confusions. Larger patches help in this diagnostic, but rock-category recognition

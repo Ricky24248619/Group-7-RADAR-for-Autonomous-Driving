@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1624325374-450389996",
+    "lidar_path": "WildScenes3d/K-01/Clouds/1624325374.450389996.bin",
+    "label_path": "WildScenes3d/K-01/Labels/1624325374.450389996.label",
+    "hist_path": "WildScenes3d/K-01/Hists/1624325374.450389996.csv",
+    "split": "train"
+  },
+  {
+    "id": "1639434866-354469266",
+    "lidar_path": "WildScenes3d/K-03/Clouds/1639434866.354469266.bin",
+    "label_path": "WildScenes3d/K-03/Labels/1639434866.354469266.label",
+    "hist_path": "WildScenes3d/K-03/Hists/1639434866.354469266.csv",
+    "split": "train"
+  },
+  {
+    "id": "1623377799-999188899",
+    "lidar_path": "WildScenes3d/V-01/Clouds/1623377799.999188899.bin",
+    "label_path": "WildScenes3d/V-01/Labels/1623377799.999188899.label",
+    "hist_path": "WildScenes3d/V-01/Hists/1623377799.999188899.csv",
+    "split": "train"
+  },
+  {
+    "id": "1623370466-114295199",
+    "lidar_path": "WildScenes3d/V-02/Clouds/1623370466.114295199.bin",
+    "label_path": "WildScenes3d/V-02/Labels/1623370466.114295199.label",
+    "hist_path": "WildScenes3d/V-02/Hists/1623370466.114295199.csv",
+    "split": "train"
+  },
+  {
+    "id": "1639696757-977244327",
+    "lidar_path": "WildScenes3d/V-03/Clouds/1639696757.977244327.bin",
+    "label_path": "WildScenes3d/V-03/Labels/1639696757.977244327.label",
+    "hist_path": "WildScenes3d/V-03/Hists/1639696757.977244327.csv",
+    "split": "train"
+  }
+]
