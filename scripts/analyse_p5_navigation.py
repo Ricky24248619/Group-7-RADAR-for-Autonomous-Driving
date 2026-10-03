@@ -113,7 +113,10 @@ def terrain(args):
     from scipy.spatial import cKDTree
     manifest_path = ROOT/'results/evidence/p3-p4-oct03/terrain_manifest.json'
     manifest = json.loads(manifest_path.read_text())
-    mapping = list(csv.DictReader((ROOT/'GOOSE - Ricky+Damien/traversability_map.csv').open(encoding='utf-8-sig')))
+    policy_path = ROOT/'GOOSE - Ricky+Damien/traversability_map.csv'
+    if text_sha(policy_path) != manifest['policy_sha256_lf']:
+        raise ValueError('Changed provisional terrain policy')
+    mapping = list(csv.DictReader(policy_path.open(encoding='utf-8-sig')))
     lut = policy_groups(mapping)
     scans = {s.name:(s, l) for s, l in find_frames(args.goose_root)}
     inputs, references, heights, columns, shapes, footprints = [], [], [], [], [], []
