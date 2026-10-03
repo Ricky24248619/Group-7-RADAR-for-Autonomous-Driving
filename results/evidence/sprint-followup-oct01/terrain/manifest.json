@@ -1,0 +1,56 @@
+{
+  "frames": 7,
+  "points": 1186454,
+  "baseline_repeat_identical": true,
+  "config_differences": "output path and attention patch sizes only",
+  "runs": {
+    "p64": {
+      "config_sha256": "51ce607b4411d0666f57b94a110b1793c8fd70bca96015bf02c54ca454a8f7e0",
+      "log_sha256": "b8b12b8811de5e4cef37c81b7aa7c6fa054cf563c9860c5b033491db23fab46d",
+      "complete": true,
+      "prediction_sha256": {
+        "2022-07-22_flight__0155_1658494454445888345_vls128.bin": "21e02f3c4f251b85d2289b3fda5345e3c8729b8fe656167b709905b5b70bf291",
+        "2022-08-30_siegertsbrunn_feldwege__0562_1661860753399118949_vls128.bin": "4b5cc9108ac32db63a467daed2107829b01ae020acc8d040001b3ec3d5589cf4",
+        "2022-09-21_garching_uebungsplatz_2__0041_1663755381571228577_vls128.bin": "48c4d816aa9c17253556156a0a4f03aa1d8ca47c502916f3592e27f1d5d865b4",
+        "2022-12-07_aying_hills__0045_1670421354439414871_vls128.bin": "706727e7e6f631e4778bb09a3ac151244c88f1988591c02e558f461d5985399c",
+        "2023-03-03_garching_2__0149_1677850634360288620_vls128.bin": "d6377e405c726c2a4f580a13d0b8f32c9c0b972a347d1a3e26de2dba04495a9e",
+        "2023-05-15_neubiberg_rain__0647_1684157923512800092_vls128.bin": "6b03e5567df222f3b79211e1e3a44f565cb7814129ccc57a76901bd0751b95ce",
+        "2023-05-17_neubiberg_sunny__0406_1684329843302899662_vls128.bin": "8b4040c24d5a06995eb8da41bf1923041407cc56c1fc14b081e3b49cc2659661"
+      }
+    },
+    "p64repeat": {
+      "config_sha256": "219bf67c119d7bb1629d2e5225476dc8d307688ee35b7c8c3e8d705ea41d0a44",
+      "log_sha256": "7fd3a0bd606687dc9f522c79fa8d3fa6d1ab831257c144505e63c8e87ea127e4",
+      "complete": true,
+      "prediction_sha256": {
+        "2022-07-22_flight__0155_1658494454445888345_vls128.bin": "21e02f3c4f251b85d2289b3fda5345e3c8729b8fe656167b709905b5b70bf291",
+        "2022-08-30_siegertsbrunn_feldwege__0562_1661860753399118949_vls128.bin": "4b5cc9108ac32db63a467daed2107829b01ae020acc8d040001b3ec3d5589cf4",
+        "2022-09-21_garching_uebungsplatz_2__0041_1663755381571228577_vls128.bin": "48c4d816aa9c17253556156a0a4f03aa1d8ca47c502916f3592e27f1d5d865b4",
+        "2022-12-07_aying_hills__0045_1670421354439414871_vls128.bin": "706727e7e6f631e4778bb09a3ac151244c88f1988591c02e558f461d5985399c",
+        "2023-03-03_garching_2__0149_1677850634360288620_vls128.bin": "d6377e405c726c2a4f580a13d0b8f32c9c0b972a347d1a3e26de2dba04495a9e",
+        "2023-05-15_neubiberg_rain__0647_1684157923512800092_vls128.bin": "6b03e5567df222f3b79211e1e3a44f565cb7814129ccc57a76901bd0751b95ce",
+        "2023-05-17_neubiberg_sunny__0406_1684329843302899662_vls128.bin": "8b4040c24d5a06995eb8da41bf1923041407cc56c1fc14b081e3b49cc2659661"
+      }
+    },
+    "p128": {
+      "config_sha256": "0eee4d12ace7739209c34213b3827b3181b547af136dff99a176cfab8ee4f868",
+      "log_sha256": "aff9c48e67bfa53d862f7aa206e92ffff25568aa0c5e86a8bd22157f937cffda",
+      "complete": true,
+      "prediction_sha256": {
+        "2022-07-22_flight__0155_1658494454445888345_vls128.bin": "b4bd4598bc1c42caaa8ff476668a634972e06af2659878fec1858c1f6bbfeb27",
+        "2022-08-30_siegertsbrunn_feldwege__0562_1661860753399118949_vls128.bin": "83bca93aa8867530934f25797e7ed97ab2fb27c8c7caad01bf5f935a4b3564fd",
+        "2022-09-21_garching_uebungsplatz_2__0041_1663755381571228577_vls128.bin": "b91c13d608d5373ddfebfc324d97f6af49519519c3564d8b4d458bb68ed6eea0",
+        "2022-12-07_aying_hills__0045_1670421354439414871_vls128.bin": "50e82256f0e156798a5330f366dc7f6e0cb841480523a5d5fe94bb8f88c05af1",
+        "2023-03-03_garching_2__0149_1677850634360288620_vls128.bin": "3a3ed10b61b1674ef3cc6dfaed07de371a5cccacdff392f764c586198cf57901",
+        "2023-05-15_neubiberg_rain__0647_1684157923512800092_vls128.bin": "0eb69cbd9fde7daa6d1c7158e55834c6ecdcf0d8869d618adb9bd0b09c9180cc",
+        "2023-05-17_neubiberg_sunny__0406_1684329843302899662_vls128.bin": "c5c79b3740c437ba3ede60a58d78f4aff837e0fc47760de381151dee0bddb005"
+      }
+    }
+  },
+  "selection_sha256": "0fbd908465f1b6c20130eac8ed3edc022841dd69fca6c3c600e9581a0733652e",
+  "mapping_sha256": "a4c3e8be1752cdc3d2a4cff0fffb192935ef186cff8d1d9a43dfd7687afb0951",
+  "checkpoint_sha256": "314b6402ae7738248136ef0f2a5d49c10cf71a63e94f0cd75fb39b285d6f565e",
+  "execution_sha256": "539659934150600a6a7fcdf3104eb2ca5f59a852af4971484f45f4fe79b7f0dd",
+  "limits": "Seven unseen frames in existing validation recordings; excluded tuning scene; no external dataset or full benchmark. Fine labels judged against eight-class model taxonomy. Point accuracy is not object recall or safe traversability.",
+  "selection_hash_definition": "Repository UTF-8 text with LF endings"
+}

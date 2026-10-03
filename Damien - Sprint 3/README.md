@@ -88,7 +88,17 @@ Every claim links to a survey, experiment log or saved record. Unresolved gaps g
 recorded as gaps rather than smoothed over. Run both validators after integrating any
 new records.
 
-### A4 · Cold read — 2.5 h · **protocol ready**
+### A4 · Cold read — **closed 29 September without a read; P-6 and DS-4 still open**
+
+**Closed, not performed.** The read was set up as PR #74, with the rules changed so that
+Aiden's AI model would be the reader. The PR merged before any answers came back, and the
+team closed A4 there. The recording form
+([`docs/evidence/p6-cold-read-2026-09-29.md`](../docs/evidence/p6-cold-read-2026-09-29.md))
+states this and has no answers in it. P-6 and DS-4 go to handover as open, with the
+protocol and prompts ready to run.
+
+*Original plan, kept for the record:*
+
 
 **Ready to run:** [`docs/cold-read-protocol.md`](../docs/cold-read-protocol.md) — ten
 questions in two parts, a recording form, and the rule that matters most (say nothing
@@ -217,7 +227,19 @@ gap register entry G-5 in `docs/dataset-suitability.md` says the same.
 
 **Effort released: the full 7.0 h original, or 1.0 h against the re-scope.**
 
-### B5 · P-5 outside-team reproduction — 4.0 h · **protocol ready**
+### B5 · P-5 outside-team reproduction — **closed 29 September, P-5 still open**
+
+**Closed without an outsider.** The team judged that nobody outside the unit can be found
+before 12 October. The protocol was instead run cold in a fresh clone by an AI assistant
+on my behalf: [`docs/evidence/p5-reproduction-2026-09-29.md`](../docs/evidence/p5-reproduction-2026-09-29.md).
+Checks passed and both figures were **byte-identical**. The run also found one snag a real
+outsider would hit: a harmless red `ERROR` line in the test output that the protocol did
+not warn about. That is now documented. **This does not meet P-5**, which needs a person
+outside the team. P-5 goes to handover as *partly met*, with the protocol ready for
+whoever inherits it.
+
+*Original plan, kept for the record:*
+
 
 **Ready to run:** [`docs/outside-reproduction-protocol.md`](../docs/outside-reproduction-protocol.md)
 — self-contained instructions and a recording form. The target needs **no dataset**:
@@ -295,7 +317,7 @@ mostly delegated.
 | Item | Effort | Realistically mine | Why |
 |---|---:|---:|---|
 | B1 remainder | 7.0 | 2.5 | My source is mine; five other people's viewing is not my time |
-| **A4 · cold read** | 2.5 | **2.5** | Entirely mine |
+| ~~A4 · cold read~~ | ~~2.5~~ | ~~2.5~~ | **Closed 29 Sep without a read**; P-6 and DS-4 stay open |
 | **B5 · outside-team reproduction** | 4.0 | **4.0** | Entirely mine |
 | B4 · box-level range analysis | 1.0 | 0.5 | **Re-scoped — blocked on metadata nobody holds.** Return coverage delivered by FA-S3-1. 5.0 / 2.0 if the inputs appear |
 | B6 · handover | 5.0 | 1.5 | Mostly delegated |

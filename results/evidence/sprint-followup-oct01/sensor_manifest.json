@@ -1,0 +1,22 @@
+{
+  "source_hash_definition": "Repository text: UTF-8 with LF endings; external raw files: exact bytes",
+  "sources_sha256": {
+    "docs/evidence/truckscenes/paired-point-motion-support/object_counts.csv": "8bdc290998047cf55d7a4e707f7be3d6f7ac91c4df592dd82bee87d8824ee57d",
+    "external:TruckScenes/v1.2-mini/sample_annotation.json": "5d93f5b4d4ad3d696f14c9a82b35f275130220493a0b1b6a7e5ae3133f830ba5",
+    "external:TruckScenes/v1.2-mini/visibility.json": "f7f9d701cacc789aa02cb88352b668dd0dc19a1402162b16b00d0ec6eb8570e0",
+    "external:TruckScenes/v1.2-mini/attribute.json": "ccd5158886a566a6c8233128bff834d9f870988b00555e6285745c606c23b42b",
+    "results/evidence/sprint-followup-oct01/truckdrive/scene_28_3/static/object_counts.csv": "26151fe4200b9562bed5cd63ec9f51b13d4d7ca940c72c019df170bb948a477b",
+    "results/evidence/sprint-followup-oct01/truckdrive/scene_28_3/aligned/object_counts.csv": "9ab8db3d5bc77ccb8801c471195a7a2f8c4ced6b1ebf61962e086d337c3c1c27",
+    "results/evidence/sprint-followup-oct01/truckdrive/scene_28_15/static/object_counts.csv": "04f818c620bbca895bd0bec68d5aa5862bd617cfa013d3a3a57d88f41858f7da",
+    "results/evidence/sprint-followup-oct01/truckdrive/scene_28_15/aligned/object_counts.csv": "08d7cd023d326d23c00750df53372c232c871ed6763ba44b3a1768b0bcf10b15"
+  },
+  "existing_truckscenes_observations": 25117,
+  "truckdrive_static_observations": 115,
+  "truckdrive_aligned_observations": 115,
+  "limits": [
+    "Geometric sensor evidence, not detector recall/precision",
+    "Repeated observations and LiDAR-conditioned annotations",
+    "Visibility labels concern all-camera panoramic views, not radar visibility",
+    "Weather is descriptive across different recordings, not causal treatment"
+  ]
+}

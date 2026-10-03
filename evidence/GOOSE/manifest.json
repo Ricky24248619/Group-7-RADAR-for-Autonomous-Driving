@@ -1,0 +1,467 @@
+{
+  "dataset": "GOOSE 3D (German Outdoor and Offroad Dataset), base validation split",
+  "collated_by": "Damien Zhang",
+  "collated_on": "2026-09-30",
+  "source_commit": "31c62b9",
+  "note": "Copies of committed evidence, grouped by study. Originals stay at their source paths so existing links keep working. Every file here is byte-identical to its source (see verification.json).",
+  "groups": {
+    "01-dataset-characterisation": {
+      "what": "The full 961-frame validation split measured: frame count, 174.9M labelled points, class and range composition, traversability share by range.",
+      "result_records": [
+        "results/records/0001-goose-val-characterisation.json",
+        "results/records/0002-goose-windows-environment.json",
+        "results/records/0003-goose-macos-devkit-feasibility.json",
+        "results/records/0014-goose-range-semantic-support.json"
+      ],
+      "experiment_logs": [
+        "experiment-log/0001-ricky-windows-goose-setup.md",
+        "experiment-log/0002-goose-validation-statistics.md",
+        "experiment-log/0012-dataset-range-and-support-comparison.md"
+      ],
+      "made_by": "scripts/goose_stats.py (EXP-0002), scripts/goose_range_support.py (EXP-0012), scripts/goose_contact_sheet.py, scripts/goose_render_frame.py, scripts/goose_client_figure.py",
+      "files": [
+        {
+          "file": "goose_contact_sheet.png",
+          "source": "docs/evidence/goose_contact_sheet.png",
+          "bytes": 1011895
+        },
+        {
+          "file": "goose_frame_000.png",
+          "source": "docs/evidence/goose_frame_000.png",
+          "bytes": 569868
+        },
+        {
+          "file": "goose_frame_500.png",
+          "source": "docs/evidence/goose_frame_500.png",
+          "bytes": 300475
+        },
+        {
+          "file": "goose_client_figure.png",
+          "source": "docs/evidence/goose_client_figure.png",
+          "bytes": 1441526
+        },
+        {
+          "file": "class_ranges.csv",
+          "source": "docs/evidence/goose/range-support/class_ranges.csv",
+          "bytes": 132081
+        },
+        {
+          "file": "frame_ranges.csv",
+          "source": "docs/evidence/goose/range-support/frame_ranges.csv",
+          "bytes": 467596
+        },
+        {
+          "file": "manifest.json",
+          "source": "docs/evidence/goose/range-support/manifest.json",
+          "bytes": 451988
+        },
+        {
+          "file": "traversability_by_range.png",
+          "source": "docs/evidence/goose/range-support/traversability_by_range.png",
+          "bytes": 68777
+        },
+        {
+          "file": "traversability_ranges.csv",
+          "source": "docs/evidence/goose/range-support/traversability_ranges.csv",
+          "bytes": 10369
+        }
+      ]
+    },
+    "02-traversability": {
+      "what": "The team's 64-class to 4-level traversability grouping, rendered for one frame per scenario, plus the bush-assignment sensitivity check. A judgement layer over human labels, not a model output.",
+      "result_records": [
+        "results/records/0004-goose-traversability-mapping.json"
+      ],
+      "experiment_logs": [
+        "experiment-log/0003-goose-traversability-rendering.md"
+      ],
+      "made_by": "scripts/goose_traversability.py with GOOSE - Ricky+Damien/traversability_map.csv",
+      "files": [
+        {
+          "file": "goose_traversability_2022-07-22_flight.png",
+          "source": "docs/evidence/goose_traversability_2022-07-22_flight.png",
+          "bytes": 337101
+        },
+        {
+          "file": "goose_traversability_2022-08-30_siegertsbrunn_feldwege.png",
+          "source": "docs/evidence/goose_traversability_2022-08-30_siegertsbrunn_feldwege.png",
+          "bytes": 444834
+        },
+        {
+          "file": "goose_traversability_2022-09-21_garching_uebungsplatz_2.png",
+          "source": "docs/evidence/goose_traversability_2022-09-21_garching_uebungsplatz_2.png",
+          "bytes": 425965
+        },
+        {
+          "file": "goose_traversability_2022-12-07_aying_hills.png",
+          "source": "docs/evidence/goose_traversability_2022-12-07_aying_hills.png",
+          "bytes": 421371
+        },
+        {
+          "file": "goose_traversability_2023-01-20_aying_mangfall_2.png",
+          "source": "docs/evidence/goose_traversability_2023-01-20_aying_mangfall_2.png",
+          "bytes": 365172
+        },
+        {
+          "file": "goose_traversability_2023-03-03_garching_2.png",
+          "source": "docs/evidence/goose_traversability_2023-03-03_garching_2.png",
+          "bytes": 254354
+        },
+        {
+          "file": "goose_traversability_2023-05-15_neubiberg_rain.png",
+          "source": "docs/evidence/goose_traversability_2023-05-15_neubiberg_rain.png",
+          "bytes": 310325
+        },
+        {
+          "file": "goose_traversability_2023-05-17_neubiberg_sunny.png",
+          "source": "docs/evidence/goose_traversability_2023-05-17_neubiberg_sunny.png",
+          "bytes": 301809
+        },
+        {
+          "file": "goose_traversability_compare_bush.png",
+          "source": "docs/evidence/goose_traversability_compare_bush.png",
+          "bytes": 667133
+        },
+        {
+          "file": "goose_traversability_sheet.png",
+          "source": "docs/evidence/goose_traversability_sheet.png",
+          "bytes": 995069
+        },
+        {
+          "file": "goose_traversability_sheet_bush-as-potential.png",
+          "source": "docs/evidence/goose_traversability_sheet_bush-as-potential.png",
+          "bytes": 1001182
+        },
+        {
+          "file": "traversability_map.csv",
+          "source": "GOOSE - Ricky+Damien/traversability_map.csv",
+          "bytes": 6115
+        },
+        {
+          "file": "traversability-map-notes.md",
+          "source": "GOOSE - Ricky+Damien/traversability-map-notes.md",
+          "bytes": 2578
+        }
+      ]
+    },
+    "03-ptv3-10frame-saved-predictions": {
+      "what": "Class and range errors of the published PTv3 checkpoint on the 10 frames completed before the full run was stopped. One scenario; diagnostic, not a benchmark.",
+      "result_records": [
+        "results/records/0006-goose-ptv3-gtx1660-partial.json",
+        "results/records/0026-goose-saved-range-errors.json"
+      ],
+      "experiment_logs": [
+        "experiment-log/0004-goose-ptv3-partial-validation.md",
+        "experiment-log/0021-what-sensors-miss-by-range.md"
+      ],
+      "made_by": "scripts/analyse_goose_saved_errors.py over the saved EXP-0004 predictions",
+      "files": [
+        {
+          "file": "class_errors_by_range.png",
+          "source": "docs/evidence/missing-support/goose-saved/class_errors_by_range.png",
+          "bytes": 105680
+        },
+        {
+          "file": "confusion.csv",
+          "source": "docs/evidence/missing-support/goose-saved/confusion.csv",
+          "bytes": 14363
+        },
+        {
+          "file": "frame_accuracy.csv",
+          "source": "docs/evidence/missing-support/goose-saved/frame_accuracy.csv",
+          "bytes": 1095
+        },
+        {
+          "file": "manifest.json",
+          "source": "docs/evidence/missing-support/goose-saved/manifest.json",
+          "bytes": 5205
+        },
+        {
+          "file": "range_accuracy.csv",
+          "source": "docs/evidence/missing-support/goose-saved/range_accuracy.csv",
+          "bytes": 266
+        },
+        {
+          "file": "raw_class_errors.csv",
+          "source": "docs/evidence/missing-support/goose-saved/raw_class_errors.csv",
+          "bytes": 6348
+        }
+      ]
+    },
+    "04-ground-vs-obstacle": {
+      "what": "The 64 labels partitioned into ground / obstacle / vegetation / other; 961-frame composition and the 10 saved frames scored on ground-vs-obstacle confusion. Includes the STONE metadata audit from the same experiment.",
+      "result_records": [
+        "results/records/0027-offroad-ground-obstacle-diagnostic.json"
+      ],
+      "experiment_logs": [
+        "experiment-log/0022-offroad-ground-obstacles.md"
+      ],
+      "made_by": "scripts/analyse_offroad_ground.py",
+      "files": [
+        {
+          "file": "ground_obstacle_example.png",
+          "source": "docs/evidence/offroad-ground/ground_obstacle_example.png",
+          "bytes": 208802
+        },
+        {
+          "file": "manifest.json",
+          "source": "docs/evidence/offroad-ground/manifest.json",
+          "bytes": 5731
+        },
+        {
+          "file": "returned_point_inventory.csv",
+          "source": "docs/evidence/offroad-ground/returned_point_inventory.csv",
+          "bytes": 15426
+        },
+        {
+          "file": "saved_fine_confusion.csv",
+          "source": "docs/evidence/offroad-ground/saved_fine_confusion.csv",
+          "bytes": 34068
+        },
+        {
+          "file": "saved_frame_group_confusion.csv",
+          "source": "docs/evidence/offroad-ground/saved_frame_group_confusion.csv",
+          "bytes": 34010
+        },
+        {
+          "file": "saved_group_confusion.csv",
+          "source": "docs/evidence/offroad-ground/saved_group_confusion.csv",
+          "bytes": 2687
+        },
+        {
+          "file": "stone_metadata_audit.json",
+          "source": "docs/evidence/offroad-ground/stone_metadata_audit.json",
+          "bytes": 3392
+        },
+        {
+          "file": "verification.json",
+          "source": "docs/evidence/offroad-ground/verification.json",
+          "bytes": 289
+        }
+      ]
+    },
+    "05-ptv3-24frame-eight-scenarios": {
+      "what": "Fresh PTv3 inference on 24 preselected frames, three per scenario across all eight: semantic and ground-category errors by range and scenario.",
+      "result_records": [
+        "results/records/0032-goose-multiscenario-terrain.json"
+      ],
+      "experiment_logs": [
+        "experiment-log/0027-goose-multiscenario-terrain.md"
+      ],
+      "made_by": "scripts/prepare_goose_subset.py, scripts/summarise_goose_terrain.py",
+      "files": [
+        {
+          "file": "runtime.json",
+          "source": "docs/evidence/goose-stratified/runtime.json",
+          "bytes": 1003
+        },
+        {
+          "file": "selection.json",
+          "source": "docs/evidence/goose-stratified/selection.json",
+          "bytes": 12279
+        },
+        {
+          "file": "class_ground_predictions.csv",
+          "source": "docs/evidence/goose-stratified/ground/class_ground_predictions.csv",
+          "bytes": 11702
+        },
+        {
+          "file": "ground_category_mistakes.csv",
+          "source": "docs/evidence/goose-stratified/ground/ground_category_mistakes.csv",
+          "bytes": 7704
+        },
+        {
+          "file": "ground_obstacle_example.png",
+          "source": "docs/evidence/goose-stratified/ground/ground_obstacle_example.png",
+          "bytes": 181976
+        },
+        {
+          "file": "manifest.json",
+          "source": "docs/evidence/goose-stratified/ground/manifest.json",
+          "bytes": 11216
+        },
+        {
+          "file": "range_summary.csv",
+          "source": "docs/evidence/goose-stratified/ground/range_summary.csv",
+          "bytes": 1257
+        },
+        {
+          "file": "returned_point_inventory.csv",
+          "source": "docs/evidence/goose-stratified/ground/returned_point_inventory.csv",
+          "bytes": 15426
+        },
+        {
+          "file": "saved_fine_confusion.csv",
+          "source": "docs/evidence/goose-stratified/ground/saved_fine_confusion.csv",
+          "bytes": 79426
+        },
+        {
+          "file": "saved_frame_group_confusion.csv",
+          "source": "docs/evidence/goose-stratified/ground/saved_frame_group_confusion.csv",
+          "bytes": 86758
+        },
+        {
+          "file": "saved_group_confusion.csv",
+          "source": "docs/evidence/goose-stratified/ground/saved_group_confusion.csv",
+          "bytes": 3990
+        },
+        {
+          "file": "scenario_errors.png",
+          "source": "docs/evidence/goose-stratified/ground/scenario_errors.png",
+          "bytes": 165320
+        },
+        {
+          "file": "scenario_group_confusion.csv",
+          "source": "docs/evidence/goose-stratified/ground/scenario_group_confusion.csv",
+          "bytes": 27213
+        },
+        {
+          "file": "class_errors_by_range.png",
+          "source": "docs/evidence/goose-stratified/semantic/class_errors_by_range.png",
+          "bytes": 102547
+        },
+        {
+          "file": "confusion.csv",
+          "source": "docs/evidence/goose-stratified/semantic/confusion.csv",
+          "bytes": 14743
+        },
+        {
+          "file": "frame_accuracy.csv",
+          "source": "docs/evidence/goose-stratified/semantic/frame_accuracy.csv",
+          "bytes": 2974
+        },
+        {
+          "file": "manifest.json",
+          "source": "docs/evidence/goose-stratified/semantic/manifest.json",
+          "bytes": 12168
+        },
+        {
+          "file": "range_accuracy.csv",
+          "source": "docs/evidence/goose-stratified/semantic/range_accuracy.csv",
+          "bytes": 265
+        },
+        {
+          "file": "raw_class_errors.csv",
+          "source": "docs/evidence/goose-stratified/semantic/raw_class_errors.csv",
+          "bytes": 14693
+        }
+      ]
+    },
+    "06-error-cases": {
+      "what": "Whether the rock and building errors are many obstacles or many points on a few: per-frame and per-instance error concentration.",
+      "result_records": [
+        "results/records/0032-goose-multiscenario-terrain.json"
+      ],
+      "experiment_logs": [
+        "experiment-log/0027-goose-multiscenario-terrain.md"
+      ],
+      "made_by": "scripts/inspect_goose_error_cases.py, scripts/acquire_goose_case_images.py",
+      "files": [
+        {
+          "file": "error_cases.png",
+          "source": "docs/evidence/goose-error-cases/error_cases.png",
+          "bytes": 462212
+        },
+        {
+          "file": "frame_class_errors.csv",
+          "source": "docs/evidence/goose-error-cases/frame_class_errors.csv",
+          "bytes": 2540
+        },
+        {
+          "file": "manifest.json",
+          "source": "docs/evidence/goose-error-cases/manifest.json",
+          "bytes": 1251
+        },
+        {
+          "file": "rock_frame_instances.csv",
+          "source": "docs/evidence/goose-error-cases/rock_frame_instances.csv",
+          "bytes": 910
+        },
+        {
+          "file": "summary.csv",
+          "source": "docs/evidence/goose-error-cases/summary.csv",
+          "bytes": 575
+        }
+      ]
+    },
+    "07-failure-causes": {
+      "what": "Controlled test on three frames: attention patch 64 vs 128 vs 256, plus geometry and camera-context checks.",
+      "result_records": [
+        "results/records/0033-goose-attention-context-diagnostic.json"
+      ],
+      "experiment_logs": [
+        "experiment-log/0028-goose-failure-causes.md"
+      ],
+      "made_by": "scripts/compare_goose_context.py, scripts/diagnose_goose_geometry.py",
+      "files": [
+        {
+          "file": "camera_manifest.json",
+          "source": "docs/evidence/goose-failure-causes/camera_manifest.json",
+          "bytes": 1772
+        },
+        {
+          "file": "context_comparison.csv",
+          "source": "docs/evidence/goose-failure-causes/context_comparison.csv",
+          "bytes": 3576
+        },
+        {
+          "file": "context_comparison.png",
+          "source": "docs/evidence/goose-failure-causes/context_comparison.png",
+          "bytes": 100304
+        },
+        {
+          "file": "context_manifest.json",
+          "source": "docs/evidence/goose-failure-causes/context_manifest.json",
+          "bytes": 3446
+        },
+        {
+          "file": "context_pooled.csv",
+          "source": "docs/evidence/goose-failure-causes/context_pooled.csv",
+          "bytes": 729
+        },
+        {
+          "file": "geometry_manifest.json",
+          "source": "docs/evidence/goose-failure-causes/geometry_manifest.json",
+          "bytes": 932
+        },
+        {
+          "file": "nearest_ground_diagnostic.csv",
+          "source": "docs/evidence/goose-failure-causes/nearest_ground_diagnostic.csv",
+          "bytes": 2968
+        },
+        {
+          "file": "normal_diagnostic.csv",
+          "source": "docs/evidence/goose-failure-causes/normal_diagnostic.csv",
+          "bytes": 209
+        },
+        {
+          "file": "selection.json",
+          "source": "docs/evidence/goose-failure-causes/selection.json",
+          "bytes": 1808
+        },
+        {
+          "file": "voxel_ambiguity.csv",
+          "source": "docs/evidence/goose-failure-causes/voxel_ambiguity.csv",
+          "bytes": 496
+        }
+      ]
+    },
+    "08-reproduction": {
+      "what": "Fariya's independent GOOSE Windows setup and frame-0 render (FZ-S3-1), matching EXP-0001's 169,883 points.",
+      "result_records": [
+        "results/records/0002-goose-windows-environment.json"
+      ],
+      "experiment_logs": [
+        "experiment-log/0001-ricky-windows-goose-setup.md"
+      ],
+      "made_by": "scripts/goose_render_frame.py, per experiment-log/0001-ricky-windows-goose-setup.md",
+      "files": [
+        {
+          "file": "goose-smoke-fariya.png",
+          "source": "docs/evidence/goose-smoke-fariya.png",
+          "bytes": 572462
+        }
+      ]
+    }
+  }
+}

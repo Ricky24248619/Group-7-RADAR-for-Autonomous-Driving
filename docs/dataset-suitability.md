@@ -6,7 +6,7 @@ by the pair below has not been reproduced on Ricky's machine: account access is
 granted, but the file download was blocked by Chrome.
 
 **Story DZ-S3-1 · Owner: Damien Zhang · Reviewer: Fariya Zehrin**
-**Started 18 September · refreshed 24 September 2026 · Status: in progress.** Sections 1–7 are complete against
+**Started 18 September · refreshed 29 September 2026 · Status: in progress.** Sections 1–7 are complete against
 current evidence. Section 8 is a live gap register. Section 9 lists what is still
 outstanding and who holds it.
 
@@ -351,8 +351,8 @@ The point of the preceding six sections, in two tables.
 | Question | GOOSE | MAN TruckScenes | TORC TruckDrive |
 |---|---|---|---|
 | **D-04** — does perception degrade past 150 m? | **No.** 1.10% of labelled points beyond 150 m, and no labelled radar in the released assets | **No, and now for a measured reason.** Recorded radar stops at **~189.52 m** across all 1,145,496 returns; labelled long-range observations reach only 229.418 m. The evaluator's 150 m ceiling is the *second* constraint, not the first | **Answered descriptively, and against our hypothesis.** 504 vehicle observations at 200–400 m: LiDAR in-box support **80.36%** against radar **37.50%**, favouring LiDAR in 4/4 eligible scenes. Geometric support, not detection accuracy |
-| **Matched radar vs LiDAR detection** | **Not with the current released-label workflow.** No radar detection ground truth established | **Not testable at range** — see the recorded radar boundary in §5 | **Not runnable with published checkpoints.** Both L-RadSet PointPillars checkpoints crop input at ~70 m: **0 of 504** of our 200–400 m vehicle centres fall inside either. TruckDrive's own full-range config covers 192/504 but has no matching pretrained radar-only model in the inspected release |
-| **Off-road terrain and traversability** | **Yes — and only GOOSE** | No — on-road | No — on-road |
+| **Matched radar vs LiDAR detection** | **Not with the current released-label workflow.** No radar detection ground truth established | **Not testable at range** — see the recorded radar boundary in §5. Below it, AD-S3-1 found no runnable radar detector (EXP-0020) and one runnable LiDAR detector, PointPillars (EXP-0019); its full-split score is not yet interpretable (G-12) | **Not runnable with published checkpoints.** Both L-RadSet PointPillars checkpoints crop input at ~70 m: **0 of 504** of our 200–400 m vehicle centres fall inside either. TruckDrive's own full-range config covers 192/504 but has no matching pretrained radar-only model in the inspected release |
+| **Off-road terrain and traversability** | **Yes — the only one of these three** (see STONE note below) | No — on-road | No — on-road |
 | **Sensor coverage by range** | Yes, for labelled LiDAR points | Yes, ten samples of one radar and one tilted blind-spot LiDAR; geometry differs | Yes, for radar returns |
 | **Reproducible on team hardware** | Yes, macOS and Windows | Yes, CPU-only inference viable | Viewer yes; no model run attempted |
 
@@ -367,6 +367,34 @@ No published checkpoint accepts input at the distances in question. That is a
 reportable negative finding with an identified cause, and materially more useful than
 running out of time.
 
+**Update, 29 September.** Three things have landed since, and none of them changes the
+answers above:
+
+- **TruckScenes detectors (AD-S3-1).** The radar side is a no-go: neither candidate was
+  both accessible and verifiably compatible with TruckScenes' radar point format
+  ([EXP-0020](../experiment-log/0020-truckscenes-radar-detector-feasibility.md), record
+  0023). On the LiDAR side, CenterPoint is a no-go on Windows (no `spconv` wheel), and
+  PointPillars runs zero-shot on CPU for one sample
+  ([EXP-0019](../experiment-log/0019-truckscenes-lidar-detector-feasibility.md), record
+  0022). The full 80-sample run in open PR #63 scores mAP 0.0000. Its output boxes are
+  tilted about 56° against upright ground truth, so **that zero is not yet a finding
+  about the detector** (G-12).
+- **Off-road radar now exists in the repository, but not in this comparison.** STONE
+  is off-road *and* carries radar, so it covers ground GOOSE cannot. Its current evidence
+  is geometric support across 60 frames and three recordings, and radar ground support is
+  sparse in the lake and land recordings
+  ([EXP-0025](../experiment-log/0025-stone-other-recordings.md), record 0030). The farmland
+  ground-versus-raised ordering reverses with the calibration origin, and the released
+  radar translations are zero (G-13). RADIATE fog (EXP-0026, record 0031) is descriptive
+  and has no clear-weather control. Neither dataset has been surveyed in template form,
+  so neither gets a column here. A survey would come before any comparison.
+- **GOOSE PTv3 has moved past the 10-frame run.** A fresh 24-frame, eight-scenario subset
+  ([EXP-0027](../experiment-log/0027-goose-multiscenario-terrain.md), record 0032) and a
+  controlled attention-context test
+  ([EXP-0028](../experiment-log/0028-goose-failure-causes.md), record 0033) find ground
+  correctness high when pooled but dominated by one scenario. Rock stays poor. This is
+  still segmentation, not detection, and still does not serve D-04.
+
 ### Experiments that are actually feasible before 12 October
 
 Rewritten 24 September. Three rows that were "conditional" have since resolved, two of
@@ -376,9 +404,11 @@ them to **no**.
 |---|---|---|
 | TruckDrive long-range support, more scenes or classes | **Yes, and proven** | Five scenes done (EXP-0017). The method is established; extending it is download and compute cost, not a new question |
 | TruckScenes box-level range analysis | **Possible, largely pointless** | Metadata is now held (Ricky). But the recorded radar stops at ~189.52 m, so it cannot speak to 200–400 m. Do it only if someone needs the <190 m band specifically |
+| TruckScenes radar detector, any range | **No** | **Resolved by EXP-0020.** No candidate checkpoint was both accessible and compatible with the radar point format. Unblocking needs a manual L-RadSet download and its channel mapping recovered |
+| TruckScenes LiDAR detector, mini_val | **Run, not yet interpretable** | PointPillars runs (EXP-0019). The 80-sample score in PR #63 needs the input rotated upright first and then re-running (G-12). Even when fixed, it is <150 m evidence and not D-04 |
 | Radar or LiDAR detector at 200–400 m | **No** | **Resolved by EXP-0018.** Both L-RadSet checkpoints crop input at ~70 m; 0/504 of our distant vehicle centres fall inside. Not a compute problem — no compatible published model exists in the inspected releases |
 | Matched radar-vs-LiDAR detector benchmark (S3-X1) | **No, this semester** | Follows directly from the row above. Training a compatible model from scratch is outside the agreed scope |
-| GOOSE PTv3 full split | **Technically, not usefully** | ~5.1 h lower bound on the one GTX 1660, and Ricky's approval. Produces segmentation mIoU, which has no detection equivalent — it does not serve D-04 even if it completes |
+| GOOSE PTv3 full split | **Technically, not usefully** | Bounded subsets are now done instead (EXP-0027, 24 frames, eight scenarios; EXP-0028). A full split would take a ~5.1 h lower bound on the one GTX 1660, plus Ricky's approval. Produces segmentation mIoU, which has no detection equivalent — it does not serve D-04 even if it completes |
 | Cross-dataset accuracy ranking | **Never** | Forbidden by D-01, and none of the numbers would support it anyway |
 
 **What this leaves as the project's answer to D-04:** a within-dataset descriptive
@@ -403,7 +433,9 @@ Every unresolved item found while assembling this document. Gaps are recorded as
 | G-8 | **GOOSE radar is not 4D as far as our sources go.** The survey records Smartmicro UMRR-96 (79 GHz, 0.4–55 m) and UMRR-11 (77 GHz, 1–175 m), neither described as 4D imaging, and elevation is nowhere asserted. Since the radar is unlabelled anyway this does not change any conclusion — but GOOSE must not be listed as a 4D-radar dataset. Settling it needs the Smartmicro datasheets, which we do not hold | `goose.md` §2–3 | Me — narrowed; needs a vendor datasheet |
 | G-9 | **TruckDrive empty camera channels and NumPy/SciPy warning** unresolved on the second machine | EXP-0009 | Fariya + Kelsey |
 | G-10 | **Cause of the ~189.52 m radar boundary is unknown.** All six channels agree to 0.000003 m across 1,145,496 returns, which strongly suggests a shared acquisition or processing limit — but it is a measured property of the downloaded clouds, not an established sensor specification, and it does not prove the physical radar cannot measure farther | EXP-0014, record 0017 | Ricky |
-| G-11 | **No compatible long-range detector identified.** Audit of the inspected L-RadSet and TruckDrive releases only; it is not proof that no suitable model exists elsewhere | EXP-0018, record 0021 | Aiden — open |
+| G-11 | **No compatible long-range detector identified.** Audit of the inspected L-RadSet and TruckDrive releases only; it is not proof that no suitable model exists elsewhere. On TruckScenes, EXP-0020 adds that no radar detector was runnable at any range | EXP-0018, record 0021; EXP-0020, record 0023 | Aiden — open |
+| G-12 | **TruckScenes PointPillars score not interpretable.** PR #63's mAP 0.0000 comes from tilted `LIDAR_TOP_FRONT` points fed to an upright-box checkpoint. All 596 output boxes are tilted 54.6–58.2° in world frame, and ground truth is upright. The input needs rotating upright and the run repeating before the score means anything | [`pr63-input-frame-review.md`](pr63-input-frame-review.md); tilt independently recomputed 29 Sep | Aiden — PR #63 |
+| G-13 | **STONE radar calibration unresolved.** Released radar TF translations are zero and the LiDAR export uses a different origin. The farmland ground-versus-raised ordering reverses with the choice. No STONE survey exists in template form | Records 0028, 0030 | Ricky — open |
 
 ---
 
@@ -420,8 +452,9 @@ Per the A1/A2/A3 breakdown in `Damien - Sprint 3/README.md`:
 - [x] Internal GOOSE frame-count sum checked and G-8 sensor claim narrowed
 - [ ] G-2 file-level reconciliation and G-8 vendor-datasheet confirmation
 - [ ] **A4** — cold read by a reader outside the GOOSE pair, recorded unedited.
-      **The one acceptance condition this document cannot satisfy by itself**, and the
-      one that closes P-6 and DS-4
+      **Closed 29 September without a read**
+      ([record](evidence/p6-cold-read-2026-09-29.md)), so P-6 and DS-4 stay open. It is
+      still the one acceptance condition this document cannot satisfy by itself
 - [ ] Fold in the TruckDrive survey once KL-S3-1 delivers it, replacing the
       statistics-derived rows here
 
@@ -435,7 +468,7 @@ Run on every change to this document, not once at the end:
 | Range tables sum to their stated totals | GOOSE → 174,891,807; TruckDrive → 71,206; TruckScenes radar → 4,571 and LiDAR → 165,588 | All exact |
 | Every class in §6 sits at the level claimed | Each name cross-checked against `traversability_map.csv` | Pass — **caught `water` mis-filed in my own draft** |
 | Per-scenario frames sum to the split | §3 of `dataset-statistics.md` | 961, exact |
-| Record and log identity | `validate_result.py`, `validate_experiment_logs.py` | Passed on the integrated branch, 21 September; 11 result records validated |
+| Record and log identity | `validate_result.py`, `validate_experiment_logs.py` | Passed on current `main`, 29 September: 32 records (0029 reserved for PR #63), experiment logs PASS. Also passed on `main` merged with PR #63 (33 records) |
 
 No number in this document was re-derived; each was read from a merged record and
 checked against its source. Where a number appears twice in the repository with
@@ -465,6 +498,12 @@ re-derived; each was read from a merged record.
 | [`docs/long-range-evidence-audit.md`](long-range-evidence-audit.md) | TruckScenes recorded radar boundary; EXP-0014, record 0017 |
 | [`docs/truckdrive-multiscene-result.md`](truckdrive-multiscene-result.md) | Five-scene long-range support; EXP-0017, record 0020 |
 | [`docs/detector-compatibility-decision.md`](detector-compatibility-decision.md) | Checkpoint input-extent audit; EXP-0018, record 0021 |
+| [`docs/truckscenes-lidar-detector-decision.md`](truckscenes-lidar-detector-decision.md) | PointPillars go, CenterPoint no-go; EXP-0019, record 0022 |
+| [`docs/truckscenes-radar-detector-decision.md`](truckscenes-radar-detector-decision.md) | Radar detector no-go; EXP-0020, record 0023 |
+| [`docs/pr63-input-frame-review.md`](pr63-input-frame-review.md) | PointPillars input-frame tilt (G-12) |
+| [`docs/stone-environments-followup.md`](stone-environments-followup.md) | STONE three-recording support; EXP-0025, record 0030 |
+| [`docs/radiate-fog-pilot.md`](radiate-fog-pilot.md) | RADIATE fog diagnostic; EXP-0026, record 0031 |
+| [`docs/goose-multiscenario-terrain.md`](goose-multiscenario-terrain.md), [`docs/goose-failure-causes.md`](goose-failure-causes.md) | GOOSE PTv3 subsets; EXP-0027/0028, records 0032/0033 |
 | `experiment-log/0005`, `0009` | TruckDrive setup and reproduction |
 
 **Not used:** the Sprint 2 project report narrative. Where it and a merged record

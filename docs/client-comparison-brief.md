@@ -1,5 +1,36 @@
 # Radar and LiDAR: what our TruckScenes experiment shows
 
+**Why some terrain errors occur:** [controlled GOOSE context test](goose-failure-causes.md)
+finds our reduced attention-patch setting contributes to the selected failures.
+On three adjacent frames, patches 64 → 256 reduce nearby rock-to-ground confusion
+49.52% → 22.56% and building-to-ground confusion 18.43% → 4.12%. The baseline repeat
+is identical. Correct rock-category predictions only rise 18.12% → 24.90%, so
+this is a partial improvement, not reliable obstacle detection. Low rock geometry
+is associated with confusion; visible snow is context, not a proven cause.
+
+**Latest terrain result, 28 September:** [GOOSE across eight scenarios](goose-multiscenario-terrain.md)
+now includes 24 fresh PTv3 frames and 4.19 million labelled points. Pooled ground
+correctness is 98.63% at 0–25 m and 97.67% at 100–150 m, so the earlier single-
+scenario drop is not a general finding. The distant pooled score is dominated
+by one scenario; equal-scenario correctness is 89.34%. Obstacle-labelled points
+called ground rise from 2.99% to 14.17%, mostly buildings at distance. These are
+LiDAR point-classification errors, not percentages of complete objects missed.
+The [STONE calibration audit](stone-environments-followup.md#calibration-source-audit-28-september-follow-up)
+specifies the still-missing numerical radar extrinsics.
+
+**Case-level follow-up:** [rock/building error examples](goose-error-cases.md)
+show that 96.92% of nearby rock-to-ground errors and 98.75% of nearby building-
+to-ground errors come from the same single frame. This is a concrete model
+failure case, not evidence that those percentages of independent obstacles are
+missed. Nearby rocks comprise only seven frame-local instance observations.
+
+**28 September:** [STONE environment follow-up](stone-environments-followup.md)
+adds lake/land to farmland (60 sampled frames total). [RADIATE in fog](radiate-fog-pilot.md)
+provides a contrasting case: at 50–75 m, 9/19 annotated observations retain
+strict radar image contrast while their exact footprints have no above-ground
+LiDAR returns. This is a short radar-annotated case study, not detector accuracy
+or a controlled estimate of fog's effect.
+
 **26 September off-road extension:** [STONE paired terrain pilot](stone-paired-terrain-pilot.md)
 adds measured ground/raised-geometry support from 20 radar/LiDAR frames. It exposes
 a radar-calibration ambiguity that must be resolved before a firm terrain ranking.

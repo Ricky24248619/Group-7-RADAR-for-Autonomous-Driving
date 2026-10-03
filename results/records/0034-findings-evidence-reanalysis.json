@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "owner": "Ricky Yuen",
+  "date": "2026-10-01",
+  "status": "success",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "environment": {
+    "os": "Windows",
+    "hardware": "CPU; no new inference or GPU work",
+    "python": "3.11.9",
+    "packages": {}
+  },
+  "notes": "Successful bounded descriptive analysis, not a matched detector benchmark, client acceptance or a claim of twelve weeks of effort.",
+  "id": "0034-findings-evidence-reanalysis",
+  "title": "Recomputed dataset findings with matched denominators and scene sensitivity",
+  "dataset": "TruckScenes v1.2-mini; TruckDrive selected mini clips; GOOSE base validation subsets; STONE three recordings; RADIATE tiny_foggy (separate populations)",
+  "sensor_configuration": "Existing documented radar/LiDAR sensor suites; LiDAR-only GOOSE predictions; RADIATE radar intensity images",
+  "annotation_schema": "Native oriented 3D boxes, GOOSE coarse point semantics, conditional LiDAR-derived STONE voxels and radar-annotated RADIATE BEV footprints; not pooled across tasks",
+  "split": "389 TruckScenes frames; 190 matched TruckDrive frames; 24 GOOSE frames plus separately reported ten-frame/three-frame subsets; 60 STONE frames; 17 RADIATE frames",
+  "commands": [
+    "python scripts/analyse_findings_oct01.py",
+    "python scripts/render_findings_oct01.py"
+  ],
+  "evidence": [
+    "docs/dataset-findings-oct01.md",
+    "results/evidence/findings-oct01/measurements.json",
+    "results/evidence/findings-oct01/manifest.json",
+    "results/evidence/findings-oct01/findings.json",
+    "experiment-log/0029-findings-and-additional-datasets.md"
+  ],
+  "measurements": [
+    {
+      "name": "Supported finding entries",
+      "value": 32,
+      "scope": "28 from existing project evidence, four from additional sample/metadata analysis; count is not labour or benchmark completion"
+    }
+  ]
+}
