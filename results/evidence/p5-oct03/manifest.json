@@ -1,0 +1,376 @@
+{
+  "terrain_sources": {
+    "prior_terrain_manifest_sha256_lf": "85dd37a0cd5637f75cbb59dfd3b1f1e2acceda4ade624238b8677d74e63a0e85",
+    "frames": [
+      {
+        "frame": "2022-07-22_flight__0134_1658494407426613719_vls128.bin",
+        "recording": "2022-07-22_flight",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "39f33406d39b2c43069995ebee6925553053fca5d0584713e92e0773ce158a83",
+          "label": "0e1d0ea05dfce2e8572a091c1bcb8fd9c0c9d6f1e6c7e06e1978bc8ad23debf7",
+          "challenge_label": "a6e684cdc5e2621253f7bd96774845fba1d07cf0c19a97c29d272fc0cd00a9ab",
+          "prediction": "b53926ec38b1787befedc9869c88b6a895e129eefa491df1d2736f8b65ed50f6"
+        }
+      },
+      {
+        "frame": "2022-07-22_flight__0191_1658494577520210012_vls128.bin",
+        "recording": "2022-07-22_flight",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "fa765803ceb8f47e0460b37d3c50a14a2292c17a0a3c7260890273284b277598",
+          "label": "b7abc99b03d3b0c33a83451068c43b9858da947b47ab5d1d1707942a53c1f118",
+          "challenge_label": "8d6b1456b393bb1dde1128f759ae1117455b3ef13321412c1ebf5d339e01af2d",
+          "prediction": "67beb6560f88140222d5734780e85845e58ad5c577a0b2d19287c47bfd51c3f3"
+        }
+      },
+      {
+        "frame": "2022-07-22_flight__0229_1658494734804369360_vls128.bin",
+        "recording": "2022-07-22_flight",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "41f080d4029c8ad7557cc006438687a174234ad0eaec695c1f3760bcb0fab7f4",
+          "label": "f91864397e197d9ce06e0e378478e912a8f0146920fc5f64411ed7db18f19d75",
+          "challenge_label": "b43803229a4882bb1ed10dddf8ff18ad2c1d9eb92cb8987abee03379b6b06f5e",
+          "prediction": "c249414e1b68f3bf88c9b03efd32241c5f5f1925c3f58aa3dcf2a047ab320879"
+        }
+      },
+      {
+        "frame": "2022-08-30_siegertsbrunn_feldwege__0553_1661860705297669580_vls128.bin",
+        "recording": "2022-08-30_siegertsbrunn_feldwege",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "681f431357b5f6a5105b03315252eade80db067fdef4190c3fb8f4d2441a8ba2",
+          "label": "554c0c9b0fbe8af676b8f03ddfd000ab8e1a3b9590870d480fa8be14f9c1684e",
+          "challenge_label": "6654e07d786046055542961124f60f22e14aad80d4a82efb26eb6c0cab142422",
+          "prediction": "69b53e2621f3cc499c86b4d33858574bd21159688162f3f21782911199f3b56c"
+        }
+      },
+      {
+        "frame": "2022-08-30_siegertsbrunn_feldwege__0579_1661860853906103210_vls128.bin",
+        "recording": "2022-08-30_siegertsbrunn_feldwege",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "cb1d65100d5299b2aba976a13a049fe050b9da92e45298f4837578d285b1f9c6",
+          "label": "88142c9d4c695cf15e9d4e67c9859fb79f4a4df3a4a982b02e2b5b23afb134f4",
+          "challenge_label": "25cc7571c757737a6feb81af2ef962220def60c3450c0435da72377e5e52c95d",
+          "prediction": "0d6b763867feea8a930171bf91ebb638d0101e3aed5aaa40cf45b1f9de8f5e3b"
+        }
+      },
+      {
+        "frame": "2022-08-30_siegertsbrunn_feldwege__0605_1661861064160984726_vls128.bin",
+        "recording": "2022-08-30_siegertsbrunn_feldwege",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "16311f41a1599850c73d7f2d00f17205174e6305f9727a150da48496c832744d",
+          "label": "95bf4d41e3f9f1bdf489fb5b9c15b500c55b37b3f4148564acd03bcd57c71716",
+          "challenge_label": "0e5110201a459914c1663a73afa9366a1429965f9c02a204ed0b6956f056d2ce",
+          "prediction": "9417aef8e819669f080b67579052b9541b1fc8b46ca765a909d7f7a2bdf424fc"
+        }
+      },
+      {
+        "frame": "2022-09-21_garching_uebungsplatz_2__0030_1663755316941382820_vls128.bin",
+        "recording": "2022-09-21_garching_uebungsplatz_2",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "aad420a682cdb2d7cf658d93fa396e9443760636365e6b178bb37b667c15c647",
+          "label": "7e2dc70bad58f0fda7fb48cb7754ec2072c538e9b82434053890ae491f60e689",
+          "challenge_label": "687e854cf6e2378061e1da36064a1632881556b721b3d89d1d2d9d17e5ac444a",
+          "prediction": "7be4af5a11932b83c5bc5fb9327ec96469ad1431f3d5665d4094c05ded5608b3"
+        }
+      },
+      {
+        "frame": "2022-09-21_garching_uebungsplatz_2__0061_1663755589332011624_vls128.bin",
+        "recording": "2022-09-21_garching_uebungsplatz_2",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "964dda55ce3116581a252ab51449512f572de884464f91a4642a1ecc983d85b0",
+          "label": "cf0ce4174f4c45006142bb9164a799c046777a97bca414541fed92fdaacfc536",
+          "challenge_label": "045c2d503ca93ae98d6dd71645c7f175cf124cd8db524498bdab5c360bc9ea58",
+          "prediction": "09080bcb28cf74995081cc6dac4def0a9faa2b7093b6b880a0d0d06afa6b172b"
+        }
+      },
+      {
+        "frame": "2022-09-21_garching_uebungsplatz_2__0092_1663755783509220263_vls128.bin",
+        "recording": "2022-09-21_garching_uebungsplatz_2",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "2194fadf767e9547f60a90a93203e3290c7633273be0c668c726fd49f78f96c3",
+          "label": "7da2b437cb8259b7a0ce2e8cfea2201425456acb63f1ddf52d39f7d37f8d2e06",
+          "challenge_label": "5d41c3f618ece62a484da17c5453a28850e67fd1a90c457e62c71d24f6b3e166",
+          "prediction": "20e3a130f2fcfe5ea2b40fc10e8a7d02e95ce9302ecb492663b7e59f057cdaa8"
+        }
+      },
+      {
+        "frame": "2022-12-07_aying_hills__0034_1670421194782947030_vls128.bin",
+        "recording": "2022-12-07_aying_hills",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "5528e07743afebbcee85ad3a59c0c9ffd5ddb407b1892d193528e560903c70ed",
+          "label": "70af936f82dc13567a56b1c9c9418e055edf81c97d9a3b00559fec86cdb6bcee",
+          "challenge_label": "9855273b24b47b3ba9eb60f28389238985ee7d22703788be5d94317ae706646b",
+          "prediction": "2f4ae4e6ec66fe9b83ac246f441466bbd15bb8115e05b1df378ef48af3f2d634"
+        }
+      },
+      {
+        "frame": "2022-12-07_aying_hills__0067_1670421486677486184_vls128.bin",
+        "recording": "2022-12-07_aying_hills",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "6a8778b30659acce8b59c9b2145441da942ae232223738539bc27bd505efac22",
+          "label": "2fb1d4ee31ddf2ec75aaa2b061eecfcc6620f03f0ce64ccb1814dbf3725f2265",
+          "challenge_label": "bee4a22215b62480a12e50b39a3cfe8bce489701577587a3a5f4881c65566612",
+          "prediction": "0c7ff688f5a4ffb57d5b38377b4d7508c8b01751e126de448eb46886c9878ec0"
+        }
+      },
+      {
+        "frame": "2022-12-07_aying_hills__0100_1670421573975101664_vls128.bin",
+        "recording": "2022-12-07_aying_hills",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "97f9ae98403a36d4b8b88af02740b1d338d880a0602c68ecfe4fc207f3e529dc",
+          "label": "17a6133a02cb4e73d69a460ca989592244ce34b9785d6b4debba4da795328b7f",
+          "challenge_label": "be7010adf8c55118792b6e5a224c6dd699937b2da6cbe9db6033977400e39b05",
+          "prediction": "37e404b11070914d15fcac5839b9a80b10f7706bfa0aefc75c72532b658c952e"
+        }
+      },
+      {
+        "frame": "2023-01-20_aying_mangfall_2__0449_1674223530715314328_vls128.bin",
+        "recording": "2023-01-20_aying_mangfall_2",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "7ac85a511ad991cbb1aac98ff8dcc3a422dde73db236fe79956b1d192891c6ca",
+          "label": "8cefb98aabbb37703274754946f23b77aae25a9a506d0a079b2b45bf4719b80a",
+          "challenge_label": "2d2deb8297cde85f531810eb814c4bf539c735669d826c28ae7e0ab8ed0da3cf",
+          "prediction": "3b71ba877db94cccfb7799c1512ff2a7e6f0a5da211f55c7dab9eb827f6cf6bb"
+        }
+      },
+      {
+        "frame": "2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin",
+        "recording": "2023-01-20_aying_mangfall_2",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "fecb28504b296764d7fea0772d40543caf37c000208a830aa245c7b7910aa23f",
+          "label": "f2348eb33d15e5e88617caa0e5240484813cdd136932343a3487988e696b5103",
+          "challenge_label": "a8ecfd1c3e98acb71126b4e1067dcd20757229deb87060ba170315f2fb6b6773",
+          "prediction": "7a0baf0bdfbca28c7bcd42c74fa3de89301fa2dec66825b16e0efac1538c2ee0"
+        }
+      },
+      {
+        "frame": "2023-01-20_aying_mangfall_2__0545_1674223937789374830_vls128.bin",
+        "recording": "2023-01-20_aying_mangfall_2",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "5c4e9872025fea5600c68d393e0664c88990b3bdaaeb271c4950607223942a29",
+          "label": "609021f8a4036f9a02406da3293040c6c82ceeb95c72d0fd64ec53decf8f1182",
+          "challenge_label": "24e1117a2e98ed1ccf3777053f3da3c83c508c702ab8f151aba83cd26638812d",
+          "prediction": "3e1aa1f9c5749d19e3202026c08006c52f72a17667d95d878e5cd05988d1d1fb"
+        }
+      },
+      {
+        "frame": "2023-03-03_garching_2__0140_1677850580619401246_vls128.bin",
+        "recording": "2023-03-03_garching_2",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "1f4d83b6c8ceda9e707ddafe08ce998ea83514321f07878dd478701fffe28425",
+          "label": "c98f5694db550a01b26acd37dc959ffe0e62f1494dff5fdc3499900760754e72",
+          "challenge_label": "39f44bacb390096f2e9d6187f36907f547f812873047543e72d9059f910777fe",
+          "prediction": "dbb5a9a042dd5ed3ca0f6867d71149b6d0d12abfa6eaeccf316d30a54352e671"
+        }
+      },
+      {
+        "frame": "2023-03-03_garching_2__0167_1677850733431980082_vls128.bin",
+        "recording": "2023-03-03_garching_2",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "75a172ef4c01b7efef1aa215048c01c7df1a9d0f5eac46ccc90eded138fc2b8c",
+          "label": "bd6a55bfdd523998304ad290a09a873a29c62b84294376b6b36aa30bbf99ebf1",
+          "challenge_label": "afc66b8aac81bb5eaaddb0a688d697f0a75732ba682798279ac950d68ee11288",
+          "prediction": "eaf439e0353e4dd8975ad94eaea0d52cfbce92d6579d489371fb41c9281c88ef"
+        }
+      },
+      {
+        "frame": "2023-03-03_garching_2__0193_1677850900535844056_vls128.bin",
+        "recording": "2023-03-03_garching_2",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "ca0fd7b29b78effb10a7fe8125b03aa81fd7316cf1c3adf482dff1341fd95ba0",
+          "label": "ceede9f997e1439ddbfb4b7e10dbc696ded2f620682d19cd4f4e6883b30717a8",
+          "challenge_label": "ed3356a6b6d59d9924e3ed313e6a8c8a470c3d525a5382cff859025cd340961f",
+          "prediction": "9941608badb779463b190b340d3de08a8f0bcbfd185fb18812304a2215c0c9ae"
+        }
+      },
+      {
+        "frame": "2023-05-15_neubiberg_rain__0641_1684157914704507527_vls128.bin",
+        "recording": "2023-05-15_neubiberg_rain",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "30b0bf1e9ef26fd9ca20761edbebe9669ac1f20b3408389c21da1cab3807b903",
+          "label": "a1069d0e0164f76c3bdbca59fd2cce897c7df3db3ddf5225493a2390496f355b",
+          "challenge_label": "eb22795f2f9e5b39c4ab255f271d7040569e3a5ab8853ebb841443ae767f1b02",
+          "prediction": "ae5afd8eceab80173f33192bbff5cfe058f77a944a91442afa09edd916bbb9e3"
+        }
+      },
+      {
+        "frame": "2023-05-15_neubiberg_rain__0659_1684157946828506895_vls128.bin",
+        "recording": "2023-05-15_neubiberg_rain",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "58ba9f53dc160eb851cf84a2264776bb6370bbccd5370d061c42f42792c593cf",
+          "label": "f012879631dcb41d0cb9bb214e37cb905b9b8beb780c75b94a1613bdd40290e8",
+          "challenge_label": "5f06aa83432c180c27e4f86bbb2e45e77e841c88c3a08d2da3f6d4cd88c5f7e1",
+          "prediction": "3467089ae6d2d2c6aaaa163ac99be681ee242ca251ae56b704090b8c86f3bb77"
+        }
+      },
+      {
+        "frame": "2023-05-15_neubiberg_rain__0677_1684158156457472801_vls128.bin",
+        "recording": "2023-05-15_neubiberg_rain",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "dea8f193968896f4a4670bdb466cb14cea5463e90f2668c6a072e1fd4317499c",
+          "label": "0e13621ee7fb68b419518bb464ffb8f5b074db065c0813c3703b74d6ef042ee4",
+          "challenge_label": "82961aa3fde82f14224b7c6577140cc94e6c9c65bc1f993828d87e65d5b0349a",
+          "prediction": "2ded59e385ad7824ed60e60a308317154b2ba789fb6f900f5b508d3297870178"
+        }
+      },
+      {
+        "frame": "2023-05-17_neubiberg_sunny__0399_1684329809197908580_vls128.bin",
+        "recording": "2023-05-17_neubiberg_sunny",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "9ca6fc24b891cafe54ddd630a0fa39c49237b7d32638cc3c79df72253f99e5b5",
+          "label": "c9e9b0645fa3165a98849cb3d031cb4f239ff860174e1e481f4eaff43a6e5fac",
+          "challenge_label": "17dcf4f1be7ffdb12cd31ab226c878356e33b0618e46971b3d877709abe66bc8",
+          "prediction": "3c20212eb55ab1f9302f4bdadc7e871120b83af64732ef08d20b79e874ad5756"
+        }
+      },
+      {
+        "frame": "2023-05-17_neubiberg_sunny__0419_1684329877834694088_vls128.bin",
+        "recording": "2023-05-17_neubiberg_sunny",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "e7676d39d824e86aa0dfee24b39a7f211e0a49dac922c0124618697accebe8d1",
+          "label": "2958bf00d143956d22846999e6635b1f1660fba1e474ebe78b45919afefa95ab",
+          "challenge_label": "e0c234fd50ff51a13ab3a247031a16fe2e465c58daaeb6b9a614653bf9fb0efe",
+          "prediction": "d599ad72dbe09dfef7e829df762245bc347e89db6a06d091068feed2bcdba920"
+        }
+      },
+      {
+        "frame": "2023-05-17_neubiberg_sunny__0439_1684329955810539276_vls128.bin",
+        "recording": "2023-05-17_neubiberg_sunny",
+        "source_variant": "stratified24",
+        "sha256": {
+          "scan": "421d3eb9db7ff27173f88f6aa50483d945427313743344c40f3eb0c8809ea52f",
+          "label": "56c3dd8809d9dfbbc2447943582db45d59a1bec6ac056016a062bb4caafe1514",
+          "challenge_label": "c91ff693bb1aeb6221005961d5e33e4addfc6367f74957c17753ba891fcc45ca",
+          "prediction": "43166d68bd398ebad71e7358d73981d1254a475d5aa64912568b35c17dcec967"
+        }
+      },
+      {
+        "frame": "2022-07-22_flight__0155_1658494454445888345_vls128.bin",
+        "recording": "2022-07-22_flight",
+        "source_variant": "p64",
+        "sha256": {
+          "scan": "6dc30bd37379952c165cfb44b4c38442e17233ff90a475b667451a0a93fce132",
+          "label": "c3952d1605b2b3cb467d3dc97c7a3967fd7f23ca0d3f8609dc59f8c5e678eefb",
+          "challenge_label": "00be68598e38e836f977ae2f7a869822c570cb021055799956e2699ae01c73bd",
+          "prediction": "21e02f3c4f251b85d2289b3fda5345e3c8729b8fe656167b709905b5b70bf291"
+        }
+      },
+      {
+        "frame": "2022-08-30_siegertsbrunn_feldwege__0562_1661860753399118949_vls128.bin",
+        "recording": "2022-08-30_siegertsbrunn_feldwege",
+        "source_variant": "p64",
+        "sha256": {
+          "scan": "0ba1023ea4133432c07a75122ce5344f48d6a7b036fd4dc7b1150d9579db74be",
+          "label": "11a9f7b6f55c65f0245aa73d6e4721a1fdf76fd6f697d119f69a085fab7f4b3c",
+          "challenge_label": "26ef91cd080f6bf0cf8076c61616948f2fa7cfd1745c08fdd4a5d6ae88083507",
+          "prediction": "4b5cc9108ac32db63a467daed2107829b01ae020acc8d040001b3ec3d5589cf4"
+        }
+      },
+      {
+        "frame": "2022-09-21_garching_uebungsplatz_2__0041_1663755381571228577_vls128.bin",
+        "recording": "2022-09-21_garching_uebungsplatz_2",
+        "source_variant": "p64",
+        "sha256": {
+          "scan": "ebd5cb72c1f6557cbb12d86eae432f70543ea8c96da7bb9b750318d9976c47ae",
+          "label": "ace15fb99a8984f569e88f528f1fe0df2dfc64b01916b082a0d60f4886585ee8",
+          "challenge_label": "f002e87eb0f6f243ccbd9b78b1b17f891f9b465d227a983ed31526f496846137",
+          "prediction": "48c4d816aa9c17253556156a0a4f03aa1d8ca47c502916f3592e27f1d5d865b4"
+        }
+      },
+      {
+        "frame": "2022-12-07_aying_hills__0045_1670421354439414871_vls128.bin",
+        "recording": "2022-12-07_aying_hills",
+        "source_variant": "p64",
+        "sha256": {
+          "scan": "c8deea6ae1cdf443ff198255893b8209a6ecea453836cad9c68f23433c8bc0aa",
+          "label": "c4a0269e6fed3b10fcf30a2bc88bb35bf210d37da06d43fcf3cb1139f849cdb0",
+          "challenge_label": "296ab77bc2dfd727ff77911f41577430469cde357bbf475f099e85251d9188e9",
+          "prediction": "706727e7e6f631e4778bb09a3ac151244c88f1988591c02e558f461d5985399c"
+        }
+      },
+      {
+        "frame": "2023-03-03_garching_2__0149_1677850634360288620_vls128.bin",
+        "recording": "2023-03-03_garching_2",
+        "source_variant": "p64",
+        "sha256": {
+          "scan": "18c98f432ea98e127c0c27a377550c3b6004b9d748eff4b7a992313d6d94b3a5",
+          "label": "a2344c45a5d69417166aa5200e2b96ab6ffe2df05198d789708bb169ce812934",
+          "challenge_label": "66d84061284a908b6b9a39e0be4b0f57479e9e3ba6cd09851ef8fe98b1bdc260",
+          "prediction": "d6377e405c726c2a4f580a13d0b8f32c9c0b972a347d1a3e26de2dba04495a9e"
+        }
+      },
+      {
+        "frame": "2023-05-15_neubiberg_rain__0647_1684157923512800092_vls128.bin",
+        "recording": "2023-05-15_neubiberg_rain",
+        "source_variant": "p64",
+        "sha256": {
+          "scan": "d7fa4c15ecd2ca5d3c30b5740e53896e59dd2ad4b6fd30d2388b827a99c62545",
+          "label": "b6c7322a8cf606b22f796d0174c4c1e69ba2d639bb5768d2e1c2ae87e0b66169",
+          "challenge_label": "a70d90bb4b304a942b27d3db63e3ea3d6c90cf65a75218660b475fe14c4e4ca4",
+          "prediction": "6b03e5567df222f3b79211e1e3a44f565cb7814129ccc57a76901bd0751b95ce"
+        }
+      },
+      {
+        "frame": "2023-05-17_neubiberg_sunny__0406_1684329843302899662_vls128.bin",
+        "recording": "2023-05-17_neubiberg_sunny",
+        "source_variant": "p64",
+        "sha256": {
+          "scan": "2cd521ab05ceecd42bac69e636bf5f55f5a5ff28289e3d16539890760a1318d9",
+          "label": "ad51616da810790cdf47b595e5ae9e386f69b431146b2c65169c258c7d078a25",
+          "challenge_label": "854595188fa3f758f46cc88f69d54794d359184af438b53099dd790446eca386",
+          "prediction": "8b4040c24d5a06995eb8da41bf1923041407cc56c1fc14b081e3b49cc2659661"
+        }
+      }
+    ]
+  },
+  "sensor_sources_sha256": {
+    "external:sample_annotation.json": "5d93f5b4d4ad3d696f14c9a82b35f275130220493a0b1b6a7e5ae3133f830ba5",
+    "external:visibility.json": "f7f9d701cacc789aa02cb88352b668dd0dc19a1402162b16b00d0ec6eb8570e0",
+    "docs/evidence/truckscenes/paired-point-motion-support/object_counts.csv": "8bdc290998047cf55d7a4e707f7be3d6f7ac91c4df592dd82bee87d8824ee57d",
+    "docs/evidence/radiate-fog/observations.csv": "5137b5d4ee3aa2d185411cd2e5eb93853da558540ee7be9f22192bd95fbf34db",
+    "docs/evidence/radiate-fog/unlabelled_controls.csv": "fe4399209d1eb7f887fa48305a644be6f939e70e98ff11192d13c48511e96b01"
+  },
+  "output_sha256_lf": {
+    "ground_reference.csv": "ba2dc73f86cfeda87ed85b237f7a8e163965682538f953475bbae12bf2b39f06",
+    "relative_height.csv": "042d80a5d623dbefc87bddf591104e8b83ef642414345b6933f1acc3a7a54de4",
+    "height_columns.csv": "4852825f4af12138281c37180ef7e698af4ac94ed907ba93172d8aa7fd644fda",
+    "surface_shape.csv": "8448481453a3da1928e23bd0951ea6fc59a0409ab8ab3c92b6dab934a166884f",
+    "vehicle_footprint.csv": "cfda7af021362aff07a93e0b19e4c6e83d72f969393ea68155cb2e33c44d451f",
+    "camera_visibility.csv": "5454d5b060ec8d5050a336c118233896237794ae1eba32cebc03589d5ec1ef10",
+    "fog_background.csv": "f840123dbce4fbc1095ba87dce585630e98895dc2192cb10b12cc96a861e3c3b"
+  },
+  "new_gpu_runs": 0,
+  "method": "Fixed <=25m terrain point cohort; ground-reference cutoffs 1/2m; map/plane cells 0.5/1m; frozen footprint widths 0.5/1.5/2.5m.",
+  "limits": [
+    "31 selected frames from eight recordings, not a full benchmark",
+    "Candidate ground is provisional semantic policy; no physical passability truth",
+    "Raw sensor-frame delta-z is not gravity-aligned object height or clearance",
+    "Orthogonal plane RMS is measured local shape, not grip, grade or traversability",
+    "Footprints use all touched square map cells, no vehicle kinematics or route",
+    "Unobserved/uncertain map support never counted free",
+    "Camera visibility metadata does not measure sensor-specific visibility",
+    "Fog controls are unlabelled, not confirmed empty; no recognition score"
+  ]
+}
