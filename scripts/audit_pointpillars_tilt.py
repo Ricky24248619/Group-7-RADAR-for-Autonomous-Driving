@@ -10,6 +10,8 @@ from pathlib import Path
 import numpy as np
 from scipy.spatial.transform import Rotation
 
+UPRIGHT_TOLERANCE_DEG=1.0
+
 
 def tilt(rotation_wxyz):
     q=np.asarray(rotation_wxyz)
@@ -29,7 +31,9 @@ def main():
         predicted_world_up_tilt_deg=dict(min=min(angles),median=float(np.median(angles)),max=max(angles)),
         annotated_world_up_tilt_deg=dict(min=min(gt),median=float(np.median(gt)),max=max(gt)),
         lidar_calibrations=[dict(token=c['token'],rotation_wxyz=c['rotation'],tilt_deg=tilt(c['rotation'])) for c in calibrations],
-        conclusion='Tilted native LiDAR is fed directly to an upright-box checkpoint. Saved boxes inherit roughly 56 degree world-up tilt. Rectification and rerun required; nearest-centre matches do not validate input frame or quantify causal score impact.')
+        conclusion=('Tilted native LiDAR is fed directly to an upright-box checkpoint. Saved boxes inherit roughly 56 degree world-up tilt. Rectification and rerun required; nearest-centre matches do not validate input frame or quantify causal score impact.'
+            if max(angles)>=UPRIGHT_TOLERANCE_DEG else
+            f'All saved boxes are within {UPRIGHT_TOLERANCE_DEG} degree of world-up, matching the upright ground truth. This checks the output frame only, not detection quality.'))
     args.output.parent.mkdir(parents=True,exist_ok=True);args.output.write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result,indent=2))
 

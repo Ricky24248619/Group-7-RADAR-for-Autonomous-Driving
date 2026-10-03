@@ -28,9 +28,13 @@
   blocker, not a shrug. See `docs/ad-s3-1-detector-feasibility-summary.md`
   for the combined go/no-go note.
 - Extended PointPillars to the full 80-sample `mini_val` split, scored with
-  the devkit's evaluator (EXP-0024): mAP 0.0000 across all classes, real and
-  diagnosed via nearest-match distance, not a coordinate bug — see
-  `docs/truckscenes-lidar-detector-decision.md`'s 27 September update.
+  the devkit's evaluator (EXP-0024). The first run's mAP 0.0000 was not
+  interpretable: `LIDAR_TOP_FRONT` is pitched ~56° and went into an
+  upright-box checkpoint unrectified (PR #63 review). After moving points
+  into an upright virtual LiDAR, every output box is upright and the run
+  scores mAP 0.0067, the first nonzero LiDAR AP here (pedestrian, trailer,
+  truck). See `docs/truckscenes-lidar-detector-decision.md`'s 3 October
+  update.
 
 ## Outcome
 
@@ -74,12 +78,12 @@ with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
 
 ## Current limits
 
-- LiDAR (PointPillars) has now been run and scored at full scale (EXP-0024,
-  all 80 `mini_val` samples, one LiDAR channel): mAP 0.0000 across all 12
-  classes, diagnosed via nearest-match distance rather than just reported.
-  Not yet done: a per-class match check (does a close spatial match also
-  have the correct predicted class?). Radar remains blocked (EXP-0020) — no
-  candidate cleared checkpoint access + preprocessing verification within
+- LiDAR (PointPillars) has been run and scored at full scale in a verified
+  upright input frame (EXP-0024, all 80 `mini_val` samples, one LiDAR
+  channel): mAP 0.0067. Only 23.9% of the scored ground-truth boxes contain
+  any point from that one channel, which caps recall, but this is not
+  separated from domain shift as a cause. Radar remains blocked (EXP-0020):
+  no candidate cleared checkpoint access + preprocessing verification within
   that check's scope.
 - The `traffic_cone` AP signal from EXP-0010 hasn't been diagnosed with the
   same rigor as the single-camera zero (no per-class distance analysis yet)
@@ -100,9 +104,9 @@ with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
   experiment on TruckScenes is camera + LiDAR, not three modalities —
   radar stays open pending a human unblocking the L-RadSet checkpoint
   outside this sandbox.
-- A per-class match check on EXP-0024's LiDAR predictions: does a
-  close spatial match (as near as 0.41m in the pooled diagnostic) also
-  carry the correct predicted class? Not yet done.
+- Optionally merge all six TruckScenes LiDARs into the same upright virtual
+  frame for a fairer LiDAR number. This is a separate experiment that needs
+  its own calibration and timing checks.
 - Optionally re-run EXP-0006's nearest-match distance diagnostic on
   EXP-0010's predictions, broken down by class, to check whether the
   `traffic_cone` AP is a genuine near-range effect or noise.

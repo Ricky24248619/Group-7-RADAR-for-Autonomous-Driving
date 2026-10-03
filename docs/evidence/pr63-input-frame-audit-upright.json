@@ -1,0 +1,28 @@
+{
+  "prediction_sha256": "3c0b8b1e03ea875baa11cd5a3513fe39a17a52d77cd63f00b91a3d02857154dc",
+  "samples": 80,
+  "boxes": 1904,
+  "predicted_world_up_tilt_deg": {
+    "min": 0.0,
+    "median": 0.0,
+    "max": 0.0
+  },
+  "annotated_world_up_tilt_deg": {
+    "min": 0.0,
+    "median": 0.0,
+    "max": 1.2074182697257333e-06
+  },
+  "lidar_calibrations": [
+    {
+      "token": "f994daad50a14ac49f1468d66eb8db62",
+      "rotation_wxyz": [
+        0.8819862253948842,
+        0.003842179948389126,
+        0.4712567637354048,
+        0.0016119865264838775
+      ],
+      "tilt_deg": 56.233848433582246
+    }
+  ],
+  "conclusion": "All saved boxes are within 1.0 degree of world-up, matching the upright ground truth. This checks the output frame only, not detection quality."
+}

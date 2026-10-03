@@ -90,9 +90,15 @@ projection check) rather than just report the number.
 2. ~~If the team wants the full result: extend this minimal execution to
    all 80 `mini_val` samples and score with the devkit's evaluator,
    mirroring EXP-0010's camera methodology exactly.~~ Done — EXP-0024,
-   result 0029, mAP 0.0000, diagnosed. Remaining open thread: a per-class
-   match check (does a close spatial match also have the correct predicted
-   class?), flagged in EXP-0024 as not yet done.
+   result 0029. **3 October update:** the 27 September mAP 0.0000 came from
+   feeding the ~56°-pitched `LIDAR_TOP_FRONT` frame straight to this
+   upright-box checkpoint ([PR #63 review](pr63-input-frame-review.md)),
+   so it is kept only as the historical unrectified run. Its "not a
+   coordinate bug" claim is withdrawn. The script now rectifies points into
+   an upright virtual LiDAR matching nuScenes `LIDAR_TOP`, with geometry
+   regression tests. All 1,904 rerun boxes are upright, and the rerun scores
+   **mAP 0.0067** (pedestrian 0.041, trailer 0.022, truck 0.017). Only 23.9%
+   of scored ground-truth boxes contain any point from this one channel.
 
 ## Reproduction
 
@@ -101,6 +107,9 @@ python truckscenes_fcos3d_infer.py-style script (see experiment-log/0019)
 --dataroot <man-truckscenes> --config <pointpillars nus-3d config>
 --checkpoint checkpoints/pointpillars_nus_20210826_225857-f19d00a3.pth
 ```
+
+Full split: `scripts/truckscenes_pointpillars_infer.py` (upright input frame
+by default; see experiment-log/0024 for the exact commands).
 
 Checkpoint: `checkpoints/pointpillars_nus_20210826_225857-f19d00a3.pth`
 (not committed — 220MB+ model weights stay outside Git, same convention as
