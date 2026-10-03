@@ -1,0 +1,115 @@
+{
+  "source_sha256": {
+    "docs/evidence/truckdrive-multiscene/scene_28_1/static/sensor_frames.csv": "7cf7136e4178c5bce85291166c3ca1d9ce772e39ef30d9eb38ff33c285e32552",
+    "docs/evidence/truckdrive-multiscene/scene_28_1/static/object_counts.csv": "b32e6edb3056464760fa712c8ff2c702ece61f7a7f26abe1a4315b9ff1a0cd56",
+    "docs/evidence/truckdrive-multiscene/scene_28_1/aligned/object_counts.csv": "1e5be292296a8f3da06be44669307ff0b29e942a30c3a2a15982c9c7788d6bce",
+    "docs/evidence/truckdrive-multiscene/scene_28_6/static/sensor_frames.csv": "9234152fc51d584f5df36eedf2db74f07b30faeff3bcaff69a1563a3c6147763",
+    "docs/evidence/truckdrive-multiscene/scene_28_6/static/object_counts.csv": "be8979a5c8613d403c0f9378e4e001023194ef6bcf561512f42c2fb8a1cc8206",
+    "docs/evidence/truckdrive-multiscene/scene_28_6/aligned/object_counts.csv": "ca5677f69e57f513d7d9edca06b44948c6c4f187e3f0582308d9133fd9b001b2",
+    "docs/evidence/truckdrive-multiscene/scene_28_12/static/sensor_frames.csv": "ae9b74702e03294d683946f6a4495b5dc14da5967864b145306be696336facdc",
+    "docs/evidence/truckdrive-multiscene/scene_28_12/static/object_counts.csv": "b3532875f6dd2cd21626c06caf808cd4d2169dae19dd9d29bad6326a134b1b99",
+    "docs/evidence/truckdrive-multiscene/scene_28_12/aligned/object_counts.csv": "ebfe70feb12d2892807759d72b472ac57f1e742ab9d6348737c4600682774418",
+    "docs/evidence/truckdrive-multiscene/scene_28_18/static/sensor_frames.csv": "7068fa51ce05a4ae3d5824002b019e430c0f61393cce3bad1e540658d8f06ca3",
+    "docs/evidence/truckdrive-multiscene/scene_28_18/static/object_counts.csv": "ce326d01573db7d957aec4652f553451a5150b2837e61895e36900c47971fccf",
+    "docs/evidence/truckdrive-multiscene/scene_28_18/aligned/object_counts.csv": "8d13b2c74be2cbdaac5c128115205cd4017acb32c13a21ef1958c9f80dc7f1a4",
+    "docs/evidence/truckdrive-multiscene/scene_28_24/static/sensor_frames.csv": "4bf246c0724646a335f20bbea513bdb5479f30eaeeca8e3e08c4ccaa59f162a4",
+    "docs/evidence/truckdrive-multiscene/scene_28_24/static/object_counts.csv": "1c7d393dc9ccfd21dad5efa11693b3e776438394ac72a5268ff85eb21ab18dea",
+    "docs/evidence/truckdrive-multiscene/scene_28_24/aligned/object_counts.csv": "c7116689e800771326f9c2b519f3541f333d56efc0f2f99604868192906dc359",
+    "results/evidence/sprint-followup-oct01/truckdrive/scene_28_3/static/sensor_frames.csv": "0a33b90b61e0e3491d4d5e07cb9db22e237bd9e87fc2420f4f623e94b01a2056",
+    "results/evidence/sprint-followup-oct01/truckdrive/scene_28_3/static/object_counts.csv": "26151fe4200b9562bed5cd63ec9f51b13d4d7ca940c72c019df170bb948a477b",
+    "results/evidence/sprint-followup-oct01/truckdrive/scene_28_3/aligned/object_counts.csv": "9ab8db3d5bc77ccb8801c471195a7a2f8c4ced6b1ebf61962e086d337c3c1c27",
+    "results/evidence/sprint-followup-oct01/truckdrive/scene_28_15/static/sensor_frames.csv": "766406fe44e5ae6f718ef8d92e882293138bae9f5220c15ad8bdb3daed70d5a7",
+    "results/evidence/sprint-followup-oct01/truckdrive/scene_28_15/static/object_counts.csv": "04f818c620bbca895bd0bec68d5aa5862bd617cfa013d3a3a57d88f41858f7da",
+    "results/evidence/sprint-followup-oct01/truckdrive/scene_28_15/aligned/object_counts.csv": "08d7cd023d326d23c00750df53372c232c871ed6763ba44b3a1768b0bcf10b15",
+    "external:TruckScenes/v1.2-mini/sample.json": "cc94f484304aa37f746cb47113887e282518c12fd4fe4ceb375f470dba3baf42",
+    "external:TruckScenes/v1.2-mini/sample_annotation.json": "5d93f5b4d4ad3d696f14c9a82b35f275130220493a0b1b6a7e5ae3133f830ba5",
+    "external:TruckScenes/v1.2-mini/scene.json": "abb3c56bbdb2434d59d1b3a3c16f57faacf594badc0e283a970bae0488b0d5b6",
+    "external:TruckScenes/v1.2-mini/visibility.json": "f7f9d701cacc789aa02cb88352b668dd0dc19a1402162b16b00d0ec6eb8570e0",
+    "external:TruckScenes/v1.2-mini/attribute.json": "ccd5158886a566a6c8233128bff834d9f870988b00555e6285745c606c23b42b",
+    "external:TruckScenes/v1.2-mini/ego_pose.json": "9809591684088a7aae22bbc741d5331823c0727101940f2a0566a22be65dd02d",
+    "docs/evidence/truckscenes/paired-all-sensor-support/object_counts.csv": "27ced97c5edb0f2af6f7441165449527719a8259130d4b1d73a81aaf8e86e1b9",
+    "docs/evidence/truckscenes/paired-point-motion-support/object_counts.csv": "8bdc290998047cf55d7a4e707f7be3d6f7ac91c4df592dd82bee87d8824ee57d",
+    "docs/evidence/radiate-fog/frames.csv": "c403c2f8ccb491b4440da23fa4738a107c8a7e3d996187b20f4cf0e95c455789",
+    "docs/evidence/radiate-fog/observations.csv": "5137b5d4ee3aa2d185411cd2e5eb93853da558540ee7be9f22192bd95fbf34db",
+    "docs/evidence/radiate-fog/unlabelled_controls.csv": "fe4399209d1eb7f887fa48305a644be6f939e70e98ff11192d13c48511e96b01"
+  },
+  "scene_median_sample_interval_s": {
+    "scene_28_1": 0.499981375,
+    "scene_28_6": 0.49998215,
+    "scene_28_12": 0.4999823,
+    "scene_28_18": 0.499981875,
+    "scene_28_24": 0.4999849,
+    "scene_28_3": 2.80002005,
+    "scene_28_15": 2.800004625,
+    "scene-0044384af3d8494e913fb8b14915239e-3": 0.499819,
+    "scene-13f4b71b1bd04a9e88747ad8f58a3f67-4": 0.500028,
+    "scene-23160c4bff134cdd86b96ee822b4aca9-14": 0.50002,
+    "scene-3195e3bfd1de4f9ba82f874790c7856c-15": 0.500206,
+    "scene-3f542f89ec5241b6a4e30ca743adcf34-29": 0.500088,
+    "scene-6be74229febb4aad9e7ae1a37217b231-4": 0.500055,
+    "scene-a6a87db5125846bda72ccfc9931ee153-11": 0.499871,
+    "scene-b13542304b244af585a646082c57a079-1": 0.500012,
+    "scene-b201f6e737e34c2d87830fc1e2911516-6": 0.499927,
+    "scene-fb64d203d417452f830ca73efed80c41-11": 0.49998
+  },
+  "truckdrive_key_audit": [
+    {
+      "scene": "scene_28_1",
+      "static_keys": 3250,
+      "aligned_keys": 3110,
+      "shared_keys": 3110
+    },
+    {
+      "scene": "scene_28_6",
+      "static_keys": 1140,
+      "aligned_keys": 1098,
+      "shared_keys": 1098
+    },
+    {
+      "scene": "scene_28_12",
+      "static_keys": 2174,
+      "aligned_keys": 2076,
+      "shared_keys": 2076
+    },
+    {
+      "scene": "scene_28_18",
+      "static_keys": 804,
+      "aligned_keys": 754,
+      "shared_keys": 754
+    },
+    {
+      "scene": "scene_28_24",
+      "static_keys": 1656,
+      "aligned_keys": 1574,
+      "shared_keys": 1574
+    },
+    {
+      "scene": "scene_28_3",
+      "static_keys": 178,
+      "aligned_keys": 136,
+      "shared_keys": 136
+    },
+    {
+      "scene": "scene_28_15",
+      "static_keys": 120,
+      "aligned_keys": 94,
+      "shared_keys": 94
+    }
+  ],
+  "outputs_sha256_lf_uncompressed": {
+    "road_summary.csv": "ce3627f3b2f1af7c4f3db43e767ba99231e1b919af39e0a47b0c2200f9ff8168",
+    "road_tracks.csv.gz": "7eb445613567bea4266d83412adb8ac6d42ba2da942d4614ce9ed6b378d63c0c",
+    "road_episodes.csv.gz": "bc9457a4d6ccb392ac9f29790eb5b6a08e50b34e83e2675a9f147e8cbbc87fdf",
+    "radar_only_sensitivity.csv": "f5b132741cdd4ec1a1f19b102b095b6f4c4d855d802cb337d403ebb4e99f9566",
+    "weather_strata.csv": "65a12d6328208172a63c485cb5a518b272106747afde0dd0a6875cfcd5b6021c",
+    "weather_matched_strata.csv": "44a5c01a46985f4ed380e75cc8ea65ef6f182768d538c78a5f76559a97b38d68",
+    "fog_persistence.csv": "3f8b2aaddb367c1132af9036580332f1bb110d5ceeb6906c370af0d9f7812cc8"
+  },
+  "limits": [
+    "Sampled support, not recognition or stopping",
+    "Missing scene sample breaks persistence",
+    "TruckScenes rigid restricted to identical corrected keys",
+    "Publisher LiDAR mismatch unresolved",
+    "Weather/class/visibility strata are descriptive; controls are not confirmed empty"
+  ]
+}

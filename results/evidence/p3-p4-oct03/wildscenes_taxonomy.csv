@@ -1,0 +1,17 @@
+native_id,native_class,benchmark_id,benchmark_ignored,proposed_shared_group,goose_equivalence
+0,bush,0,False,vegetation,Requires explicit translation; no transfer score
+1,dirt,1,False,candidate_natural_ground,Requires explicit translation; no transfer score
+2,fence,2,False,rigid_structure,Requires explicit translation; no transfer score
+3,grass,3,False,ambiguous_height,Requires explicit translation; no transfer score
+4,gravel,4,False,candidate_natural_ground,Requires explicit translation; no transfer score
+5,log,5,False,rigid_obstacle,Requires explicit translation; no transfer score
+6,mud,6,False,uncertain_surface,Requires explicit translation; no transfer score
+7,other-object,7,False,ambiguous_object,Requires explicit translation; no transfer score
+8,other-terrain,8,False,ambiguous_surface,Requires explicit translation; no transfer score
+9,rock,9,False,rigid_obstacle,Requires explicit translation; no transfer score
+10,sky,255,True,ignored,Requires explicit translation; no transfer score
+11,structure,10,False,rigid_structure,Requires explicit translation; no transfer score
+12,tree-foliage,11,False,vegetation,Requires explicit translation; no transfer score
+13,tree-trunk,12,False,rigid_obstacle,Requires explicit translation; no transfer score
+14,water,255,True,water,Requires explicit translation; no transfer score
+255,unlabelled,255,True,ignored,Requires explicit translation; no transfer score

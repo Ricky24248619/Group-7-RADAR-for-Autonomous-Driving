@@ -1,0 +1,17 @@
+dataset,threshold,baseline_variant,comparison_variant,comparison_margin_m,baseline_radar_only,comparison_radar_only,baseline_cases_surviving
+TruckDrive,1,static,static,0,95,95,95
+TruckDrive,1,static,static,0.5,95,68,49
+TruckDrive,1,static,aligned,0,95,80,66
+TruckDrive,1,static,aligned,0.5,95,72,50
+TruckDrive,3,static,static,0,68,68,68
+TruckDrive,3,static,static,0.5,68,44,26
+TruckDrive,3,static,aligned,0,68,51,47
+TruckDrive,3,static,aligned,0.5,68,47,24
+TruckScenes,1,rigid,rigid,0,185,185,185
+TruckScenes,1,rigid,rigid,0.5,185,34,15
+TruckScenes,1,rigid,point,0,185,39,36
+TruckScenes,1,rigid,point,0.5,185,3,1
+TruckScenes,3,rigid,rigid,0,35,35,35
+TruckScenes,3,rigid,rigid,0.5,35,18,4
+TruckScenes,3,rigid,point,0,35,13,12
+TruckScenes,3,rigid,point,0.5,35,18,4
