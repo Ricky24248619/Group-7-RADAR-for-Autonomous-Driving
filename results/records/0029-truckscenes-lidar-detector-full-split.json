@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "id": "0029-truckscenes-lidar-detector-full-split",
+  "title": "PointPillars (nuScenes-pretrained) zero-shot on TruckScenes mini_val, full 80 samples, 1 LiDAR channel in an upright virtual frame: mAP 0.0067",
+  "owner": "Aiden Blampain",
+  "date": "2026-10-03",
+  "status": "success",
+
+  "dataset": "MAN TruckScenes v1.2-mini, mini_val split (2 scenes, 80 samples, official split via truckscenes.utils.splits)",
+  "sensor_configuration": "Single LiDAR channel (LIDAR_TOP_FRONT), moved from its native ~56 degree pitched frame into an upright virtual LiDAR matching nuScenes LIDAR_TOP (gravity z, x right / y forward, 1.84 m above ground). TruckScenes' other 5 LiDAR channels not merged in (see experiment-log/0024)",
+  "annotation_schema": "TruckScenes 12-class detection taxonomy (eval/detection/README.md remap of the 27-class general taxonomy)",
+
+  "task_type": "3d-object-detection",
+  "modality": "lidar",
+  "split": "mini_val, all 80 samples, 1 LiDAR channel",
+  "model": "PointPillars (mmdetection3d 1.4.0), pointpillars_hv_secfpn_sbn-all_8xb4-2x_nus-3d, official nuScenes-pretrained checkpoint pointpillars_nus_20210826_225857-f19d00a3.pth (zero-shot, no fine-tuning or training on TruckScenes)",
+  "conditions": "unknown: no weather/scenario filtering applied, mixed conditions across the split's 2 scenes",
+
+  "environment": {
+    "os": "Windows 11 Home 10.0.26200",
+    "hardware": "AMD Ryzen 7 5700U with Radeon Graphics, no NVIDIA GPU, no CUDA path (CPU-only inference)",
+    "python": "3.11.9, dedicated venv truckscenes-devkit/detection-env (same as EXP-0006/0019, reused as-is)",
+    "packages": {
+      "numpy": "1.26.4",
+      "torch": "2.1.0+cpu",
+      "torchvision": "0.16.0+cpu",
+      "mmengine": "0.10.7",
+      "mmcv": "2.1.0",
+      "mmdet": "3.3.0",
+      "mmdet3d": "1.4.0",
+      "truckscenes-devkit": "1.2.0"
+    }
+  },
+
+  "commands": [
+    "python scripts/truckscenes_pointpillars_infer.py --dataroot <man-truckscenes> --version v1.2-mini --split mini_val --config <mmdet3d>/configs/pointpillars/pointpillars_hv_secfpn_sbn-all_8xb4-2x_nus-3d.py --checkpoint checkpoints/pointpillars_nus_20210826_225857-f19d00a3.pth --input-frame upright --out results_mini_val_pointpillars_upright.json",
+    "python -m truckscenes.eval.detection.evaluate results_mini_val_pointpillars_upright.json --dataroot <man-truckscenes> --version v1.2-mini --eval_set mini_val --output_dir ./metrics_pointpillars_upright --plot_examples 0 --render_curves 0",
+    "python scripts/audit_pointpillars_tilt.py --metadata <man-truckscenes>/v1.2-mini --predictions scripts/results_mini_val_pointpillars_upright.json --output docs/evidence/pr63-input-frame-audit-upright.json",
+    "python scripts/pointpillars_channel_coverage.py --dataroot <man-truckscenes>"
+  ],
+
+  "metrics": [
+    {"name": "mAP", "value": 0.0067,
+     "scope": "TruckScenes 12-class detection taxonomy, mini_val split, center-distance thresholds {0.5, 1, 2, 4}m averaged per detection config, single LiDAR channel in the upright virtual frame; per-class AP pedestrian 0.041, trailer 0.022, truck 0.017, all others 0.000"}
+  ],
+
+  "measurements": [
+    {"name": "maximum world-up tilt of saved predicted boxes (degrees)",
+     "value": 0.0,
+     "scope": "all 1,904 rectified boxes, via scripts/audit_pointpillars_tilt.py; ground truth 0.0-1.2e-6; the historical unrectified run was 54.60-58.20"},
+    {"name": "fraction of scored ground-truth boxes containing at least one LIDAR_TOP_FRONT point",
+     "value": 0.239,
+     "scope": "499 of 2,088 boxes after the evaluator's own GT loading and filtering, same keyframe; input-coverage measure only, via scripts/pointpillars_channel_coverage.py"},
+    {"name": "historical unrectified run mAP (native tilted input frame)",
+     "value": 0.0,
+     "scope": "superseded; kept for the record. 596 boxes tilted 54.6-58.2 degrees in world frame; see docs/pr63-input-frame-review.md"}
+  ],
+
+  "hours_spent": 1.33,
+  "evidence": [
+    "experiment-log/0024-truckscenes-lidar-full-split.md",
+    "experiment-log/0019-truckscenes-lidar-detector-feasibility.md",
+    "docs/pr63-input-frame-review.md",
+    "docs/evidence/pr63-input-frame-audit.json",
+    "docs/evidence/pr63-input-frame-audit-upright.json",
+    "docs/evidence/pr63-channel-coverage.json",
+    "scripts/truckscenes_pointpillars_infer.py",
+    "scripts/pointpillars_channel_coverage.py",
+    "tests/test_truckscenes_pointpillars_infer.py",
+    "scripts/results_mini_val_pointpillars_upright.json",
+    "scripts/pointpillars_truckscenes_metrics_summary_upright.json",
+    "scripts/results_mini_val_pointpillars.json",
+    "scripts/pointpillars_truckscenes_metrics_summary.json"
+  ],
+  "notes": "Extends EXP-0019 (record 0022) to all 80 mini_val samples on one LiDAR channel. The first run (27 Sep) fed native LIDAR_TOP_FRONT points, mounted pitched about 56.23 degrees, straight to an upright-box checkpoint and scored mAP 0.0000. The PR #63 review found every output box tilted 54.6-58.2 degrees against upright ground truth, so that score was not interpretable. Its claim that a class-agnostic nearest-match check ruled out a coordinate bug is withdrawn. The script now rectifies points into an upright virtual LiDAR matching the checkpoint's training frame and maps boxes back out through the same frame. Geometry is covered by tests/test_truckscenes_pointpillars_infer.py (CI-safe, numpy only). --input-frame native reproduced the audited historical file box for box (every field within 2e-6), so the old path is unchanged and the old files are kept as the historical run. The rectified run gives mAP 0.0067 (NDS 0.0807, not a validated metric here), the first nonzero LiDAR AP on TruckScenes in this project, but still far from useful detection. Only 23.9% of the scored ground truth contains any point from the one channel the model sees. That caps recall on this protocol, but it is not separated from domain shift as a cause. Merging all six LiDARs is the natural next experiment and is not claimed here. hours_spent is approximate: about 0.33 h for the first run plus about 1 h for the rectification rework."
+}
