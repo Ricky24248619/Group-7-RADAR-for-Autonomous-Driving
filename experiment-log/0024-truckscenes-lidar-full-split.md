@@ -45,9 +45,7 @@ checkpoint `checkpoints/pointpillars_nus_20210826_225857-f19d00a3.pth`
 
 MAN TruckScenes `v1.2-mini`, official `mini_val` split (80 samples), the
 same split EXP-0006/0010 used. The main run uses `LIDAR_TOP_FRONT`, the one
-channel EXP-0019 verified. EXP-0019 recorded no reason for choosing it over
-the other five. It turned out to be a downward-tilted blind-spot sensor, so
-all six channels were then run separately
+channel EXP-0019 verified. All six channels were then run separately
 ([channel comparison](#channel-comparison-4-october)). Merging the six into
 one cloud is a different experiment and stays out of scope (see the script's
 docstring).
