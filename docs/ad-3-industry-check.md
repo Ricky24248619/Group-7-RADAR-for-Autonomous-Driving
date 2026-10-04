@@ -192,7 +192,8 @@ useful row here for the client:
 - **Camera:** nuScenes-pretrained FCOS3D scored mAP 0.0046 on TruckScenes (EXP-0010).
 - **LiDAR:** PointPillars was first fed TruckScenes' ~56°-pitched LiDAR unrectified and
   scored zero. After rotating the input into the upright frame the checkpoint expects, it
-  scores mAP 0.0067 (EXP-0024, PR #63, pending review).
+  scores mAP 0.0067 on that sensor and 0.0555 on the best-placed one, a level side LiDAR
+  (car AP 0.20) (EXP-0024, PR #63, pending review).
 - In both cases a public checkpoint is bound to the sensor layout it was trained on. The
   Bonn lecture makes the same point for LiDAR beam count and mounting.
 
