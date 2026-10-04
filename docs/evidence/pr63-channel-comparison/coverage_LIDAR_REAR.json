@@ -1,0 +1,48 @@
+{
+  "channel": "LIDAR_REAR",
+  "eval_set": "mini_val",
+  "config": "detection_cvpr_2024",
+  "scored_gt_boxes": 2088,
+  "gt_boxes_with_channel_points": 484,
+  "fraction_with_channel_points": 0.2318,
+  "ego_dist_m_of_boxes_with_points": {
+    "min": 3.79,
+    "median": 13.81,
+    "max": 94.57
+  },
+  "ego_dist_m_median_of_boxes_without_points": 34.34,
+  "per_class": {
+    "barrier": {
+      "scored": 14,
+      "with_channel_points": 7
+    },
+    "car": {
+      "scored": 926,
+      "with_channel_points": 159
+    },
+    "motorcycle": {
+      "scored": 26,
+      "with_channel_points": 7
+    },
+    "pedestrian": {
+      "scored": 132,
+      "with_channel_points": 14
+    },
+    "traffic_cone": {
+      "scored": 24,
+      "with_channel_points": 11
+    },
+    "traffic_sign": {
+      "scored": 166,
+      "with_channel_points": 21
+    },
+    "trailer": {
+      "scored": 408,
+      "with_channel_points": 147
+    },
+    "truck": {
+      "scored": 392,
+      "with_channel_points": 118
+    }
+  }
+}

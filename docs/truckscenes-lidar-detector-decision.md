@@ -99,6 +99,12 @@ projection check) rather than just report the number.
    regression tests. All 1,904 rerun boxes are upright, and the rerun scores
    **mAP 0.0067** (pedestrian 0.041, trailer 0.022, truck 0.017). Only 23.9%
    of scored ground-truth boxes contain any point from this one channel.
+   **4 October update:** every LiDAR was then run separately through the
+   same pipeline. The level side LiDAR `LIDAR_LEFT` reaches 69.5% of scored
+   objects and scores **mAP 0.0555** (car AP 0.202); `LIDAR_RIGHT` scores
+   0.0466. The other four score 0.0057–0.0125
+   ([comparison](evidence/pr63-channel-comparison/summary.json)). For this
+   checkpoint on TruckScenes, use a side LiDAR, not `LIDAR_TOP_FRONT`.
 
 ## Reproduction
 

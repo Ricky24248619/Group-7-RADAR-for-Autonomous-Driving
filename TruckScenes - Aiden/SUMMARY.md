@@ -32,9 +32,11 @@
   interpretable: `LIDAR_TOP_FRONT` is pitched ~56° and went into an
   upright-box checkpoint unrectified (PR #63 review). After moving points
   into an upright virtual LiDAR, every output box is upright and the run
-  scores mAP 0.0067, the first nonzero LiDAR AP here (pedestrian, trailer,
-  truck). See `docs/truckscenes-lidar-detector-decision.md`'s 3 October
-  update.
+  scores mAP 0.0067. Running all six LiDARs separately (4 Oct) showed the
+  channel matters most: the level side LiDAR `LIDAR_LEFT` reaches 69.5% of
+  scored objects and scores **mAP 0.0555** (car AP 0.20), about 8× the
+  tilted blind-spot channel. See `docs/truckscenes-lidar-detector-decision.md`'s
+  3–4 October update.
 
 ## Outcome
 
@@ -79,10 +81,12 @@ with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
 ## Current limits
 
 - LiDAR (PointPillars) has been run and scored at full scale in a verified
-  upright input frame (EXP-0024, all 80 `mini_val` samples, one LiDAR
-  channel): mAP 0.0067. Only 23.9% of the scored ground-truth boxes contain
-  any point from that one channel, which caps recall, but this is not
-  separated from domain shift as a cause. Radar remains blocked (EXP-0020):
+  upright input frame (EXP-0024, all 80 `mini_val` samples, each LiDAR
+  channel separately): best single channel `LIDAR_LEFT` mAP 0.0555, and
+  0.0057–0.0466 for the other five. Score tracks how many scored objects
+  each channel reaches (23–70%), but mounting and beam pattern also differ,
+  and domain shift is not separated as a cause. The six channels have not
+  been merged into one cloud. Radar remains blocked (EXP-0020):
   no candidate cleared checkpoint access + preprocessing verification within
   that check's scope.
 - The `traffic_cone` AP signal from EXP-0010 hasn't been diagnosed with the
