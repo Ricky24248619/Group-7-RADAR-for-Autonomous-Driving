@@ -54,6 +54,43 @@ annotations was used.
 | Radar returns at 150 m or greater | 6,746 | Total across the 24 selected frames |
 | Share at 150 m or greater | 9.47% | 6,746 of 71,206 selected-frame returns |
 
+### Exact selected frames
+
+The exact synchronized frame IDs used for the 24-scene Radar range summary are:
+
+| Scene | Selected sync ID |
+|---|---:|
+| `scene_28_1` | `0063` |
+| `scene_28_2` | `0061` |
+| `scene_28_3` | `0061` |
+| `scene_28_4` | `0061` |
+| `scene_28_5` | `0062` |
+| `scene_28_6` | `0062` |
+| `scene_28_7` | `0061` |
+| `scene_28_8` | `0063` |
+| `scene_28_9` | `0061` |
+| `scene_28_10` | `0061` |
+| `scene_28_11` | `0062` |
+| `scene_28_12` | `0062` |
+| `scene_28_13` | `0063` |
+| `scene_28_14` | `0062` |
+| `scene_28_15` | `0062` |
+| `scene_28_16` | `0062` |
+| `scene_28_17` | `0062` |
+| `scene_28_18` | `0062` |
+| `scene_28_19` | `0062` |
+| `scene_28_20` | `0062` |
+| `scene_28_21` | `0062` |
+| `scene_28_22` | `0062` |
+| `scene_28_23` | `0062` |
+| `scene_28_24` | `0061` |
+
+These IDs were reproduced using `scripts/truckdrive_stats.py`. For each scene,
+the script selects the first synchronization ID shared by the Continental
+joint-Radar detections and bounding-box annotations. Re-running the script
+reproduced 71,206 Radar returns across these 24 frames, including 6,746
+returns at 150 m or beyond.
+
 ### Range definition
 
 Radar range was calculated in the Radar coordinate frame as:
@@ -258,6 +295,7 @@ The main source records supporting this survey are:
 
 - [x] Dataset-wide counts have explicit scope.
 - [x] The 6,746 long-range Radar returns are explicitly scoped to 24 selected frames.
+- [x] The exact synchronization IDs for the 24 selected Radar frames are recorded.
 - [x] The Radar distance definition is recorded.
 - [x] Available and missing multimodal coverage is explicit.
 - [x] Representative multimodal scenes are identified.
