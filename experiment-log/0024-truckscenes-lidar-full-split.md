@@ -1,7 +1,7 @@
 # EXP-0024 — PointPillars (nuScenes-pretrained) zero-shot on TruckScenes, full 80-sample `mini_val`, scored
 
 - **Date started / completed:** 2026-09-27 / 2026-10-04 (rectified rerun after PR #63 review, 3 Oct;
-  all six LiDAR channels compared, 4 Oct)
+  all six LiDAR channels compared separately and merged, 4 Oct)
 - **Owner:** Aiden Blampain
 - **Workstream / story:** Follow-on to AD-S3-1 (EXP-0019, `docs/truckscenes-lidar-detector-decision.md`
   "Next action" item 2) — no new story ID assigned. Produces
@@ -46,9 +46,8 @@ checkpoint `checkpoints/pointpillars_nus_20210826_225857-f19d00a3.pth`
 MAN TruckScenes `v1.2-mini`, official `mini_val` split (80 samples), the
 same split EXP-0006/0010 used. The main run uses `LIDAR_TOP_FRONT`, the one
 channel EXP-0019 verified. All six channels were then run separately
-([channel comparison](#channel-comparison-4-october)). Merging the six into
-one cloud is a different experiment and stays out of scope (see the script's
-docstring).
+([channel comparison](#channel-comparison-4-october)) and merged into one
+cloud ([all six merged](#all-six-lidars-merged-4-october)).
 
 ## Input frame (the fix)
 
@@ -108,7 +107,8 @@ python scripts/pointpillars_channel_coverage.py --dataroot <man-truckscenes>
 
 The historical run is the same first command with `--input-frame native`.
 The channel comparison repeats the first, second and last commands with
-`--channel <LIDAR_*>` for each of the other five LiDARs.
+`--channel <LIDAR_*>` for each of the other five LiDARs, and the merged run
+with `--channel ALL`.
 
 ## Outcome
 
@@ -205,16 +205,70 @@ The `LIDAR_LEFT` predictions are kept in
   scored objects, stay near zero. Traffic signs and animals have no nuScenes
   class at all, so they can never score.
 
+## All six LiDARs merged (4 October)
+
+`--channel ALL` merges the six sweeps of each sample into one upright
+virtual LiDAR, placed 1.84 m above the ground below the centroid of the six
+mounts and oriented by `LIDAR_LEFT`'s ego pose. Each sweep goes through its
+own ego pose, which compensates the truck's motion between the sensors'
+capture times. Everything else is unchanged: same 80 samples, checkpoint,
+score threshold and evaluator.
+
+**Checks:**
+- Four new tests in `tests/test_truckscenes_pointpillars_infer.py` (13 in
+  total). The key one: a single world point seen by two sensors at different
+  ego poses lands on the same model-frame coordinate. A single channel goes
+  through exactly the single-channel path.
+- Rerunning `--channel LIDAR_LEFT` after the change reproduced the committed
+  `LIDAR_LEFT` predictions with zero difference in every field.
+- All 4,665 merged-run boxes are upright (max world-up tilt 0.0000°).
+
+| | `LIDAR_TOP_FRONT` | `LIDAR_LEFT` (best single) | **All six merged** |
+|---|---|---|---|
+| mAP | 0.0067 | 0.0555 | **0.1005** |
+| NDS | 0.0807 | 0.1229 | 0.1508 |
+| Scored GT with ≥1 point | 23.9% | 69.5% | **94.9%** (1,981 / 2,088) |
+| car AP | 0.000 | 0.202 | **0.406** |
+| traffic_cone AP | 0.000 | 0.104 | 0.260 |
+| trailer AP | 0.022 | 0.046 | 0.110 |
+| pedestrian AP | 0.041 | 0.038 | 0.049 |
+| truck AP | 0.017 | 0.012 | **0.009** |
+
+Also nonzero for the merged run: motorcycle 0.337 (26 scored objects) and
+barrier 0.034. Merged predictions:
+`scripts/results_mini_val_pointpillars_all_lidars.json`; metrics and
+per-class coverage in `docs/evidence/pr63-channel-comparison/`.
+
+**Reading:**
+- **Merging nearly doubles the best single channel** and is 15× the channel
+  first used. The six LiDARs together reach 94.9% of scored objects.
+- **Trucks are a recognition problem, not a visibility problem.** The merged
+  cloud has points on all 392 scored trucks and 407 of 408 trailers, yet
+  truck AP is 0.009 and trailer AP 0.110. Because coverage is essentially
+  complete for these classes, their low scores cannot be explained by what
+  the sensors see. That points to the checkpoint not recognising
+  TruckScenes' heavy trucks and trailers, which differ from nuScenes' urban
+  trucks. This is the first result in this log that separates coverage from
+  the domain gap for a class, although it does not say which aspect of the
+  domain gap matters.
+- **Traffic signs** are covered 109 / 166 but have no nuScenes class, so
+  they still score 0.
+
+**Limits of the merge:** geometric only. Other road users' motion between
+the sweeps is not compensated, overlapping fields of view duplicate some
+surfaces, and the sensors' intensity scales (Hesai and Ouster units) are not
+normalised.
+
 ## Decision
 
 - [ ] Retry
 - [x] Change approach: same posture as EXP-0006/0010/0019's stated
-      fallback. With a valid input frame and the best single channel,
-      zero-shot PointPillars reaches mAP 0.0555 on TruckScenes (car AP
-      about 0.2). That is a real but limited transfer, still far from the
-      checkpoint's nuScenes performance. The camera+LiDAR TruckScenes
+      fallback. With a valid input frame and all six LiDARs merged,
+      zero-shot PointPillars reaches mAP 0.1005 on TruckScenes (car AP
+      0.406). That is a real but limited transfer: heavy trucks stay at
+      essentially zero despite full coverage. The camera+LiDAR TruckScenes
       comparison is now scored on both modalities with valid geometry
-      (camera 0.0046, LiDAR 0.0555). This is consistent with the project's
+      (camera 0.0046, LiDAR 0.1005). This is consistent with the project's
       D-04 answer coming from TruckDrive.
 - [ ] Stop
 
@@ -222,14 +276,14 @@ The `LIDAR_LEFT` predictions are kept in
 an hour for the rectification, tests, two 80-sample reruns (native check
 and upright, each under two minutes of CPU inference), evaluation and the
 coverage check, plus about 30 minutes for the five-channel comparison (8
-minutes of CPU time). These times are approximate.
+minutes of CPU time) and about 45 minutes for the merged run, its tests and
+the reproduction check (4 minutes of CPU time). These times are approximate.
 
 ## Next action
 
-- If the team wants a fairer LiDAR number, the next experiment is merging
-  all six TruckScenes LiDARs into the same upright virtual frame. The single
-  channels already reach up to 69.5% of scored objects, and a merged cloud
-  reaches at least that many, but it needs its own calibration and timing checks.
+- The obvious way to improve trucks and trailers is fine-tuning on
+  TruckScenes training data. Training was outside the Sprint 3 core plan and
+  would need the team's agreement and a compute plan.
 - Optionally, restrict scoring to the boxes the channel can see. That would
   be a non-standard protocol and would have to be reported as such, never
   in place of the official score above.

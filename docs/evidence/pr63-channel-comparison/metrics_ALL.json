@@ -1,0 +1,239 @@
+{
+  "all": {
+    "label_aps": {
+      "car": {
+        "0.5": 0.23912517612109344,
+        "1.0": 0.4164872726224989,
+        "2.0": 0.48346102399026397,
+        "4.0": 0.48564082062226077
+      },
+      "truck": {
+        "0.5": 0.0,
+        "1.0": 0.0001807852211373855,
+        "2.0": 0.0036185454359280783,
+        "4.0": 0.03406965000460753
+      },
+      "bus": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "trailer": {
+        "0.5": 0.0,
+        "1.0": 0.0016547954209769873,
+        "2.0": 0.11527279765142175,
+        "4.0": 0.32457926559881745
+      },
+      "other_vehicle": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "pedestrian": {
+        "0.5": 0.04256485948089626,
+        "1.0": 0.04256485948089626,
+        "2.0": 0.05390765114083572,
+        "4.0": 0.056563971316877126
+      },
+      "motorcycle": {
+        "0.5": 0.1831640050937362,
+        "1.0": 0.32952546050884396,
+        "2.0": 0.41727613925130497,
+        "4.0": 0.41727613925130497
+      },
+      "bicycle": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "traffic_cone": {
+        "0.5": 0.2602687722272472,
+        "1.0": 0.2602687722272472,
+        "2.0": 0.2602687722272472,
+        "4.0": 0.2602687722272472
+      },
+      "barrier": {
+        "0.5": 0.0319867934684049,
+        "1.0": 0.03472384768411409,
+        "2.0": 0.03472384768411409,
+        "4.0": 0.03472384768411409
+      },
+      "animal": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "traffic_sign": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      }
+    },
+    "mean_dist_aps": {
+      "car": 0.4061785733390293,
+      "truck": 0.009467245165418248,
+      "bus": 0.0,
+      "trailer": 0.11037671466780405,
+      "other_vehicle": 0.0,
+      "pedestrian": 0.04890033535487634,
+      "motorcycle": 0.3368104360262975,
+      "bicycle": 0.0,
+      "traffic_cone": 0.2602687722272472,
+      "barrier": 0.03403958413018679,
+      "animal": 0.0,
+      "traffic_sign": 0.0
+    },
+    "mean_ap": 0.10050347174257161,
+    "label_tp_errors": {
+      "car": {
+        "trans_err": 0.3537455780100769,
+        "scale_err": 0.2123634121040247,
+        "orient_err": 0.2946273184973169,
+        "vel_err": 9.767725999127045,
+        "attr_err": 0.31439895229507486
+      },
+      "truck": {
+        "trans_err": 0.7404074794637179,
+        "scale_err": 0.3038469454239069,
+        "orient_err": 0.42521764992508226,
+        "vel_err": 2.004355422443751,
+        "attr_err": 0.0552746875706733
+      },
+      "bus": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "trailer": {
+        "trans_err": 1.0539011556205802,
+        "scale_err": 0.3171306148714374,
+        "orient_err": 0.830533883280203,
+        "vel_err": 2.8945080321990675,
+        "attr_err": 0.08508766684243459
+      },
+      "other_vehicle": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "pedestrian": {
+        "trans_err": 0.1781552708258777,
+        "scale_err": 0.3921242371628852,
+        "orient_err": 1.5155796742348857,
+        "vel_err": 0.8700593482092135,
+        "attr_err": 0.0
+      },
+      "motorcycle": {
+        "trans_err": 0.4381201229470176,
+        "scale_err": 0.5475215684355935,
+        "orient_err": 2.0311213161413555,
+        "vel_err": 34.563460027602964,
+        "attr_err": 1.0
+      },
+      "bicycle": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "traffic_cone": {
+        "trans_err": 0.12992527472312448,
+        "scale_err": 0.8703014680475967,
+        "orient_err": NaN,
+        "vel_err": NaN,
+        "attr_err": NaN
+      },
+      "barrier": {
+        "trans_err": 0.2097714719633275,
+        "scale_err": 0.9102344003217008,
+        "orient_err": 1.5416291305037468,
+        "vel_err": NaN,
+        "attr_err": NaN
+      },
+      "animal": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": NaN
+      },
+      "traffic_sign": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": NaN,
+        "attr_err": 1.0
+      }
+    },
+    "tp_errors": {
+      "trans_err": 0.6753355294628102,
+      "scale_err": 0.7127935538639288,
+      "orient_err": 1.0580644520529627,
+      "vel_err": 6.0111232032868935,
+      "attr_err": 0.6060845896342425
+    },
+    "tp_scores": {
+      "trans_err": 0.32466447053718983,
+      "scale_err": 0.28720644613607116,
+      "orient_err": 0.0,
+      "vel_err": 0.0,
+      "attr_err": 0.3939154103657575
+    },
+    "nd_score": 0.15083036857518767,
+    "eval_time": null,
+    "cfg": {
+      "class_range": {
+        "car": 150,
+        "truck": 150,
+        "bus": 150,
+        "trailer": 150,
+        "other_vehicle": 150,
+        "pedestrian": 75,
+        "motorcycle": 75,
+        "bicycle": 75,
+        "traffic_cone": 75,
+        "barrier": 75,
+        "animal": 75,
+        "traffic_sign": 75
+      },
+      "dist_fcn": "center_distance",
+      "dist_ths": [
+        0.5,
+        1.0,
+        2.0,
+        4.0
+      ],
+      "dist_th_tp": 2.0,
+      "min_recall": 0.1,
+      "min_precision": 0.1,
+      "max_boxes_per_sample": 500,
+      "mean_ap_weight": 5
+    }
+  },
+  "eval_time": 0.6609969139099121,
+  "meta": {
+    "use_camera": false,
+    "use_lidar": true,
+    "use_radar": false,
+    "use_map": false,
+    "use_external": false,
+    "use_future_frames": false,
+    "use_tta": false,
+    "method_name": "PointPillars (nuScenes-pretrained, zero-shot)",
+    "authors": "",
+    "affiliation": "",
+    "description": "Zero-shot cross-dataset test: nuScenes-trained PointPillars checkpoint run directly on TruckScenes ALL point clouds (upright input frame), no fine-tuning. Follow-on to EXP-0019's one-sample feasibility check.",
+    "code_url": "",
+    "paper_url": ""
+  }
+}

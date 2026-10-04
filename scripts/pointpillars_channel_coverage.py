@@ -29,18 +29,26 @@ from truckscenes.eval.detection.config import config_factory
 from truckscenes.eval.detection.data_classes import DetectionBox
 from truckscenes.utils.data_classes import LidarPointCloud
 
-from truckscenes_pointpillars_infer import LIDAR_CHANNEL, quat_to_matrix4, quat_to_rotation
+from truckscenes_pointpillars_infer import (LIDAR_CHANNEL, parse_channels, quat_to_matrix4,
+                                            quat_to_rotation)
 
 
 def channel_points_global(trucksc: TruckScenes, dataroot: pathlib.Path,
-                          sample_token: str, channel: str) -> np.ndarray:
-    sd = trucksc.get("sample_data", trucksc.get("sample", sample_token)["data"][channel])
-    calib = trucksc.get("calibrated_sensor", sd["calibrated_sensor_token"])
-    pose = trucksc.get("ego_pose", sd["ego_pose_token"])
-    sensor2global = (quat_to_matrix4(pose["translation"], pose["rotation"])
-                     @ quat_to_matrix4(calib["translation"], calib["rotation"]))
-    xyz = LidarPointCloud.from_file(str(dataroot / sd["filename"])).points[:3].T
-    return xyz @ sensor2global[:3, :3].T + sensor2global[:3, 3]
+                          sample_token: str, channels: list) -> np.ndarray:
+    """Global-frame points from one or more channels, each through its own ego pose."""
+    data = trucksc.get("sample", sample_token)["data"]
+    clouds = [np.empty((0, 3))]
+    for channel in channels:
+        if channel not in data:
+            continue
+        sd = trucksc.get("sample_data", data[channel])
+        calib = trucksc.get("calibrated_sensor", sd["calibrated_sensor_token"])
+        pose = trucksc.get("ego_pose", sd["ego_pose_token"])
+        sensor2global = (quat_to_matrix4(pose["translation"], pose["rotation"])
+                         @ quat_to_matrix4(calib["translation"], calib["rotation"]))
+        xyz = LidarPointCloud.from_file(str(dataroot / sd["filename"])).points[:3].T
+        clouds.append(xyz @ sensor2global[:3, :3].T + sensor2global[:3, 3])
+    return np.concatenate(clouds)
 
 
 def points_inside(box: DetectionBox, points: np.ndarray) -> int:
@@ -56,7 +64,8 @@ def main():
     ap.add_argument("--dataroot", required=True)
     ap.add_argument("--version", default="v1.2-mini")
     ap.add_argument("--eval-set", default="mini_val")
-    ap.add_argument("--channel", default=LIDAR_CHANNEL)
+    ap.add_argument("--channel", default=LIDAR_CHANNEL,
+                    help="One channel, a comma-separated list, or ALL (all six LiDARs).")
     ap.add_argument("--config", default="detection_cvpr_2024")
     ap.add_argument("--output", type=pathlib.Path,
                     default=pathlib.Path("docs/evidence/pr63-channel-coverage.json"))
@@ -72,7 +81,7 @@ def main():
     scored, visible = Counter(), Counter()
     visible_dist, hidden_dist = [], []
     for sample_token in gt.sample_tokens:
-        points = channel_points_global(trucksc, dataroot, sample_token, args.channel)
+        points = channel_points_global(trucksc, dataroot, sample_token, parse_channels(args.channel))
         for box in gt[sample_token]:
             scored[box.detection_name] += 1
             if points_inside(box, points) > 0:

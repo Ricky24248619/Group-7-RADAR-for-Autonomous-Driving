@@ -105,6 +105,9 @@ projection check) rather than just report the number.
    0.0466. The other four score 0.0057–0.0125
    ([comparison](evidence/pr63-channel-comparison/summary.json)). For this
    checkpoint on TruckScenes, use a side LiDAR, not `LIDAR_TOP_FRONT`.
+   Merging all six (`--channel ALL`) reaches 94.9% of scored objects and
+   scores **mAP 0.1005** (car AP 0.406). Trucks score 0.009 despite full
+   coverage, which points to the checkpoint not recognising heavy trucks.
 
 ## Reproduction
 

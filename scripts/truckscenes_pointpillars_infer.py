@@ -10,14 +10,15 @@ not scored. This script mirrors `truckscenes_fcos3d_infer.py`'s methodology
 per-sample submission format, same evaluator invocation -- so the LiDAR
 result is comparable to the camera result on the same split.
 
-Single channel only (`LIDAR_TOP_FRONT`, same channel EXP-0019 verified) --
-TruckScenes splits sensing across six separate LiDARs at different mount
-points, unlike nuScenes' single roof LiDAR that this checkpoint was trained
-against. Merging multiple TruckScenes LiDAR channels into one cloud is a
-materially different, unverified experiment (new calibration-alignment
-surface, no feasibility check done for it) and is explicitly out of scope
-here -- this only extends the exact channel and preprocessing EXP-0019
-already verified from one sample to the full split.
+Channels: TruckScenes splits sensing across six separate LiDARs at different
+mount points, unlike nuScenes' single roof LiDAR that this checkpoint was
+trained against. `--channel` takes one LiDAR (default `LIDAR_TOP_FRONT`, the
+channel EXP-0019 verified), a comma-separated list, or `ALL`. Several
+channels are merged into one upright virtual LiDAR above the centroid of
+their mounts; each sweep goes through its own ego pose, which compensates the
+truck's motion between capture times -- see `model_frame_points`. Merging is
+geometric only: other road users' motion between sweeps is not compensated,
+and the sensors' intensity scales are not normalised.
 
 Input frame (PR #63 review, docs/pr63-input-frame-review.md): the native
 `LIDAR_TOP_FRONT` frame is pitched ~56 degrees down from vertical, but the
@@ -31,7 +32,7 @@ reproduces the historical unrectified run (EXP-0024's first run) exactly.
 
     python scripts/truckscenes_pointpillars_infer.py \
         --dataroot <man-truckscenes> --config <pointpillars nus-3d config .py> \
-        --checkpoint <pointpillars .pth> --start 0 --end 15 --out results.json
+        --checkpoint <pointpillars .pth> --channel ALL --out results.json
 
 Requires the same detection-env venv as truckscenes_fcos3d_infer.py and
 truckscenes_pointpillars_feasibility.py (mmdet3d, torch, truckscenes-devkit,
@@ -96,8 +97,8 @@ DEFAULT_ATTRIBUTE = {
     "traffic_cone": "",
 }
 
-# The single channel EXP-0019 verified feasible. See module docstring for why
-# this does not merge TruckScenes' other five LiDAR channels.
+# Default channel: the one EXP-0019 verified, kept so earlier commands
+# reproduce. `--channel ALL` merges all six (see module docstring).
 LIDAR_CHANNEL = "LIDAR_TOP_FRONT"
 
 SCORE_THRESHOLD = 0.10
@@ -112,6 +113,11 @@ NUSC_LIDAR_HEIGHT = 1.84
 NUSC_LIDAR_YAW_IN_EGO = -np.pi / 2
 
 INPUT_FRAMES = ("upright", "native")
+
+# All six TruckScenes LiDARs. LIDAR_LEFT comes first because it is the
+# devkit's own default LiDAR; a merged run takes its ego pose as reference.
+ALL_LIDAR_CHANNELS = ("LIDAR_LEFT", "LIDAR_RIGHT", "LIDAR_TOP_FRONT",
+                      "LIDAR_TOP_LEFT", "LIDAR_TOP_RIGHT", "LIDAR_REAR")
 
 
 def quat_to_rotation(rotation_wxyz) -> np.ndarray:
@@ -202,6 +208,37 @@ def points_to_model_frame(points: np.ndarray, lidar2ego: np.ndarray,
     return out
 
 
+def parse_channels(value: str) -> list:
+    """`LIDAR_LEFT`, `LIDAR_LEFT,LIDAR_RIGHT` or `ALL` (all six LiDARs)."""
+    if value.upper() == "ALL":
+        return list(ALL_LIDAR_CHANNELS)
+    return [c.strip() for c in value.split(",") if c.strip()]
+
+
+def model_frame_points(sweeps, input_frame: str):
+    """Points for one sample in the model frame, plus that frame's model->global.
+
+    `sweeps` is a list of (points, lidar2ego, ego2global), one per channel. A
+    single channel goes through exactly the single-channel path. Several
+    channels are merged in one upright virtual LiDAR placed above the centroid
+    of their mounts, using the first channel's ego pose. Each sweep is moved
+    there through its own ego pose, which compensates the truck's motion
+    between the channels' capture times.
+    """
+    if len(sweeps) == 1:
+        points, lidar2ego, ego2global = sweeps[0]
+        model2global = model_frame_to_global(lidar2ego, ego2global, input_frame)
+        return points_to_model_frame(points, lidar2ego, ego2global, model2global), model2global
+    if input_frame != "upright":
+        raise ValueError("merging channels needs the upright input frame")
+    anchor = np.eye(4)
+    anchor[:2, 3] = np.mean([lidar2ego[:2, 3] for _, lidar2ego, _ in sweeps], axis=0)
+    model2global = upright_virtual_lidar(anchor, sweeps[0][2])
+    merged = np.concatenate([points_to_model_frame(p, l2e, e2g, model2global)
+                             for p, l2e, e2g in sweeps])
+    return merged, model2global
+
+
 def load_padded_points(trucksc: TruckScenes, dataroot: pathlib.Path,
                         sample: dict, channel: str) -> np.ndarray:
     """Same padding EXP-0019 verified necessary: TruckScenes' devkit returns
@@ -266,7 +303,9 @@ def parse_args():
     ap.add_argument("--config", required=True)
     ap.add_argument("--checkpoint", required=True)
     ap.add_argument("--out", default="results.json")
-    ap.add_argument("--channel", default=LIDAR_CHANNEL)
+    ap.add_argument("--channel", default=LIDAR_CHANNEL,
+                     help="One LiDAR channel, a comma-separated list to merge, "
+                          "or ALL for all six merged.")
     ap.add_argument("--input-frame", choices=INPUT_FRAMES, default="upright",
                      help="upright: rectified virtual LiDAR (default). "
                           "native: the historical unrectified run.")
@@ -322,23 +361,25 @@ def main():
 
     model = init_model(args.config, args.checkpoint, device="cpu")
 
+    channels = parse_channels(args.channel)
     for idx, sample in enumerate(samples):
-        if args.channel not in sample["data"]:
+        present = [c for c in channels if c in sample["data"]]
+        if not present:
             results[sample["token"]] = []
             continue
 
-        sample_data = trucksc.get("sample_data", sample["data"][args.channel])
-        calib = trucksc.get("calibrated_sensor",
-                             sample_data["calibrated_sensor_token"])
-        ego_pose = trucksc.get("ego_pose", sample_data["ego_pose_token"])
-
-        lidar2ego = quat_to_matrix4(calib["translation"], calib["rotation"])
-        ego2global = quat_to_matrix4(ego_pose["translation"], ego_pose["rotation"])
-        model2global = model_frame_to_global(lidar2ego, ego2global, args.input_frame)
-
-        points = points_to_model_frame(
-            load_padded_points(trucksc, dataroot, sample, args.channel),
-            lidar2ego, ego2global, model2global)
+        sweeps = []
+        for channel in present:
+            sample_data = trucksc.get("sample_data", sample["data"][channel])
+            calib = trucksc.get("calibrated_sensor",
+                                 sample_data["calibrated_sensor_token"])
+            ego_pose = trucksc.get("ego_pose", sample_data["ego_pose_token"])
+            sweeps.append((
+                load_padded_points(trucksc, dataroot, sample, channel),
+                quat_to_matrix4(calib["translation"], calib["rotation"]),
+                quat_to_matrix4(ego_pose["translation"], ego_pose["rotation"]),
+            ))
+        points, model2global = model_frame_points(sweeps, args.input_frame)
 
         result = inference_detector(model, points)
         # inference_detector returns a (result, data) tuple, same as EXP-0019

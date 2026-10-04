@@ -106,6 +106,49 @@ class UprightFrameTests(unittest.TestCase):
             runner.model_frame_to_global(LIDAR2EGO, pose, "sideways")
 
 
+class MergedChannelTests(unittest.TestCase):
+    LEFT2EGO = runner.quat_to_matrix4([5.115, 1.279, 2.191], [1.0, 0.0, 0.0, 0.0])
+
+    def test_channel_lists(self):
+        self.assertEqual(runner.parse_channels("all"), list(runner.ALL_LIDAR_CHANNELS))
+        self.assertEqual(len(runner.parse_channels("ALL")), 6)
+        self.assertEqual(runner.parse_channels("LIDAR_LEFT, LIDAR_RIGHT"), ["LIDAR_LEFT", "LIDAR_RIGHT"])
+
+    def test_single_channel_is_unchanged_by_the_merge_path(self):
+        pose = ego_pose(25.0)
+        native = np.random.default_rng(1).uniform(-20, 20, size=(30, 5))
+        merged, frame = runner.model_frame_points([(native, LIDAR2EGO, pose)], "upright")
+        np.testing.assert_allclose(frame, runner.upright_virtual_lidar(LIDAR2EGO, pose))
+        np.testing.assert_allclose(merged, runner.points_to_model_frame(native, LIDAR2EGO, pose, frame))
+
+    def test_one_world_point_seen_by_two_sensors_at_different_times_coincides(self):
+        # The truck moves 1.5 m along its heading between the two captures.
+        pose_a = ego_pose(30.0, translation=(100.0, -40.0, 2.0))
+        step = 1.5 * np.array([np.cos(np.radians(30.0)), np.sin(np.radians(30.0)), 0.0])
+        pose_b = ego_pose(30.0, translation=tuple(np.array([100.0, -40.0, 2.0]) + step))
+        world = np.array([140.0, -10.0, 0.5])
+
+        def seen_by(lidar2ego, pose):
+            native = np.linalg.inv(pose @ lidar2ego) @ np.append(world, 1.0)
+            return np.array([[*native[:3], 9.0, 0.0]])
+
+        merged, frame = runner.model_frame_points(
+            [(seen_by(self.LEFT2EGO, pose_a), self.LEFT2EGO, pose_a),
+             (seen_by(LIDAR2EGO, pose_b), LIDAR2EGO, pose_b)], "upright")
+        np.testing.assert_allclose(merged[0, :3], merged[1, :3], atol=1e-9)
+        np.testing.assert_allclose(merged[:, 3], [9.0, 9.0])
+        # Still the upright nuScenes-style frame, above the centroid of the two mounts.
+        np.testing.assert_allclose(frame[:3, :3] @ [0, 0, 1], [0, 0, 1], atol=1e-12)
+        centroid = (self.LEFT2EGO[:2, 3] + LIDAR2EGO[:2, 3]) / 2
+        np.testing.assert_allclose(frame[:3, 3], (pose_a @ [*centroid, 0.0, 1.0])[:3] + [0, 0, 1.84], atol=1e-9)
+
+    def test_merging_needs_the_upright_frame(self):
+        pose = ego_pose(0.0)
+        sweep = (np.zeros((1, 5)), LIDAR2EGO, pose)
+        with self.assertRaises(ValueError):
+            runner.model_frame_points([sweep, sweep], "native")
+
+
 class BoxOutputTests(unittest.TestCase):
     def boxes(self, model2global, yaw=0.3):
         return runner.boxes_model_to_global(
