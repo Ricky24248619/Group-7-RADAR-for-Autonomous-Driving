@@ -43,7 +43,7 @@ This variance from the original story is recorded here deliberately, per P-7.
 | 4 | 4D radar is on our datasets' trucks but has no public models | 4D/imaging radar is already on Kodiak's (since 2021), Aurora's and Plus's trucks | **Agrees**, and it explains #3 |
 | 5 | Radar covered small objects, pedestrians and signs far less consistently than LiDAR; radar still adds some evidence LiDAR lacks | Radar is used for velocity, weather and long range; cameras and LiDAR handle small objects and semantics | **Agrees** |
 | 6 | Fog pilot hints radar helps when LiDAR is sparse; but LiDAR kept strong car coverage in our rain and snow recordings | Radar is presented as *the* adverse-weather sensor; weather limited Aurora's driverless operations ~40% of 2025 | **Tension** |
-| 7 | Public checkpoints transfer poorly to a new truck's sensors and mounting; correcting the sensor frame recovers some performance | Waabi claims its stack moved to a differently-sensored truck with zero retraining, but publishes no metrics | **Tension** (unverified claim) |
+| 7 | Public checkpoints transfer poorly to a new truck's sensors and mounting; correcting the sensor frame and merging all LiDARs recovers some performance, but heavy trucks stay unrecognised | Waabi claims its stack moved to a differently-sensored truck with zero retraining, but publishes no metrics | **Tension** (unverified claim) |
 | 8 | Off-road terrain models confuse rocks, tall grass and walls with ground | Kodiak runs driverless trucks on oilfield lease roads but publishes nothing on terrain perception | **Can't tell** |
 
 ---
@@ -192,8 +192,9 @@ useful row here for the client:
 - **Camera:** nuScenes-pretrained FCOS3D scored mAP 0.0046 on TruckScenes (EXP-0010).
 - **LiDAR:** PointPillars was first fed TruckScenes' ~56°-pitched LiDAR unrectified and
   scored zero. After rotating the input into the upright frame the checkpoint expects, it
-  scores mAP 0.0067 on that sensor and 0.0555 on the best-placed one, a level side LiDAR
-  (car AP 0.20) (EXP-0024, PR #63, pending review).
+  scores mAP 0.0067 on that sensor, 0.0555 on the best-placed single LiDAR, and **0.1005
+  with all six merged** (car AP 0.41). Trucks score 0.009 even though the merged cloud
+  covers every one of them (EXP-0024, PR #63, pending review).
 - In both cases a public checkpoint is bound to the sensor layout it was trained on. The
   Bonn lecture makes the same point for LiDAR beam count and mounting.
 
@@ -213,14 +214,18 @@ useful row here for the client:
 - **What we tested:** *public* checkpoints trained on a *different dataset* (nuScenes),
   dropped onto a new truck. They scored near zero.
 - **What Waabi claims:** its *own* stack moved between two of its *own* trucks.
-- **Where they meet:** part of our LiDAR failure turned out to be fixable geometry. Once
-  the tilted sensor was rotated into the frame the model expects, PointPillars went from
-  zero to a nonzero score. A stack designed from the start to normalise sensor placement
-  could plausibly do what Waabi describes.
+- **Where they meet:** much of our LiDAR failure turned out to be fixable geometry and
+  sensor choice. Rotating the input into the frame the model expects, then giving it all
+  six LiDARs, took PointPillars from zero to mAP 0.1005, with car AP 0.41. A stack
+  designed from the start to normalise sensor placement could plausibly do what Waabi
+  describes.
+- **Where they don't:** heavy trucks stay at essentially zero even when fully visible.
+  That part of the gap is about *what* the model learned to recognise (nuScenes' urban
+  trucks), not *where* the sensors sit, and no amount of frame correction fixes it.
 
 So the honest conclusion is narrower than "models don't transfer":
 - off-the-shelf public models don't transfer to a truck without at least correcting the
-  sensor frame;
+  sensor frame, and even then they miss object types their training data lacked;
 - one company claims, without published evidence, that a purpose-built stack can.
 
 That claim would be worth asking Waabi or the client about.
