@@ -1,0 +1,45 @@
+{
+  "selection": "Post-hoc diagnostic center plus immediately preceding/following validation scans in sorted filename order",
+  "center_frame": "2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin",
+  "per_scenario": 3,
+  "frames": 3,
+  "points": 644654,
+  "inputs": [
+    {
+      "frame": "2023-01-20_aying_mangfall_2__0496_1674223774529854911_vls128.bin",
+      "scenario": "2023-01-20_aying_mangfall_2",
+      "index": 94,
+      "scenario_frames": 191,
+      "points": 214315,
+      "sha256": {
+        "scan": "f71345688183344bfffafb608c2c060af2d702a00528f4499e63e8574c83feb6",
+        "label": "f7f8d68db965c4ccc816ab83aa5884f8634bda4dd719ce7d4efad2cda0fb0f95",
+        "challenge_label": "a51ca8377e9ffe233cb5d902ba5900c5bc38c7561014e1bc9d6aed0496768309"
+      }
+    },
+    {
+      "frame": "2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin",
+      "scenario": "2023-01-20_aying_mangfall_2",
+      "index": 95,
+      "scenario_frames": 191,
+      "points": 214027,
+      "sha256": {
+        "scan": "fecb28504b296764d7fea0772d40543caf37c000208a830aa245c7b7910aa23f",
+        "label": "f2348eb33d15e5e88617caa0e5240484813cdd136932343a3487988e696b5103",
+        "challenge_label": "a8ecfd1c3e98acb71126b4e1067dcd20757229deb87060ba170315f2fb6b6773"
+      }
+    },
+    {
+      "frame": "2023-01-20_aying_mangfall_2__0498_1674223782614190613_vls128.bin",
+      "scenario": "2023-01-20_aying_mangfall_2",
+      "index": 96,
+      "scenario_frames": 191,
+      "points": 216312,
+      "sha256": {
+        "scan": "8eb44c42926cfe56d46f17119ba3a0bccbbcd3d671729f67468b5f6929ed04b6",
+        "label": "ec6474ee08ce4b0f016517fc6f2e88723697a38baf280bde499886f25b96c0d2",
+        "challenge_label": "31391b85843d3bfc93cd3debabf2236ec23e7780bcfbe8054ce83c3e1df82c57"
+      }
+    }
+  ]
+}

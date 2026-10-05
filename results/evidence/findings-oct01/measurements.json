@@ -1,0 +1,1292 @@
+{
+  "truckscenes": {
+    "population": {
+      "both": 11706,
+      "lidar_only": 12910,
+      "radar_only": 39,
+      "neither": 462,
+      "observations": 25117,
+      "scenes": 10,
+      "tracks": 1092,
+      "lidar_percent": 98.00533503205001,
+      "radar_percent": 46.7611577815822,
+      "union_percent": 98.16060835290838,
+      "equal_scene_difference_pp": 47.61606863090107,
+      "min_scene_difference_pp": 13.370253164556962,
+      "leave_one_scene_out_min_pp": 45.4715890646766
+    },
+    "rigid_matched": {
+      "both": 11560,
+      "lidar_only": 11090,
+      "radar_only": 185,
+      "neither": 2282,
+      "observations": 25117,
+      "scenes": 10,
+      "tracks": 1092,
+      "lidar_percent": 90.17796711390692,
+      "radar_percent": 46.7611577815822,
+      "union_percent": 90.91452004618385,
+      "equal_scene_difference_pp": 39.38997679924084,
+      "min_scene_difference_pp": 13.212025316455696,
+      "leave_one_scene_out_min_pp": 36.873885396933204
+    },
+    "expanded": {
+      "both": 17522,
+      "lidar_only": 7555,
+      "radar_only": 3,
+      "neither": 37,
+      "observations": 25117,
+      "scenes": 10,
+      "tracks": 1092,
+      "lidar_percent": 99.84074531194013,
+      "radar_percent": 69.77346020623482,
+      "union_percent": 99.85268941354461,
+      "equal_scene_difference_pp": 28.044399777948186,
+      "min_scene_difference_pp": 5.775316455696203,
+      "leave_one_scene_out_min_pp": 26.689685377033882
+    },
+    "by_range": {
+      "0-50": {
+        "both": 6748,
+        "lidar_only": 3451,
+        "radar_only": 5,
+        "neither": 16,
+        "observations": 10220,
+        "scenes": 10,
+        "tracks": 661,
+        "lidar_percent": 99.79452054794521,
+        "radar_percent": 66.07632093933464,
+        "union_percent": 99.84344422700588,
+        "equal_scene_difference_pp": 32.653681473147614,
+        "min_scene_difference_pp": 12.530712530712531,
+        "leave_one_scene_out_min_pp": 31.42353867881259
+      },
+      "50-100": {
+        "both": 3448,
+        "lidar_only": 4704,
+        "radar_only": 12,
+        "neither": 92,
+        "observations": 8256,
+        "scenes": 10,
+        "tracks": 805,
+        "lidar_percent": 98.74031007751938,
+        "radar_percent": 41.90891472868217,
+        "union_percent": 98.88565891472868,
+        "equal_scene_difference_pp": 47.39708443864726,
+        "min_scene_difference_pp": 10.526315789473685,
+        "leave_one_scene_out_min_pp": 43.981225995548044
+      },
+      "100-150": {
+        "both": 1166,
+        "lidar_only": 2981,
+        "radar_only": 16,
+        "neither": 169,
+        "observations": 4332,
+        "scenes": 9,
+        "tracks": 613,
+        "lidar_percent": 95.72945521698985,
+        "radar_percent": 27.285318559556785,
+        "union_percent": 96.09879963065559,
+        "equal_scene_difference_pp": 63.25816720883031,
+        "min_scene_difference_pp": 47.61904761904762,
+        "leave_one_scene_out_min_pp": 60.685806046859184
+      },
+      "150-400": {
+        "both": 344,
+        "lidar_only": 1774,
+        "radar_only": 6,
+        "neither": 185,
+        "observations": 2309,
+        "scenes": 9,
+        "tracks": 436,
+        "lidar_percent": 91.72802078822001,
+        "radar_percent": 15.158077089649199,
+        "union_percent": 91.98787353832829,
+        "equal_scene_difference_pp": 73.11156649481526,
+        "min_scene_difference_pp": 57.142857142857146,
+        "leave_one_scene_out_min_pp": 71.97564319671953
+      }
+    },
+    "max_object_range_m": 229.4177589511211,
+    "radar_count_agreements": 25117,
+    "lidar_count_agreements": 4164,
+    "radar_only_classes": {
+      "human.pedestrian.child": 1,
+      "vehicle.bicycle": 1,
+      "vehicle.car": 33,
+      "vehicle.trailer": 2,
+      "vehicle.truck": 2
+    },
+    "near_classes": {
+      "vehicle.car": {
+        "both": 1119,
+        "lidar_only": 104,
+        "radar_only": 0,
+        "neither": 0,
+        "observations": 1223,
+        "scenes": 9,
+        "tracks": 146,
+        "lidar_percent": 100.0,
+        "radar_percent": 91.49632052330335,
+        "union_percent": 100.0,
+        "equal_scene_difference_pp": 9.612612238480539,
+        "min_scene_difference_pp": 4.065040650406504,
+        "leave_one_scene_out_min_pp": 8.650727229829068
+      },
+      "vehicle.truck": {
+        "both": 336,
+        "lidar_only": 3,
+        "radar_only": 0,
+        "neither": 0,
+        "observations": 339,
+        "scenes": 9,
+        "tracks": 37,
+        "lidar_percent": 100.0,
+        "radar_percent": 99.11504424778761,
+        "union_percent": 100.0,
+        "equal_scene_difference_pp": 0.1926782273603083,
+        "min_scene_difference_pp": 0.0,
+        "leave_one_scene_out_min_pp": 0.0
+      },
+      "human.pedestrian.adult": {
+        "both": 136,
+        "lidar_only": 63,
+        "radar_only": 0,
+        "neither": 2,
+        "observations": 201,
+        "scenes": 5,
+        "tracks": 17,
+        "lidar_percent": 99.0049751243781,
+        "radar_percent": 67.66169154228855,
+        "union_percent": 99.0049751243781,
+        "equal_scene_difference_pp": 31.918489918489918,
+        "min_scene_difference_pp": 11.11111111111111,
+        "leave_one_scene_out_min_pp": 27.398112398112403
+      },
+      "movable_object.trafficcone": {
+        "both": 39,
+        "lidar_only": 61,
+        "radar_only": 0,
+        "neither": 0,
+        "observations": 100,
+        "scenes": 2,
+        "tracks": 25,
+        "lidar_percent": 100.0,
+        "radar_percent": 39.0,
+        "union_percent": 100.0,
+        "equal_scene_difference_pp": 74.34210526315789,
+        "min_scene_difference_pp": 48.68421052631579,
+        "leave_one_scene_out_min_pp": 48.68421052631578
+      }
+    }
+  },
+  "truckdrive": {
+    "static": {
+      "vehicles_200_400": {
+        "both": 159,
+        "lidar_only": 246,
+        "radar_only": 30,
+        "neither": 69,
+        "observations": 504,
+        "scenes": 4,
+        "tracks": 55,
+        "lidar_percent": 80.35714285714286,
+        "radar_percent": 37.5,
+        "union_percent": 86.30952380952381,
+        "equal_scene_difference_pp": 38.17095189946555,
+        "min_scene_difference_pp": 27.906976744186046,
+        "leave_one_scene_out_min_pp": 31.846983485001687
+      },
+      "vehicles_200_400_min3": {
+        "both": 49,
+        "lidar_only": 331,
+        "radar_only": 6,
+        "neither": 118,
+        "observations": 504,
+        "scenes": 4,
+        "tracks": 55,
+        "lidar_percent": 75.39682539682539,
+        "radar_percent": 10.912698412698413,
+        "union_percent": 76.58730158730158,
+        "equal_scene_difference_pp": 63.168365849226284,
+        "min_scene_difference_pp": 53.48837209302326,
+        "leave_one_scene_out_min_pp": 60.58107694625519
+      },
+      "barrels_100_150": {
+        "both": 1,
+        "lidar_only": 48,
+        "radar_only": 6,
+        "neither": 115,
+        "observations": 170,
+        "scenes": 2,
+        "tracks": 33,
+        "lidar_percent": 28.823529411764707,
+        "radar_percent": 4.117647058823529,
+        "union_percent": 32.35294117647059,
+        "equal_scene_difference_pp": 17.8125,
+        "min_scene_difference_pp": 10.0,
+        "leave_one_scene_out_min_pp": 10.0
+      }
+    },
+    "aligned": {
+      "vehicles_200_400": {
+        "both": 154,
+        "lidar_only": 273,
+        "radar_only": 25,
+        "neither": 52,
+        "observations": 504,
+        "scenes": 4,
+        "tracks": 55,
+        "lidar_percent": 84.72222222222223,
+        "radar_percent": 35.51587301587302,
+        "union_percent": 89.68253968253968,
+        "equal_scene_difference_pp": 44.09230801489192,
+        "min_scene_difference_pp": 25.58139534883721,
+        "leave_one_scene_out_min_pp": 37.74519716885744
+      },
+      "vehicles_200_400_min3": {
+        "both": 46,
+        "lidar_only": 363,
+        "radar_only": 5,
+        "neither": 90,
+        "observations": 504,
+        "scenes": 4,
+        "tracks": 55,
+        "lidar_percent": 81.15079365079364,
+        "radar_percent": 10.119047619047619,
+        "union_percent": 82.14285714285714,
+        "equal_scene_difference_pp": 67.91874210788721,
+        "min_scene_difference_pp": 51.16279069767442,
+        "leave_one_scene_out_min_pp": 63.983822042467125
+      },
+      "barrels_100_150": {
+        "both": 18,
+        "lidar_only": 143,
+        "radar_only": 1,
+        "neither": 8,
+        "observations": 170,
+        "scenes": 2,
+        "tracks": 33,
+        "lidar_percent": 94.70588235294117,
+        "radar_percent": 11.176470588235293,
+        "union_percent": 95.29411764705883,
+        "equal_scene_difference_pp": 86.5625,
+        "min_scene_difference_pp": 83.125,
+        "leave_one_scene_out_min_pp": 83.125
+      }
+    }
+  },
+  "matched_tracks": [
+    {
+      "dataset": "TruckScenes",
+      "variant": "paired",
+      "margin_m": "0",
+      "near_band": "0-50",
+      "far_band": "50-100",
+      "category": "vehicle.car",
+      "tracks": "237",
+      "scenes": "9",
+      "lidar_near_percent": "99.81391323163476",
+      "lidar_far_percent": "98.55324000893621",
+      "lidar_far_minus_near_pp": "-1.2606732226985393",
+      "lidar_tracks_lower_far": "17",
+      "radar_near_percent": "79.95447428685438",
+      "radar_far_percent": "52.459059976562514",
+      "radar_far_minus_near_pp": "-27.495414310291856",
+      "radar_tracks_lower_far": "182"
+    },
+    {
+      "dataset": "TruckDrive",
+      "variant": "static",
+      "margin_m": "0",
+      "near_band": "100-150",
+      "far_band": "200-400",
+      "category": "Vehicle-Passenger",
+      "tracks": "7",
+      "scenes": "3",
+      "lidar_near_percent": "58.33333333333333",
+      "lidar_far_percent": "19.285714285714285",
+      "lidar_far_minus_near_pp": "-39.04761904761905",
+      "lidar_tracks_lower_far": "5",
+      "radar_near_percent": "50.0",
+      "radar_far_percent": "47.142857142857146",
+      "radar_far_minus_near_pp": "-2.8571428571428554",
+      "radar_tracks_lower_far": "2"
+    },
+    {
+      "dataset": "TruckDrive",
+      "variant": "aligned",
+      "margin_m": "0",
+      "near_band": "100-150",
+      "far_band": "200-400",
+      "category": "Vehicle-Passenger",
+      "tracks": "7",
+      "scenes": "3",
+      "lidar_near_percent": "70.23809523809523",
+      "lidar_far_percent": "27.857142857142858",
+      "lidar_far_minus_near_pp": "-42.38095238095239",
+      "lidar_tracks_lower_far": "6",
+      "radar_near_percent": "54.76190476190476",
+      "radar_far_percent": "50.0",
+      "radar_far_minus_near_pp": "-4.761904761904761",
+      "radar_tracks_lower_far": "2"
+    }
+  ],
+  "goose": {
+    "ground_surface": {
+      "0-25": {
+        "points": 193698,
+        "called_ground": 191051,
+        "pooled_ground_percent": 98.63343968445724,
+        "equal_scenario_ground_percent": 98.97672081384202,
+        "largest_scenario_share_percent": 28.46492994248779
+      },
+      "100-150": {
+        "points": 4888,
+        "called_ground": 4774,
+        "pooled_ground_percent": 97.66775777414075,
+        "equal_scenario_ground_percent": 89.34307407975243,
+        "largest_scenario_share_percent": 85.08592471358429
+      },
+      "150+": {
+        "points": 1095,
+        "called_ground": 1079,
+        "pooled_ground_percent": 98.53881278538813,
+        "equal_scenario_ground_percent": 73.11827956989248,
+        "largest_scenario_share_percent": 89.86301369863014
+      }
+    },
+    "obstacle_candidate": {
+      "0-25": {
+        "points": 508645,
+        "called_ground": 15230,
+        "pooled_ground_percent": 2.9942297673229854,
+        "equal_scenario_ground_percent": 2.028643832375863,
+        "largest_scenario_share_percent": 24.00986935878658
+      },
+      "100-150": {
+        "points": 10173,
+        "called_ground": 1442,
+        "pooled_ground_percent": 14.174776368819424,
+        "equal_scenario_ground_percent": 13.277731907910482,
+        "largest_scenario_share_percent": 60.81785117467807
+      },
+      "150+": {
+        "points": 3295,
+        "called_ground": 419,
+        "pooled_ground_percent": 12.716236722306524,
+        "equal_scenario_ground_percent": 8.19457455435613,
+        "largest_scenario_share_percent": 77.99696509863429
+      }
+    },
+    "fine_ground": {
+      "rock/0-25": {
+        "points": 2012,
+        "ground_errors": 813,
+        "ground_error_percent": 40.40755467196819
+      },
+      "building/0-25": {
+        "points": 91660,
+        "ground_errors": 11584,
+        "ground_error_percent": 12.638010037093606
+      },
+      "building/100-150": {
+        "points": 7067,
+        "ground_errors": 1317,
+        "ground_error_percent": 18.635913400311306
+      }
+    },
+    "context": [
+      {
+        "variant": "p64",
+        "true_class": "all",
+        "points": "644654",
+        "ground_category_percent": "17.158041367927602",
+        "correct_coarse_percent": "90.38104161302032"
+      },
+      {
+        "variant": "p64",
+        "true_class": "rock",
+        "points": "2478",
+        "ground_category_percent": "49.51573849878935",
+        "correct_coarse_percent": "18.11945117029863"
+      },
+      {
+        "variant": "p64",
+        "true_class": "building",
+        "points": "64748",
+        "ground_category_percent": "18.43300179156113",
+        "correct_coarse_percent": "62.530116760363256"
+      },
+      {
+        "variant": "p64repeat",
+        "true_class": "all",
+        "points": "644654",
+        "ground_category_percent": "17.158041367927602",
+        "correct_coarse_percent": "90.38104161302032"
+      },
+      {
+        "variant": "p64repeat",
+        "true_class": "rock",
+        "points": "2478",
+        "ground_category_percent": "49.51573849878935",
+        "correct_coarse_percent": "18.11945117029863"
+      },
+      {
+        "variant": "p64repeat",
+        "true_class": "building",
+        "points": "64748",
+        "ground_category_percent": "18.43300179156113",
+        "correct_coarse_percent": "62.530116760363256"
+      },
+      {
+        "variant": "p128",
+        "true_class": "all",
+        "points": "644654",
+        "ground_category_percent": "15.72533483077744",
+        "correct_coarse_percent": "92.32720187883733"
+      },
+      {
+        "variant": "p128",
+        "true_class": "rock",
+        "points": "2478",
+        "ground_category_percent": "25.020177562550444",
+        "correct_coarse_percent": "24.818401937046005"
+      },
+      {
+        "variant": "p128",
+        "true_class": "building",
+        "points": "64748",
+        "ground_category_percent": "10.179465002780008",
+        "correct_coarse_percent": "73.02464941002039"
+      },
+      {
+        "variant": "p256",
+        "true_class": "all",
+        "points": "644654",
+        "ground_category_percent": "14.974544484328026",
+        "correct_coarse_percent": "93.63069181297254"
+      },
+      {
+        "variant": "p256",
+        "true_class": "rock",
+        "points": "2478",
+        "ground_category_percent": "22.55851493139629",
+        "correct_coarse_percent": "24.89911218724778"
+      },
+      {
+        "variant": "p256",
+        "true_class": "building",
+        "points": "64748",
+        "ground_category_percent": "4.122135046642367",
+        "correct_coarse_percent": "80.70828442577377"
+      }
+    ],
+    "error_concentration": [
+      {
+        "true_class": "rock",
+        "band_m": "0-25",
+        "points": "2012",
+        "ground_category_points": "813",
+        "frames": "3",
+        "scenarios": "2",
+        "most_error_frame": "2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin",
+        "most_error_frame_points": "788",
+        "most_error_frame_share_percent": "96.9249692496925"
+      },
+      {
+        "true_class": "rock",
+        "band_m": "100-150",
+        "points": "6",
+        "ground_category_points": "6",
+        "frames": "1",
+        "scenarios": "1",
+        "most_error_frame": "2023-05-17_neubiberg_sunny__0399_1684329809197908580_vls128.bin",
+        "most_error_frame_points": "6",
+        "most_error_frame_share_percent": "100.0"
+      },
+      {
+        "true_class": "building",
+        "band_m": "0-25",
+        "points": "91660",
+        "ground_category_points": "11584",
+        "frames": "7",
+        "scenarios": "3",
+        "most_error_frame": "2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin",
+        "most_error_frame_points": "11439",
+        "most_error_frame_share_percent": "98.74827348066299"
+      },
+      {
+        "true_class": "building",
+        "band_m": "100-150",
+        "points": "7067",
+        "ground_category_points": "1317",
+        "frames": "8",
+        "scenarios": "4",
+        "most_error_frame": "2023-05-15_neubiberg_rain__0677_1684158156457472801_vls128.bin",
+        "most_error_frame_points": "642",
+        "most_error_frame_share_percent": "48.747152619589976"
+      }
+    ],
+    "voxel_ambiguity": [
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "grid_m": "0.025",
+        "points": "1442",
+        "ground_category_points": "788",
+        "same_voxel_reference_points": "0",
+        "wrong_same_voxel_reference_points": "0"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "grid_m": "0.05",
+        "points": "1442",
+        "ground_category_points": "788",
+        "same_voxel_reference_points": "0",
+        "wrong_same_voxel_reference_points": "0"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "grid_m": "0.025",
+        "points": "1442",
+        "ground_category_points": "788",
+        "same_voxel_reference_points": "0",
+        "wrong_same_voxel_reference_points": "0"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "grid_m": "0.05",
+        "points": "1442",
+        "ground_category_points": "788",
+        "same_voxel_reference_points": "0",
+        "wrong_same_voxel_reference_points": "0"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "grid_m": "0.025",
+        "points": "42281",
+        "ground_category_points": "11439",
+        "same_voxel_reference_points": "0",
+        "wrong_same_voxel_reference_points": "0"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "grid_m": "0.05",
+        "points": "42281",
+        "ground_category_points": "11439",
+        "same_voxel_reference_points": "0",
+        "wrong_same_voxel_reference_points": "0"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "grid_m": "0.025",
+        "points": "42281",
+        "ground_category_points": "11439",
+        "same_voxel_reference_points": "0",
+        "wrong_same_voxel_reference_points": "0"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "grid_m": "0.05",
+        "points": "42281",
+        "ground_category_points": "11439",
+        "same_voxel_reference_points": "0",
+        "wrong_same_voxel_reference_points": "0"
+      }
+    ],
+    "ground_height_proxy": [
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "-inf:-0.2",
+        "points": "0",
+        "ground_category_points": "0",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "-0.2:0.2",
+        "points": "171",
+        "ground_category_points": "164",
+        "ground_category_percent": "95.90643274853801"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "0.2:0.5",
+        "points": "142",
+        "ground_category_points": "96",
+        "ground_category_percent": "67.6056338028169"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "0.5:1",
+        "points": "30",
+        "ground_category_points": "8",
+        "ground_category_percent": "26.666666666666668"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "1:inf",
+        "points": "0",
+        "ground_category_points": "0",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "unresolved_reference_too_far",
+        "points": "1099",
+        "ground_category_points": "520",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "-inf:-0.2",
+        "points": "0",
+        "ground_category_points": "0",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "-0.2:0.2",
+        "points": "293",
+        "ground_category_points": "277",
+        "ground_category_percent": "94.53924914675768"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "0.2:0.5",
+        "points": "429",
+        "ground_category_points": "325",
+        "ground_category_percent": "75.75757575757575"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "0.5:1",
+        "points": "278",
+        "ground_category_points": "76",
+        "ground_category_percent": "27.33812949640288"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "1:inf",
+        "points": "55",
+        "ground_category_points": "0",
+        "ground_category_percent": "0.0"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "unresolved_reference_too_far",
+        "points": "387",
+        "ground_category_points": "110",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "-inf:-0.2",
+        "points": "0",
+        "ground_category_points": "0",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "-0.2:0.2",
+        "points": "394",
+        "ground_category_points": "333",
+        "ground_category_percent": "84.51776649746193"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "0.2:0.5",
+        "points": "540",
+        "ground_category_points": "367",
+        "ground_category_percent": "67.96296296296296"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "0.5:1",
+        "points": "260",
+        "ground_category_points": "61",
+        "ground_category_percent": "23.46153846153846"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "1:inf",
+        "points": "27",
+        "ground_category_points": "0",
+        "ground_category_percent": "0.0"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "unresolved_reference_too_far",
+        "points": "221",
+        "ground_category_points": "27",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "-inf:-0.2",
+        "points": "0",
+        "ground_category_points": "0",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "-0.2:0.2",
+        "points": "434",
+        "ground_category_points": "354",
+        "ground_category_percent": "81.5668202764977"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "0.2:0.5",
+        "points": "602",
+        "ground_category_points": "373",
+        "ground_category_percent": "61.96013289036545"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "0.5:1",
+        "points": "329",
+        "ground_category_points": "61",
+        "ground_category_percent": "18.541033434650455"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "1:inf",
+        "points": "77",
+        "ground_category_points": "0",
+        "ground_category_percent": "0.0"
+      },
+      {
+        "true_class": "rock",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "unresolved_reference_too_far",
+        "points": "0",
+        "ground_category_points": "0",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "-inf:-0.2",
+        "points": "0",
+        "ground_category_points": "0",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "-0.2:0.2",
+        "points": "17",
+        "ground_category_points": "6",
+        "ground_category_percent": "35.294117647058826"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "0.2:0.5",
+        "points": "11",
+        "ground_category_points": "3",
+        "ground_category_percent": "27.272727272727273"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "0.5:1",
+        "points": "85",
+        "ground_category_points": "0",
+        "ground_category_percent": "0.0"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "1:inf",
+        "points": "2517",
+        "ground_category_points": "23",
+        "ground_category_percent": "0.9137862534763608"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "unresolved_reference_too_far",
+        "points": "39651",
+        "ground_category_points": "11407",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "-inf:-0.2",
+        "points": "0",
+        "ground_category_points": "0",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "-0.2:0.2",
+        "points": "36",
+        "ground_category_points": "22",
+        "ground_category_percent": "61.111111111111114"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "0.2:0.5",
+        "points": "67",
+        "ground_category_points": "3",
+        "ground_category_percent": "4.477611940298507"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "0.5:1",
+        "points": "229",
+        "ground_category_points": "1",
+        "ground_category_percent": "0.4366812227074236"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "1:inf",
+        "points": "9668",
+        "ground_category_points": "25",
+        "ground_category_percent": "0.258585022755482"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "unresolved_reference_too_far",
+        "points": "32281",
+        "ground_category_points": "11388",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "-inf:-0.2",
+        "points": "0",
+        "ground_category_points": "0",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "-0.2:0.2",
+        "points": "81",
+        "ground_category_points": "26",
+        "ground_category_percent": "32.098765432098766"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "0.2:0.5",
+        "points": "73",
+        "ground_category_points": "0",
+        "ground_category_percent": "0.0"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "0.5:1",
+        "points": "291",
+        "ground_category_points": "1",
+        "ground_category_percent": "0.3436426116838488"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "1:inf",
+        "points": "8882",
+        "ground_category_points": "23",
+        "ground_category_percent": "0.25895068678225625"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "1.0",
+        "vertical_difference_band": "unresolved_reference_too_far",
+        "points": "32954",
+        "ground_category_points": "11389",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "-inf:-0.2",
+        "points": "0",
+        "ground_category_points": "0",
+        "ground_category_percent": ""
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "-0.2:0.2",
+        "points": "81",
+        "ground_category_points": "26",
+        "ground_category_percent": "32.098765432098766"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "0.2:0.5",
+        "points": "106",
+        "ground_category_points": "0",
+        "ground_category_percent": "0.0"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "0.5:1",
+        "points": "449",
+        "ground_category_points": "1",
+        "ground_category_percent": "0.22271714922049"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "1:inf",
+        "points": "19988",
+        "ground_category_points": "2160",
+        "ground_category_percent": "10.806483890334201"
+      },
+      {
+        "true_class": "building",
+        "reference": "ground_surface_and_cover",
+        "max_xy_distance_m": "2.0",
+        "vertical_difference_band": "unresolved_reference_too_far",
+        "points": "21657",
+        "ground_category_points": "9252",
+        "ground_category_percent": ""
+      }
+    ],
+    "flight_surface_errors": [
+      {
+        "band_m": "100-150",
+        "raw_class": "asphalt",
+        "model_truth": "artificial_ground",
+        "points": "149",
+        "correct_coarse_label": "34",
+        "correct_coarse_percent": "22.818791946308725",
+        "most_common_wrong_prediction": "natural_ground",
+        "most_common_wrong_points": "96"
+      }
+    ],
+    "flight_far_vegetation_points": 29785,
+    "flight_range_accuracy": [
+      {
+        "band_m": "0-25",
+        "points": "754468",
+        "correct": "629243",
+        "accuracy_percent": "83.40221188970241"
+      },
+      {
+        "band_m": "25-50",
+        "points": "510857",
+        "correct": "454595",
+        "accuracy_percent": "88.98674188667279"
+      },
+      {
+        "band_m": "50-75",
+        "points": "244170",
+        "correct": "227862",
+        "accuracy_percent": "93.32104681164762"
+      },
+      {
+        "band_m": "75-100",
+        "points": "126183",
+        "correct": "115580",
+        "accuracy_percent": "91.59712481079067"
+      },
+      {
+        "band_m": "100-150",
+        "points": "117908",
+        "correct": "109308",
+        "accuracy_percent": "92.70617769786614"
+      },
+      {
+        "band_m": "150+",
+        "points": "31438",
+        "correct": "30463",
+        "accuracy_percent": "96.89865767542464"
+      }
+    ]
+  },
+  "stone": {
+    "farmland": {
+      "aligned/near_ground_geometry": {
+        "reference_voxels": 6559,
+        "lidar_percent": 99.40539716420186,
+        "radar_percent": 17.761853941149564
+      },
+      "aligned/raised_geometry": {
+        "reference_voxels": 8644,
+        "lidar_percent": 96.95742711707543,
+        "radar_percent": 29.534937528921795
+      },
+      "ros_origin/near_ground_geometry": {
+        "reference_voxels": 6559,
+        "lidar_percent": 99.40539716420186,
+        "radar_percent": 24.073791736545203
+      },
+      "ros_origin/raised_geometry": {
+        "reference_voxels": 8644,
+        "lidar_percent": 96.95742711707543,
+        "radar_percent": 19.331328088847755
+      },
+      "static/near_ground_geometry": {
+        "reference_voxels": 6559,
+        "lidar_percent": 99.40539716420186,
+        "radar_percent": 17.79234639426742
+      },
+      "static/raised_geometry": {
+        "reference_voxels": 8644,
+        "lidar_percent": 96.95742711707543,
+        "radar_percent": 29.59278111985192
+      }
+    },
+    "lake": {
+      "aligned/near_ground_geometry": {
+        "reference_voxels": 13128,
+        "lidar_percent": 98.7812309567337,
+        "radar_percent": 4.821755027422303
+      },
+      "aligned/raised_geometry": {
+        "reference_voxels": 4741,
+        "lidar_percent": 99.64142585952331,
+        "radar_percent": 26.302467833790338
+      },
+      "ros_origin/near_ground_geometry": {
+        "reference_voxels": 13128,
+        "lidar_percent": 98.7812309567337,
+        "radar_percent": 6.58897014015844
+      },
+      "ros_origin/raised_geometry": {
+        "reference_voxels": 4741,
+        "lidar_percent": 99.64142585952331,
+        "radar_percent": 19.995781480700273
+      },
+      "static/near_ground_geometry": {
+        "reference_voxels": 13128,
+        "lidar_percent": 98.7812309567337,
+        "radar_percent": 4.844606946983546
+      },
+      "static/raised_geometry": {
+        "reference_voxels": 4741,
+        "lidar_percent": 99.64142585952331,
+        "radar_percent": 26.260282640793083
+      }
+    },
+    "land": {
+      "aligned/near_ground_geometry": {
+        "reference_voxels": 15876,
+        "lidar_percent": 98.12925170068027,
+        "radar_percent": 0.9448223733938019
+      },
+      "aligned/raised_geometry": {
+        "reference_voxels": 1380,
+        "lidar_percent": 93.84057971014492,
+        "radar_percent": 40.65217391304348
+      },
+      "ros_origin/near_ground_geometry": {
+        "reference_voxels": 15876,
+        "lidar_percent": 98.12925170068027,
+        "radar_percent": 1.473922902494331
+      },
+      "ros_origin/raised_geometry": {
+        "reference_voxels": 1380,
+        "lidar_percent": 93.84057971014492,
+        "radar_percent": 32.89855072463768
+      },
+      "static/near_ground_geometry": {
+        "reference_voxels": 15876,
+        "lidar_percent": 98.12925170068027,
+        "radar_percent": 0.9385235575711767
+      },
+      "static/raised_geometry": {
+        "reference_voxels": 1380,
+        "lidar_percent": 93.84057971014492,
+        "radar_percent": 41.08695652173913
+      }
+    }
+  },
+  "radiate": {
+    "observations": 39,
+    "frames": 17,
+    "tracks": 4,
+    "controls": 117,
+    "controls_basic_pass": 32,
+    "controls_strict_pass": 8,
+    "far": {
+      "observations": 19,
+      "lidar_any": 0,
+      "radar_strict": 9
+    },
+    "far_controls": {
+      "observations": 57,
+      "strict_pass": 1
+    },
+    "margin_sensitivity": [
+      {
+        "band_m": "0-25",
+        "margin_m": "0",
+        "observations": "6",
+        "tracks": "2",
+        "frames": "6",
+        "lidar_any": "0",
+        "lidar_five": "0",
+        "lidar_any_adjacent": "0",
+        "radar_contrast_pass": "5",
+        "radar_contrast_gap10": "5",
+        "radar_contrast_gap20": "5",
+        "radar_contrast_lidar_empty": "5"
+      },
+      {
+        "band_m": "0-25",
+        "margin_m": "1",
+        "observations": "6",
+        "tracks": "2",
+        "frames": "6",
+        "lidar_any": "1",
+        "lidar_five": "1",
+        "lidar_any_adjacent": "2",
+        "radar_contrast_pass": "5",
+        "radar_contrast_gap10": "5",
+        "radar_contrast_gap20": "5",
+        "radar_contrast_lidar_empty": "5"
+      },
+      {
+        "band_m": "25-50",
+        "margin_m": "0",
+        "observations": "14",
+        "tracks": "2",
+        "frames": "12",
+        "lidar_any": "3",
+        "lidar_five": "0",
+        "lidar_any_adjacent": "6",
+        "radar_contrast_pass": "10",
+        "radar_contrast_gap10": "3",
+        "radar_contrast_gap20": "3",
+        "radar_contrast_lidar_empty": "9"
+      },
+      {
+        "band_m": "25-50",
+        "margin_m": "1",
+        "observations": "14",
+        "tracks": "2",
+        "frames": "12",
+        "lidar_any": "6",
+        "lidar_five": "2",
+        "lidar_any_adjacent": "9",
+        "radar_contrast_pass": "10",
+        "radar_contrast_gap10": "3",
+        "radar_contrast_gap20": "3",
+        "radar_contrast_lidar_empty": "7"
+      },
+      {
+        "band_m": "50-75",
+        "margin_m": "0",
+        "observations": "19",
+        "tracks": "3",
+        "frames": "14",
+        "lidar_any": "0",
+        "lidar_five": "0",
+        "lidar_any_adjacent": "1",
+        "radar_contrast_pass": "16",
+        "radar_contrast_gap10": "11",
+        "radar_contrast_gap20": "9",
+        "radar_contrast_lidar_empty": "16"
+      },
+      {
+        "band_m": "50-75",
+        "margin_m": "1",
+        "observations": "19",
+        "tracks": "3",
+        "frames": "14",
+        "lidar_any": "1",
+        "lidar_five": "0",
+        "lidar_any_adjacent": "2",
+        "radar_contrast_pass": "16",
+        "radar_contrast_gap10": "11",
+        "radar_contrast_gap20": "9",
+        "radar_contrast_lidar_empty": "15"
+      }
+    ]
+  }
+}

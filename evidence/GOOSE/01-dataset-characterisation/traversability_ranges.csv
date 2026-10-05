@@ -1,0 +1,181 @@
+scenario,group,band_m,points,all_points_in_band
+2022-07-22_flight,Free,0-50,98241,23568590
+2022-07-22_flight,Free,50-100,542,2792885
+2022-07-22_flight,Free,100-150,428,772576
+2022-07-22_flight,Free,150-400,325,286340
+2022-07-22_flight,Free,>=400,0,0
+2022-07-22_flight,Non-Traversable,0-50,13060874,23568590
+2022-07-22_flight,Non-Traversable,50-100,2070157,2792885
+2022-07-22_flight,Non-Traversable,100-150,630459,772576
+2022-07-22_flight,Non-Traversable,150-400,254691,286340
+2022-07-22_flight,Non-Traversable,>=400,0,0
+2022-07-22_flight,Potentially Traversable,0-50,4545711,23568590
+2022-07-22_flight,Potentially Traversable,50-100,225312,2792885
+2022-07-22_flight,Potentially Traversable,100-150,63513,772576
+2022-07-22_flight,Potentially Traversable,150-400,19121,286340
+2022-07-22_flight,Potentially Traversable,>=400,0,0
+2022-07-22_flight,Traversable,0-50,5863764,23568590
+2022-07-22_flight,Traversable,50-100,496874,2792885
+2022-07-22_flight,Traversable,100-150,78176,772576
+2022-07-22_flight,Traversable,150-400,12203,286340
+2022-07-22_flight,Traversable,>=400,0,0
+2022-08-30_siegertsbrunn_feldwege,Free,0-50,38237,12673210
+2022-08-30_siegertsbrunn_feldwege,Free,50-100,400,1646724
+2022-08-30_siegertsbrunn_feldwege,Free,100-150,305,538618
+2022-08-30_siegertsbrunn_feldwege,Free,150-400,272,217539
+2022-08-30_siegertsbrunn_feldwege,Free,>=400,0,0
+2022-08-30_siegertsbrunn_feldwege,Non-Traversable,0-50,4146237,12673210
+2022-08-30_siegertsbrunn_feldwege,Non-Traversable,50-100,353096,1646724
+2022-08-30_siegertsbrunn_feldwege,Non-Traversable,100-150,144395,538618
+2022-08-30_siegertsbrunn_feldwege,Non-Traversable,150-400,83035,217539
+2022-08-30_siegertsbrunn_feldwege,Non-Traversable,>=400,0,0
+2022-08-30_siegertsbrunn_feldwege,Potentially Traversable,0-50,3424781,12673210
+2022-08-30_siegertsbrunn_feldwege,Potentially Traversable,50-100,252850,1646724
+2022-08-30_siegertsbrunn_feldwege,Potentially Traversable,100-150,114271,538618
+2022-08-30_siegertsbrunn_feldwege,Potentially Traversable,150-400,50168,217539
+2022-08-30_siegertsbrunn_feldwege,Potentially Traversable,>=400,0,0
+2022-08-30_siegertsbrunn_feldwege,Traversable,0-50,5063955,12673210
+2022-08-30_siegertsbrunn_feldwege,Traversable,50-100,1040378,1646724
+2022-08-30_siegertsbrunn_feldwege,Traversable,100-150,279647,538618
+2022-08-30_siegertsbrunn_feldwege,Traversable,150-400,84064,217539
+2022-08-30_siegertsbrunn_feldwege,Traversable,>=400,0,0
+2022-09-21_garching_uebungsplatz_2,Free,0-50,42594,22492489
+2022-09-21_garching_uebungsplatz_2,Free,50-100,103,1876269
+2022-09-21_garching_uebungsplatz_2,Free,100-150,94,482960
+2022-09-21_garching_uebungsplatz_2,Free,150-400,42,168136
+2022-09-21_garching_uebungsplatz_2,Free,>=400,0,0
+2022-09-21_garching_uebungsplatz_2,Non-Traversable,0-50,13266773,22492489
+2022-09-21_garching_uebungsplatz_2,Non-Traversable,50-100,1385995,1876269
+2022-09-21_garching_uebungsplatz_2,Non-Traversable,100-150,420534,482960
+2022-09-21_garching_uebungsplatz_2,Non-Traversable,150-400,154980,168136
+2022-09-21_garching_uebungsplatz_2,Non-Traversable,>=400,0,0
+2022-09-21_garching_uebungsplatz_2,Potentially Traversable,0-50,4137105,22492489
+2022-09-21_garching_uebungsplatz_2,Potentially Traversable,50-100,147683,1876269
+2022-09-21_garching_uebungsplatz_2,Potentially Traversable,100-150,14341,482960
+2022-09-21_garching_uebungsplatz_2,Potentially Traversable,150-400,2226,168136
+2022-09-21_garching_uebungsplatz_2,Potentially Traversable,>=400,0,0
+2022-09-21_garching_uebungsplatz_2,Traversable,0-50,5046017,22492489
+2022-09-21_garching_uebungsplatz_2,Traversable,50-100,342488,1876269
+2022-09-21_garching_uebungsplatz_2,Traversable,100-150,47991,482960
+2022-09-21_garching_uebungsplatz_2,Traversable,150-400,10888,168136
+2022-09-21_garching_uebungsplatz_2,Traversable,>=400,0,0
+2022-12-07_aying_hills,Free,0-50,47456,21444363
+2022-12-07_aying_hills,Free,50-100,954,3171735
+2022-12-07_aying_hills,Free,100-150,498,1059791
+2022-12-07_aying_hills,Free,150-400,255,522884
+2022-12-07_aying_hills,Free,>=400,0,0
+2022-12-07_aying_hills,Non-Traversable,0-50,14961494,21444363
+2022-12-07_aying_hills,Non-Traversable,50-100,2678913,3171735
+2022-12-07_aying_hills,Non-Traversable,100-150,958085,1059791
+2022-12-07_aying_hills,Non-Traversable,150-400,476428,522884
+2022-12-07_aying_hills,Non-Traversable,>=400,0,0
+2022-12-07_aying_hills,Potentially Traversable,0-50,3514228,21444363
+2022-12-07_aying_hills,Potentially Traversable,50-100,123110,3171735
+2022-12-07_aying_hills,Potentially Traversable,100-150,10296,1059791
+2022-12-07_aying_hills,Potentially Traversable,150-400,3222,522884
+2022-12-07_aying_hills,Potentially Traversable,>=400,0,0
+2022-12-07_aying_hills,Traversable,0-50,2921185,21444363
+2022-12-07_aying_hills,Traversable,50-100,368758,3171735
+2022-12-07_aying_hills,Traversable,100-150,90912,1059791
+2022-12-07_aying_hills,Traversable,150-400,42979,522884
+2022-12-07_aying_hills,Traversable,>=400,0,0
+2023-01-20_aying_mangfall_2,Free,0-50,68204,30303566
+2023-01-20_aying_mangfall_2,Free,50-100,645,3722239
+2023-01-20_aying_mangfall_2,Free,100-150,1919,983247
+2023-01-20_aying_mangfall_2,Free,150-400,1450,440461
+2023-01-20_aying_mangfall_2,Free,>=400,0,0
+2023-01-20_aying_mangfall_2,Non-Traversable,0-50,19161239,30303566
+2023-01-20_aying_mangfall_2,Non-Traversable,50-100,2213092,3722239
+2023-01-20_aying_mangfall_2,Non-Traversable,100-150,599478,983247
+2023-01-20_aying_mangfall_2,Non-Traversable,150-400,325273,440461
+2023-01-20_aying_mangfall_2,Non-Traversable,>=400,0,0
+2023-01-20_aying_mangfall_2,Potentially Traversable,0-50,7114432,30303566
+2023-01-20_aying_mangfall_2,Potentially Traversable,50-100,541888,3722239
+2023-01-20_aying_mangfall_2,Potentially Traversable,100-150,84415,983247
+2023-01-20_aying_mangfall_2,Potentially Traversable,150-400,23299,440461
+2023-01-20_aying_mangfall_2,Potentially Traversable,>=400,0,0
+2023-01-20_aying_mangfall_2,Traversable,0-50,3959691,30303566
+2023-01-20_aying_mangfall_2,Traversable,50-100,966614,3722239
+2023-01-20_aying_mangfall_2,Traversable,100-150,297435,983247
+2023-01-20_aying_mangfall_2,Traversable,150-400,90439,440461
+2023-01-20_aying_mangfall_2,Traversable,>=400,0,0
+2023-03-03_garching_2,Free,0-50,36745,18076493
+2023-03-03_garching_2,Free,50-100,6001,1822850
+2023-03-03_garching_2,Free,100-150,3553,291721
+2023-03-03_garching_2,Free,150-400,1050,60004
+2023-03-03_garching_2,Free,>=400,0,0
+2023-03-03_garching_2,Non-Traversable,0-50,10346105,18076493
+2023-03-03_garching_2,Non-Traversable,50-100,1337587,1822850
+2023-03-03_garching_2,Non-Traversable,100-150,248152,291721
+2023-03-03_garching_2,Non-Traversable,150-400,48576,60004
+2023-03-03_garching_2,Non-Traversable,>=400,0,0
+2023-03-03_garching_2,Potentially Traversable,0-50,764888,18076493
+2023-03-03_garching_2,Potentially Traversable,50-100,80244,1822850
+2023-03-03_garching_2,Potentially Traversable,100-150,4845,291721
+2023-03-03_garching_2,Potentially Traversable,150-400,1107,60004
+2023-03-03_garching_2,Potentially Traversable,>=400,0,0
+2023-03-03_garching_2,Traversable,0-50,6928755,18076493
+2023-03-03_garching_2,Traversable,50-100,399018,1822850
+2023-03-03_garching_2,Traversable,100-150,35171,291721
+2023-03-03_garching_2,Traversable,150-400,9271,60004
+2023-03-03_garching_2,Traversable,>=400,0,0
+2023-05-15_neubiberg_rain,Free,0-50,48045,11828834
+2023-05-15_neubiberg_rain,Free,50-100,2720,1922382
+2023-05-15_neubiberg_rain,Free,100-150,491,415618
+2023-05-15_neubiberg_rain,Free,150-400,213,144907
+2023-05-15_neubiberg_rain,Free,>=400,0,0
+2023-05-15_neubiberg_rain,Non-Traversable,0-50,7745042,11828834
+2023-05-15_neubiberg_rain,Non-Traversable,50-100,1579470,1922382
+2023-05-15_neubiberg_rain,Non-Traversable,100-150,374776,415618
+2023-05-15_neubiberg_rain,Non-Traversable,150-400,137700,144907
+2023-05-15_neubiberg_rain,Non-Traversable,>=400,0,0
+2023-05-15_neubiberg_rain,Potentially Traversable,0-50,913629,11828834
+2023-05-15_neubiberg_rain,Potentially Traversable,50-100,85932,1922382
+2023-05-15_neubiberg_rain,Potentially Traversable,100-150,14051,415618
+2023-05-15_neubiberg_rain,Potentially Traversable,150-400,1168,144907
+2023-05-15_neubiberg_rain,Potentially Traversable,>=400,0,0
+2023-05-15_neubiberg_rain,Traversable,0-50,3122118,11828834
+2023-05-15_neubiberg_rain,Traversable,50-100,254260,1922382
+2023-05-15_neubiberg_rain,Traversable,100-150,26300,415618
+2023-05-15_neubiberg_rain,Traversable,150-400,5826,144907
+2023-05-15_neubiberg_rain,Traversable,>=400,0,0
+2023-05-17_neubiberg_sunny,Free,0-50,25887,9862188
+2023-05-17_neubiberg_sunny,Free,50-100,591,979523
+2023-05-17_neubiberg_sunny,Free,100-150,281,234513
+2023-05-17_neubiberg_sunny,Free,150-400,260,88152
+2023-05-17_neubiberg_sunny,Free,>=400,0,0
+2023-05-17_neubiberg_sunny,Non-Traversable,0-50,7334229,9862188
+2023-05-17_neubiberg_sunny,Non-Traversable,50-100,750323,979523
+2023-05-17_neubiberg_sunny,Non-Traversable,100-150,182502,234513
+2023-05-17_neubiberg_sunny,Non-Traversable,150-400,74903,88152
+2023-05-17_neubiberg_sunny,Non-Traversable,>=400,0,0
+2023-05-17_neubiberg_sunny,Potentially Traversable,0-50,964697,9862188
+2023-05-17_neubiberg_sunny,Potentially Traversable,50-100,158341,979523
+2023-05-17_neubiberg_sunny,Potentially Traversable,100-150,43303,234513
+2023-05-17_neubiberg_sunny,Potentially Traversable,150-400,11534,88152
+2023-05-17_neubiberg_sunny,Potentially Traversable,>=400,0,0
+2023-05-17_neubiberg_sunny,Traversable,0-50,1537375,9862188
+2023-05-17_neubiberg_sunny,Traversable,50-100,70268,979523
+2023-05-17_neubiberg_sunny,Traversable,100-150,8427,234513
+2023-05-17_neubiberg_sunny,Traversable,150-400,1455,88152
+2023-05-17_neubiberg_sunny,Traversable,>=400,0,0
+ALL,Free,0-50,405409,150249733
+ALL,Free,50-100,11956,17934607
+ALL,Free,100-150,7569,4779044
+ALL,Free,150-400,3867,1928423
+ALL,Free,>=400,0,0
+ALL,Non-Traversable,0-50,90021993,150249733
+ALL,Non-Traversable,50-100,12368633,17934607
+ALL,Non-Traversable,100-150,3558381,4779044
+ALL,Non-Traversable,150-400,1555586,1928423
+ALL,Non-Traversable,>=400,0,0
+ALL,Potentially Traversable,0-50,25379471,150249733
+ALL,Potentially Traversable,50-100,1615360,17934607
+ALL,Potentially Traversable,100-150,349035,4779044
+ALL,Potentially Traversable,150-400,111845,1928423
+ALL,Potentially Traversable,>=400,0,0
+ALL,Traversable,0-50,34442860,150249733
+ALL,Traversable,50-100,3938658,17934607
+ALL,Traversable,100-150,864059,4779044
+ALL,Traversable,150-400,257125,1928423
+ALL,Traversable,>=400,0,0

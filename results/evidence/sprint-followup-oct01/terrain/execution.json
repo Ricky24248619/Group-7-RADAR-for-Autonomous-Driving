@@ -1,0 +1,481 @@
+[
+  {
+    "variant": "p64",
+    "patch": 64,
+    "command": [
+      "/home/ricky/.venvs/pointcept-goose/bin/python",
+      "tools/test.py",
+      "--config-file",
+      "configs/goose/semseg-pt-v3m1-0-base.py",
+      "--num-gpus",
+      "1",
+      "--options",
+      "weight=/mnt/f/RADAR/models/GOOSE/challenge_ptv3.pth",
+      "seed=20260831",
+      "enable_amp=false",
+      "model.backbone.enable_flash=false",
+      "model.backbone.enc_patch_size=[64,64,64,64,64]",
+      "model.backbone.dec_patch_size=[64,64,64,64]",
+      "data.test.split=val",
+      "data.test.test_cfg.aug_transform=[[]]",
+      "data.test.data_root=/home/ricky/goose-followup7-20261001",
+      "save_path=/mnt/f/RADAR/outputs/pointcept/goose_followup7_20261001/p64"
+    ],
+    "samples": [
+      {
+        "elapsed_seconds": 0.16,
+        "gpu_total_memory_mib": 1430,
+        "temperature_c": 46
+      },
+      {
+        "elapsed_seconds": 5.29,
+        "gpu_total_memory_mib": 1432,
+        "temperature_c": 45
+      },
+      {
+        "elapsed_seconds": 10.38,
+        "gpu_total_memory_mib": 1415,
+        "temperature_c": 45
+      },
+      {
+        "elapsed_seconds": 15.44,
+        "gpu_total_memory_mib": 1475,
+        "temperature_c": 47
+      },
+      {
+        "elapsed_seconds": 20.52,
+        "gpu_total_memory_mib": 1673,
+        "temperature_c": 45
+      },
+      {
+        "elapsed_seconds": 25.58,
+        "gpu_total_memory_mib": 1661,
+        "temperature_c": 45
+      },
+      {
+        "elapsed_seconds": 30.68,
+        "gpu_total_memory_mib": 1770,
+        "temperature_c": 45
+      },
+      {
+        "elapsed_seconds": 35.75,
+        "gpu_total_memory_mib": 2016,
+        "temperature_c": 45
+      },
+      {
+        "elapsed_seconds": 40.81,
+        "gpu_total_memory_mib": 2981,
+        "temperature_c": 54
+      },
+      {
+        "elapsed_seconds": 45.86,
+        "gpu_total_memory_mib": 2958,
+        "temperature_c": 59
+      },
+      {
+        "elapsed_seconds": 51.11,
+        "gpu_total_memory_mib": 4139,
+        "temperature_c": 59
+      },
+      {
+        "elapsed_seconds": 56.19,
+        "gpu_total_memory_mib": 4209,
+        "temperature_c": 61
+      },
+      {
+        "elapsed_seconds": 61.27,
+        "gpu_total_memory_mib": 4142,
+        "temperature_c": 61
+      },
+      {
+        "elapsed_seconds": 66.31,
+        "gpu_total_memory_mib": 4142,
+        "temperature_c": 61
+      },
+      {
+        "elapsed_seconds": 71.39,
+        "gpu_total_memory_mib": 4443,
+        "temperature_c": 63
+      },
+      {
+        "elapsed_seconds": 76.45,
+        "gpu_total_memory_mib": 4434,
+        "temperature_c": 65
+      },
+      {
+        "elapsed_seconds": 81.51,
+        "gpu_total_memory_mib": 4444,
+        "temperature_c": 66
+      },
+      {
+        "elapsed_seconds": 86.56,
+        "gpu_total_memory_mib": 4747,
+        "temperature_c": 67
+      },
+      {
+        "elapsed_seconds": 92.37,
+        "gpu_total_memory_mib": 4723,
+        "temperature_c": 61
+      },
+      {
+        "elapsed_seconds": 97.44,
+        "gpu_total_memory_mib": 4747,
+        "temperature_c": 67
+      },
+      {
+        "elapsed_seconds": 102.49,
+        "gpu_total_memory_mib": 4717,
+        "temperature_c": 69
+      },
+      {
+        "elapsed_seconds": 107.58,
+        "gpu_total_memory_mib": 4718,
+        "temperature_c": 70
+      },
+      {
+        "elapsed_seconds": 112.68,
+        "gpu_total_memory_mib": 4718,
+        "temperature_c": 70
+      },
+      {
+        "elapsed_seconds": 117.74,
+        "gpu_total_memory_mib": 4741,
+        "temperature_c": 70
+      },
+      {
+        "elapsed_seconds": 122.79,
+        "gpu_total_memory_mib": 4739,
+        "temperature_c": 71
+      }
+    ],
+    "status": "success",
+    "exit_code": 0,
+    "elapsed_seconds": 127.85
+  },
+  {
+    "variant": "p64repeat",
+    "patch": 64,
+    "command": [
+      "/home/ricky/.venvs/pointcept-goose/bin/python",
+      "tools/test.py",
+      "--config-file",
+      "configs/goose/semseg-pt-v3m1-0-base.py",
+      "--num-gpus",
+      "1",
+      "--options",
+      "weight=/mnt/f/RADAR/models/GOOSE/challenge_ptv3.pth",
+      "seed=20260831",
+      "enable_amp=false",
+      "model.backbone.enable_flash=false",
+      "model.backbone.enc_patch_size=[64,64,64,64,64]",
+      "model.backbone.dec_patch_size=[64,64,64,64]",
+      "data.test.split=val",
+      "data.test.test_cfg.aug_transform=[[]]",
+      "data.test.data_root=/home/ricky/goose-followup7-20261001",
+      "save_path=/mnt/f/RADAR/outputs/pointcept/goose_followup7_20261001/p64repeat"
+    ],
+    "samples": [
+      {
+        "elapsed_seconds": 0.18,
+        "gpu_total_memory_mib": 1394,
+        "temperature_c": 57
+      },
+      {
+        "elapsed_seconds": 5.32,
+        "gpu_total_memory_mib": 1391,
+        "temperature_c": 55
+      },
+      {
+        "elapsed_seconds": 10.49,
+        "gpu_total_memory_mib": 1422,
+        "temperature_c": 54
+      },
+      {
+        "elapsed_seconds": 15.55,
+        "gpu_total_memory_mib": 1721,
+        "temperature_c": 55
+      },
+      {
+        "elapsed_seconds": 20.61,
+        "gpu_total_memory_mib": 1715,
+        "temperature_c": 53
+      },
+      {
+        "elapsed_seconds": 26.74,
+        "gpu_total_memory_mib": 1989,
+        "temperature_c": 54
+      },
+      {
+        "elapsed_seconds": 31.79,
+        "gpu_total_memory_mib": 3118,
+        "temperature_c": 62
+      },
+      {
+        "elapsed_seconds": 36.85,
+        "gpu_total_memory_mib": 3050,
+        "temperature_c": 65
+      },
+      {
+        "elapsed_seconds": 41.89,
+        "gpu_total_memory_mib": 4215,
+        "temperature_c": 66
+      },
+      {
+        "elapsed_seconds": 46.93,
+        "gpu_total_memory_mib": 4206,
+        "temperature_c": 67
+      },
+      {
+        "elapsed_seconds": 52.01,
+        "gpu_total_memory_mib": 4206,
+        "temperature_c": 68
+      },
+      {
+        "elapsed_seconds": 57.07,
+        "gpu_total_memory_mib": 4198,
+        "temperature_c": 67
+      },
+      {
+        "elapsed_seconds": 62.12,
+        "gpu_total_memory_mib": 4198,
+        "temperature_c": 70
+      },
+      {
+        "elapsed_seconds": 67.18,
+        "gpu_total_memory_mib": 4467,
+        "temperature_c": 71
+      },
+      {
+        "elapsed_seconds": 72.23,
+        "gpu_total_memory_mib": 4482,
+        "temperature_c": 71
+      },
+      {
+        "elapsed_seconds": 77.28,
+        "gpu_total_memory_mib": 4539,
+        "temperature_c": 71
+      },
+      {
+        "elapsed_seconds": 82.33,
+        "gpu_total_memory_mib": 4812,
+        "temperature_c": 72
+      },
+      {
+        "elapsed_seconds": 87.41,
+        "gpu_total_memory_mib": 4966,
+        "temperature_c": 72
+      },
+      {
+        "elapsed_seconds": 92.47,
+        "gpu_total_memory_mib": 4916,
+        "temperature_c": 72
+      },
+      {
+        "elapsed_seconds": 97.53,
+        "gpu_total_memory_mib": 4835,
+        "temperature_c": 73
+      },
+      {
+        "elapsed_seconds": 102.62,
+        "gpu_total_memory_mib": 4895,
+        "temperature_c": 73
+      },
+      {
+        "elapsed_seconds": 107.69,
+        "gpu_total_memory_mib": 4822,
+        "temperature_c": 70
+      },
+      {
+        "elapsed_seconds": 112.74,
+        "gpu_total_memory_mib": 4829,
+        "temperature_c": 75
+      },
+      {
+        "elapsed_seconds": 117.8,
+        "gpu_total_memory_mib": 4850,
+        "temperature_c": 71
+      }
+    ],
+    "status": "success",
+    "exit_code": 0,
+    "elapsed_seconds": 122.8
+  },
+  {
+    "variant": "p128",
+    "patch": 128,
+    "command": [
+      "/home/ricky/.venvs/pointcept-goose/bin/python",
+      "tools/test.py",
+      "--config-file",
+      "configs/goose/semseg-pt-v3m1-0-base.py",
+      "--num-gpus",
+      "1",
+      "--options",
+      "weight=/mnt/f/RADAR/models/GOOSE/challenge_ptv3.pth",
+      "seed=20260831",
+      "enable_amp=false",
+      "model.backbone.enable_flash=false",
+      "model.backbone.enc_patch_size=[128,128,128,128,128]",
+      "model.backbone.dec_patch_size=[128,128,128,128]",
+      "data.test.split=val",
+      "data.test.test_cfg.aug_transform=[[]]",
+      "data.test.data_root=/home/ricky/goose-followup7-20261001",
+      "save_path=/mnt/f/RADAR/outputs/pointcept/goose_followup7_20261001/p128"
+    ],
+    "samples": [
+      {
+        "elapsed_seconds": 0.13,
+        "gpu_total_memory_mib": 1392,
+        "temperature_c": 58
+      },
+      {
+        "elapsed_seconds": 5.22,
+        "gpu_total_memory_mib": 1392,
+        "temperature_c": 57
+      },
+      {
+        "elapsed_seconds": 10.3,
+        "gpu_total_memory_mib": 1470,
+        "temperature_c": 58
+      },
+      {
+        "elapsed_seconds": 15.36,
+        "gpu_total_memory_mib": 1775,
+        "temperature_c": 58
+      },
+      {
+        "elapsed_seconds": 20.46,
+        "gpu_total_memory_mib": 2013,
+        "temperature_c": 57
+      },
+      {
+        "elapsed_seconds": 25.52,
+        "gpu_total_memory_mib": 3632,
+        "temperature_c": 67
+      },
+      {
+        "elapsed_seconds": 30.56,
+        "gpu_total_memory_mib": 3700,
+        "temperature_c": 66
+      },
+      {
+        "elapsed_seconds": 35.62,
+        "gpu_total_memory_mib": 5741,
+        "temperature_c": 69
+      },
+      {
+        "elapsed_seconds": 40.69,
+        "gpu_total_memory_mib": 5736,
+        "temperature_c": 67
+      },
+      {
+        "elapsed_seconds": 45.75,
+        "gpu_total_memory_mib": 5749,
+        "temperature_c": 70
+      },
+      {
+        "elapsed_seconds": 50.83,
+        "gpu_total_memory_mib": 5785,
+        "temperature_c": 70
+      },
+      {
+        "elapsed_seconds": 55.88,
+        "gpu_total_memory_mib": 5739,
+        "temperature_c": 71
+      },
+      {
+        "elapsed_seconds": 60.94,
+        "gpu_total_memory_mib": 5735,
+        "temperature_c": 72
+      },
+      {
+        "elapsed_seconds": 66.0,
+        "gpu_total_memory_mib": 5724,
+        "temperature_c": 73
+      },
+      {
+        "elapsed_seconds": 71.1,
+        "gpu_total_memory_mib": 5744,
+        "temperature_c": 72
+      },
+      {
+        "elapsed_seconds": 76.15,
+        "gpu_total_memory_mib": 5833,
+        "temperature_c": 66
+      },
+      {
+        "elapsed_seconds": 81.21,
+        "gpu_total_memory_mib": 5838,
+        "temperature_c": 61
+      },
+      {
+        "elapsed_seconds": 86.27,
+        "gpu_total_memory_mib": 5739,
+        "temperature_c": 68
+      },
+      {
+        "elapsed_seconds": 91.33,
+        "gpu_total_memory_mib": 5920,
+        "temperature_c": 66
+      },
+      {
+        "elapsed_seconds": 96.39,
+        "gpu_total_memory_mib": 5953,
+        "temperature_c": 66
+      },
+      {
+        "elapsed_seconds": 101.44,
+        "gpu_total_memory_mib": 5916,
+        "temperature_c": 70
+      },
+      {
+        "elapsed_seconds": 106.6,
+        "gpu_total_memory_mib": 5935,
+        "temperature_c": 67
+      },
+      {
+        "elapsed_seconds": 111.65,
+        "gpu_total_memory_mib": 5896,
+        "temperature_c": 71
+      },
+      {
+        "elapsed_seconds": 116.7,
+        "gpu_total_memory_mib": 5885,
+        "temperature_c": 68
+      },
+      {
+        "elapsed_seconds": 121.74,
+        "gpu_total_memory_mib": 5898,
+        "temperature_c": 71
+      },
+      {
+        "elapsed_seconds": 126.79,
+        "gpu_total_memory_mib": 5901,
+        "temperature_c": 73
+      },
+      {
+        "elapsed_seconds": 131.84,
+        "gpu_total_memory_mib": 5895,
+        "temperature_c": 73
+      },
+      {
+        "elapsed_seconds": 136.9,
+        "gpu_total_memory_mib": 5901,
+        "temperature_c": 73
+      },
+      {
+        "elapsed_seconds": 141.95,
+        "gpu_total_memory_mib": 5926,
+        "temperature_c": 73
+      },
+      {
+        "elapsed_seconds": 147.0,
+        "gpu_total_memory_mib": 5901,
+        "temperature_c": 65
+      }
+    ],
+    "status": "success",
+    "exit_code": 0,
+    "elapsed_seconds": 154.09
+  }
+]

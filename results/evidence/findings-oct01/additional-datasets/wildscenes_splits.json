@@ -1,0 +1,84 @@
+{
+  "splits": {
+    "opt2d": {
+      "train": {
+        "frames": 6051,
+        "recording_groups": {
+          "K-01": 1155,
+          "K-03": 2654,
+          "V-01": 518,
+          "V-02": 636,
+          "V-03": 1088
+        }
+      },
+      "val": {
+        "frames": 283,
+        "recording_groups": {
+          "K-01": 283
+        }
+      },
+      "test": {
+        "frames": 2133,
+        "recording_groups": {
+          "K-01": 361,
+          "K-03": 886,
+          "V-01": 139,
+          "V-02": 134,
+          "V-03": 613
+        }
+      }
+    },
+    "opt3d": {
+      "train": {
+        "frames": 7517,
+        "recording_groups": {
+          "K-01": 1358,
+          "K-03": 3310,
+          "V-01": 709,
+          "V-02": 627,
+          "V-03": 1513
+        }
+      },
+      "val": {
+        "frames": 356,
+        "recording_groups": {
+          "K-01": 356
+        }
+      },
+      "test": {
+        "frames": 2705,
+        "recording_groups": {
+          "K-01": 359,
+          "K-03": 1358,
+          "V-01": 141,
+          "V-02": 142,
+          "V-03": 705
+        }
+      }
+    }
+  },
+  "within_dimension_id_overlap": {
+    "opt2d": {
+      "train/val": 0,
+      "train/test": 0,
+      "val/test": 0
+    },
+    "opt3d": {
+      "train/val": 0,
+      "train/test": 0,
+      "val/test": 0
+    }
+  },
+  "cross_dimension_id_overlap": {
+    "train/train": 5758,
+    "train/val": 0,
+    "train/test": 0,
+    "val/train": 0,
+    "val/val": 283,
+    "val/test": 0,
+    "test/train": 0,
+    "test/val": 0,
+    "test/test": 2061
+  },
+  "limits": "Recording-group overlap is not proof of leakage. No raw terrain labels, predictions or geographic separation audited."
+}

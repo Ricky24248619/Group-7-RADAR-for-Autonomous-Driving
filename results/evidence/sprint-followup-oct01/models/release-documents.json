@@ -1,0 +1,221 @@
+{
+  "checked_date": "2026-10-01",
+  "official_sources": [
+    {
+      "repository": "torc-ai/TruckDrive",
+      "commit": "a09217e877fe6bad821f9828240c4c1b64d29da1",
+      "default_branch": "main",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/torc-ai/TruckDrive/a09217e877fe6bad821f9828240c4c1b64d29da1/README.md",
+          "bytes": 7280,
+          "sha256": "708a2f6760518a1fa3d0991cccc517ea177d72678f516289f6c106a33ad6d976",
+          "relevant_lines": [
+            {
+              "line": 3,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 20,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 115,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 120,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 124,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 132,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 133,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 134,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 177,
+              "topics": [
+                "range"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "mmdet_project/README.md",
+          "url": "https://raw.githubusercontent.com/torc-ai/TruckDrive/a09217e877fe6bad821f9828240c4c1b64d29da1/mmdet_project/README.md",
+          "bytes": 734,
+          "sha256": "dfda5a83aa0fae272b625a8fce91514f9074af9b97dcedd9fd2f73e192a5435f",
+          "relevant_lines": [
+            {
+              "line": 22,
+              "topics": [
+                "range"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "repository": "crrasjtu/L-RadSet",
+      "commit": "9eda9266db3109e4f153eeeb43fef3125d213674",
+      "default_branch": "main",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/crrasjtu/L-RadSet/9eda9266db3109e4f153eeeb43fef3125d213674/README.md",
+          "bytes": 19850,
+          "sha256": "b4bb90d2c4677279426b981be099ecf8fee2add6637e890b2444cef2b53e3c4f",
+          "relevant_lines": [
+            {
+              "line": 5,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 7,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 21,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 40,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 63,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 66,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 229,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 235,
+              "topics": [
+                "checkpoint"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "repository": "adept-thu/Dual-Radar",
+      "commit": "9a972df36af319d3953b4a6e672e6a814ec05eb9",
+      "default_branch": "master",
+      "files": [
+        {
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/adept-thu/Dual-Radar/9a972df36af319d3953b4a6e672e6a814ec05eb9/README.md",
+          "bytes": 45867,
+          "sha256": "852945b05c600c9994584cb00663d6a8b44b4c9c7d2e474398e88236089b606b",
+          "relevant_lines": [
+            {
+              "line": 47,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 68,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 71,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 318,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 334,
+              "topics": [
+                "range"
+              ]
+            },
+            {
+              "line": 340,
+              "topics": [
+                "checkpoint"
+              ]
+            },
+            {
+              "line": 455,
+              "topics": [
+                "pretrain"
+              ]
+            },
+            {
+              "line": 456,
+              "topics": [
+                "pretrain"
+              ]
+            },
+            {
+              "line": 467,
+              "topics": [
+                "pretrain"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scope": "Current official README release documentation, no checkpoint inference or raw data access established"
+}
