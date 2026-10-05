@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "scene": "scene_28_3",
+      "variant": "static",
+      "independent_counts_matched": 56
+    },
+    {
+      "scene": "scene_28_3",
+      "variant": "aligned",
+      "independent_counts_matched": 52,
+      "source_files_rehashed": 241
+    },
+    {
+      "scene": "scene_28_15",
+      "variant": "static",
+      "independent_counts_matched": 56
+    },
+    {
+      "scene": "scene_28_15",
+      "variant": "aligned",
+      "independent_counts_matched": 60,
+      "source_files_rehashed": 241
+    }
+  ],
+  "total_independent_counts": 224,
+  "method": "Full clouds with explicit sine/cosine box rotation; no KD-tree or inside_box helper. Calibration matrices and ego-pose interpolation shared with producer; not an independent timing validation."
+}

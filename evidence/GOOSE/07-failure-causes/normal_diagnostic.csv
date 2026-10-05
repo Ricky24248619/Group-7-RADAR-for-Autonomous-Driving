@@ -1,0 +1,5 @@
+true_class,prediction,points,normal_eligible_points,horizontal_points,vertical_points
+rock,ground,788,612,126,30
+rock,other,654,263,3,68
+building,ground,11439,8405,4228,5
+building,other,30842,18435,12373,1003

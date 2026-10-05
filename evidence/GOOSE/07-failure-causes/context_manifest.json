@@ -1,0 +1,52 @@
+{
+  "selection_sha256": "bd0d7a2f00cfab158d9ec11938adcc81f9aa5c9070a9075cce51da1ef36f3f1d",
+  "mapping_sha256": "a4c3e8be1752cdc3d2a4cff0fffb192935ef186cff8d1d9a43dfd7687afb0951",
+  "frames": 3,
+  "points": 644654,
+  "checkpoint_sha256": "314b6402ae7738248136ef0f2a5d49c10cf71a63e94f0cd75fb39b285d6f565e",
+  "baseline_repeat_identical": true,
+  "only_config_differences": "save_path, encoder and decoder attention patch sizes",
+  "runs": {
+    "p64": {
+      "config_sha256": "1d6006ea66b5394c6873a01bc6d28488f53484beabbed823db79b40537585a98",
+      "log_sha256": "e6513fcfd4e77e7feda3eab0671e4c355ac798e85469274f5b06f07d76affbfd",
+      "end_evaluation": true,
+      "predictions_sha256": {
+        "2023-01-20_aying_mangfall_2__0496_1674223774529854911_vls128.bin": "fbf24a266abafb6c0618cb9bbf145bc116d7ebce22ecfbf52488326f70c13539",
+        "2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin": "550724a85662d61319ee81bafdd235e8a333734eb33cfd8281762bc67aa36a47",
+        "2023-01-20_aying_mangfall_2__0498_1674223782614190613_vls128.bin": "deb674b33f00077a79dfdb1b19dbdbe475d4c96cf4f5332e4b54f2e1c33272b1"
+      }
+    },
+    "p64repeat": {
+      "config_sha256": "f4e03e72c2a57c9458df03b3bad705b9c6aa1a7b6953f46fd394f7fec7d3be7e",
+      "log_sha256": "f64b0349e27400e3e84fe04435c292cd3dcfd65424130933667501672063588b",
+      "end_evaluation": true,
+      "predictions_sha256": {
+        "2023-01-20_aying_mangfall_2__0496_1674223774529854911_vls128.bin": "fbf24a266abafb6c0618cb9bbf145bc116d7ebce22ecfbf52488326f70c13539",
+        "2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin": "550724a85662d61319ee81bafdd235e8a333734eb33cfd8281762bc67aa36a47",
+        "2023-01-20_aying_mangfall_2__0498_1674223782614190613_vls128.bin": "deb674b33f00077a79dfdb1b19dbdbe475d4c96cf4f5332e4b54f2e1c33272b1"
+      }
+    },
+    "p128": {
+      "config_sha256": "72ff0686b872dac15842fe6adff7adb5107acd949ee03f869fb08d00e354af54",
+      "log_sha256": "43ff6c907e5594bb81987f8514f2276487abc7a495268b2146f43001f9b9a590",
+      "end_evaluation": true,
+      "predictions_sha256": {
+        "2023-01-20_aying_mangfall_2__0496_1674223774529854911_vls128.bin": "e3e25c1dd73d703e8a8c5e6a5a9d774ffaa48933151ec2de7caf8560cb05dc37",
+        "2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin": "10c8607f164d776dc3570a4ba6af29dc0dc70d8f3249f489905f9215072d2173",
+        "2023-01-20_aying_mangfall_2__0498_1674223782614190613_vls128.bin": "3be49508d9f5386edb7119e10f0ccd7b0231cd7b70f3fd0547097daeaf9b57f7"
+      }
+    },
+    "p256": {
+      "config_sha256": "237ff3ba850d3097066ec071687e6bb830c0f439debb71f1101f64a9ba3bcf51",
+      "log_sha256": "38de08bac1219dd64b3cc2a0cb41950f3ba92492dbd602d76e7aa8c9bbbb4fe9",
+      "end_evaluation": true,
+      "predictions_sha256": {
+        "2023-01-20_aying_mangfall_2__0496_1674223774529854911_vls128.bin": "6f81f68f1509946261aed06075ce0bd363ddd77e2f6cb8a1278c7a3fe3c02e38",
+        "2023-01-20_aying_mangfall_2__0497_1674223778204567633_vls128.bin": "fcbe6e8e585cb97741a599e1b24d14e7ade5ca227b7bbe17a5e9c5ca55fe64aa",
+        "2023-01-20_aying_mangfall_2__0498_1674223782614190613_vls128.bin": "f47616a9e41163c95169b0a5220adb948b91851fd6517622e4c039813a38877b"
+      }
+    }
+  },
+  "limits": "Post-hoc adjacent frames from one scene; not a held-out accuracy benchmark. Same checkpoint and fixed seed; original 24-frame run used a different frame order and random-sampling state."
+}

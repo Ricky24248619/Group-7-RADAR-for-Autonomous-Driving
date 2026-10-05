@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "owner": "Ricky Yuen",
+  "date": "2026-10-01",
+  "status": "success",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "environment": {
+    "os": "Windows",
+    "hardware": "CPU; no new inference or GPU work",
+    "python": "3.11.9",
+    "packages": {}
+  },
+  "notes": "Successful bounded descriptive analysis, not a matched detector benchmark, client acceptance or a claim of twelve weeks of effort.",
+  "id": "0035-boreas-wildscenes-bounded-audit",
+  "title": "New Boreas rolling scan/range sample and WildScenes split audit",
+  "dataset": "Boreas boreas-2021-09-02-11-42; WildScenes official opt2d/opt3d metadata at 9eb4e10",
+  "sensor_configuration": "Boreas Navtech 2D scanning radar and Velodyne Alpha Prime LiDAR; WildScenes camera/LiDAR metadata only",
+  "annotation_schema": "Boreas raw returns/images, no object labels used; WildScenes frame identities and labelled-path references only",
+  "split": "First three chronological radar scans with nearest LiDAR from first twelve; six official WildScenes split CSVs",
+  "commands": [
+    "python scripts/analyse_additional_datasets.py --acquire --source-root <outside-repo>"
+  ],
+  "evidence": [
+    "docs/additional-dataset-findings-oct01.md",
+    "results/evidence/findings-oct01/additional-datasets/manifest.json",
+    "results/evidence/findings-oct01/additional-datasets/boreas_scans.csv",
+    "results/evidence/findings-oct01/additional-datasets/wildscenes_splits.json",
+    "experiment-log/0029-findings-and-additional-datasets.md"
+  ],
+  "measurements": [
+    {
+      "name": "Boreas scan pairs",
+      "value": 3,
+      "scope": "One sequence, preselected before scoring; not object or weather performance"
+    },
+    {
+      "name": "Public raw sample bytes",
+      "value": 16441068,
+      "unit": "bytes",
+      "scope": "Three radar PNG files and three LiDAR binary files retained outside Git"
+    },
+    {
+      "name": "WildScenes opt3d validation frames",
+      "value": 356,
+      "scope": "All K-01; metadata audit, not terrain inference"
+    }
+  ]
+}
