@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "id": "0035-truckscenes-density-matched-support",
+  "id": "0041-truckscenes-density-matched-support",
   "title": "Density-matched LiDAR control on TruckScenes object support",
   "owner": "Fatima Sher",
   "date": "2026-09-29",
@@ -170,7 +170,7 @@
     "scripts/truckscenes_density_matched_runner.py",
     "tests/test_truckscenes_density_matched_support.py",
     "tests/test_truckscenes_density_matched_runner.py",
-    "experiment-log/0030-truckscenes-density-matched-support.md"
+    "experiment-log/0034-truckscenes-density-matched-support.md"
   ],
   "notes": "This is a control for records 0016 and 0017, not a new measurement of the dataset. It asks one narrow question: how much of the long-range LiDAR support advantage is explained by LiDAR simply producing more returns? Beyond 50 m the answer is most of it. At 150-400 m and margin 0, density-matched LiDAR support falls from 91.7% to 12.6%, below radar's 15.2%; at margin 0.5 it is 15.5% against radar's 28.0%. Both margins agree that the long-range advantage does not survive an equal point budget. The short-range reading is not robust and is reported as such: at margin 0 matched LiDAR still leads radar below 50 m (7,901.5 against 6,753), but at margin 0.5 it does not (8,425.2 against 8,922), so no close-range claim is made. What this does not show: that radar detects better than LiDAR. No model is run, no detector is scored, and geometric support is not detection recall. Uniform random thinning is one specific null model; a genuinely lower-resolution sensor would thin structurally rather than at random, so this bounds how much of the gap arithmetic explains rather than predicting how a cheaper sensor would behave. Fusion is the controlled vocabulary for a multi-modality characterisation, not point-cloud or detector fusion. The exact expectation comes from the hypergeometric distribution and is not estimated; 200 seeded draws give the percentile spread, and the exact value falls inside the 5th-95th band in all eight rows. Per-box draws treat boxes within a frame as independent, which affects the spread but not the expectation. Inherits every limitation of record 0016, including LiDAR-based annotation selection, residual motion and articulation, and repeated observations across scenes that are not independent trials. Recorded radar returns stop near 189.5 m, bounding any statement about bands beyond it. Outputs regenerate byte-identically on macOS and Linux, so no number here is machine-specific. Agent-assisted analysis; not an independent human signoff."
 }
