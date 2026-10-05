@@ -1,0 +1,20 @@
+{
+  "hash_definition": "Repository UTF-8 text with LF endings",
+  "sources_sha256": {
+    "docs/detector-compatibility-decision.md": "34912caaf08cb8a9bb983813d7a9bf8ff95fda2d8f21578729f8ef95bc0113b5",
+    "docs/evidence/goose-failure-causes/nearest_ground_diagnostic.csv": "7d8d0dbdb47c04e38019c5e49496569803a7d38b26bfa16ab5f495790272ccfa",
+    "docs/evidence/missing-support/matched_track_summary.csv": "4a39e6c3c938324d5956af479ad46bb315c588ccfb9654d902eca3a1e05f5d8a",
+    "docs/evidence/radiate-fog/observations.csv": "5137b5d4ee3aa2d185411cd2e5eb93853da558540ee7be9f22192bd95fbf34db",
+    "docs/goose-failure-causes.md": "0b91635d40a548db46d4229a421dcb171433f876cc426b6ac6fdf2a8365ae89a",
+    "docs/radiate-fog-pilot.md": "a09423cbed8ad0f91984513055729b0a8f77b45ea907162d011045cbfe755558",
+    "docs/truckdrive-multiscene-result.md": "2e9ebf3577ab24ab8028df8714254f4a94f3f1f1abc3c90118d91f55880321b1",
+    "results/evidence/sprint-followup-oct01/class_range_support.csv": "14b7a8386b4954497c1c2f885fc0584bf0ae8c5408d067e1a850260d59c0073c",
+    "results/evidence/sprint-followup-oct01/models/release-documents.json": "14334177d26c5681f95631354eb0cee38e2d15447e0d890c998bebc80b5a7b29",
+    "results/evidence/sprint-followup-oct01/terrain/fine_class_comparison.csv": "07bc0ec8e8558ceb0988fd7aa3a0784dbd6125882ac6cae07f4ea25e2d4de45f",
+    "results/evidence/sprint-followup-oct01/terrain/frame_comparison.csv": "e96144add22e98ddef40aea7b441c0088e16c9595996efefea20698c7d1fe320",
+    "results/evidence/sprint-followup-oct01/terrain/manifest.json": "edefbb072da2b955fcc8c5c3feb778119e9636271c85312bd7bb7da3e64067f9",
+    "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv": "f571cf2e6fe1d222051e4d4a5b6a698e21d6fe5ea1f6dcfb01a7ac19b8a4c4a0",
+    "results/evidence/sprint-followup-oct01/truckdrive_holdout_support.csv": "ad3894c9be86e95403eb5a6653b6902255bcc8e60b4f5644653da0acf7c12fe5",
+    "results/evidence/sprint-followup-oct01/weather_support.csv": "a582274e3fdff362c1b7b9dd2ef480c6a5d79d7fbef6228571f9f2a00a3475dc"
+  }
+}

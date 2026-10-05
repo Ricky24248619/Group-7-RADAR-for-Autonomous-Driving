@@ -1,0 +1,29 @@
+{
+  "checkpoint": "challenge_ptv3.pth, epoch 33",
+  "pointcept_commit": "92f91ccedba88bda72d1727d6f5212efd0351414",
+  "seed": 20260831,
+  "precision": "FP32",
+  "flash_attention": false,
+  "patch_sizes": 64,
+  "test_augmentations": 1,
+  "packages": {
+    "torch": "2.0.1+cu117",
+    "torchvision": "0.15.2+cu117",
+    "spconv-cu117": "2.3.6",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "timm": "0.9.16",
+    "torch-scatter": "2.1.2+pt20cu117"
+  },
+  "completed_frames": 24,
+  "points": 4192081,
+  "end_evaluation": true,
+  "exit_code": 0,
+  "input_sha256": {
+    "checkpoint": "314b6402ae7738248136ef0f2a5d49c10cf71a63e94f0cd75fb39b285d6f565e",
+    "saved_config": "876d43c0c407c0c3e06cc790b46f2c306cc43f40687c968c4c8a0a9013454820",
+    "test_log": "15f0a72e3b7df36eb725749139f8914e2093821cf17bf26558e9c2e28991a595",
+    "runtime_patch": "0955e007bd47be65974152f60c77fe95c748a609c92575ef5f6c4aff4d9cd0e8",
+    "selection": "19db44e7791cd317afd20c5208ccf17b76f266ecc06566f5142511e019620a76"
+  }
+}
