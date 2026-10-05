@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "id": "0034-truckscenes-range-band-coverage",
+  "id": "0040-truckscenes-range-band-coverage",
   "title": "TruckScenes matched radar and LiDAR return coverage by distance band",
   "owner": "Fatima Sher",
   "date": "2026-09-29",
@@ -142,7 +142,7 @@
     "TruckScenes - Fatima/sensor-inventory.csv",
     "docs/evidence/truckscenes/range_bands_share.png",
     "docs/evidence/truckscenes/range_bands_counts.png",
-    "experiment-log/0029-truckscenes-range-band-coverage.md"
+    "experiment-log/0033-truckscenes-range-band-coverage.md"
   ],
   "notes": "Coverage, not detection. These are counts of where sensor returns land. No detection model is run, no annotation is read, and a populated far band is not evidence that anything can be detected at that distance. The stock TruckScenes v1.2.0 evaluator produces no detection score beyond 150 m at all. Point density is not a quality measure: LiDAR produced roughly 36 times as many returns as radar here, which describes density and says nothing about detection performance for either modality. The LiDAR channel is the confound to read first. LIDAR_TOP_FRONT is a roof-mounted Ouster OS0 rated 35 m at 10% reflectivity, angled down for blind-spot coverage; the mounting heights in the dataset's own calibrated_sensor table (3.23-3.32 m on the roof, against 2.19 m for the corner modules) match the paper's placement and are recorded in sensor-inventory.csv. Its returns concentrating below 50 m is that sensor doing its job, not a finding about LiDAR range. The comparison here is channel-specific and must not be read as a modality-level result; the like-for-like channel against RADAR_LEFT_FRONT is LIDAR_LEFT, the corner-module Hesai Pandar64 rated 200 m, and repeating this measurement there is the next step. Fusion is the controlled vocabulary for a multi-modality characterisation, not point-cloud or detector fusion. Fields of view differ between channels and are not accounted for. Shares are of the returns in this 10-sample subset, never of the dataset. A band that was measured and held no returns is a real 0; a channel absent for a sample reads as no data in the CSV and that sample is excluded from the aggregate sample count. Agent-assisted analysis; not an independent human signoff. Acceptance criterion A-6, regeneration by someone outside the pair, has not yet been performed."
 }
