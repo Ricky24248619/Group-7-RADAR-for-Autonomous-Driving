@@ -1,0 +1,57 @@
+{
+  "input_sha256_lf_normalized": {
+    "truckscenes/paired-point-motion-support/object_counts.csv": "8bdc290998047cf55d7a4e707f7be3d6f7ac91c4df592dd82bee87d8824ee57d",
+    "truckdrive-multiscene/scene_28_1/static/object_counts.csv": "b32e6edb3056464760fa712c8ff2c702ece61f7a7f26abe1a4315b9ff1a0cd56",
+    "truckdrive-multiscene/scene_28_6/static/object_counts.csv": "be8979a5c8613d403c0f9378e4e001023194ef6bcf561512f42c2fb8a1cc8206",
+    "truckdrive-multiscene/scene_28_12/static/object_counts.csv": "b3532875f6dd2cd21626c06caf808cd4d2169dae19dd9d29bad6326a134b1b99",
+    "truckdrive-multiscene/scene_28_18/static/object_counts.csv": "ce326d01573db7d957aec4652f553451a5150b2837e61895e36900c47971fccf",
+    "truckdrive-multiscene/scene_28_24/static/object_counts.csv": "1c7d393dc9ccfd21dad5efa11693b3e776438394ac72a5268ff85eb21ab18dea",
+    "truckdrive-multiscene/scene_28_1/aligned/object_counts.csv": "1e5be292296a8f3da06be44669307ff0b29e942a30c3a2a15982c9c7788d6bce",
+    "truckdrive-multiscene/scene_28_6/aligned/object_counts.csv": "ca5677f69e57f513d7d9edca06b44948c6c4f187e3f0582308d9133fd9b001b2",
+    "truckdrive-multiscene/scene_28_12/aligned/object_counts.csv": "ebfe70feb12d2892807759d72b472ac57f1e742ab9d6348737c4600682774418",
+    "truckdrive-multiscene/scene_28_18/aligned/object_counts.csv": "8d13b2c74be2cbdaac5c128115205cd4017acb32c13a21ef1958c9f80dc7f1a4",
+    "truckdrive-multiscene/scene_28_24/aligned/object_counts.csv": "c7116689e800771326f9c2b519f3541f333d56efc0f2f99604868192906dc359"
+  },
+  "bands": [
+    [
+      0,
+      25
+    ],
+    [
+      25,
+      50
+    ],
+    [
+      50,
+      75
+    ],
+    [
+      75,
+      100
+    ],
+    [
+      100,
+      150
+    ],
+    [
+      150,
+      200
+    ],
+    [
+      200,
+      250
+    ],
+    [
+      250,
+      300
+    ],
+    [
+      300,
+      400
+    ]
+  ],
+  "semantics": "Lower inclusive, upper exclusive planar object-center range. Exact and +0.5 m box counts; >=1 return defines support. No object-box denominator for roads or grass.",
+  "timing": "TruckScenes prior paired per-point ego correction; TruckDrive static and ego-aligned hypotheses on identical 190-frame cohort.",
+  "tracks": "Same native-class tracks in both bands, equal-track mean of per-band support fractions; no causal claim, independence or population confidence intervals.",
+  "limitations": "Annotation-conditioned. Labels may favour LiDAR. Hardware, occlusion, motion, visibility and class composition differ. No detector predictions or false-positive evaluation."
+}

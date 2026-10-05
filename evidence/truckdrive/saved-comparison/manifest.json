@@ -1,0 +1,10 @@
+{
+  "input": "TruckDrive - Kelsey/dataset-statistics.md",
+  "sha256": "0fbc62c6c6c85103f20d764a89530fbed3a5aacc43a9cf8811c57846616230fc",
+  "status": "Reanalysis of committed teammate tables; raw data not reproduced on this machine",
+  "raw_download_status": "Hugging Face account access confirmed; Chrome blocked file host with ERR_BLOCKED_BY_CLIENT",
+  "sampling": "First shared radar/annotation sync ID in each of 24 scenes; not all 12502 radar frames",
+  "coordinate_frame": "Original joint-radar frame from source script; not common ego aligned",
+  "paired_lidar_ranges": "Unavailable in the committed evidence",
+  "selection_bias": "scene_28_22 was selected after observing the highest distant-return count"
+}

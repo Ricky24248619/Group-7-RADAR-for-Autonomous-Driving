@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "id": "0015-truckdrive-saved-evidence-reanalysis",
+  "title": "TruckDrive committed radar-range and class-table reanalysis",
+  "owner": "Ricky Yuen",
+  "date": "2026-09-22",
+  "status": "success",
+  "dataset": "TruckDrive mini, committed Kelsey statistics (source SHA-256 in manifest)",
+  "sensor_configuration": "Saved statistics of joint radar; no raw local sensor read",
+  "annotation_schema": "Committed 27-class bounding-box count table plus separate selected-frame radar ranges",
+  "task_type": "dataset-characterisation",
+  "modality": "radar",
+  "split": "24 selected annotated radar frames for ranges; 4800 annotation frames for class counts",
+  "environment": {
+    "os": "Windows",
+    "hardware": "Local CPU; no new GPU/model inference",
+    "python": "3.11.9",
+    "packages": {
+      "numpy": "2.4.6",
+      "matplotlib": "3.11.2",
+      "PyYAML": "6.0.3"
+    }
+  },
+  "commands": [
+    "python scripts/plot_dataset_support.py"
+  ],
+  "measurements": [
+    {
+      "name": "saved radar returns",
+      "value": 71206,
+      "scope": "One first shared radar/annotation sync ID in each of 24 mini scenes"
+    },
+    {
+      "name": "saved radar returns at >=150 m",
+      "value": 6746,
+      "scope": "Denominator 71206 returns over 24 selected frames; source joint-radar coordinates"
+    },
+    {
+      "name": "saved box observations",
+      "value": 526148,
+      "scope": "Separate 27-class table across 4800 annotation frames"
+    }
+  ],
+  "evidence": [
+    "docs/sprint3-dataset-findings.md",
+    "experiment-log/0012-dataset-range-and-support-comparison.md",
+    "TruckDrive - Kelsey/dataset-statistics.md",
+    "docs/evidence/truckdrive_/saved-comparison/manifest.json",
+    "docs/evidence/truckdrive_/saved-comparison/radar_ranges.csv",
+    "docs/evidence/truckdrive_/saved-comparison/class_counts.csv"
+  ],
+  "notes": "Success applies only to reaggregation of committed tables. Raw reproduction remains blocked: account access granted but Chrome blocked the file CDN with ERR_BLOCKED_BY_CLIENT. No local TruckDrive download was verified. Scene_28_22 selection is biased toward long-range radar; no paired LiDAR range distribution or detector result is available."
+}
