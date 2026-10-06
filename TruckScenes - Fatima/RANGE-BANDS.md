@@ -131,9 +131,32 @@ channel-specific and must not be read as a modality-level result.**
 
 The LiDAR to compare against `RADAR_LEFT_FRONT` is **`LIDAR_LEFT`**: the same
 corner module, the same side of the truck, a nearly identical origin, and
-rated to 200 m rather than 35. Repeating the measurement on that channel is
-the next step, and until it is done no radar-versus-LiDAR range claim should
-be made from this data.
+rated to 200 m rather than 35.
+
+**That comparison has since been made, and not on this page.** Record
+[0012](../results/records/0012-truckscenes-shared-frame-coverage.json) (Ricky
+Yuen, 22 September) measures all three channels in a shared reference ego
+frame, restricted to a matched forward ±30° sector, across all 80 official
+`mini_val` samples. Both of the limitations listed below — no common
+coordinate frame, and unmatched fields of view — are corrected there, which
+makes it the stronger measurement and the one a radar-versus-LiDAR range
+question should be taken to:
+
+| Channel | Returns at >=150 m | Denominator |
+|---|---:|---:|
+| `RADAR_LEFT_FRONT` | 4,643 | 37,482 |
+| `LIDAR_LEFT` (corner Hesai) | 26,367 | 1,863,339 |
+| `LIDAR_TOP_FRONT` (roof Ouster) | 0 | 1,087,879 |
+
+The corner LiDAR reaches well past 150 m. The roof LiDAR produces nothing out
+there at all, which is exactly what the mounting heights above predict.
+
+**No range claim of any kind follows from this page's own numbers**, which
+remain in per-sensor frames with unmatched fields of view. Record 0012 carries
+its own limits: 80 samples drawn from two scenes, and rigid ego alignment that
+leaves residual timing, scan-motion, object-motion, vertical field-of-view and
+occlusion differences. It reports separate channel distributions in a common
+spatial region, not a sensor accuracy ranking.
 
 **One radar of six against one LiDAR of six.** These two channels were chosen
 to match the existing Sprint 2 figures and statistics, not because they are
