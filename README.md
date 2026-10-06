@@ -9,6 +9,9 @@ autonomous trucking — running existing open-source models on public datasets,
 recording everything reproducibly, and handing over a documented body of work to
 a future team.
 
+**Continuing this project? Start with [`HANDOVER.md`](HANDOVER.md):** what we
+established, how to set up and reproduce it, what is open and the traps to avoid.
+
 **Finalized 6 October synthesis:** [twenty LiDAR/radar and off-road findings](docs/final-findings-oct03.md) provides five main messages followed by twenty evidence-linked conclusions on sensing, terrain, navigation information and evaluation. The [earlier temporal study](docs/temporal-terrain-findings-oct03.md) retains its original measurements. Sensor support, recognition, semantic labels and physical traversal remain separate.
 
 **Failure-cause follow-up:** [controlled GOOSE attention-context test](docs/goose-failure-causes.md)
@@ -93,6 +96,7 @@ and Fariya/Kelsey (TruckDrive), per D-08. Confirm the next allocation at the cat
 
 | Path | What it is |
 |---|---|
+| `HANDOVER.md` | **Entry point for a successor team**: findings, setup, open work, traps |
 | `DATASET_OVERVIEW.md` | Pre-kickoff research: TruckScenes / TruckDrive facts, sizes, licences |
 | `SETUP.md` | The working environment: what's installed, where, how to use it |
 | `decision-log.md` | Every decision that constrains the work, with reasoning (D-01…) |

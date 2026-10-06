@@ -7,10 +7,9 @@ team**. It covers the shared infrastructure — the results store, the validator
 the ownership guard, the GOOSE renderer and the templates — and says where each one is
 weak.
 
-**Scope boundary.** This is the *tooling* handover. The handover of *findings* — what
-the project concluded and how confident it is — is RY-S3-1 and lives elsewhere. If you
-want to know what the numbers mean, start with `docs/dataset-comparison.md` and the
-dataset surveys, not this file.
+**Scope boundary.** This is the *tooling* handover. For the project as a whole (what
+it concluded, how to set up and reproduce it, and what is open), start with
+[`HANDOVER.md`](../HANDOVER.md) at the repository root.
 
 ---
 
@@ -199,11 +198,12 @@ Recorded rather than hidden, per this project's own rule.
   across macOS and Windows — useful, but both are insiders. Nobody outside the team has
   cloned this and rebuilt a result.
 - **WS1, the cross-team sensor survey.** Index, assignments and claims ledger exist at
-  `docs/domain-study/`; **zero entries**. Six people each owe one source. This is why
-  P-2 sits at "partly met".
-- **No matched radar-versus-LiDAR detector benchmark.** The project's headline question
-  is unanswered. What exists is dataset characterisation, sensor-coverage counts and
-  one camera-only transfer experiment scoring effectively zero.
+  `docs/domain-study/`. As of 6 October there is one source entry (Bonn), plus ledger
+  rows from the AD-3 industry check; five keynote sources are unwatched. This is why P-2
+  sits at "partly met".
+- **No matched radar-versus-LiDAR detector benchmark.** No radar detector could run. On
+  TruckScenes, a camera model (mAP 0.0046) and a LiDAR model (mAP 0.1005 with all six
+  LiDARs) are scored; see [`HANDOVER.md`](../HANDOVER.md) §2.2.
 - **GOOSE validation split: 960 published, 961 extracted.** Internally consistent, cause
   unexplained. Needs a local-versus-published file inventory.
 
