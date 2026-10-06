@@ -1,0 +1,313 @@
+{
+  "date": "2026-10-03",
+  "source_revision": "6b495776b3b6f2e9b18fef9f51184ce16d1a0ef7",
+  "findings": [
+    {
+      "id": "D01",
+      "number": 1,
+      "original_ids": [
+        "D01"
+      ],
+      "decision": "Early information for trucks",
+      "sources": [
+        "docs/evidence/missing-support/matched_track_summary.csv",
+        "docs/truckdrive-multiscene-result.md",
+        "results/evidence/sprint-followup-oct01/truckdrive_holdout_support.csv"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D02",
+      "number": 2,
+      "original_ids": [
+        "D02"
+      ],
+      "decision": "Coverage of important target types",
+      "sources": [
+        "results/evidence/sprint-followup-oct01/class_range_support.csv"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D03",
+      "number": 3,
+      "original_ids": [
+        "D03"
+      ],
+      "decision": "Complementary sensing",
+      "sources": [
+        "docs/truckdrive-multiscene-result.md",
+        "results/evidence/sprint-followup-oct01/truckdrive_holdout_support.csv"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D04",
+      "number": 4,
+      "original_ids": [
+        "D04"
+      ],
+      "decision": "Operating conditions",
+      "sources": [
+        "docs/evidence/radiate-fog/observations.csv",
+        "docs/radiate-fog-pilot.md",
+        "results/evidence/sprint-followup-oct01/weather_support.csv"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D05",
+      "number": 5,
+      "original_ids": [
+        "D05"
+      ],
+      "decision": "Consequential terrain interpretation errors",
+      "sources": [
+        "docs/evidence/goose-failure-causes/nearest_ground_diagnostic.csv",
+        "docs/goose-failure-causes.md",
+        "results/evidence/sprint-followup-oct01/terrain/fine_class_comparison.csv",
+        "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D06",
+      "number": 6,
+      "original_ids": [
+        "D06"
+      ],
+      "decision": "Surface categories and camera follow-up",
+      "sources": [
+        "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D07",
+      "number": 7,
+      "original_ids": [
+        "D07",
+        "D17"
+      ],
+      "decision": "Model upgrades and resource cost",
+      "sources": [
+        "results/evidence/sprint-followup-oct01/terrain/frame_comparison.csv",
+        "results/evidence/sprint-followup-oct01/terrain/manifest.json",
+        "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv",
+        "results/evidence/p3-p4-oct03/saved_model_cost.csv"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D08",
+      "number": 8,
+      "original_ids": [
+        "D08"
+      ],
+      "decision": "Coverage of operating environments",
+      "sources": [
+        "results/evidence/sprint-followup-oct01/terrain/fine_class_comparison.csv",
+        "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D09",
+      "number": 9,
+      "original_ids": [
+        "D09"
+      ],
+      "decision": "Validity of sensor comparisons",
+      "sources": [
+        "docs/client-comparison-brief.md",
+        "docs/evidence/truckscenes/paired-support-verification.json"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D10",
+      "number": 10,
+      "original_ids": [
+        "D10"
+      ],
+      "decision": "Complete perception range",
+      "sources": [
+        "docs/detector-compatibility-decision.md",
+        "results/evidence/sprint-followup-oct01/models/release-documents.json"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D12",
+      "number": 11,
+      "original_ids": [
+        "D12"
+      ],
+      "decision": "Unnecessary route restriction",
+      "sources": [
+        "results/evidence/p3-p4-oct03/terrain_directional_frames.csv"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D13",
+      "number": 12,
+      "original_ids": [
+        "D13"
+      ],
+      "decision": "Preserving hazards during map aggregation",
+      "sources": [
+        "results/evidence/p3-p4-oct03/terrain_cells.csv"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D14",
+      "number": 13,
+      "original_ids": [
+        "D14",
+        "D16"
+      ],
+      "decision": "Coverage of important terrain conditions",
+      "sources": [
+        "docs/temporal-terrain-findings-oct03.md",
+        "results/evidence/p3-p4-oct03/wildscenes_taxonomy.csv",
+        "results/evidence/p3-p4-oct03/wildscenes_class_range.csv"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D15",
+      "number": 14,
+      "original_ids": [
+        "D15"
+      ],
+      "decision": "Model and dataset compatibility",
+      "sources": [
+        "results/evidence/p3-p4-oct03/wildscenes_taxonomy.csv",
+        "results/evidence/p3-p4-oct03/terrain_manifest.json"
+      ],
+      "closest_previous": null,
+      "distinct_reason": "Preserved distinct prior result; reviewed consolidations applied"
+    },
+    {
+      "id": "D18",
+      "number": 15,
+      "original_ids": [],
+      "decision": "Observed versus unknown map coverage",
+      "sources": [
+        "results/evidence/p5-oct03/vehicle_footprint.csv"
+      ],
+      "closest_previous": "D05",
+      "distinct_reason": "Absent map observations, not wrong labels on recorded points."
+    },
+    {
+      "id": "D19",
+      "number": 16,
+      "original_ids": [],
+      "decision": "Vertical geometry and clearance inputs",
+      "sources": [
+        "results/evidence/p5-oct03/ground_reference.csv",
+        "results/evidence/p5-oct03/relative_height.csv",
+        "results/evidence/p5-oct03/height_columns.csv"
+      ],
+      "closest_previous": "D13",
+      "distinct_reason": "Preserving vertical location is different from preserving a minority hazard during majority voting."
+    },
+    {
+      "id": "D20",
+      "number": 17,
+      "original_ids": [],
+      "decision": "Local geometry and estimate eligibility",
+      "sources": [
+        "results/evidence/p5-oct03/surface_shape.csv"
+      ],
+      "closest_previous": "D06",
+      "distinct_reason": "Native/coarse surface meaning and measured geometric shape require different outputs and validation."
+    },
+    {
+      "id": "D21",
+      "number": 18,
+      "original_ids": [],
+      "decision": "Vehicle footprint and surrounding support",
+      "sources": [
+        "results/evidence/p5-oct03/vehicle_footprint.csv"
+      ],
+      "closest_previous": "D13",
+      "distinct_reason": "Neighbouring-cell body footprint differs from labels being lost inside one cell."
+    },
+    {
+      "id": "D22",
+      "number": 19,
+      "original_ids": [],
+      "decision": "Modality-specific visibility and evaluation",
+      "sources": [
+        "results/evidence/p5-oct03/camera_visibility.csv"
+      ],
+      "closest_previous": "D02",
+      "distinct_reason": "Visibility metadata describes the camera panorama, distinct from target-type support averages."
+    },
+    {
+      "id": "D23",
+      "number": 20,
+      "original_ids": [],
+      "decision": "Radar response interpretation and background checks",
+      "sources": [
+        "results/evidence/p5-oct03/fog_background.csv"
+      ],
+      "closest_previous": "D04",
+      "distinct_reason": "Signal interpretation within the fog recording differs from comparing weather-qualified sensor capability."
+    }
+  ],
+  "source_sha256_lf": {
+    "docs/evidence/missing-support/matched_track_summary.csv": "4a39e6c3c938324d5956af479ad46bb315c588ccfb9654d902eca3a1e05f5d8a",
+    "docs/truckdrive-multiscene-result.md": "2e9ebf3577ab24ab8028df8714254f4a94f3f1f1abc3c90118d91f55880321b1",
+    "results/evidence/sprint-followup-oct01/truckdrive_holdout_support.csv": "ad3894c9be86e95403eb5a6653b6902255bcc8e60b4f5644653da0acf7c12fe5",
+    "results/evidence/sprint-followup-oct01/class_range_support.csv": "14b7a8386b4954497c1c2f885fc0584bf0ae8c5408d067e1a850260d59c0073c",
+    "docs/evidence/radiate-fog/observations.csv": "5137b5d4ee3aa2d185411cd2e5eb93853da558540ee7be9f22192bd95fbf34db",
+    "docs/radiate-fog-pilot.md": "a09423cbed8ad0f91984513055729b0a8f77b45ea907162d011045cbfe755558",
+    "results/evidence/sprint-followup-oct01/weather_support.csv": "a582274e3fdff362c1b7b9dd2ef480c6a5d79d7fbef6228571f9f2a00a3475dc",
+    "docs/evidence/goose-failure-causes/nearest_ground_diagnostic.csv": "7d8d0dbdb47c04e38019c5e49496569803a7d38b26bfa16ab5f495790272ccfa",
+    "docs/goose-failure-causes.md": "0b91635d40a548db46d4229a421dcb171433f876cc426b6ac6fdf2a8365ae89a",
+    "results/evidence/sprint-followup-oct01/terrain/fine_class_comparison.csv": "07bc0ec8e8558ceb0988fd7aa3a0784dbd6125882ac6cae07f4ea25e2d4de45f",
+    "results/evidence/sprint-followup-oct01/terrain/pooled_class_comparison.csv": "f571cf2e6fe1d222051e4d4a5b6a698e21d6fe5ea1f6dcfb01a7ac19b8a4c4a0",
+    "results/evidence/sprint-followup-oct01/terrain/frame_comparison.csv": "e96144add22e98ddef40aea7b441c0088e16c9595996efefea20698c7d1fe320",
+    "results/evidence/sprint-followup-oct01/terrain/manifest.json": "edefbb072da2b955fcc8c5c3feb778119e9636271c85312bd7bb7da3e64067f9",
+    "results/evidence/p3-p4-oct03/saved_model_cost.csv": "1c17f864433bbebdca67e0bf590d82d3144efc133a8c2c1d7c91e4032acace4f",
+    "docs/client-comparison-brief.md": "86a947190b7971d0b00fbc4e8f44dad2e1ccd30306efabaf0841c96a4463b885",
+    "docs/evidence/truckscenes/paired-support-verification.json": "7d5e13d5023e93bd89923e26843647e17d53941a5931b980afb890d48a8ba8e3",
+    "docs/detector-compatibility-decision.md": "34912caaf08cb8a9bb983813d7a9bf8ff95fda2d8f21578729f8ef95bc0113b5",
+    "results/evidence/sprint-followup-oct01/models/release-documents.json": "14334177d26c5681f95631354eb0cee38e2d15447e0d890c998bebc80b5a7b29",
+    "results/evidence/p3-p4-oct03/terrain_directional_frames.csv": "39a610abdd148ba0a7e135135fe7c93d1b60cf6ba616e4cda20599be24c89bec",
+    "results/evidence/p3-p4-oct03/terrain_cells.csv": "e43620d29cb9d1b7f1651b1a1917d5616990a1b687ffea95f950560c2e24cece",
+    "docs/temporal-terrain-findings-oct03.md": "5fa61321b8926b47652012b2350b91984d960edb5ff60f109707457b6ebd01dc",
+    "results/evidence/p3-p4-oct03/wildscenes_taxonomy.csv": "66e808160f3cc3db0ca37f6f2d63d1f93db1908f58d31cb7fea1e21436c2baa1",
+    "results/evidence/p3-p4-oct03/wildscenes_class_range.csv": "114f6c1499ab11a5a05a8de088a75f8de9eda7d9c2adbf4398d6c7a3b5a65013",
+    "results/evidence/p3-p4-oct03/terrain_manifest.json": "85dd37a0cd5637f75cbb59dfd3b1f1e2acceda4ade624238b8677d74e63a0e85",
+    "results/evidence/p5-oct03/vehicle_footprint.csv": "cfda7af021362aff07a93e0b19e4c6e83d72f969393ea68155cb2e33c44d451f",
+    "results/evidence/p5-oct03/ground_reference.csv": "ba2dc73f86cfeda87ed85b237f7a8e163965682538f953475bbae12bf2b39f06",
+    "results/evidence/p5-oct03/relative_height.csv": "042d80a5d623dbefc87bddf591104e8b83ef642414345b6933f1acc3a7a54de4",
+    "results/evidence/p5-oct03/height_columns.csv": "4852825f4af12138281c37180ef7e698af4ac94ed907ba93172d8aa7fd644fda",
+    "results/evidence/p5-oct03/surface_shape.csv": "8448481453a3da1928e23bd0951ea6fc59a0409ab8ab3c92b6dab934a166884f",
+    "results/evidence/p5-oct03/camera_visibility.csv": "5454d5b060ec8d5050a336c118233896237794ae1eba32cebc03589d5ec1ef10",
+    "results/evidence/p5-oct03/fog_background.csv": "f840123dbce4fbc1095ba87dce585630e98895dc2192cb10b12cc96a861e3c3b"
+  },
+  "supporting_D11": "Retained under D01/D03; not counted separately",
+  "original_evidence_retained": true,
+  "client_report_uploaded": false,
+  "private_plan_uploaded": false,
+  "method_limits": "These are analyst-reviewed cohort findings; human review of all final wording and client acceptance are not inferred."
+}

@@ -1,0 +1,49 @@
+{
+  "dataset": "RELLIS-3D",
+  "status": "Pinned primary-source eligibility audit; raw sample/inference not run",
+  "author_commit": "c17a118fcaed1559f03cc32cc3a91dedc557f8b8",
+  "source_url": "https://github.com/unmannedlab/RELLIS-3D/tree/c17a118fcaed1559f03cc32cc3a91dedc557f8b8",
+  "paired_appearance": "Author release describes RGB/stereo, two LiDARs, camera/LiDAR calibration and labelled image/point releases.",
+  "documented_native_terrain": [
+    "dirt",
+    "grass",
+    "water",
+    "puddle",
+    "mud",
+    "rubble",
+    "concrete",
+    "asphalt"
+  ],
+  "documented_native_obstacles": [
+    "tree",
+    "pole",
+    "vehicle",
+    "object",
+    "building",
+    "log",
+    "person",
+    "fence",
+    "bush",
+    "barrier"
+  ],
+  "annotation_dependence": "Ouster labels are described as manually labelled; Velodyne labels are described as transferred from Ouster. Do not treat them as independent reference annotation.",
+  "benchmark_mapping": "Inspected SalsaNext learning map sends dirt, sky, object, asphalt, building and void to its ignored learning category; water/puddle/mud/rubble remain distinct.",
+  "licence_statement": "Author README states CC BY-NC-SA 3.0; intended reuse eligibility remains to be confirmed.",
+  "measured_model_result": "None in this project; author benchmark results were not rerun or used to claim camera/LiDAR superiority.",
+  "metadata_bytes": 166700,
+  "raw_bytes": 0,
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/unmannedlab/RELLIS-3D/c17a118fcaed1559f03cc32cc3a91dedc557f8b8/README.md",
+      "path": "rellis_0_README.md",
+      "bytes": 18451,
+      "sha256": "0bdc7ea2eb55b6cf3f50c7755bc82e0166d670953d82261daf597737ea8ecb9c"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/unmannedlab/RELLIS-3D/c17a118fcaed1559f03cc32cc3a91dedc557f8b8/benchmarks/SalsaNext/train/tasks/semantic/config/labels/rellis.yaml",
+      "path": "rellis_11_rellis.yaml",
+      "bytes": 2326,
+      "sha256": "573379a232ac561805987466c391a61fd5ad338be7fb9c4c2842f3f28067e0ad"
+    }
+  ]
+}

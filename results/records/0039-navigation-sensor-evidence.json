@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "id": "0039-navigation-sensor-evidence",
+  "title": "Terrain map support, geometry, vehicle footprints and modality-specific evidence",
+  "owner": "Ricky Yuen",
+  "date": "2026-10-03",
+  "status": "success",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "dataset": "GOOSE 3D validation 31 previously selected frames; MAN TruckScenes v1.2-mini 10 recordings; RADIATE tiny_foggy 17 eligible frames; RELLIS-3D pinned author metadata",
+  "sensor_configuration": "GOOSE VLS-128 raw XYZI and saved PTv3 categories; all corrected TruckScenes LiDAR/radar counts plus panoramic camera visibility metadata; RADIATE radar contrast; no new camera model",
+  "annotation_schema": "GOOSE 64-class native labels and separate provisional policy; TruckScenes native object boxes and visibility levels; RADIATE footprint annotations; RELLIS author ontology/configuration",
+  "split": "All 31 preserved GOOSE selections from eight recordings, all 25117 corrected TruckScenes exact-box observations, all eligible fog footprint observations; no RELLIS raw sample",
+  "environment": {
+    "os": "Windows",
+    "hardware": "CPU only; no new inference or GPU work",
+    "python": "3.11.9",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1"
+    }
+  },
+  "commands": [
+    "python scripts/analyse_p5_navigation.py --goose-root <GOOSE-3D-val> --original-predictions <stratified24-result> --followup-predictions <followup7-runs> --truckscenes-root <TruckScenes-root> --output-dir <new-output-directory>"
+  ],
+  "measurements": [
+    {
+      "name": "Unobserved half-metre map-cell observations",
+      "value": 105904,
+      "scope": "243660 pooled cells in a 25m disc across 31 scans; unobserved is unknown"
+    },
+    {
+      "name": "Candidate-ground half-metre cells eligible for plane fit",
+      "value": 28958,
+      "scope": "70807 cell observations; >=5 points, second covariance eigenvalue >=0.0025m^2"
+    },
+    {
+      "name": "Retained 2.5m square footprint observations",
+      "value": 14371,
+      "scope": "61210 candidate centres in 0.5m maps; observed semantic policy only, not validated passability"
+    },
+    {
+      "name": "Low-camera-visibility observations with LiDAR returns",
+      "value": 7730,
+      "scope": "8125 level-1 exact-box observations, >=1 return; camera visibility 0-40%, not sensor-specific occlusion"
+    },
+    {
+      "name": "Raw dataset bytes downloaded in this study",
+      "value": 0,
+      "unit": "bytes",
+      "scope": "RELLIS primary-source metadata only, 166700 bytes; no new raw or model inference"
+    }
+  ],
+  "evidence": [
+    "docs/final-findings-oct03.md",
+    "results/evidence/p5-oct03/manifest.json",
+    "results/evidence/p5-oct03/verification.json",
+    "results/evidence/p5-oct03/finding_sources.json",
+    "results/evidence/p5-oct03/additional_dataset_audit.json",
+    "experiment-log/0032-navigation-sensor-evidence.md"
+  ],
+  "notes": "Successful bounded CPU characterisation. Modality fusion denotes combined analysis sources, not learned fusion accuracy. Twenty main decision-distinct conclusions preserve all prior evidence; temporal D11 is support, D07/D17 and D14/D16 are merged. Local theoretical client report/handover remain outside Git. Physical traversal, true clearance, gravity-aligned grade, object recognition and camera texture improvement are unmeasured."
+}

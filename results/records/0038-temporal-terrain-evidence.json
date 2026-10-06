@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "id": "0038-temporal-terrain-evidence",
+  "title": "Temporal paired sensing, consequential terrain errors and independent WildScenes inputs",
+  "owner": "Ricky Yuen",
+  "date": "2026-10-03",
+  "status": "success",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "dataset": "TruckDrive seven clips; MAN TruckScenes v1.2-mini ten recordings; GOOSE 31 selected frames; RADIATE tiny_foggy 17 eligible frames; WildScenes five selected frames",
+  "sensor_configuration": "Existing paired TruckDrive/TruckScenes counts; RADIATE radar image contrast and LiDAR footprint counts; GOOSE VLS-128 XYZI with saved PTv3 predictions; WildScenes labelled XYZ",
+  "annotation_schema": "Native object boxes and scene-qualified tracks; 64 GOOSE fine labels, eight challenge categories and separate provisional screening policy; native WildScenes labels and pinned author's 13-scored-class mapping",
+  "split": "All shared earlier/follow-up TruckDrive keys, all corrected TruckScenes keys, original 24 plus seven GOOSE selections, all eligible fog frames, first chronological opt3d frame per five WildScenes recording groups (training examples)",
+  "environment": {
+    "os": "Windows",
+    "hardware": "CPU analysis only; no new model inference or GPU runs",
+    "python": "3.11.9",
+    "packages": {"numpy": "1.26.4"}
+  },
+  "commands": [
+    "python scripts/analyse_p3_p4_road.py --truckscenes-root <existing-root> --output-dir results/evidence/p3-p4-oct03",
+    "python scripts/acquire_wildscenes_selected.py --output-dir <external-independent-data-root>",
+    "python scripts/analyse_p3_p4_terrain.py --goose-root <existing-root> --mapping <challenge-mapping.csv> --original-predictions <stratified24-result> --followup-predictions <followup7-runs> --execution <saved-execution.json> --wildscenes-audit <external-independent-data-root> --output-dir results/evidence/p3-p4-oct03"
+  ],
+  "measurements": [
+    {"name": "Forward TruckDrive vehicle tracks", "value": 107, "scope": "Aligned shared keys, exact boxes, abs azimuth <=15 degrees; sampled support, not recognised hazards"},
+    {"name": "TruckScenes radar-only observations", "value": 39, "scope": "25117 matched observations, per-point correction, exact boxes and one-return threshold; none persists for three sampled observations"},
+    {"name": "Unique selected GOOSE frames", "value": 31, "scope": "Eight recording groups, 5378535 points; p64 baseline cohorts combined for directional diagnostics; p128 matched to seven only"},
+    {"name": "Mixed half-metre columns with ground-truth firm majority", "value": 672, "scope": "4232 observed columns containing firm terrain and rigid/person/vehicle hazard; provisional policy, XY columns may contain overhead geometry"},
+    {"name": "Selected independent terrain points", "value": 531070, "scope": "Five first chronological labelled WildScenes frames; not transfer inference or a representative benchmark"},
+    {"name": "New raw sample bytes", "value": 8497120, "unit": "bytes", "scope": "Ten WildScenes selected cloud/label files, all stored outside Git"}
+  ],
+  "evidence": [
+    "docs/temporal-terrain-findings-oct03.md",
+    "results/evidence/p3-p4-oct03/road_manifest.json",
+    "results/evidence/p3-p4-oct03/terrain_manifest.json",
+    "results/evidence/p3-p4-oct03/verification.json",
+    "experiment-log/0031-temporal-terrain-evidence.md"
+  ],
+  "notes": "Successful execution of bounded descriptive studies. Modality fusion denotes analyses containing both modalities; no learned fusion score exists. Findings include seven candidate new decision messages and refinements of ten preserved messages. The twenty-distinct-message target, independent human clarity review and client acceptance remain outstanding. Physical passability, stopping, production latency and cross-dataset model transfer are unmeasured. Client reports and plans stay local."
+}

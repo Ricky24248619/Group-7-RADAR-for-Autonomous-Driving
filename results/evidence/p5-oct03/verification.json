@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "checks": {
+    "scalar_footprint_frames": 31,
+    "scalar_plane_frames": 31,
+    "brute_force_ground_queries": 1160,
+    "frame_footprint_partitions": 186,
+    "frame_height_partitions": 124,
+    "direct_visibility_strata": 390
+  },
+  "source_frames": 31,
+  "reproduced_files": [
+    "ground_reference.csv",
+    "relative_height.csv",
+    "height_columns.csv",
+    "surface_shape.csv",
+    "vehicle_footprint.csv",
+    "camera_visibility.csv",
+    "fog_background.csv",
+    "manifest.json"
+  ],
+  "reproduction": "Fresh directory, all 31 source frames and all sensor strata; exact LF text hashes",
+  "limits": "Same analyst wrote independent scalar algorithms; not independent human or client validation. No physical traversal, object recognition, new GPU inference or new camera model."
+}
