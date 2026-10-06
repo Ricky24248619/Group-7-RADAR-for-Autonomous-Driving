@@ -95,6 +95,12 @@ be cited somewhere else.
 | 5 | Sensor fusion is essential and "really hard". The course does not cover it | Fusion | Bonn SDC 2021, Perception 1 | 8:30–9:14 | Stated | Damien |
 | 6 | Datasets are mostly good weather; all-weather operation is an open problem for Level 5 | All | Bonn SDC 2021, Perception 1 | 71:41–72:32 | Stated | Damien |
 | 7 | **Silence:** no mention of 4D/imaging radar, no radar-first detector, and no range figure past ~150 m in 131 minutes of perception teaching | Radar | Bonn SDC 2021, Perception 1 & 2 | whole | Stated (by absence) | Damien |
+| 8 | Long-range perception is anchored on FMCW LiDAR: Aurora claims detection beyond 450 m; Daimler/Torc's Aeva LiDAR is designed for up to 500 m | LiDAR | Aurora newsroom, 23 Jan 2026; Daimler Truck NA press release, Jan 2024 ([AD-3](../ad-3-industry-check.md) A1, T1) | web pages | Stated | Aiden |
+| 9 | State-of-the-art models "do not generalize to ranges beyond 150 meters", with 31–99% drops in 3D perception tasks | All | TruckDrive paper, Torc + Princeton, arXiv:2603.02413 ([AD-3](../ad-3-industry-check.md) T2) | abstract | Evidenced | Aiden |
+| 10 | 4D radar on a production-intent truck since 2021: elevation lets it separate a stopped vehicle under a bridge from the bridge; velocity tracked to 350 m | Radar | Kodiak blog, 28 Sep 2021 ([AD-3](../ad-3-industry-check.md) K1) | web page | Stated | Aiden |
+| 11 | Imaging radar "penetrates dense fog and rain"; in dust "the perception system shifts weight to imaging radar" | Radar / Fusion | Aurora newsroom, 23 Jan 2026 ([AD-3](../ad-3-industry-check.md) A1) | web page | Stated | Aiden |
+| 12 | Inclement weather constrained Aurora's driverless operations in Texas roughly 40% of the time in 2025; rain, fog and wind validated only in early 2026 | All | Aurora Q4 2025 shareholder letter, 11 Feb 2026 ([AD-3](../ad-3-industry-check.md) A2) | 8-K exhibit 99.1 | Stated | Aiden |
+| 13 | A driving stack trained only on one truck model drove a differently-sensored truck with zero retraining. **Contests row 4.** No metrics or independent verification published | All | FreightWaves on Waabi, 15 Jul 2026 ([AD-3](../ad-3-industry-check.md) W2) | web page | Contested | Aiden |
 
 **Confidence:** *Stated* — the source asserts it directly · *Evidenced* — the source
 shows data · *Contested* — sources disagree, log both and flag it · *Inferred* — your
