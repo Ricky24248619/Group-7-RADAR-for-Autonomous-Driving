@@ -1,0 +1,9 @@
+band_m,margin_m,threshold,boxes,full_lidar_supported,full_lidar_share,radar_supported,radar_share,matched_expected,matched_expected_share,matched_p5,matched_median,matched_p95,draws,seed,denominator
+0-50,0.0,1,10220,10199,0.997945,6753,0.660763,7901.54,0.773145,7851.9,7900.5,7948.1,200,20260929,released box observations in this band and margin
+50-100,0.0,1,8256,8152,0.987403,3460,0.419089,3054.38,0.369959,2996.0,3054.0,3106.2,200,20260929,released box observations in this band and margin
+100-150,0.0,1,4332,4147,0.957295,1182,0.272853,760.35,0.175519,727.0,760.0,795.0,200,20260929,released box observations in this band and margin
+150-400,0.0,1,2309,2118,0.917280,350,0.151581,290.04,0.125613,267.9,289.0,312.0,200,20260929,released box observations in this band and margin
+0-50,0.5,1,10220,10213,0.999315,8922,0.872994,8425.18,0.824382,8378.9,8426.5,8468.0,200,20260929,released box observations in this band and margin
+50-100,0.5,1,8256,8255,0.999879,5851,0.708697,3422.38,0.414532,3371.0,3423.0,3481.1,200,20260929,released box observations in this band and margin
+100-150,0.5,1,4332,4326,0.998615,2106,0.486150,909.45,0.209938,871.0,908.5,955.0,200,20260929,released box observations in this band and margin
+150-400,0.5,1,2309,2283,0.988740,646,0.279775,358.69,0.155344,333.0,358.0,381.0,200,20260929,released box observations in this band and margin

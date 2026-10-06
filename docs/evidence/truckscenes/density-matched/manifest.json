@@ -1,0 +1,26 @@
+{
+  "analysis": "density-matched LiDAR subsampling control",
+  "dataset": "MAN TruckScenes v1.2-mini",
+  "source_records": [
+    "0016-truckscenes-paired-point-support",
+    "0017-truckscenes-long-range-evidence-audit"
+  ],
+  "inputs": {
+    "object_counts.csv": "8bdc290998047cf55d7a4e707f7be3d6f7ac91c4df592dd82bee87d8824ee57d",
+    "sample_channel_ranges.csv": "1cc949c65737e48ca25979a4948fb180aefb4fc78379e27bc2b89081234d01f0"
+  },
+  "frames": 389,
+  "frames_reduced": 389,
+  "median_lidar_to_radar_ratio": 77.9,
+  "support_threshold": 1,
+  "seed": 20260929,
+  "draws": 200,
+  "method": "Per frame, keep a uniformly random subset of the LiDAR returns the size of that frame's radar returns, then recount support. The expected number of supported boxes is computed exactly from the hypergeometric distribution; the percentiles come from seeded draws.",
+  "limitations": [
+    "Geometric support, not detection recall or mAP; no model is run",
+    "Uniform random thinning is one null model; a lower-resolution sensor would thin structurally, not at random",
+    "Per-box draws treat boxes in a frame as independent, which affects the reported spread but not the exact expectation",
+    "Inherits every limitation of record 0016, including LiDAR-based annotation selection and repeated observations across scenes",
+    "Recorded radar returns stop near 189.5 m, bounding any statement about bands beyond it"
+  ]
+}
