@@ -1,8 +1,18 @@
 # Twenty LiDAR/radar and off-road findings
 
-3 October 2026. This synthesis preserves the earlier findings and applies the reviewed consolidations. Each numbered finding answers a different practical question. Repeated classes, ranges and settings support the finding rather than increase the count.
+Analysis completed 3 October 2026; synthesis finalized 6 October 2026. This synthesis preserves the earlier findings and applies the reviewed consolidations. Each numbered finding answers a different practical question. Repeated classes, ranges and settings support the finding rather than increase the count. The D-identifiers remain stable when findings are cited elsewhere.
 
 Road measurements are annotation-conditioned return presence, not recognition. Terrain measurements are returned-point or map diagnostics, not physical passability. Camera appearance benefits remain an untested question. The 31 GOOSE frames come from eight recording groups; their points/cells are not independent trials.
+
+## Main messages
+
+- **LiDAR provided more distant vehicle information in the tested TruckDrive clips.** At 200–400 m in the two follow-up clips, labelled vehicles contained LiDAR returns in 31 of 36 observations and radar returns in 12. This supports testing LiDAR for early information before a truck must respond. Stable recognition and stopping performance still need to be measured. See D01 and D03, with the supporting temporal evidence below.
+- **Good radar coverage of trucks did not describe coverage of every important target.** In the nearby TruckScenes samples, radar support was 99.12% for trucks, 67.66% for adults and 39.00% for cones. The class samples differ, so these are coverage observations rather than proof of a size or material effect. Separate target checks matter when evaluating people and work-zone objects. See D02 and D22.
+- **Off-road sensing needs correct terrain interpretation as well as recorded points.** The tested GOOSE model sometimes labelled hazards as ground and candidate ground as obstacles. Even a map built from correct labels could discard a minority hazard under a majority-ground rule. A future evaluation should check these error directions and the map conversion separately. See D05, D06, D12 and D13.
+- **A ground label alone does not describe the space available to a vehicle.** The selected terrain maps had unobserved areas, obstacle returns at different vertical levels and ground patches with different shapes. A wider footprint also rejected many positions that passed a single-cell check. These diagnostics identify information to preserve for navigation; they do not certify clearance or a usable route. See D18–D21.
+- **Future model upgrades need tests that expose regressions and match the intended use.** More context improved six of seven tested terrain examples, worsened one and increased summed logged batch time by about 28%. Pooled scores hid a weak recording, and important conditions such as water remain unchecked. Camera appearance is a proposed surface-classification study. See D07, D08, D14 and D15; D04, D09, D10 and D23 explain comparison and evaluation limits.
+
+These five messages summarize the twenty findings; they do not add to their count. The detailed sections retain the measured units, selected cohorts, evidence links and limits needed to interpret each conclusion.
 
 ## 1. D01 — LiDAR supplied data from distant vehicles more often than radar in the TruckDrive clips analysed.
 
