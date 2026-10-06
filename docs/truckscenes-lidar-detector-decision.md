@@ -2,6 +2,13 @@
 
 25 September 2026 · EXP-0019 · result 0022
 
+**Update, 27 September 2026:** the full 80-sample scored run this doc's
+"Next action" called for is done — see
+[EXP-0024](../experiment-log/0024-truckscenes-lidar-full-split.md), result
+0029. mAP is 0.0000 across all 12 classes, diagnosed (not just reported) via
+a nearest-match distance check. This does not change the go decision below;
+it answers the "Fallback if a full run underperforms" section's scenario.
+
 **Go — with a different candidate than originally planned.** CenterPoint,
 informally flagged as the next step since EXP-0006, is a no-go on this
 machine. PointPillars, checked as a direct substitute, is verified runnable:
@@ -78,11 +85,29 @@ projection check) rather than just report the number.
 
 ## Next action
 
-1. Radar candidate feasibility check (AD-S3-1's other half of this bullet).
-2. If the team wants the full result: extend this minimal execution to all
-   80 `mini_val` samples and score with the devkit's evaluator, mirroring
-   EXP-0010's camera methodology exactly, so the two modalities are
-   comparable on the same split and metric.
+1. ~~Radar candidate feasibility check (AD-S3-1's other half of this
+   bullet).~~ Done — EXP-0020, result 0023, no-go (both candidates blocked).
+2. ~~If the team wants the full result: extend this minimal execution to
+   all 80 `mini_val` samples and score with the devkit's evaluator,
+   mirroring EXP-0010's camera methodology exactly.~~ Done — EXP-0024,
+   result 0029. **3 October update:** the 27 September mAP 0.0000 came from
+   feeding the ~56°-pitched `LIDAR_TOP_FRONT` frame straight to this
+   upright-box checkpoint ([PR #63 review](pr63-input-frame-review.md)),
+   so it is kept only as the historical unrectified run. Its "not a
+   coordinate bug" claim is withdrawn. The script now rectifies points into
+   an upright virtual LiDAR matching nuScenes `LIDAR_TOP`, with geometry
+   regression tests. All 1,904 rerun boxes are upright, and the rerun scores
+   **mAP 0.0067** (pedestrian 0.041, trailer 0.022, truck 0.017). Only 23.9%
+   of scored ground-truth boxes contain any point from this one channel.
+   **4 October update:** every LiDAR was then run separately through the
+   same pipeline. The level side LiDAR `LIDAR_LEFT` reaches 69.5% of scored
+   objects and scores **mAP 0.0555** (car AP 0.202); `LIDAR_RIGHT` scores
+   0.0466. The other four score 0.0057–0.0125
+   ([comparison](evidence/pr63-channel-comparison/summary.json)). For this
+   checkpoint on TruckScenes, use a side LiDAR, not `LIDAR_TOP_FRONT`.
+   Merging all six (`--channel ALL`) reaches 94.9% of scored objects and
+   scores **mAP 0.1005** (car AP 0.406). Trucks score 0.009 despite full
+   coverage, which points to the checkpoint not recognising heavy trucks.
 
 ## Reproduction
 
@@ -91,6 +116,9 @@ python truckscenes_fcos3d_infer.py-style script (see experiment-log/0019)
 --dataroot <man-truckscenes> --config <pointpillars nus-3d config>
 --checkpoint checkpoints/pointpillars_nus_20210826_225857-f19d00a3.pth
 ```
+
+Full split: `scripts/truckscenes_pointpillars_infer.py` (upright input frame
+by default; see experiment-log/0024 for the exact commands).
 
 Checkpoint: `checkpoints/pointpillars_nus_20210826_225857-f19d00a3.pth`
 (not committed — 220MB+ model weights stay outside Git, same convention as

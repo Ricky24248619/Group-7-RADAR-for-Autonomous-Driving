@@ -27,6 +27,19 @@
   no-go for both candidates checked, each with a specific documented
   blocker, not a shrug. See `docs/ad-s3-1-detector-feasibility-summary.md`
   for the combined go/no-go note.
+- Extended PointPillars to the full 80-sample `mini_val` split, scored with
+  the devkit's evaluator (EXP-0024). The first run's mAP 0.0000 was not
+  interpretable: `LIDAR_TOP_FRONT` is pitched ~56° and went into an
+  upright-box checkpoint unrectified (PR #63 review). After moving points
+  into an upright virtual LiDAR, every output box is upright and the run
+  scores mAP 0.0067. Running all six LiDARs separately (4 Oct) showed the
+  channel matters most: the level side LiDAR `LIDAR_LEFT` reaches 69.5% of
+  scored objects and scores **mAP 0.0555** (car AP 0.20), about 8× the
+  tilted blind-spot channel. **All six merged** reach 94.9% of scored
+  objects and score **mAP 0.1005** (car AP 0.41). Trucks stay near zero
+  (AP 0.009) despite full coverage, so for trucks the problem is
+  recognition, not visibility. See `docs/truckscenes-lidar-detector-decision.md`'s
+  3–4 October update.
 
 ## Outcome
 
@@ -70,11 +83,16 @@ with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
 
 ## Current limits
 
-- No LiDAR or radar detection model has been run at full scale yet.
-  PointPillars is a verified-feasible LiDAR candidate (EXP-0019) but only a
-  one-sample minimal execution has been run, not the full 80-sample scored
-  benchmark. Radar remains blocked (EXP-0020) — no candidate cleared
-  checkpoint access + preprocessing verification within this check's scope.
+- LiDAR (PointPillars) has been run and scored at full scale in a verified
+  upright input frame (EXP-0024, all 80 `mini_val` samples, each LiDAR
+  channel separately, then all six merged): merged mAP 0.1005, best single
+  channel `LIDAR_LEFT` 0.0555, and 0.0057–0.0466 for the other five. Score tracks how many scored objects
+  each channel reaches (23–70%), but mounting and beam pattern also differ,
+  and domain shift is not separated as a cause, except for trucks and
+  trailers, which are fully covered in the merged cloud and still score
+  near zero. Radar remains blocked (EXP-0020):
+  no candidate cleared checkpoint access + preprocessing verification within
+  that check's scope.
 - The `traffic_cone` AP signal from EXP-0010 hasn't been diagnosed with the
   same rigor as the single-camera zero (no per-class distance analysis yet)
   — worth a quick follow-up before reading anything into it.
@@ -94,9 +112,9 @@ with visual overlays in `scripts/audit_fcos3d_4camera/overlays/`.
   experiment on TruckScenes is camera + LiDAR, not three modalities —
   radar stays open pending a human unblocking the L-RadSet checkpoint
   outside this sandbox.
-- If the team wants the full LiDAR result: extend EXP-0019's minimal
-  execution to all 80 `mini_val` samples, scored with the devkit's
-  evaluator, mirroring EXP-0010's camera methodology.
+- Optionally merge all six TruckScenes LiDARs into the same upright virtual
+  frame for a fairer LiDAR number. This is a separate experiment that needs
+  its own calibration and timing checks.
 - Optionally re-run EXP-0006's nearest-match distance diagnostic on
   EXP-0010's predictions, broken down by class, to check whether the
   `traffic_cone` AP is a genuine near-range effect or noise.

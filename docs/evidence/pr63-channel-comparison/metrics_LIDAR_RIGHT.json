@@ -1,0 +1,239 @@
+{
+  "all": {
+    "label_aps": {
+      "car": {
+        "0.5": 0.10669515679422092,
+        "1.0": 0.2591626151776792,
+        "2.0": 0.29061218480916234,
+        "4.0": 0.29754680654612536
+      },
+      "truck": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.03729802331702967
+      },
+      "bus": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "trailer": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.033502744528496387,
+        "4.0": 0.2199477320707714
+      },
+      "other_vehicle": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "pedestrian": {
+        "0.5": 0.020036659789070786,
+        "1.0": 0.020036659789070786,
+        "2.0": 0.02433237888172788,
+        "4.0": 0.03361308461387707
+      },
+      "motorcycle": {
+        "0.5": 0.18604718071653556,
+        "1.0": 0.23548474869607677,
+        "2.0": 0.23548474869607677,
+        "4.0": 0.23548474869607677
+      },
+      "bicycle": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "traffic_cone": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "barrier": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "animal": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      },
+      "traffic_sign": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "4.0": 0.0
+      }
+    },
+    "mean_dist_aps": {
+      "car": 0.23850419083179697,
+      "truck": 0.009324505829257418,
+      "bus": 0.0,
+      "trailer": 0.06336261914981695,
+      "other_vehicle": 0.0,
+      "pedestrian": 0.024504695768436634,
+      "motorcycle": 0.22312535670119144,
+      "bicycle": 0.0,
+      "traffic_cone": 0.0,
+      "barrier": 0.0,
+      "animal": 0.0,
+      "traffic_sign": 0.0
+    },
+    "mean_ap": 0.04656844735670829,
+    "label_tp_errors": {
+      "car": {
+        "trans_err": 0.373198663913035,
+        "scale_err": 0.2542553988649962,
+        "orient_err": 0.2773527941714121,
+        "vel_err": 7.2111100164673525,
+        "attr_err": 0.2243004645835476
+      },
+      "truck": {
+        "trans_err": 0.7816700522127257,
+        "scale_err": 0.2965505043163762,
+        "orient_err": 0.5301572940064493,
+        "vel_err": 0.7651690623179745,
+        "attr_err": 0.07049242182319104
+      },
+      "bus": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "trailer": {
+        "trans_err": 1.174751314160395,
+        "scale_err": 0.3311274730968203,
+        "orient_err": 0.9109152303411467,
+        "vel_err": 2.423664907757061,
+        "attr_err": 0.0773487312600817
+      },
+      "other_vehicle": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "pedestrian": {
+        "trans_err": 0.19385336249350615,
+        "scale_err": 0.37247038640135105,
+        "orient_err": 1.5854675247379297,
+        "vel_err": 0.9219940581439409,
+        "attr_err": 0.0
+      },
+      "motorcycle": {
+        "trans_err": 0.31385417244656705,
+        "scale_err": 0.5483916721128423,
+        "orient_err": 1.0959346026100647,
+        "vel_err": 33.22623482098758,
+        "attr_err": 1.0
+      },
+      "bicycle": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": 1.0
+      },
+      "traffic_cone": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": NaN,
+        "vel_err": NaN,
+        "attr_err": NaN
+      },
+      "barrier": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": NaN,
+        "attr_err": NaN
+      },
+      "animal": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": 1.0,
+        "attr_err": NaN
+      },
+      "traffic_sign": {
+        "trans_err": 1.0,
+        "scale_err": 1.0,
+        "orient_err": 1.0,
+        "vel_err": NaN,
+        "attr_err": 1.0
+      }
+    },
+    "tp_errors": {
+      "trans_err": 0.8197772971021857,
+      "scale_err": 0.7335662862326989,
+      "orient_err": 0.9454388587151822,
+      "vel_err": 5.394241429519323,
+      "attr_err": 0.5969046241852022
+    },
+    "tp_scores": {
+      "trans_err": 0.18022270289781428,
+      "scale_err": 0.2664337137673011,
+      "orient_err": 0.054561141284817816,
+      "vel_err": 0.0,
+      "attr_err": 0.4030953758147978
+    },
+    "nd_score": 0.11371551705482723,
+    "eval_time": null,
+    "cfg": {
+      "class_range": {
+        "car": 150,
+        "truck": 150,
+        "bus": 150,
+        "trailer": 150,
+        "other_vehicle": 150,
+        "pedestrian": 75,
+        "motorcycle": 75,
+        "bicycle": 75,
+        "traffic_cone": 75,
+        "barrier": 75,
+        "animal": 75,
+        "traffic_sign": 75
+      },
+      "dist_fcn": "center_distance",
+      "dist_ths": [
+        0.5,
+        1.0,
+        2.0,
+        4.0
+      ],
+      "dist_th_tp": 2.0,
+      "min_recall": 0.1,
+      "min_precision": 0.1,
+      "max_boxes_per_sample": 500,
+      "mean_ap_weight": 5
+    }
+  },
+  "eval_time": 0.561941385269165,
+  "meta": {
+    "use_camera": false,
+    "use_lidar": true,
+    "use_radar": false,
+    "use_map": false,
+    "use_external": false,
+    "use_future_frames": false,
+    "use_tta": false,
+    "method_name": "PointPillars (nuScenes-pretrained, zero-shot)",
+    "authors": "",
+    "affiliation": "",
+    "description": "Zero-shot cross-dataset test: nuScenes-trained PointPillars checkpoint run directly on TruckScenes LIDAR_RIGHT point clouds (upright input frame), no fine-tuning. Follow-on to EXP-0019's one-sample feasibility check.",
+    "code_url": "",
+    "paper_url": ""
+  }
+}

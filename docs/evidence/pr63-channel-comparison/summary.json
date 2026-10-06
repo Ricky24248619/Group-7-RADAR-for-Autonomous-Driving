@@ -1,0 +1,132 @@
+{
+  "description": "PointPillars (nuScenes-pretrained, zero-shot) on each TruckScenes LiDAR channel separately and on all six merged (channel ALL), upright virtual-LiDAR input frame, all 80 mini_val samples, scored with the devkit evaluator. Coverage = scored GT boxes holding >= 1 point from that channel (from any of the six for ALL).",
+  "max_box_world_up_tilt_deg": 0.0,
+  "channels": [
+    {
+      "channel": "ALL",
+      "mounting": "all six merged in one upright virtual LiDAR",
+      "mAP": 0.1005,
+      "NDS": 0.1508,
+      "per_class_ap": {
+        "car": 0.4062,
+        "truck": 0.0095,
+        "trailer": 0.1104,
+        "pedestrian": 0.0489,
+        "motorcycle": 0.3368,
+        "traffic_cone": 0.2603,
+        "barrier": 0.034
+      },
+      "predicted_boxes": 4665,
+      "scored_gt_boxes": 2088,
+      "gt_boxes_with_channel_points": 1981,
+      "fraction_with_channel_points": 0.9488,
+      "predictions_sha256": "07c05445053f52ebdebc59dafd32c1802264d73bff41f2e6a0d0dffa6a8ff36e"
+    },
+    {
+      "channel": "LIDAR_LEFT",
+      "mounting": "side, level",
+      "mAP": 0.0555,
+      "NDS": 0.1229,
+      "per_class_ap": {
+        "car": 0.2022,
+        "truck": 0.012,
+        "trailer": 0.0457,
+        "pedestrian": 0.0381,
+        "motorcycle": 0.2311,
+        "traffic_cone": 0.1043,
+        "barrier": 0.0332
+      },
+      "predicted_boxes": 4196,
+      "scored_gt_boxes": 2088,
+      "gt_boxes_with_channel_points": 1452,
+      "fraction_with_channel_points": 0.6954,
+      "predictions_sha256": "7c6c9257560f504498cab2c5f297c1aae2c77afe16b82cbc203299a8b9c2c6a5"
+    },
+    {
+      "channel": "LIDAR_RIGHT",
+      "mounting": "side, level",
+      "mAP": 0.0466,
+      "NDS": 0.1137,
+      "per_class_ap": {
+        "car": 0.2385,
+        "truck": 0.0093,
+        "trailer": 0.0634,
+        "pedestrian": 0.0245,
+        "motorcycle": 0.2231
+      },
+      "predicted_boxes": 4099,
+      "scored_gt_boxes": 2088,
+      "gt_boxes_with_channel_points": 1411,
+      "fraction_with_channel_points": 0.6758,
+      "predictions_sha256": "9c815774be5808f1d7b2bf68366c13c8a63af9f82a7896e88719dfbe89b48ffc"
+    },
+    {
+      "channel": "LIDAR_TOP_LEFT",
+      "mounting": "roof, tilted ~55 deg",
+      "mAP": 0.0125,
+      "NDS": 0.0739,
+      "per_class_ap": {
+        "car": 0.05,
+        "truck": 0.0023,
+        "trailer": 0.0047,
+        "pedestrian": 0.0176,
+        "motorcycle": 0.0759
+      },
+      "predicted_boxes": 2411,
+      "scored_gt_boxes": 2088,
+      "gt_boxes_with_channel_points": 656,
+      "fraction_with_channel_points": 0.3142,
+      "predictions_sha256": "3d16ec7154f22ac80714d96e319445d613bcba36febc6fcfcac562b9bd4eb6d2"
+    },
+    {
+      "channel": "LIDAR_TOP_RIGHT",
+      "mounting": "roof, tilted ~55 deg",
+      "mAP": 0.0107,
+      "NDS": 0.0555,
+      "per_class_ap": {
+        "car": 0.099,
+        "truck": 0.0104,
+        "trailer": 0.019
+      },
+      "predicted_boxes": 2467,
+      "scored_gt_boxes": 2088,
+      "gt_boxes_with_channel_points": 890,
+      "fraction_with_channel_points": 0.4262,
+      "predictions_sha256": "848d96a150c55b8ee77e2e9ec2c9649baa1412cc3f7a695f6c3cc9d6f30b0cde"
+    },
+    {
+      "channel": "LIDAR_TOP_FRONT",
+      "mounting": "roof, tilted ~56 deg (blind-spot)",
+      "mAP": 0.0067,
+      "NDS": 0.0807,
+      "per_class_ap": {
+        "truck": 0.0168,
+        "trailer": 0.0221,
+        "pedestrian": 0.041,
+        "motorcycle": 0.0003
+      },
+      "predicted_boxes": 1904,
+      "scored_gt_boxes": 2088,
+      "gt_boxes_with_channel_points": 499,
+      "fraction_with_channel_points": 0.239,
+      "predictions_sha256": "3c0b8b1e03ea875baa11cd5a3513fe39a17a52d77cd63f00b91a3d02857154dc"
+    },
+    {
+      "channel": "LIDAR_REAR",
+      "mounting": "rear, level",
+      "mAP": 0.0057,
+      "NDS": 0.0553,
+      "per_class_ap": {
+        "car": 0.0268,
+        "trailer": 0.0018,
+        "motorcycle": 0.002,
+        "barrier": 0.038
+      },
+      "predicted_boxes": 2082,
+      "scored_gt_boxes": 2088,
+      "gt_boxes_with_channel_points": 484,
+      "fraction_with_channel_points": 0.2318,
+      "predictions_sha256": "deaa10e06bfff297180b0ba67e462e1812a9fb06a3f415d81a236d32798c24d7"
+    }
+  ]
+}
