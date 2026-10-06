@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "id": "0018-truckdrive-long-range-paired-support",
+  "title": "TruckDrive paired support to 399 m and cross-dataset long-range review",
+  "owner": "Ricky Yuen",
+  "date": "2026-09-22",
+  "status": "success",
+  "dataset": "TruckDrive official mini scene_28_1; TruckScenes v1.2-mini saved reference",
+  "sensor_configuration": "Released joint radar, joint Aeva FMCW LiDAR and three Ouster streams; static and acquisition-aligned sensitivity",
+  "annotation_schema": "Released velodyne-frame oriented cuboids; invalid 3D and ego annotations excluded",
+  "task_type": "dataset-characterisation",
+  "modality": "fusion",
+  "split": "One mini scene: 200 static paired frames, 198 acquisition-aligned paired frames",
+  "environment": {
+    "os": "Windows",
+    "hardware": "Local CPU; no new inference",
+    "python": "3.11.9",
+    "packages": {
+      "numpy": "1.26.4",
+      "scipy": "1.13.1"
+    }
+  },
+  "commands": [
+    "python scripts/truckdrive_paired_support.py --scene-root <scene_28_1>",
+    "python scripts/truckdrive_paired_support.py --scene-root <scene_28_1> --align-ego --output-dir docs/evidence/truckdrive/paired-scene-28-1-acquisition-aligned",
+    "python scripts/compare_long_range_profiles.py --truckdrive docs/evidence/truckdrive/paired-scene-28-1/object_counts.csv --truckdrive-aligned docs/evidence/truckdrive/paired-scene-28-1-acquisition-aligned/object_counts.csv"
+  ],
+  "measurements": [
+    {
+      "name": "Valid non-ego paired object observations",
+      "value": 8113,
+      "scope": "200 static paired frames; repeated tracks"
+    },
+    {
+      "name": "Maximum labelled planar centre range",
+      "value": 399.0340624161176,
+      "unit": "m",
+      "scope": "Valid non-ego 3D boxes in scene_28_1"
+    },
+    {
+      "name": "Radar returns at or beyond 300 m",
+      "value": 2828,
+      "scope": "Released joint radar, 200 frames; calibrated planar range, not verified true positives"
+    }
+  ],
+  "evidence": [
+    "docs/long-range-cross-dataset-review.md",
+    "docs/evidence/truckdrive/paired-scene-28-1/manifest.json",
+    "docs/evidence/truckdrive/paired-scene-28-1/download_manifest.json",
+    "docs/evidence/truckdrive/paired-scene-28-1-acquisition-aligned/manifest.json",
+    "docs/evidence/long-range-cross-dataset/timing_sensitivity.csv",
+    "docs/evidence/long-range-cross-dataset/verification.json",
+    "experiment-log/0015-truckdrive-long-range-comparison.md"
+  ],
+  "notes": "Geometric support only. A narrow static radar lead for vehicles at 150-200 m reverses with acquisition alignment and track weighting; beyond 200 m both timing variants favour LiDAR support in this scene. Only three vehicle tracks in the aligned 300-400 m band. Joint-cloud internal deskew, annotation bias, dynamic motion and generalisation remain unresolved. External papers are attributed, not new model runs."
+}

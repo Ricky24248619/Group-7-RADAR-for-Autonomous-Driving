@@ -1,0 +1,6 @@
+{
+  "transforms_checked": 25,
+  "max_abs_difference": 1.1102230246251565e-16,
+  "publisher_helpers": "load_utils.py dict_to_4x4/build_graph_of_transforms/find_transform",
+  "publisher_commit": "a09217e877fe6bad821f9828240c4c1b64d29da1"
+}

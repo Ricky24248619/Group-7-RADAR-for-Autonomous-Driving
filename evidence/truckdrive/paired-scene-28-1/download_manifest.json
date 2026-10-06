@@ -1,0 +1,37 @@
+{
+  "source_repository": "https://github.com/torc-ai/TruckDrive/tree/a09217e877fe6bad821f9828240c4c1b64d29da1",
+  "retrieved": "2026-09-22",
+  "archives": [
+    {
+      "url": "https://d3ehgyu1hepsur.cloudfront.net/TruckDrive/scene_28_1/calibrations.zip",
+      "size": 7905,
+      "sha256": "67ade162edc63e7b94260ed27e25b17166f08c45a5ff07b89ae7d69a8ba9b023",
+      "zip_crc": "passed"
+    },
+    {
+      "url": "https://d3ehgyu1hepsur.cloudfront.net/TruckDrive/scene_28_1/poses.zip",
+      "size": 19716,
+      "sha256": "c401f4e9bf68cdcb6a18e427a4ef9872bd0533262aedb7dff68179c7b8b27efa",
+      "zip_crc": "passed"
+    },
+    {
+      "url": "https://d3ehgyu1hepsur.cloudfront.net/TruckDrive/scene_28_1/annotations.zip",
+      "size": 4123848,
+      "sha256": "bc57fa3dad489e2ec213af80b68a401ff34d6ca080e4780eaaa052857ddad287",
+      "zip_crc": "passed"
+    },
+    {
+      "url": "https://d3ehgyu1hepsur.cloudfront.net/TruckDrive/scene_28_1/radar.zip",
+      "size": 147346947,
+      "sha256": "496d428239cfc1a422c1d355c087a4f303d8218c43c2f9bf69626a7ee4d2467f",
+      "zip_crc": "passed"
+    },
+    {
+      "url": "https://d3ehgyu1hepsur.cloudfront.net/TruckDrive/scene_28_1/lidar.zip",
+      "size": 4228827617,
+      "sha256": "12404668dcccf4f240584f2e5089f99a555ab8350c380cc935ad1249ade7c28b",
+      "zip_crc": "passed"
+    }
+  ],
+  "license": "Torc Robotics Non-Commercial License v1.0; retained locally with NOTICE.txt; binary dataset not redistributed"
+}

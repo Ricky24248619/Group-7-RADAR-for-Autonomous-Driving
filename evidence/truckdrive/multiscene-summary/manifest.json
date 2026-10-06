@@ -1,0 +1,26 @@
+{
+  "scenes": [
+    "scene_28_1",
+    "scene_28_6",
+    "scene_28_12",
+    "scene_28_18",
+    "scene_28_24"
+  ],
+  "input_sha256": {
+    "scene_28_1/static/object_counts.csv": "b32e6edb3056464760fa712c8ff2c702ece61f7a7f26abe1a4315b9ff1a0cd56",
+    "scene_28_1/aligned/object_counts.csv": "1e5be292296a8f3da06be44669307ff0b29e942a30c3a2a15982c9c7788d6bce",
+    "scene_28_6/static/object_counts.csv": "be8979a5c8613d403c0f9378e4e001023194ef6bcf561512f42c2fb8a1cc8206",
+    "scene_28_6/aligned/object_counts.csv": "ca5677f69e57f513d7d9edca06b44948c6c4f187e3f0582308d9133fd9b001b2",
+    "scene_28_12/static/object_counts.csv": "b3532875f6dd2cd21626c06caf808cd4d2169dae19dd9d29bad6326a134b1b99",
+    "scene_28_12/aligned/object_counts.csv": "ebfe70feb12d2892807759d72b472ac57f1e742ab9d6348737c4600682774418",
+    "scene_28_18/static/object_counts.csv": "ce326d01573db7d957aec4652f553451a5150b2837e61895e36900c47971fccf",
+    "scene_28_18/aligned/object_counts.csv": "8d13b2c74be2cbdaac5c128115205cd4017acb32c13a21ef1958c9f80dc7f1a4",
+    "scene_28_24/static/object_counts.csv": "1c7d393dc9ccfd21dad5efa11693b3e776438394ac72a5268ff85eb21ab18dea",
+    "scene_28_24/aligned/object_counts.csv": "c7116689e800771326f9c2b519f3541f333d56efc0f2f99604868192906dc359"
+  },
+  "selection": "Scene 1 retained from pilot, plus 6, 12, 18, 24 fixed before inspecting outcomes; not random or representative.",
+  "counting": "Unique scene-qualified track and annotation IDs; static restricted to aligned annotation set; >= lower and < upper range.",
+  "unit": "Percentage of released annotated object observations with at least the specified count of geometric in-box returns.",
+  "uncertainty": "Scene ranges and leave-one-scene-out sensitivity, not population confidence intervals. Shared scene_28 prefix does not establish independent drives.",
+  "limitation": "LiDAR-informed labels, unmatched hardware/FOV, unresolved joint-cloud deskew and no trained detectors."
+}
